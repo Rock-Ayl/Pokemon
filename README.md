@@ -26,6 +26,12 @@ Gradle 6.9.2
 
 LibGdx for PC
 
+# 启动方式
+
+use IDE import build.gradle
+
+run class DesktopLauncher
+
 
 # 目前拥有的东西
 

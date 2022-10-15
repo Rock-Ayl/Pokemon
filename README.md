@@ -1,10 +1,14 @@
-# Pokemon by Rock
+# Pokemon By Rock
 
 这是一个试图使用 Java 复刻 PockMon For GBA 的尝试.
 
-素材基底基于绿宝石.
+我自己是个Java开发工程师,总是想要复刻一些童年中的游戏,但却没有相关的经验.
 
-为了童年.
+所以,这是个练手的工程,我会借此不断熟悉LibGdx的API.
+
+这个工程将会一直开发下去,直到我放弃使用Java复刻游戏.
+
+素材基底基于绿宝石.
 
 灵感来自 : [https://www.youtube.com/playlist?list=PLVOwyy-CHLyrFO9A60_z0Q_x8RfpvgrbM]
 

@@ -18,13 +18,14 @@ public class Settings {
     //游戏帧率
     public static int FPS_60 = 60;
     public static int FPS_144 = 144;
+    public static int FPS_200 = 200;
 
     //todo 当前语言(暂时固定为中文)
     public static LanguageEnum LANG = LanguageEnum.SIMPLIFIED_CHINESE;
 
     //todo 分辨率 暂时固定为 800 * 480
-    public static int WINDOW_WIDTH = 800;
-    public static int WINDOW_HEIGHT = 480;
+    public static int WINDOW_WIDTH = 600;
+    public static int WINDOW_HEIGHT = 400;
 
     //是否使用垂直同步
     public static boolean USE_VERTICAL_SYNC = true;

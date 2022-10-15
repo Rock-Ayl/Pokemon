@@ -14,7 +14,7 @@ public class DesktopLauncher {
         //初始化配置
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         //设置帧率
-        config.setForegroundFPS(Settings.FPS_144);
+        config.setForegroundFPS(Settings.FPS_200);
         //窗口尺寸
         config.setWindowedMode(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
         //是否使用垂直同步

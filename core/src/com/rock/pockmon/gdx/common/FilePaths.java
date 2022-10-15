@@ -14,7 +14,7 @@ public class FilePaths {
      */
 
     //路比-图片目录
-    public static final String RUBY_IMAGE_DIR = "people/ruby/";
+    public static final String RUBY_IMAGE_DIR = "image/people/ruby/";
 
     /**
      * 音乐

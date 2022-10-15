@@ -47,7 +47,7 @@ public class MainMenu implements Screen {
     @Override
     public void render(float delta) {
 
-        //屏幕渲染成蓝色
+        //蓝幕
         ScreenUtils.clear(Color.BLUE);
 
         //按照惯例,每帧先更新一次相机

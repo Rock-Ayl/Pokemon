@@ -7,7 +7,7 @@ public enum StandEnum {
 
     EAST("east.png"),
     SOUTH("south.png"),
-    west("west.png"),
+    WEST("west.png"),
     NORTH("north.png"),
 
     ;

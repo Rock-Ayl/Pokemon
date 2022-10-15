@@ -13,14 +13,14 @@ import com.rock.pockmon.gdx.enums.StandEnum;
  * @Author ayl
  * @Date 2022-10-13
  */
-public class Person extends Rectangle {
+public class PersonDO extends Rectangle {
 
     //人物枚举
     private PersonEnum personEnum;
     //当前图片对象
     private Texture currentImage;
 
-    //人物移动速度,暂时统一为300
+    //todo 人物移动速度,暂时统一为300
     public int moveSpeed = 300;
 
     /**
@@ -28,7 +28,7 @@ public class Person extends Rectangle {
      *
      * @param personEnum 人物枚举
      */
-    public Person(PersonEnum personEnum) {
+    public PersonDO(PersonEnum personEnum) {
 
         //基本信息
         this.personEnum = personEnum;

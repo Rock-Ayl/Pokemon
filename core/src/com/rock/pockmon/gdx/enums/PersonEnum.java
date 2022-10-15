@@ -8,7 +8,7 @@ import com.rock.pockmon.gdx.common.FilePaths;
 public enum PersonEnum {
 
     RUBE(1, FilePaths.RUBY_IMAGE_DIR, "路比"),
-    SAPPHIRE(2, "", "沙菲亚"),
+    SAPPHIRE(2, "none", "沙菲亚"),
 
     ;
 

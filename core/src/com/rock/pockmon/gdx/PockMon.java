@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.rock.pockmon.gdx.enums.PersonEnum;
-import com.rock.pockmon.gdx.pojo.people.Person;
+import com.rock.pockmon.gdx.pojo.people.PersonDO;
 import com.rock.pockmon.gdx.screen.MainMenu;
 
 /**
@@ -20,7 +20,7 @@ public class PockMon extends Game {
     //字体
     public BitmapFont font;
     //主角
-    public Person adventurer;
+    public PersonDO adventurer;
 
     /**
      * 初始化
@@ -31,7 +31,7 @@ public class PockMon extends Game {
         //使用默认的字体
         this.font = new BitmapFont();
         //todo 初始化主角,先使用男主角吧
-        this.adventurer = new Person(PersonEnum.RUBE);
+        this.adventurer = new PersonDO(PersonEnum.RUBE);
         //进入主目录
         this.setScreen(new MainMenu(this));
     }

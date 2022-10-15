@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.common.Settings;
+import com.rock.pockmon.gdx.enums.StandEnum;
 
 /**
  * 未白镇(开局城镇)
@@ -88,21 +89,29 @@ public class LittleRoot implements Screen {
             this.game.adventurer.y += this.game.adventurer.moveSpeed * Gdx.graphics.getDeltaTime();
             //限制人物不能移出屏幕边界
             this.game.adventurer.y = Math.min(this.game.adventurer.y, Settings.WINDOW_HEIGHT - this.game.adventurer.height);
+            //修改任务站立方向
+            this.game.adventurer.changeStand(StandEnum.NORTH);
         } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             //计算移动坐标
             this.game.adventurer.y -= this.game.adventurer.moveSpeed * Gdx.graphics.getDeltaTime();
             //限制人物不能移出屏幕边界
             this.game.adventurer.y = Math.max(this.game.adventurer.y, 0);
+            //修改任务站立方向
+            this.game.adventurer.changeStand(StandEnum.SOUTH);
         } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             //计算移动坐标
             this.game.adventurer.x -= this.game.adventurer.moveSpeed * Gdx.graphics.getDeltaTime();
             //限制人物不能移出屏幕边界
             this.game.adventurer.x = Math.max(this.game.adventurer.x, 0);
+            //修改任务站立方向
+            this.game.adventurer.changeStand(StandEnum.WEST);
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             //计算移动坐标
             this.game.adventurer.x += this.game.adventurer.moveSpeed * Gdx.graphics.getDeltaTime();
             //限制人物不能移出屏幕边界
             this.game.adventurer.x = Math.min(this.game.adventurer.x, Settings.WINDOW_WIDTH - this.game.adventurer.width);
+            //修改任务站立方向
+            this.game.adventurer.changeStand(StandEnum.EAST);
         }
 
 

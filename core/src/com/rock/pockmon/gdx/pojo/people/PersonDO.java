@@ -33,16 +33,25 @@ public class PersonDO extends Rectangle {
         //基本信息
         this.personEnum = personEnum;
 
-        //组装出默认人物图片path[人物图片目录+站立+默认方向南]
-        String defaultImagePath = this.personEnum.getImageDir() + ActionEnum.stand.getPath() + "/" + StandEnum.SOUTH.getFileName();
-
-        //初始化当前图片对象
-        this.currentImage = new Texture(Gdx.files.internal(defaultImagePath));
+        //默认人物为站立南
+        changeStand(StandEnum.SOUTH);
 
         //初始化人物真实宽高
         this.width = 32;
         this.height = 48;
 
+    }
+
+    /**
+     * 修改任务站立方向
+     *
+     * @param standEnum 站立枚举
+     */
+    public void changeStand(StandEnum standEnum) {
+        //组装出默认人物图片path[人物图片目录+站立+默认方向南]
+        String defaultImagePath = this.personEnum.getImageDir() + ActionEnum.stand.getPath() + "/" + standEnum.getFileName();
+        //设置当前图片对象为某个站立方向
+        this.currentImage = new Texture(Gdx.files.internal(defaultImagePath));
     }
 
     public PersonEnum getPersonEnum() {
@@ -55,10 +64,6 @@ public class PersonDO extends Rectangle {
 
     public Texture getCurrentImage() {
         return currentImage;
-    }
-
-    public void setCurrentImage(Texture currentImage) {
-        this.currentImage = currentImage;
     }
 
 }

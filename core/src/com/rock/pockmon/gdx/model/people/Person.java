@@ -1,4 +1,4 @@
-package com.rock.pockmon.gdx.pojo.people;
+package com.rock.pockmon.gdx.model.people;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,22 +13,19 @@ import com.rock.pockmon.gdx.enums.StandEnum;
  * @Author ayl
  * @Date 2022-10-13
  */
-public class PersonDO extends Rectangle {
+public class Person extends Rectangle {
 
     //人物枚举
     private PersonEnum personEnum;
     //当前图片对象
     private Texture currentImage;
 
-    //todo 人物移动速度,暂时统一为300
-    public int moveSpeed = 300;
-
     /**
      * 使用人物枚举初始化
      *
      * @param personEnum 人物枚举
      */
-    public PersonDO(PersonEnum personEnum) {
+    public Person(PersonEnum personEnum) {
 
         //基本信息
         this.personEnum = personEnum;
@@ -40,6 +37,17 @@ public class PersonDO extends Rectangle {
         this.width = 32;
         this.height = 48;
 
+    }
+
+    /**
+     * 人物移动
+     *
+     * @param x x轴移动
+     * @param y y轴移动
+     */
+    public void move(int x, int y) {
+        this.x += x;
+        this.y += y;
     }
 
     /**

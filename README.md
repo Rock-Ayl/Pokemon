@@ -10,7 +10,7 @@
 
 素材基底基于绿宝石.
 
-灵感来自 : [https://www.youtube.com/playlist?list=PLVOwyy-CHLyrFO9A60_z0Q_x8RfpvgrbM]
+学习和灵感来自 : [https://www.youtube.com/playlist?list=PLVOwyy-CHLyrFO9A60_z0Q_x8RfpvgrbM]
 
 # 起始时间 
 

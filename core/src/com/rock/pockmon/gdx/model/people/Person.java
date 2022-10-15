@@ -31,7 +31,7 @@ public class Person extends Rectangle {
         this.personEnum = personEnum;
 
         //默认人物为站立南
-        changeStand(StandEnum.SOUTH);
+        stand(StandEnum.SOUTH);
 
         //初始化人物真实宽高
         this.width = 32;
@@ -51,16 +51,22 @@ public class Person extends Rectangle {
     }
 
     /**
-     * 修改任务站立方向
+     * 修改人物站立方向
      *
      * @param standEnum 站立枚举
      */
-    public void changeStand(StandEnum standEnum) {
+    public void stand(StandEnum standEnum) {
         //组装出默认人物图片path[人物图片目录+站立+默认方向南]
         String defaultImagePath = this.personEnum.getImageDir() + ActionEnum.stand.getPath() + "/" + standEnum.getFileName();
         //设置当前图片对象为某个站立方向
         this.currentImage = new Texture(Gdx.files.internal(defaultImagePath));
     }
+
+    /**
+     * 以下是 get set 方法
+     *
+     * @return
+     */
 
     public PersonEnum getPersonEnum() {
         return personEnum;

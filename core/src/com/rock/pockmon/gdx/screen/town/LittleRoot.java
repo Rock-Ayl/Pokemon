@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.common.Settings;
-import com.rock.pockmon.gdx.controller.MoveController;
+import com.rock.pockmon.gdx.controller.PersonMoveController;
 
 /**
  * 未白镇(开局城镇)
@@ -29,7 +29,7 @@ public class LittleRoot implements Screen {
     private Music rainMusic;
 
     //移动控制器
-    private MoveController moveController;
+    private PersonMoveController moveController;
 
     /**
      * 初始化未白镇
@@ -52,7 +52,7 @@ public class LittleRoot implements Screen {
         this.rainMusic.setLooping(true);
 
         //初始化移动控制,指定主角为可移动的角色
-        this.moveController = new MoveController(this.game.adventurer);
+        this.moveController = new PersonMoveController(this.game.adventurer);
 
         //初始化主角开始出现在城镇坐标
         this.game.adventurer.x = 0;
@@ -63,10 +63,10 @@ public class LittleRoot implements Screen {
     @Override
     public void show() {
 
-        //当前显示画面时立即播放音乐
+        //当显示画面时,立即播放音乐
         this.rainMusic.play();
 
-        //指定键盘输入的控制器(监控器)
+        //当显示画面时,开始监控键盘控制
         Gdx.input.setInputProcessor(moveController);
 
     }

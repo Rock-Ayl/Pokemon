@@ -7,12 +7,12 @@ import com.rock.pockmon.gdx.enums.StandEnum;
 import com.rock.pockmon.gdx.model.people.Person;
 
 /**
- * 移动控制器,通过输入控制人物的移动
+ * 人物移动控制器,通过输入控制人物的移动
  *
  * @Author ayl
  * @Date 2022-10-15
  */
-public class MoveController extends InputAdapter {
+public class PersonMoveController extends InputAdapter {
 
     //要移动的人物
     private Person person;
@@ -22,7 +22,7 @@ public class MoveController extends InputAdapter {
      *
      * @param person
      */
-    public MoveController(Person person) {
+    public PersonMoveController(Person person) {
         //记录要移动的角色
         this.person = person;
     }
@@ -34,22 +34,22 @@ public class MoveController extends InputAdapter {
             //向上走一格
             this.person.move(0, 1);
             //修改人物站立方向
-            this.person.changeStand(StandEnum.NORTH);
+            this.person.stand(StandEnum.NORTH);
         } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             //向下走一格
             this.person.move(0, -1);
             //修改人物站立方向
-            this.person.changeStand(StandEnum.SOUTH);
+            this.person.stand(StandEnum.SOUTH);
         } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             //向左走一格
             this.person.move(-1, 0);
             //修改人物站立方向
-            this.person.changeStand(StandEnum.WEST);
+            this.person.stand(StandEnum.WEST);
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             //向右走一格
             this.person.move(1, 0);
             //修改人物站立方向
-            this.person.changeStand(StandEnum.EAST);
+            this.person.stand(StandEnum.EAST);
         }
         //其他忽略
         return false;

@@ -10,11 +10,20 @@ package com.rock.pockmon.gdx.common;
 public class FilePaths {
 
     /**
-     * 图片
+     * 人物图片
      */
 
     //路比-图片目录
     public static final String RUBY_IMAGE_DIR = "image/people/ruby/";
+
+    /**
+     * 地图块图片
+     */
+
+    //草
+    public static final String MAP_IMAGE_GRASS_1 = "image/map/grass/1.png";
+    public static final String MAP_IMAGE_GRASS_2 = "image/map/grass/2.png";
+
 
     /**
      * 音乐

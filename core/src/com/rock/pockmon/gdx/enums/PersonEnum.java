@@ -14,7 +14,7 @@ public enum PersonEnum {
 
     //人物编号
     private Integer number;
-    //任务图片目录
+    //人物图片目录
     private String imageDir;
     //中文名
     private String zhName;
@@ -24,6 +24,12 @@ public enum PersonEnum {
         this.imageDir = imageDir;
         this.zhName = zhName;
     }
+
+    /**
+     * Get Set 方法
+     *
+     * @return
+     */
 
     public Integer getNumber() {
         return number;

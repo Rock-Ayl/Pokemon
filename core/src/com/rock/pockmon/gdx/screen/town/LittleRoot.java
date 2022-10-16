@@ -10,6 +10,8 @@ import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.controller.PersonMoveController;
+import com.rock.pockmon.gdx.model.map.Tile;
+import com.rock.pockmon.gdx.model.map.TileMap;
 
 /**
  * 未白镇(开局城镇)
@@ -30,6 +32,9 @@ public class LittleRoot implements Screen {
 
     //移动控制器
     private PersonMoveController moveController;
+
+    //地图网格
+    private TileMap tileMap;
 
     /**
      * 初始化未白镇
@@ -53,6 +58,9 @@ public class LittleRoot implements Screen {
 
         //初始化移动控制,指定主角为可移动的角色
         this.moveController = new PersonMoveController(this.game.adventurer);
+
+        //初始化地图网格
+        this.tileMap = new TileMap(10, 10);
 
         //初始化主角开始出现在城镇坐标
         this.game.adventurer.x = 0;
@@ -83,10 +91,25 @@ public class LittleRoot implements Screen {
         this.game.batch.setProjectionMatrix(camera.combined);
 
         //开始渲染
-        game.batch.begin();
+        this.game.batch.begin();
+
+        //根据地图宽高,渲染地图
+        for (int x = 0; x < this.tileMap.getWidth(); x++) {
+            for (int y = 0; y < this.tileMap.getHeight(); y++) {
+                //当前地图块
+                Tile tile = this.tileMap.getMap()[x][y];
+                //渲染该地图块
+                this.game.batch.draw(
+                        tile.getTileEnum().getImage(),
+                        x * Settings.SCALED_TILE_SIZE,
+                        y * Settings.SCALED_TILE_SIZE,
+                        1 * Settings.SCALED_TILE_SIZE,
+                        1 * Settings.SCALED_TILE_SIZE);
+            }
+        }
 
         //渲染主角
-        game.batch.draw(
+        this.game.batch.draw(
                 //图片
                 this.game.adventurer.getCurrentImage(),
                 //当前坐标*网格倍率
@@ -98,7 +121,7 @@ public class LittleRoot implements Screen {
         );
 
         //结束渲染
-        game.batch.end();
+        this.game.batch.end();
 
     }
 

@@ -42,3 +42,5 @@ run class DesktopLauncher
 简陋的草地
 
 简陋的音效
+
+基本的相机功能,让世界始终以主角为中心

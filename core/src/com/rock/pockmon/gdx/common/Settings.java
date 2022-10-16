@@ -17,7 +17,7 @@ public class Settings {
     //标题
     public static final String TITLE = "PockMon By Rock";
     //游戏版本
-    public static final String VERSION = "0.0.2";
+    public static final String VERSION = "0.0.3";
 
     //游戏帧率
     public static int FPS_60 = 60;

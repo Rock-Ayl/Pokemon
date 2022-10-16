@@ -39,18 +39,35 @@ public class PockMon extends Game {
      */
 
     //音效-撞墙
-    public Sound soundNoWalk = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
+    public Sound soundNoWalk;
 
     /**
      * 初始化
      */
     public void create() {
+
+        /**
+         * 基础
+         */
+
         //初始化一个SpriteBatch,游戏中只有一个,直到游戏结束后销毁
         this.batch = new SpriteBatch();
         //使用默认的字体
         this.font = new BitmapFont();
+
+        /**
+         * 主角
+         */
+
         //todo 初始化主角,先使用男主角吧
         this.adventurer = new Person(PersonEnum.RUBE);
+
+        /**
+         * 音效
+         */
+
+        this.soundNoWalk = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
+
         //进入主目录
         this.setScreen(new MainMenu(this));
     }

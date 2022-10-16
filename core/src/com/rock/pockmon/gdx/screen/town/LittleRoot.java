@@ -64,7 +64,7 @@ public class LittleRoot implements Screen {
         this.game.adventurer.y = 0;
 
         //初始化移动控制,指定主角为可移动的角色
-        this.moveController = new PersonMoveController(this.game.adventurer, this.tileMap);
+        this.moveController = new PersonMoveController(this.game, this.tileMap);
 
     }
 

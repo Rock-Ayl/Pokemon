@@ -36,5 +36,9 @@ run class DesktopLauncher
 # 目前拥有的东西
 
 一个人物图
+
 简单的移动判定
+
 简陋的草地
+
+简陋的音效

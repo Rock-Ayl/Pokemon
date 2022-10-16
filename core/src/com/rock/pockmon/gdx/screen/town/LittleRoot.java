@@ -92,9 +92,9 @@ public class LittleRoot implements Screen {
                 //当前坐标*网格倍率
                 this.game.adventurer.x * Settings.SCALED_TILE_SIZE,
                 this.game.adventurer.y * Settings.SCALED_TILE_SIZE,
-                //大小同样视为网格倍率,人物普遍高度是1格半
-                Settings.SCALED_TILE_SIZE * 1.0F,
-                Settings.SCALED_TILE_SIZE * 1.5F
+                //使用人物的宽高*网格倍率
+                this.game.adventurer.width * Settings.SCALED_TILE_SIZE,
+                this.game.adventurer.height * Settings.SCALED_TILE_SIZE
         );
 
         //结束渲染

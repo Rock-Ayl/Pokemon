@@ -30,6 +30,10 @@ public class Person extends Rectangle {
         //基本信息
         this.personEnum = personEnum;
 
+        //设定用户宽高,绿宝石中,通常人物占接近1.5个地图网格
+        this.width = 1.0F;
+        this.height = 1.5F;
+
         //默认人物为站立南
         this.stand(StandEnum.SOUTH);
 

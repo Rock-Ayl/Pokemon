@@ -4,11 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
-import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.controller.PersonMoveController;
 import com.rock.pockmon.gdx.model.map.TileMap;
 import com.rock.pockmon.gdx.util.GdxUtils;
@@ -23,9 +21,6 @@ public class LittleRoot implements Screen {
 
     //游戏对象
     private final PockMon game;
-
-    //相机
-    private OrthographicCamera camera;
 
     //背景音乐
     private Music music;
@@ -45,11 +40,6 @@ public class LittleRoot implements Screen {
 
         //记录游戏对象
         this.game = pockMon;
-
-        //初始化相机
-        this.camera = new OrthographicCamera();
-        //设置相机尺寸
-        this.camera.setToOrtho(false, Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
 
         //初始化未白镇背景音乐音乐
         this.music = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
@@ -84,11 +74,6 @@ public class LittleRoot implements Screen {
 
         //黑幕
         ScreenUtils.clear(Color.BLACK);
-
-        //按照惯例,每帧先更新一次相机
-        this.camera.update();
-        //告诉游戏渲染使用相机
-        this.game.batch.setProjectionMatrix(camera.combined);
 
         //开始渲染
         this.game.batch.begin();

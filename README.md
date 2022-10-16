@@ -37,3 +37,4 @@ run class DesktopLauncher
 
 一个人物图
 简单的移动判定
+简陋的草地

@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.enums.StandEnum;
+import com.rock.pockmon.gdx.model.map.TileMap;
 
 /**
  * 人物实体
@@ -40,14 +41,26 @@ public class Person extends Rectangle {
     }
 
     /**
-     * 人物移动
+     * 人物移动,有可能不成功
      *
-     * @param x x轴移动
-     * @param y y轴移动
+     * @param tileMap 当前地图网格
+     * @param x       x轴移动
+     * @param y       y轴移动
      */
-    public void move(int x, int y) {
-        this.x += x;
-        this.y += y;
+    public boolean move(TileMap tileMap, int x, int y) {
+        //计算下一步走到的位置
+        float nextX = this.x + x;
+        float nextY = this.y + y;
+        //判断地图边界问题
+        if (nextX < 0 || nextY < 0 || nextX >= tileMap.getWidth() || nextY >= tileMap.getHeight()) {
+            //移动失败
+            return false;
+        }
+        //真实移动
+        this.x = nextX;
+        this.y = nextY;
+        //移动成功
+        return true;
     }
 
     /**

@@ -56,15 +56,15 @@ public class LittleRoot implements Screen {
         //音乐循环播放
         this.music.setLooping(true);
 
-        //初始化移动控制,指定主角为可移动的角色
-        this.moveController = new PersonMoveController(this.game.adventurer);
-
         //初始化地图网格
         this.tileMap = new TileMap(12, 12);
 
         //初始化主角开始出现在城镇坐标
         this.game.adventurer.x = 0;
         this.game.adventurer.y = 0;
+
+        //初始化移动控制,指定主角为可移动的角色
+        this.moveController = new PersonMoveController(this.game.adventurer, this.tileMap);
 
     }
 

@@ -73,8 +73,8 @@ public class LittleRoot implements Screen {
         ScreenUtils.clear(Color.BLACK);
 
         //计算出世界的起始点,让世界始终以主角为中心(相机)
-        float worldStartX = (Gdx.graphics.getWidth() / 2 - (this.game.adventurer.x + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
-        float worldStartY = (Gdx.graphics.getHeight() / 2 - (this.game.adventurer.y + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
+        float worldStartX = (Gdx.graphics.getWidth() / 2 - (this.game.adventurer.getX() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
+        float worldStartY = (Gdx.graphics.getHeight() / 2 - (this.game.adventurer.getY() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
 
         //开始渲染
         this.game.batch.begin();

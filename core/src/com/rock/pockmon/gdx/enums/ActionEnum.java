@@ -8,8 +8,11 @@ package com.rock.pockmon.gdx.enums;
  */
 public enum ActionEnum {
 
-    stand("stand", "站立"),
-    walk("walk", "走路"),
+    STAND("stand", "站立"),
+    WALK("walk", "走路"),
+    RUN("run", "跑步"),
+    CYCLING("cycling", "骑自行车"),
+    SURFING("surfing", "冲浪"),
 
     ;
 
@@ -22,6 +25,12 @@ public enum ActionEnum {
         this.path = path;
         this.zhName = zhName;
     }
+
+    /**
+     * get set 方法
+     *
+     * @return
+     */
 
     public String getPath() {
         return path;

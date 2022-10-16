@@ -36,7 +36,7 @@ public class GdxUtils {
      */
     public static void drawPerson(SpriteBatch batch, Person person, float worldStartX, float worldStartY) {
         //实现
-        draw(batch, person.getCurrentImage(), person.x, person.y, person.width, person.height, worldStartX, worldStartY);
+        draw(batch, person.getCurrentImage(), person.getX(), person.getY(), person.getWidth(), person.getHeight(), worldStartX, worldStartY);
     }
 
     /**
@@ -60,7 +60,7 @@ public class GdxUtils {
      */
     public static void drawTile(SpriteBatch batch, Tile tile, float worldStartX, float worldStartY) {
         //实现
-        draw(batch, tile.getTileEnum().getImage(), tile.x, tile.y, tile.width, tile.height, worldStartX, worldStartY);
+        draw(batch, tile.getTileEnum().getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), worldStartX, worldStartY);
     }
 
     /**
@@ -106,7 +106,7 @@ public class GdxUtils {
      * @param worldStartX 世界起点x
      * @param worldStartY 世界起点y
      */
-    private static void draw(SpriteBatch batch, Texture image, float x, float y, float width, float height, float worldStartX, float worldStartY) {
+    private static void draw(SpriteBatch batch, Texture image, int x, int y, float width, float height, float worldStartX, float worldStartY) {
         //获取网格倍率
         float scale = Settings.SCALED_TILE_SIZE;
         //实现

@@ -1,6 +1,5 @@
 package com.rock.pockmon.gdx.model.map;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.rock.pockmon.gdx.enums.TileEnum;
 
 /**
@@ -9,7 +8,14 @@ import com.rock.pockmon.gdx.enums.TileEnum;
  * @Author ayl
  * @Date 2022-10-16
  */
-public class Tile extends Rectangle {
+public class Tile {
+
+    //当前地图块坐标(放弃用Rectangle是因为Rectangle是float类型的)
+    private int x;
+    private int y;
+    //地图块宽高
+    private float width;
+    private float height;
 
     //对应地图块枚举
     private TileEnum tileEnum;
@@ -48,6 +54,22 @@ public class Tile extends Rectangle {
      *
      * @return
      */
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
 
     public TileEnum getTileEnum() {
         return tileEnum;

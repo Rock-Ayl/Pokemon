@@ -2,6 +2,7 @@ package com.rock.pockmon.gdx.model.people;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Interpolation;
 import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.enums.StandEnum;
@@ -19,9 +20,14 @@ public class Person {
      * 基本信息
      */
 
-    //当前人物坐标(放弃用Rectangle是因为Rectangle是float类型的)
+    //当前人物在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的)
     private int x;
     private int y;
+
+    //当前人物在世界的真实坐标(考虑到移动、骑车、跑步等动作不是时刻在网格中,所采用的世界坐标,运营到补帧动画)
+    private float worldX;
+    private float worldY;
+
     //人物宽高
     private float width;
     private float height;
@@ -43,9 +49,9 @@ public class Person {
     private int destX, destY;
 
     //当前已活动时间
-    private float animTimer;
+    private float animTime;
     //动画时间,这里指0.5秒完成一次动画
-    private float animTime = 0.5F;
+    private float onceAnimTime = 0.25F;
 
     /**
      * 使用人物枚举初始化
@@ -70,6 +76,44 @@ public class Person {
     }
 
     /**
+     * 处理移动中时的动画(可以理解为补帧)
+     *
+     * @param delta 每帧的时间
+     */
+    public void moving(float delta) {
+        //根据当前状态判定
+        switch (actionState) {
+            //todo
+            case RUN:
+                break;
+            //todo
+            case CYCLING:
+                break;
+            //todo
+            case SURFING:
+                break;
+            //如果是走路
+            case WALK:
+                //叠加本次走路的动画时间
+                animTime += delta;
+                //计算出其真实的世界坐标,据说绿宝石是线性的,这里不太懂
+                this.worldX = Interpolation.linear.apply(srcX, destX, animTime / onceAnimTime);
+                this.worldY = Interpolation.linear.apply(srcY, destY, animTime / onceAnimTime);
+                //如果动画时间结束了
+                if (animTime >= onceAnimTime) {
+                    //结束走路
+                    walkEnd();
+                }
+                break;
+            //站立或其他
+            case STAND:
+            default:
+                //直接结束
+                break;
+        }
+    }
+
+    /**
      * 人物移动,有可能不成功
      *
      * @param tileMap 当前地图网格
@@ -82,8 +126,6 @@ public class Person {
             //无法移动
             return false;
         }
-        //开始走路
-        walkStart(this.x, this.y, x, y);
         //计算下一步走到的位置
         int nextX = this.x + x;
         int nextY = this.y + y;
@@ -92,6 +134,9 @@ public class Person {
             //无法移动,固定为原来目标,但是不结束move判定,相当于走路了
             nextX = this.x;
             nextY = this.y;
+        } else {
+            //可以移动,更改人物动画及状态
+            walkStart(this.x, this.y, x, y);
         }
         //真实移动
         this.x = nextX;
@@ -110,8 +155,6 @@ public class Person {
             //修改人物站立方向
             updateStand(StandEnum.EAST);
         }
-        //结束走路
-        walkEnd();
         //移动成功
         return true;
     }
@@ -124,7 +167,7 @@ public class Person {
         this.destX = srcX + moveX;
         this.destY = srcY + moveY;
         //初始化活动时间
-        this.animTimer = 0F;
+        this.animTime = 0F;
         //改变人物状态为走路
         this.actionState = ActionEnum.WALK;
     }
@@ -159,6 +202,14 @@ public class Person {
 
     public int getY() {
         return y;
+    }
+
+    public float getWorldX() {
+        return worldX;
+    }
+
+    public float getWorldY() {
+        return worldY;
     }
 
     public float getWidth() {

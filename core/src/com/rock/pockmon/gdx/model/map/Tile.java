@@ -10,9 +10,10 @@ import com.rock.pockmon.gdx.enums.TileEnum;
  */
 public class Tile {
 
-    //当前地图块坐标(放弃用Rectangle是因为Rectangle是float类型的)
+    //当前地图块在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的)
     private int x;
     private int y;
+
     //地图块宽高
     private float width;
     private float height;

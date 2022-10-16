@@ -31,11 +31,7 @@ public class Person extends Rectangle {
         this.personEnum = personEnum;
 
         //默认人物为站立南
-        stand(StandEnum.SOUTH);
-
-        //初始化人物真实宽高
-        this.width = 32;
-        this.height = 48;
+        this.stand(StandEnum.SOUTH);
 
     }
 

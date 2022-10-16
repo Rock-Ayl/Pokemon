@@ -28,18 +28,18 @@ public class TileMap {
         this.height = height;
         this.map = new Tile[width][height];
         //循环1
-        for (int w = 0; w < this.width; w++) {
+        for (int x = 0; x < this.width; x++) {
             //循环2
-            for (int h = 0; h < this.height; h++) {
+            for (int y = 0; y < this.height; y++) {
                 //一个随机数
                 double random = Math.random();
                 //根据随机数生成草
                 if (random < 0.5D) {
                     //草1
-                    this.map[w][h] = new Tile(TileEnum.GRASS_1);
+                    this.map[x][y] = new Tile(x, y, TileEnum.GRASS_1);
                 } else {
                     //草2
-                    this.map[w][h] = new Tile(TileEnum.GRASS_2);
+                    this.map[x][y] = new Tile(x, y, TileEnum.GRASS_2);
                 }
             }
         }

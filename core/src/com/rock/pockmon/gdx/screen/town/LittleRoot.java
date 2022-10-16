@@ -12,6 +12,7 @@ import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.controller.PersonMoveController;
 import com.rock.pockmon.gdx.model.map.Tile;
 import com.rock.pockmon.gdx.model.map.TileMap;
+import com.rock.pockmon.gdx.util.GdxUtils;
 
 /**
  * 未白镇(开局城镇)
@@ -99,26 +100,12 @@ public class LittleRoot implements Screen {
                 //当前地图块
                 Tile tile = this.tileMap.getMap()[x][y];
                 //渲染该地图块
-                this.game.batch.draw(
-                        tile.getTileEnum().getImage(),
-                        x * Settings.SCALED_TILE_SIZE,
-                        y * Settings.SCALED_TILE_SIZE,
-                        1 * Settings.SCALED_TILE_SIZE,
-                        1 * Settings.SCALED_TILE_SIZE);
+                GdxUtils.drawTile(this.game.batch, tile);
             }
         }
 
         //渲染主角
-        this.game.batch.draw(
-                //图片
-                this.game.adventurer.getCurrentImage(),
-                //当前坐标*网格倍率
-                this.game.adventurer.x * Settings.SCALED_TILE_SIZE,
-                this.game.adventurer.y * Settings.SCALED_TILE_SIZE,
-                //使用人物的宽高*网格倍率
-                this.game.adventurer.width * Settings.SCALED_TILE_SIZE,
-                this.game.adventurer.height * Settings.SCALED_TILE_SIZE
-        );
+        GdxUtils.drawPerson(this.game.batch, this.game.adventurer);
 
         //结束渲染
         this.game.batch.end();

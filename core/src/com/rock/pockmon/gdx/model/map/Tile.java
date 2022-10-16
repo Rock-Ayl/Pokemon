@@ -1,5 +1,6 @@
 package com.rock.pockmon.gdx.model.map;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.rock.pockmon.gdx.enums.TileEnum;
 
 /**
@@ -8,7 +9,7 @@ import com.rock.pockmon.gdx.enums.TileEnum;
  * @Author ayl
  * @Date 2022-10-16
  */
-public class Tile {
+public class Tile extends Rectangle {
 
     //对应地图块枚举
     private TileEnum tileEnum;
@@ -24,12 +25,19 @@ public class Tile {
      *
      * @param tileEnum 地图块枚举
      */
-    public Tile(TileEnum tileEnum) {
-        //记录
+    public Tile(int x, int y, TileEnum tileEnum) {
+
+        //初始化
         this.tileEnum = tileEnum;
+        //坐标
+        this.x = x;
+        this.y = y;
         //默认视为可通过地形
         this.wall = false;
         this.water = false;
+        //设定地图块宽高,绿宝石中,所有都是1
+        this.width = 1.0F;
+        this.height = 1.0F;
     }
 
     /**

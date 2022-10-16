@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
+import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.controller.PersonMoveController;
 import com.rock.pockmon.gdx.model.OurCamera;
 import com.rock.pockmon.gdx.model.map.TileMap;
@@ -80,6 +81,9 @@ public class LittleRoot implements Screen {
 
         //先根据主角的坐标,计算出相机的位置(需要加0.5个身为,让相机完全到最中心)
         this.ourCamera.update(this.game.adventurer.x + 0.5F, this.game.adventurer.y + 0.5F);
+        //根据相机的坐标,再计算出世界的起始点
+        float wolrdStartX = Gdx.graphics.getWidth() / 2 - this.ourCamera.getX() * Settings.SCALED_TILE_SIZE;
+        float wolrdStartY = Gdx.graphics.getHeight() / 2 - this.ourCamera.getY() * Settings.SCALED_TILE_SIZE;
 
         //开始渲染
         this.game.batch.begin();

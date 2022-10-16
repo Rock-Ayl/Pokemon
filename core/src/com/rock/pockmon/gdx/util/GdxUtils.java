@@ -1,5 +1,6 @@
 package com.rock.pockmon.gdx.util;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.model.map.Tile;
@@ -20,16 +21,8 @@ public class GdxUtils {
      * @param person 人物实体
      */
     public static void drawPerson(SpriteBatch batch, Person person) {
-        batch.draw(
-                //图片
-                person.getCurrentImage(),
-                //当前坐标*网格倍率
-                person.x * Settings.SCALED_TILE_SIZE,
-                person.y * Settings.SCALED_TILE_SIZE,
-                //使用人物的宽高*网格倍率
-                person.width * Settings.SCALED_TILE_SIZE,
-                person.height * Settings.SCALED_TILE_SIZE
-        );
+        //实现
+        draw(batch, person.getCurrentImage(), person.x, person.y, person.width, person.height);
     }
 
     /**
@@ -39,15 +32,32 @@ public class GdxUtils {
      * @param tile  单个地图块实体
      */
     public static void drawTile(SpriteBatch batch, Tile tile) {
+        //实现
+        draw(batch, tile.getTileEnum().getImage(), tile.x, tile.y, tile.width, tile.height);
+    }
+
+    /**
+     * 根据信息统一渲染图片底层逻辑
+     *
+     * @param image  图片对象
+     * @param x      坐标
+     * @param y      坐标
+     * @param width  宽
+     * @param height 搞
+     */
+    private static void draw(SpriteBatch batch, Texture image, float x, float y, float width, float height) {
+        //获取网格倍率
+        float scale = Settings.SCALED_TILE_SIZE;
+        //实现
         batch.draw(
                 //图片
-                tile.getTileEnum().getImage(),
-                //当前坐标*网格倍率
-                tile.x * Settings.SCALED_TILE_SIZE,
-                tile.y * Settings.SCALED_TILE_SIZE,
-                //使用地图块的宽高*网格倍率
-                tile.width * Settings.SCALED_TILE_SIZE,
-                tile.height * Settings.SCALED_TILE_SIZE
+                image,
+                //当前坐标 * 网格倍率
+                x * scale,
+                y * scale,
+                //使用地图块的宽高 * 网格倍率
+                width * scale,
+                height * scale
         );
     }
 

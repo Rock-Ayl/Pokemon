@@ -61,7 +61,7 @@ public class LittleRoot implements Screen {
         this.moveController = new PersonMoveController(this.game.adventurer);
 
         //初始化地图网格
-        this.tileMap = new TileMap(10, 10);
+        this.tileMap = new TileMap(12, 12);
 
         //初始化主角开始出现在城镇坐标
         this.game.adventurer.x = 0;

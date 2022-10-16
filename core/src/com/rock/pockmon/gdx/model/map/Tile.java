@@ -27,14 +27,17 @@ public class Tile extends Rectangle {
      */
     public Tile(int x, int y, TileEnum tileEnum) {
 
-        //初始化
+        //地图块枚举
         this.tileEnum = tileEnum;
-        //坐标
+
+        //坐标(视为在地图网格中的)
         this.x = x;
         this.y = y;
+
         //默认视为可通过地形
         this.wall = false;
         this.water = false;
+
         //设定地图块宽高,绿宝石中,所有都是1
         this.width = 1.0F;
         this.height = 1.0F;

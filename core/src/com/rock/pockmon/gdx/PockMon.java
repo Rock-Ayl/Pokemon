@@ -1,8 +1,11 @@
 package com.rock.pockmon.gdx;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.model.people.Person;
 import com.rock.pockmon.gdx.screen.MainMenu;
@@ -15,12 +18,28 @@ import com.rock.pockmon.gdx.screen.MainMenu;
  */
 public class PockMon extends Game {
 
+    /**
+     * 基础
+     */
+
     //绘制图形
     public SpriteBatch batch;
     //字体
     public BitmapFont font;
+
+    /**
+     * 主角
+     */
+
     //主角
     public Person adventurer;
+
+    /**
+     * 通用音效(先放这里吧)
+     */
+
+    //音效-撞墙
+    public Sound soundNoWalk = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
 
     /**
      * 初始化
@@ -48,8 +67,9 @@ public class PockMon extends Game {
      * 销毁资源
      */
     public void dispose() {
-        batch.dispose();
-        font.dispose();
+        this.batch.dispose();
+        this.font.dispose();
+        this.soundNoWalk.dispose();
     }
 
 }

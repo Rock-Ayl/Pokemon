@@ -26,7 +26,7 @@ public class LittleRoot implements Screen {
     private OrthographicCamera camera;
 
     //背景音乐
-    private Music rainMusic;
+    private Music music;
 
     //移动控制器
     private PersonMoveController moveController;
@@ -47,9 +47,9 @@ public class LittleRoot implements Screen {
         this.camera.setToOrtho(false, Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
 
         //初始化未白镇背景音乐音乐
-        this.rainMusic = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
+        this.music = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
         //音乐循环播放
-        this.rainMusic.setLooping(true);
+        this.music.setLooping(true);
 
         //初始化移动控制,指定主角为可移动的角色
         this.moveController = new PersonMoveController(this.game.adventurer);
@@ -64,7 +64,7 @@ public class LittleRoot implements Screen {
     public void show() {
 
         //当显示画面时,立即播放音乐
-        this.rainMusic.play();
+        this.music.play();
 
         //当显示画面时,开始监控键盘控制
         Gdx.input.setInputProcessor(moveController);
@@ -124,7 +124,7 @@ public class LittleRoot implements Screen {
 
     @Override
     public void dispose() {
-
+        this.music.dispose();
     }
 
 }

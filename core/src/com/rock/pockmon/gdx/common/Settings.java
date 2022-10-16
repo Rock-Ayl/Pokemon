@@ -27,7 +27,7 @@ public class Settings {
     //todo 当前语言(暂时固定为中文)
     public static LanguageEnum LANG = LanguageEnum.SIMPLIFIED_CHINESE;
 
-    //todo 分辨率 暂时固定为 800 * 480
+    //固定为 600 * 400
     public static int WINDOW_WIDTH = 600;
     public static int WINDOW_HEIGHT = 400;
 

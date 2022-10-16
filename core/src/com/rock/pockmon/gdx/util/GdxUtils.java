@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.model.map.Tile;
+import com.rock.pockmon.gdx.model.map.TileMap;
 import com.rock.pockmon.gdx.model.people.Person;
 
 /**
@@ -23,6 +24,25 @@ public class GdxUtils {
     public static void drawPerson(SpriteBatch batch, Person person) {
         //实现
         draw(batch, person.getCurrentImage(), person.x, person.y, person.width, person.height);
+    }
+
+    /**
+     * 渲染一个地图网格
+     *
+     * @param batch   渲染器
+     * @param tileMap 渲染一个地图网格
+     */
+    public static void drawTileMap(SpriteBatch batch, TileMap tileMap) {
+        //循环1
+        for (int x = 0; x < tileMap.getWidth(); x++) {
+            //循环2
+            for (int y = 0; y < tileMap.getHeight(); y++) {
+                //当前地图块
+                Tile tile = tileMap.getMap()[x][y];
+                //渲染该地图块
+                GdxUtils.drawTile(batch, tile);
+            }
+        }
     }
 
     /**

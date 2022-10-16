@@ -10,7 +10,6 @@ import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.controller.PersonMoveController;
-import com.rock.pockmon.gdx.model.map.Tile;
 import com.rock.pockmon.gdx.model.map.TileMap;
 import com.rock.pockmon.gdx.util.GdxUtils;
 
@@ -94,15 +93,8 @@ public class LittleRoot implements Screen {
         //开始渲染
         this.game.batch.begin();
 
-        //根据地图宽高,渲染地图
-        for (int x = 0; x < this.tileMap.getWidth(); x++) {
-            for (int y = 0; y < this.tileMap.getHeight(); y++) {
-                //当前地图块
-                Tile tile = this.tileMap.getMap()[x][y];
-                //渲染该地图块
-                GdxUtils.drawTile(this.game.batch, tile);
-            }
-        }
+        //渲染地图网格
+        GdxUtils.drawTileMap(this.game.batch, this.tileMap);
 
         //渲染主角
         GdxUtils.drawPerson(this.game.batch, this.game.adventurer);

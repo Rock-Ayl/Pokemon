@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.controller.PersonMoveController;
+import com.rock.pockmon.gdx.model.OurCamera;
 import com.rock.pockmon.gdx.model.map.TileMap;
 import com.rock.pockmon.gdx.util.GdxUtils;
 
@@ -21,6 +22,9 @@ public class LittleRoot implements Screen {
 
     //游戏对象
     private final PockMon game;
+
+    //相机
+    private OurCamera ourCamera;
 
     //背景音乐
     private Music music;
@@ -41,17 +45,16 @@ public class LittleRoot implements Screen {
         //记录游戏对象
         this.game = pockMon;
 
+        //初始化相机
+        this.ourCamera = new OurCamera();
+
         //初始化未白镇背景音乐音乐
         this.music = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
         //音乐循环播放
         this.music.setLooping(true);
 
         //初始化地图网格
-        this.tileMap = new TileMap(12, 12);
-
-        //初始化主角开始出现在城镇坐标
-        this.game.adventurer.x = 0;
-        this.game.adventurer.y = 0;
+        this.tileMap = new TileMap(10, 10);
 
         //初始化移动控制,指定主角为可移动的角色
         this.moveController = new PersonMoveController(this.game, this.tileMap);
@@ -74,6 +77,9 @@ public class LittleRoot implements Screen {
 
         //黑幕
         ScreenUtils.clear(Color.BLACK);
+
+        //先根据主角的坐标,计算出相机的位置(需要加0.5个身为,让相机完全到最中心)
+        this.ourCamera.update(this.game.adventurer.x + 0.5F, this.game.adventurer.y + 0.5F);
 
         //开始渲染
         this.game.batch.begin();

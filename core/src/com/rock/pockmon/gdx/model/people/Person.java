@@ -20,7 +20,7 @@ public class Person {
      * 基本信息
      */
 
-    //当前人物在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的)
+    //当前人物在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的),这个在人类实体里仅用来判定移动时和地图块之间的关系
     private int x;
     private int y;
 

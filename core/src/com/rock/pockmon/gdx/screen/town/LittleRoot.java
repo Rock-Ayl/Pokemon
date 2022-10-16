@@ -82,8 +82,8 @@ public class LittleRoot implements Screen {
     @Override
     public void render(float delta) {
 
-        //蓝幕
-        ScreenUtils.clear(Color.BLUE);
+        //黑幕
+        ScreenUtils.clear(Color.BLACK);
 
         //按照惯例,每帧先更新一次相机
         this.camera.update();

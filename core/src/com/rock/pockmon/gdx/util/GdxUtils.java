@@ -103,8 +103,8 @@ public class GdxUtils {
      * @param y           坐标
      * @param width       宽
      * @param height      搞
-     * @param worldStartX 世界真实坐标
-     * @param worldStartY 世界真实坐标
+     * @param worldStartX 世界起点x
+     * @param worldStartY 世界起点y
      */
     private static void draw(SpriteBatch batch, Texture image, float x, float y, float width, float height, float worldStartX, float worldStartY) {
         //获取网格倍率
@@ -113,9 +113,9 @@ public class GdxUtils {
         batch.draw(
                 //图片
                 image,
-                //真实坐标 + 当前坐标 * 网格倍率
-                worldStartX + x * scale,
-                worldStartY + y * scale,
+                //真实坐标 * 网格倍率 + 当前坐标 * 网格倍率
+                worldStartX * scale + x * scale,
+                worldStartY * scale + y * scale,
                 //使用地图块的宽高 * 网格倍率
                 width * scale,
                 height * scale

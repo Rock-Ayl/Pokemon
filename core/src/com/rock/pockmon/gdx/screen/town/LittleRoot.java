@@ -55,7 +55,7 @@ public class LittleRoot implements Screen {
         this.music.setLooping(true);
 
         //初始化地图网格
-        this.tileMap = new TileMap(10, 10);
+        this.tileMap = new TileMap(15, 15);
 
         //初始化移动控制,指定主角为可移动的角色
         this.moveController = new PersonMoveController(this.game, this.tileMap);
@@ -82,8 +82,8 @@ public class LittleRoot implements Screen {
         //先根据主角的坐标,计算出相机的位置(需要加0.5个身为,让相机完全到最中心)
         this.ourCamera.update(this.game.adventurer.x + 0.5F, this.game.adventurer.y + 0.5F);
         //根据相机的坐标,再计算出世界的起始点
-        float worldStartX = Gdx.graphics.getWidth() / 2 - this.ourCamera.getX() * Settings.SCALED_TILE_SIZE;
-        float worldStartY = Gdx.graphics.getHeight() / 2 - this.ourCamera.getY() * Settings.SCALED_TILE_SIZE;
+        float worldStartX = (Gdx.graphics.getWidth() / 2 - this.ourCamera.getX() * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
+        float worldStartY = (Gdx.graphics.getHeight() / 2 - this.ourCamera.getY() * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
 
         //开始渲染
         this.game.batch.begin();

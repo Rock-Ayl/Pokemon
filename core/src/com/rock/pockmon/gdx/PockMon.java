@@ -1,11 +1,8 @@
 package com.rock.pockmon.gdx;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.model.people.Person;
 import com.rock.pockmon.gdx.screen.MainMenu;
@@ -35,13 +32,6 @@ public class PockMon extends Game {
     public Person adventurer;
 
     /**
-     * 通用音效(先放这里吧)
-     */
-
-    //音效-撞墙
-    public Sound soundNoWalk;
-
-    /**
      * 初始化
      */
     public void create() {
@@ -62,14 +52,9 @@ public class PockMon extends Game {
         //todo 初始化主角,先使用男主角吧
         this.adventurer = new Person(PersonEnum.RUBE);
 
-        /**
-         * 音效
-         */
-
-        this.soundNoWalk = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
-
         //进入主目录
         this.setScreen(new MainMenu(this));
+
     }
 
     /**
@@ -86,7 +71,6 @@ public class PockMon extends Game {
     public void dispose() {
         this.batch.dispose();
         this.font.dispose();
-        this.soundNoWalk.dispose();
     }
 
 }

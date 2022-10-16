@@ -1,8 +1,10 @@
 package com.rock.pockmon.gdx.model.people;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
+import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.enums.StandEnum;
@@ -54,6 +56,13 @@ public class Person {
     private float onceAnimTime = 0.25F;
 
     /**
+     * todo 通用音效(先放这里吧)
+     */
+
+    //音效-撞墙
+    public Sound soundNoWalk;
+
+    /**
      * 使用人物枚举初始化
      *
      * @param personEnum 人物枚举
@@ -72,6 +81,12 @@ public class Person {
 
         //让人物图片设置为[站立_南]
         updateStand(StandEnum.SOUTH);
+
+        /**
+         * 音效
+         */
+
+        this.soundNoWalk = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
 
     }
 
@@ -134,6 +149,8 @@ public class Person {
             //无法移动,固定为原来目标,但是不结束move判定,相当于走路了
             nextX = this.x;
             nextY = this.y;
+            //发出撞墙般音效
+            this.soundNoWalk.play();
         } else {
             //可以移动,更改人物动画及状态
             walkStart(this.x, this.y, x, y);

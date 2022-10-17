@@ -18,7 +18,7 @@ public class TexturePackerTools {
                 "assets/packed/image/people/ruby/walk/",
                 "textures");
 
-        //将路比走路图片打包至对应目录
+        //将路比站立图片打包至对应目录
         TexturePacker.process(
                 "assets/unpacked/image/people/ruby/stand/",
                 "assets/packed/image/people/ruby/stand/",

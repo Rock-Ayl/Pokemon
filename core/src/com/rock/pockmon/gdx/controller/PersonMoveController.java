@@ -1,9 +1,9 @@
 package com.rock.pockmon.gdx.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.rock.pockmon.gdx.PockMon;
+import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.model.map.TileMap;
 
 /**
@@ -19,6 +19,9 @@ public class PersonMoveController extends InputAdapter {
     //当前地图网格
     private TileMap tileMap;
 
+    //代表当前输入的状态
+    private boolean up, down, left, right;
+
     /**
      * 初始化,指定要移动的人物
      *
@@ -30,24 +33,95 @@ public class PersonMoveController extends InputAdapter {
         this.tileMap = tileMap;
     }
 
+    /**
+     * 按键按下时调用
+     *
+     * @param keycode
+     * @return
+     */
     @Override
     public boolean keyDown(int keycode) {
         //主角移动判定,同一次移动只能一个方向,按照绿宝石的手感判定, 上优先级最高,下其次,左第三,右的判定最低
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            //向上走一格
-            this.game.getAdventurer().move(tileMap, 0, 1);
-        } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            //向下走一格
-            this.game.getAdventurer().move(tileMap, 0, -1);
-        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            //向左走一格
-            this.game.getAdventurer().move(tileMap, -1, 0);
-        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            //向右走一格
-            this.game.getAdventurer().move(tileMap, 1, 0);
+        //todo this.game.getAdventurer().move(tileMap, 0, 1);
+        switch (keycode) {
+            case Input.Keys.UP:
+                up = true;
+                break;
+            case Input.Keys.DOWN:
+                down = true;
+                break;
+            case Input.Keys.LEFT:
+                left = true;
+                break;
+            case Input.Keys.RIGHT:
+                right = true;
+                break;
         }
-        //其他忽略
+        //默认返回
         return false;
+    }
+
+    /**
+     * 按键释放时调用
+     *
+     * @param keycode 输入
+     * @return
+     */
+    @Override
+    public boolean keyUp(int keycode) {
+        //根据输入判定修改状态
+        switch (keycode) {
+            case Input.Keys.UP:
+                up = false;
+                break;
+            case Input.Keys.DOWN:
+                down = false;
+                break;
+            case Input.Keys.LEFT:
+                left = false;
+                break;
+            case Input.Keys.RIGHT:
+                right = false;
+                break;
+        }
+        //默认返回
+        return false;
+    }
+
+    /**
+     * 根据帧时间更新
+     *
+     * @param delta 帧时间
+     */
+    public void update(float delta) {
+        //如果移动
+        if (up) {
+            //更新
+            this.game.getAdventurer().move(tileMap, DirectionEnum.NORTH);
+            //结束
+            return;
+        }
+        //如果移动
+        if (down) {
+            //更新
+            this.game.getAdventurer().move(tileMap, DirectionEnum.SOUTH);
+            //结束
+            return;
+        }
+        //如果移动
+        if (left) {
+            //更新
+            this.game.getAdventurer().move(tileMap, DirectionEnum.WEST);
+            //结束
+            return;
+        }
+        //如果移动
+        if (right) {
+            //更新
+            this.game.getAdventurer().move(tileMap, DirectionEnum.EAST);
+            //结束
+            return;
+        }
     }
 
 }

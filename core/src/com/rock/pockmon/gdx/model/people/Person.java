@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.enums.ActionEnum;
+import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
-import com.rock.pockmon.gdx.enums.StandEnum;
 import com.rock.pockmon.gdx.model.map.TileMap;
 
 /**
@@ -80,7 +80,7 @@ public class Person {
         this.actionState = ActionEnum.STAND;
 
         //让人物图片设置为[站立_南]
-        updateStand(StandEnum.SOUTH);
+        updateStand(DirectionEnum.SOUTH);
 
         /**
          * 音效
@@ -95,7 +95,7 @@ public class Person {
      *
      * @param delta 每帧的时间
      */
-    public void moving(float delta) {
+    public void update(float delta) {
         //根据当前状态判定
         switch (actionState) {
             //todo
@@ -131,19 +131,18 @@ public class Person {
     /**
      * 人物移动,有可能不成功
      *
-     * @param tileMap 当前地图网格
-     * @param x       x轴移动
-     * @param y       y轴移动
+     * @param tileMap       当前地图网格
+     * @param directionEnum 根据方向移动
      */
-    public boolean move(TileMap tileMap, int x, int y) {
+    public boolean move(TileMap tileMap, DirectionEnum directionEnum) {
         //如果当前不是站着的
         if (actionState != ActionEnum.STAND) {
             //无法移动
             return false;
         }
         //计算下一步走到的位置
-        int nextX = this.x + x;
-        int nextY = this.y + y;
+        int nextX = this.x + directionEnum.getDx();
+        int nextY = this.y + directionEnum.getDx();
         //判断地图边界问题
         if (nextX < 0 || nextY < 0 || nextX >= tileMap.getWidth() || nextY >= tileMap.getHeight()) {
             //无法移动,固定为原来目标,但是不结束move判定,相当于走路了
@@ -152,33 +151,12 @@ public class Person {
             //todo 并且发出撞墙般音效,暂时这么做吧
             this.soundNoWalk.play();
         } else {
-            //可以移动,更改人物动画及状态
-            walkStart(this.x, this.y, x, y);
+            //可以移动
+            walkStart(directionEnum);
         }
         //真实移动
         this.x = nextX;
         this.y = nextY;
-        //准备更换方向
-        StandEnum standEnum = null;
-        //根据走路方向更改图片
-        if (y > 0) {
-            //指定方向
-            standEnum = StandEnum.NORTH;
-        } else if (y < 0) {
-            //指定方向
-            standEnum = StandEnum.SOUTH;
-        } else if (x < 0) {
-            //指定方向
-            standEnum = StandEnum.WEST;
-        } else if (x > 0) {
-            //指定方向
-            standEnum = StandEnum.EAST;
-        }
-        //如果需要更换方向
-        if (standEnum != null) {
-            //修改人物站立方向
-            updateStand(standEnum);
-        }
         //移动成功
         return true;
     }
@@ -186,17 +164,14 @@ public class Person {
     /**
      * 开始走路
      *
-     * @param srcX  当前位置x
-     * @param srcY  当前位置y
-     * @param moveX 往左右走的距离 一般是 1 or -1
-     * @param moveY 往上下走的距离 一般是 1 or -1
+     * @param directionEnum 走的方向
      */
-    private void walkStart(int srcX, int srcY, int moveX, int moveY) {
+    private void walkStart(DirectionEnum directionEnum) {
         //初始化参数
-        this.srcX = srcX;
-        this.srcY = srcY;
-        this.destX = srcX + moveX;
-        this.destY = srcY + moveY;
+        this.srcX = this.x;
+        this.srcY = this.y;
+        this.destX = this.x + directionEnum.getDx();
+        this.destY = this.y + directionEnum.getDy();
         //初始化活动时间
         this.walkTime = 0F;
         //改变人物状态为走路
@@ -227,7 +202,7 @@ public class Person {
      *
      * @param standEnum 站立枚举
      */
-    public void updateStand(StandEnum standEnum) {
+    public void updateStand(DirectionEnum standEnum) {
         //组装出默认人物图片path[人物图片目录+站立+默认方向南]
         String defaultImagePath = this.personEnum.getImageDir() + ActionEnum.STAND.getPath() + "/" + standEnum.getFileName();
         //设置当前图片对象为某个站立方向

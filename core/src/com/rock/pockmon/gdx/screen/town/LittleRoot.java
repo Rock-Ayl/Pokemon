@@ -76,8 +76,10 @@ public class LittleRoot implements Screen {
         float worldStartX = (Gdx.graphics.getWidth() / 2 - (this.game.getAdventurer().getWorldX() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
         float worldStartY = (Gdx.graphics.getHeight() / 2 - (this.game.getAdventurer().getWorldY() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
 
-        //当主角移动时,更新动画
-        this.game.getAdventurer().moving(delta);
+        //根据帧更新控制器
+        this.moveController.update(delta);
+        //根据帧更新主角
+        this.game.getAdventurer().update(delta);
 
         //开始渲染
         this.game.getBatch().begin();

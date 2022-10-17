@@ -176,7 +176,14 @@ public class Person {
         return true;
     }
 
-    //开始走路
+    /**
+     * 开始走路
+     *
+     * @param srcX  当前位置x
+     * @param srcY  当前位置y
+     * @param moveX 往左右走的距离 一般是 1 or -1
+     * @param moveY 往上下走的距离 一般是 1 or -1
+     */
     private void walkStart(int srcX, int srcY, int moveX, int moveY) {
         //初始化参数
         this.srcX = srcX;
@@ -189,7 +196,9 @@ public class Person {
         this.actionState = ActionEnum.WALK;
     }
 
-    //结束走路
+    /**
+     * 结束走路
+     */
     private void walkEnd() {
         //改变人物状态为站立
         this.actionState = ActionEnum.STAND;

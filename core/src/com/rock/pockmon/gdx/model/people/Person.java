@@ -149,7 +149,7 @@ public class Person {
             //无法移动,固定为原来目标,但是不结束move判定,相当于走路了
             nextX = this.x;
             nextY = this.y;
-            //发出撞墙般音效
+            //todo 并且发出撞墙般音效,暂时这么做吧
             this.soundNoWalk.play();
         } else {
             //可以移动,更改人物动画及状态
@@ -158,19 +158,26 @@ public class Person {
         //真实移动
         this.x = nextX;
         this.y = nextY;
+        //准备更换方向
+        StandEnum standEnum = null;
         //根据走路方向更改图片
         if (y > 0) {
-            //修改人物站立方向
-            updateStand(StandEnum.NORTH);
+            //指定方向
+            standEnum = StandEnum.NORTH;
         } else if (y < 0) {
-            //修改人物站立方向
-            updateStand(StandEnum.SOUTH);
+            //指定方向
+            standEnum = StandEnum.SOUTH;
         } else if (x < 0) {
-            //修改人物站立方向
-            updateStand(StandEnum.WEST);
+            //指定方向
+            standEnum = StandEnum.WEST;
         } else if (x > 0) {
+            //指定方向
+            standEnum = StandEnum.EAST;
+        }
+        //如果需要更换方向
+        if (standEnum != null) {
             //修改人物站立方向
-            updateStand(StandEnum.EAST);
+            updateStand(standEnum);
         }
         //移动成功
         return true;

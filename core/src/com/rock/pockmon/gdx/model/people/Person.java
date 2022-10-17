@@ -50,10 +50,10 @@ public class Person {
     private int srcX, srcY;
     private int destX, destY;
 
-    //当前已活动时间
-    private float animTime;
-    //动画时间,这里指0.5秒完成一次动画
-    private float onceAnimTime = 0.25F;
+    //走路动画当前的持续时间
+    private float walkTime;
+    //完成一次走路动画的总时间,单位秒
+    private float onceWalkTime = 0.25F;
 
     /**
      * todo 通用音效(先放这里吧)
@@ -110,12 +110,12 @@ public class Person {
             //如果是走路
             case WALK:
                 //叠加本次走路的动画时间
-                animTime += delta;
+                walkTime += delta;
                 //计算出其真实的世界坐标,据说绿宝石是线性的,这里不太懂
-                this.worldX = Interpolation.linear.apply(srcX, destX, animTime / onceAnimTime);
-                this.worldY = Interpolation.linear.apply(srcY, destY, animTime / onceAnimTime);
+                this.worldX = Interpolation.linear.apply(srcX, destX, walkTime / onceWalkTime);
+                this.worldY = Interpolation.linear.apply(srcY, destY, walkTime / onceWalkTime);
                 //如果动画时间结束了
-                if (animTime >= onceAnimTime) {
+                if (walkTime >= onceWalkTime) {
                     //结束走路
                     walkEnd();
                 }
@@ -184,7 +184,7 @@ public class Person {
         this.destX = srcX + moveX;
         this.destY = srcY + moveY;
         //初始化活动时间
-        this.animTime = 0F;
+        this.walkTime = 0F;
         //改变人物状态为走路
         this.actionState = ActionEnum.WALK;
     }
@@ -193,6 +193,17 @@ public class Person {
     private void walkEnd() {
         //改变人物状态为站立
         this.actionState = ActionEnum.STAND;
+        //将当前坐标改为移动结束的坐标(这么做还有个好处,该坐标可以转化为int)
+        this.worldX = this.destX;
+        this.worldY = this.destY;
+        this.x = this.destX;
+        this.y = this.destY;
+        //其他走路参数置0
+        this.srcX = 0;
+        this.srcY = 0;
+        this.destX = 0;
+        this.destY = 0;
+        this.walkTime = 0;
     }
 
     /**

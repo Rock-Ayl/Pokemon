@@ -1,0 +1,20 @@
+package com.rock.pockmon.gdx.util;
+
+import com.badlogic.gdx.tools.texturepacker.TexturePacker;
+
+/**
+ * 资源打包器
+ *
+ * @Author ayl
+ * @Date 2022-10-17
+ */
+public class TexturePackerTools {
+
+    public static void main(String[] args) {
+        TexturePacker.process(
+                "assets/unpacked/image/people/ruby/walk/",
+                "assets/packed/image/people/ruby/walk/",
+                "textures");
+    }
+
+}

@@ -43,14 +43,14 @@ public class MainMenu implements Screen {
         ScreenUtils.clear(Color.BLACK);
 
         //todo 初始化主菜单内容,有点简陋
-        game.batch.begin();
-        game.font.draw(game.batch, "New Game \nSetting", Settings.WINDOW_WIDTH / 2, Settings.WINDOW_HEIGHT / 2);
-        game.batch.end();
+        this.game.getBatch().begin();
+        this.game.getFont().draw(this.game.getBatch(), "New Game \nSetting", Settings.WINDOW_WIDTH / 2, Settings.WINDOW_HEIGHT / 2);
+        this.game.getBatch().end();
 
         //如果点击屏幕 或 按回车
         if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
             //进入未白镇
-            game.setScreen(new LittleRoot(game));
+            this.game.setScreen(new LittleRoot(this.game));
             //销毁当前资源
             this.dispose();
         }

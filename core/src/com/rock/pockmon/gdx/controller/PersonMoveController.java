@@ -35,16 +35,16 @@ public class PersonMoveController extends InputAdapter {
         //主角移动判定,同一次移动只能一个方向,按照绿宝石的手感判定, 上优先级最高,下其次,左第三,右的判定最低
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             //向上走一格
-            this.game.adventurer.move(tileMap, 0, 1);
+            this.game.getAdventurer().move(tileMap, 0, 1);
         } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             //向下走一格
-            this.game.adventurer.move(tileMap, 0, -1);
+            this.game.getAdventurer().move(tileMap, 0, -1);
         } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             //向左走一格
-            this.game.adventurer.move(tileMap, -1, 0);
+            this.game.getAdventurer().move(tileMap, -1, 0);
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             //向右走一格
-            this.game.adventurer.move(tileMap, 1, 0);
+            this.game.getAdventurer().move(tileMap, 1, 0);
         }
         //其他忽略
         return false;

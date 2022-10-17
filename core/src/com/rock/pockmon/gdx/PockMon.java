@@ -20,16 +20,16 @@ public class PockMon extends Game {
      */
 
     //绘制图形
-    public SpriteBatch batch;
+    private SpriteBatch batch;
     //字体
-    public BitmapFont font;
+    private BitmapFont font;
 
     /**
      * 主角
      */
 
     //主角
-    public Person adventurer;
+    private Person adventurer;
 
     /**
      * 初始化
@@ -71,6 +71,22 @@ public class PockMon extends Game {
     public void dispose() {
         this.batch.dispose();
         this.font.dispose();
+    }
+
+    /**
+     * 以下是 get set 方法
+     */
+
+    public SpriteBatch getBatch() {
+        return batch;
+    }
+
+    public BitmapFont getFont() {
+        return font;
+    }
+
+    public Person getAdventurer() {
+        return adventurer;
     }
 
 }

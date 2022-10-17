@@ -73,23 +73,23 @@ public class LittleRoot implements Screen {
         ScreenUtils.clear(Color.BLACK);
 
         //计算出世界的起始点,让世界始终以主角为中心(相机)
-        float worldStartX = (Gdx.graphics.getWidth() / 2 - (this.game.adventurer.getWorldX() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
-        float worldStartY = (Gdx.graphics.getHeight() / 2 - (this.game.adventurer.getWorldY() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
+        float worldStartX = (Gdx.graphics.getWidth() / 2 - (this.game.getAdventurer().getWorldX() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
+        float worldStartY = (Gdx.graphics.getHeight() / 2 - (this.game.getAdventurer().getWorldY() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
 
         //当主角移动时,更新动画
-        this.game.adventurer.moving(delta);
+        this.game.getAdventurer().moving(delta);
 
         //开始渲染
-        this.game.batch.begin();
+        this.game.getBatch().begin();
 
         //根据世界起点,渲染地图网格
-        GdxUtils.drawTileMap(this.game.batch, this.tileMap, worldStartX, worldStartY);
+        GdxUtils.drawTileMap(this.game.getBatch(), this.tileMap, worldStartX, worldStartY);
 
         //根据世界起点,渲染主角
-        GdxUtils.drawPerson(this.game.batch, this.game.adventurer, worldStartX, worldStartY);
+        GdxUtils.drawPerson(this.game.getBatch(), this.game.getAdventurer(), worldStartX, worldStartY);
 
         //结束渲染
-        this.game.batch.end();
+        this.game.getBatch().end();
 
     }
 

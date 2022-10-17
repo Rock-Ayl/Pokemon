@@ -11,6 +11,7 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 public class TexturePackerTools {
 
     public static void main(String[] args) {
+        //将路比走路图片打包至对应目录
         TexturePacker.process(
                 "assets/unpacked/image/people/ruby/walk/",
                 "assets/packed/image/people/ruby/walk/",

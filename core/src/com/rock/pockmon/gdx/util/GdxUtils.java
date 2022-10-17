@@ -2,6 +2,7 @@ package com.rock.pockmon.gdx.util;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.model.map.Tile;
 import com.rock.pockmon.gdx.model.map.TileMap;
@@ -36,7 +37,7 @@ public class GdxUtils {
      */
     public static void drawPerson(SpriteBatch batch, Person person, float worldStartX, float worldStartY) {
         //实现
-        draw(batch, person.getCurrentImage(), person.getWorldX(), person.getWorldY(), person.getWidth(), person.getHeight(), worldStartX, worldStartY);
+        draw(batch, person.getSprite(), person.getWorldX(), person.getWorldY(), person.getWidth(), person.getHeight(), worldStartX, worldStartY);
     }
 
     /**
@@ -107,6 +108,33 @@ public class GdxUtils {
      * @param worldStartY 世界起点y
      */
     private static void draw(SpriteBatch batch, Texture image, float x, float y, float width, float height, float worldStartX, float worldStartY) {
+        //获取网格倍率
+        float scale = Settings.SCALED_TILE_SIZE;
+        //实现
+        batch.draw(
+                //图片
+                image,
+                //真实坐标 * 网格倍率 + 当前坐标 * 网格倍率
+                worldStartX * scale + x * scale,
+                worldStartY * scale + y * scale,
+                //使用地图块的宽高 * 网格倍率
+                width * scale,
+                height * scale
+        );
+    }
+
+    /**
+     * 根据信息统一渲染图片底层逻辑
+     *
+     * @param image       图片对象
+     * @param x           坐标
+     * @param y           坐标
+     * @param width       宽
+     * @param height      搞
+     * @param worldStartX 世界起点x
+     * @param worldStartY 世界起点y
+     */
+    private static void draw(SpriteBatch batch, TextureRegion image, float x, float y, float width, float height, float worldStartX, float worldStartY) {
         //获取网格倍率
         float scale = Settings.SCALED_TILE_SIZE;
         //实现

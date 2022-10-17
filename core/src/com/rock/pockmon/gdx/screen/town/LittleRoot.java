@@ -79,7 +79,7 @@ public class LittleRoot implements Screen {
         //根据帧更新控制器
         this.moveController.update(delta);
         //根据帧更新主角
-        this.game.getAdventurer().update(delta);
+        this.game.getAdventurer().update(this.tileMap, delta);
 
         //开始渲染
         this.game.getBatch().begin();

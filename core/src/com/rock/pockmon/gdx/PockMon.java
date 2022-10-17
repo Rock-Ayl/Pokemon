@@ -2,12 +2,14 @@ package com.rock.pockmon.gdx;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.model.people.Person;
 import com.rock.pockmon.gdx.screen.MainMenu;
+import com.rock.pockmon.gdx.util.AnimationSet;
 
 /**
  * 游戏入口
@@ -64,8 +66,26 @@ public class PockMon extends Game {
          * 主角
          */
 
+        //获取资源
+        TextureAtlas walkTextureAtlas = this.assetManager.get("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
+        TextureAtlas standTextureAtlas = this.assetManager.get("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
+        //初始化动画集合
+        AnimationSet animations = new AnimationSet(
+                //载入动画 秒/帧(N图-1=帧),名字,模式
+                new Animation(0.3F / 2F, walkTextureAtlas.findRegions("north"), Animation.PlayMode.LOOP_PINGPONG),
+                new Animation(0.3F / 2F, walkTextureAtlas.findRegions("south"), Animation.PlayMode.LOOP_PINGPONG),
+                new Animation(0.3F / 2F, walkTextureAtlas.findRegions("east"), Animation.PlayMode.LOOP_PINGPONG),
+                new Animation(0.3F / 2F, walkTextureAtlas.findRegions("west"), Animation.PlayMode.LOOP_PINGPONG),
+                //载入单帧图片
+                standTextureAtlas.findRegion("north"),
+                standTextureAtlas.findRegion("south"),
+                standTextureAtlas.findRegion("east"),
+                standTextureAtlas.findRegion("west")
+        );
+
         //todo 初始化主角,先使用男主角吧
-        this.adventurer = new Person(PersonEnum.RUBE);
+        this.adventurer = new Person(PersonEnum.RUBE, animations);
+
 
         //进入主目录
         this.setScreen(new MainMenu(this));

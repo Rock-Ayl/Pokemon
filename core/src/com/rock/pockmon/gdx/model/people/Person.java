@@ -2,13 +2,14 @@ package com.rock.pockmon.gdx.model.people;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.model.map.TileMap;
+import com.rock.pockmon.gdx.util.AnimationSet;
 
 /**
  * 人物实体
@@ -36,13 +37,15 @@ public class Person {
 
     //人物枚举
     private PersonEnum personEnum;
-    //当前图片对象
-    private Texture currentImage;
 
     /**
-     * 移动参数
+     * 移动参数及对象
      */
 
+    //人物当前的方向
+    private DirectionEnum facing;
+    //人物动画集合
+    private AnimationSet animationSet;
     //当前状态(站立、走路、跑步、骑自行车、冲浪等等)
     private ActionEnum actionState;
 
@@ -50,10 +53,15 @@ public class Person {
     private int srcX, srcY;
     private int destX, destY;
 
-    //走路动画当前的持续时间
+    //动画持续时间
+    private float animTime;
+    //完成一次动画的总时间,单位秒
+    private float onceAnimTime = 0.3F;
+
+    //走路持续时间
     private float walkTime;
-    //完成一次走路动画的总时间,单位秒
-    private float onceWalkTime = 0.25F;
+    //????
+    private boolean moveRequestThisFrame;
 
     /**
      * todo 通用音效(先放这里吧)
@@ -67,20 +75,24 @@ public class Person {
      *
      * @param personEnum 人物枚举
      */
-    public Person(PersonEnum personEnum) {
+    public Person(PersonEnum personEnum, AnimationSet animationSet) {
 
         //基本信息
         this.personEnum = personEnum;
+
+        this.actionState = ActionEnum.STAND;
+
+        //动画
+        this.animationSet = animationSet;
 
         //设定用户宽高,绿宝石中,通常人物占接近1.5个地图网格
         this.width = 1.0F;
         this.height = 1.5F;
 
-        //默认人物为[站立]状态
-        this.actionState = ActionEnum.STAND;
 
-        //让人物图片设置为[站立_南]
-        updateStand(DirectionEnum.SOUTH);
+        //默认方向为南
+        this.facing = DirectionEnum.SOUTH;
+
 
         /**
          * 音效
@@ -95,7 +107,7 @@ public class Person {
      *
      * @param delta 每帧的时间
      */
-    public void update(float delta) {
+    public void update(TileMap tileMap, float delta) {
         //根据当前状态判定
         switch (actionState) {
             //todo
@@ -110,14 +122,27 @@ public class Person {
             //如果是走路
             case WALK:
                 //叠加本次走路的动画时间
-                walkTime += delta;
+                this.animTime += delta;
+                this.walkTime += delta;
                 //计算出其真实的世界坐标,据说绿宝石是线性的,这里不太懂
-                this.worldX = Interpolation.linear.apply(srcX, destX, walkTime / onceWalkTime);
-                this.worldY = Interpolation.linear.apply(srcY, destY, walkTime / onceWalkTime);
+                this.worldX = Interpolation.linear.apply(srcX, destX, animTime / onceAnimTime);
+                this.worldY = Interpolation.linear.apply(srcY, destY, animTime / onceAnimTime);
                 //如果动画时间结束了
-                if (walkTime >= onceWalkTime) {
+                if (animTime >= onceAnimTime) {
+                    //????
+                    float leftOverTime = animTime - onceAnimTime;
+                    //????
+                    walkTime -= leftOverTime;
                     //结束走路
                     walkEnd();
+                    //????????
+                    if (moveRequestThisFrame) {
+                        //似乎是要重置移动
+                        move(tileMap, this.facing);
+                    } else {
+                        //???似乎是不动了
+                        walkTime = 0F;
+                    }
                 }
                 break;
             //站立或其他
@@ -126,6 +151,8 @@ public class Person {
                 //直接结束
                 break;
         }
+        //?????为什么呢
+        this.moveRequestThisFrame = false;
     }
 
     /**
@@ -135,9 +162,13 @@ public class Person {
      * @param directionEnum 根据方向移动
      */
     public boolean move(TileMap tileMap, DirectionEnum directionEnum) {
-        //如果当前不是站着的
-        if (actionState != ActionEnum.STAND) {
-            //无法移动
+        //如果是走路的状态
+        if (actionState == ActionEnum.WALK) {
+            //如果脸和方向一致
+            if (this.facing == directionEnum) {
+                //???
+                this.moveRequestThisFrame = true;
+            }
             return false;
         }
         //计算下一步走到的位置
@@ -145,15 +176,11 @@ public class Person {
         int nextY = this.y + directionEnum.getDx();
         //判断地图边界问题
         if (nextX < 0 || nextY < 0 || nextX >= tileMap.getWidth() || nextY >= tileMap.getHeight()) {
-            //无法移动,固定为原来目标,但是不结束move判定,相当于走路了
-            nextX = this.x;
-            nextY = this.y;
-            //todo 并且发出撞墙般音效,暂时这么做吧
-            this.soundNoWalk.play();
-        } else {
-            //可以移动
-            walkStart(directionEnum);
+            //不走
+            return false;
         }
+        //可以移动
+        walkStart(directionEnum);
         //真实移动
         this.x = nextX;
         this.y = nextY;
@@ -168,12 +195,13 @@ public class Person {
      */
     private void walkStart(DirectionEnum directionEnum) {
         //初始化参数
+        this.facing = directionEnum;
         this.srcX = this.x;
         this.srcY = this.y;
         this.destX = this.x + directionEnum.getDx();
         this.destY = this.y + directionEnum.getDy();
         //初始化活动时间
-        this.walkTime = 0F;
+        this.animTime = 0F;
         //改变人物状态为走路
         this.actionState = ActionEnum.WALK;
     }
@@ -194,19 +222,22 @@ public class Person {
         this.srcY = 0;
         this.destX = 0;
         this.destY = 0;
-        this.walkTime = 0;
+        this.animTime = 0;
     }
 
-    /**
-     * 修改人物站立方向
-     *
-     * @param standEnum 站立枚举
-     */
-    public void updateStand(DirectionEnum standEnum) {
-        //组装出默认人物图片path[人物图片目录+站立+默认方向南]
-        String defaultImagePath = this.personEnum.getImageDir() + ActionEnum.STAND.getPath() + "/" + standEnum.getFileName();
-        //设置当前图片对象为某个站立方向
-        this.currentImage = new Texture(Gdx.files.internal(defaultImagePath));
+    public TextureRegion getSprite() {
+        //如果是走路
+        if (actionState == ActionEnum.WALK) {
+            //返回走路
+            return this.animationSet.getWalking(this.facing).getKeyFrame(this.walkTime);
+        }
+        //如果是站立
+        if (actionState == ActionEnum.STAND) {
+            //返回站立
+            return this.animationSet.getStanding(this.facing);
+        }
+        //默认站立南
+        return this.animationSet.getStanding(DirectionEnum.SOUTH);
     }
 
     /**
@@ -241,10 +272,6 @@ public class Person {
 
     public PersonEnum getPersonEnum() {
         return personEnum;
-    }
-
-    public Texture getCurrentImage() {
-        return currentImage;
     }
 
 }

@@ -56,6 +56,7 @@ public class PockMon extends Game {
         this.assetManager = new AssetManager();
         //加载已打包的图片资源
         this.assetManager.load("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
+        this.assetManager.load("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
         //加载资源完成
         this.assetManager.finishLoading();
 

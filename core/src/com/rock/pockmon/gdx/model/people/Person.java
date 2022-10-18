@@ -177,7 +177,7 @@ public class Person {
         }
         //计算下一步走到的位置
         int nextX = this.x + directionEnum.getDx();
-        int nextY = this.y + directionEnum.getDx();
+        int nextY = this.y + directionEnum.getDy();
         //判断地图边界问题
         if (nextX < 0 || nextY < 0 || nextX >= tileMap.getWidth() || nextY >= tileMap.getHeight()) {
             //不走

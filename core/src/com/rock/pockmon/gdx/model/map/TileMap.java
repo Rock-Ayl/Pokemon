@@ -55,6 +55,12 @@ public class TileMap {
         }
     }
 
+    /**
+     * 以下为 get set 方法
+     *
+     * @return
+     */
+
     public int getWidth() {
         return width;
     }

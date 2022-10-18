@@ -5,23 +5,26 @@ package com.rock.pockmon.gdx.enums;
  */
 public enum DirectionEnum {
 
-    NORTH(0, 1, "north.png"),
-    EAST(1, 0, "east.png"),
-    SOUTH(0, -1, "south.png"),
-    WEST(-1, 0, "west.png"),
+    NORTH(0, 1, "north", "北"),
+    EAST(1, 0, "east", "东"),
+    SOUTH(0, -1, "south", "南"),
+    WEST(-1, 0, "west", "西"),
 
     ;
 
     //该方向每次移动坐标
     private int dx, dy;
 
-    //文件名
-    private String fileName;
+    //名字
+    private String name;
+    //中文名
+    private String zhName;
 
-    DirectionEnum(int dx, int dy, String fileName) {
+    DirectionEnum(int dx, int dy, String name, String zhName) {
         this.dx = dx;
         this.dy = dy;
-        this.fileName = fileName;
+        this.name = name;
+        this.zhName = zhName;
     }
 
     /**
@@ -38,8 +41,8 @@ public enum DirectionEnum {
         return dy;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getName() {
+        return name;
     }
 
 }

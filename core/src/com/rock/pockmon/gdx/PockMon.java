@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pockmon.gdx.model.people.Person;
@@ -73,15 +74,15 @@ public class PockMon extends Game {
         //初始化动画集合
         PersonAnimationSet animations = new PersonAnimationSet(
                 //载入动画 秒/帧(N图-1=帧),名字,模式
-                new Animation(0.3F / 2F, walkTextureAtlas.findRegions("north"), Animation.PlayMode.LOOP_PINGPONG),
-                new Animation(0.3F / 2F, walkTextureAtlas.findRegions("south"), Animation.PlayMode.LOOP_PINGPONG),
-                new Animation(0.3F / 2F, walkTextureAtlas.findRegions("east"), Animation.PlayMode.LOOP_PINGPONG),
-                new Animation(0.3F / 2F, walkTextureAtlas.findRegions("west"), Animation.PlayMode.LOOP_PINGPONG),
+                new Animation(0.3F / 2F, walkTextureAtlas.findRegions(DirectionEnum.NORTH.getName()), Animation.PlayMode.LOOP_PINGPONG),
+                new Animation(0.3F / 2F, walkTextureAtlas.findRegions(DirectionEnum.SOUTH.getName()), Animation.PlayMode.LOOP_PINGPONG),
+                new Animation(0.3F / 2F, walkTextureAtlas.findRegions(DirectionEnum.EAST.getName()), Animation.PlayMode.LOOP_PINGPONG),
+                new Animation(0.3F / 2F, walkTextureAtlas.findRegions(DirectionEnum.WEST.getName()), Animation.PlayMode.LOOP_PINGPONG),
                 //载入单帧图片
-                standTextureAtlas.findRegion("north"),
-                standTextureAtlas.findRegion("south"),
-                standTextureAtlas.findRegion("east"),
-                standTextureAtlas.findRegion("west")
+                standTextureAtlas.findRegion(DirectionEnum.NORTH.getName()),
+                standTextureAtlas.findRegion(DirectionEnum.SOUTH.getName()),
+                standTextureAtlas.findRegion(DirectionEnum.EAST.getName()),
+                standTextureAtlas.findRegion(DirectionEnum.WEST.getName())
         );
 
         /**

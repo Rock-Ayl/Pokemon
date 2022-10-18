@@ -8,26 +8,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 动画集合
+ * 一个人物动画集合
+ * 一个人物实体会有一个,存储着该人物所有的动画
  *
  * @Author ayl
  * @Date 2022-10-17
  */
-public class AnimationSet {
+public class PersonAnimationSet {
 
-    //记录方向和动画的缓存
+    /**
+     * 每种动作的动画、图片缓存
+     */
+
+    //走-动画map
     private Map<DirectionEnum, Animation<TextureRegion>> walkingMap;
+    //站-图片map
     private Map<DirectionEnum, TextureRegion> standingMap;
 
     //初始化
-    public AnimationSet(Animation<TextureRegion> walkNorth,
-                        Animation<TextureRegion> walkSouth,
-                        Animation<TextureRegion> walkEast,
-                        Animation<TextureRegion> walkWest,
-                        TextureRegion standNorth,
-                        TextureRegion standSouth,
-                        TextureRegion standEast,
-                        TextureRegion standWest) {
+    public PersonAnimationSet(Animation<TextureRegion> walkNorth,
+                              Animation<TextureRegion> walkSouth,
+                              Animation<TextureRegion> walkEast,
+                              Animation<TextureRegion> walkWest,
+                              TextureRegion standNorth,
+                              TextureRegion standSouth,
+                              TextureRegion standEast,
+                              TextureRegion standWest) {
         //初始化走路map
         walkingMap = new HashMap<>();
         walkingMap.put(DirectionEnum.NORTH, walkNorth);
@@ -43,13 +49,23 @@ public class AnimationSet {
         standingMap.put(DirectionEnum.WEST, standWest);
     }
 
-    //走路
+    /**
+     * 走路
+     *
+     * @param directionEnum 根据方向获取走路动画
+     * @return
+     */
     public Animation<TextureRegion> getWalking(DirectionEnum directionEnum) {
         //返回
         return this.walkingMap.get(directionEnum);
     }
 
-    //站立
+    /**
+     * 站立
+     *
+     * @param directionEnum 根据方向获取站立图片
+     * @return
+     */
     public TextureRegion getStanding(DirectionEnum directionEnum) {
         //返回
         return this.standingMap.get(directionEnum);

@@ -9,7 +9,7 @@ import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.model.map.TileMap;
-import com.rock.pockmon.gdx.model.animation.AnimationSet;
+import com.rock.pockmon.gdx.model.animation.PersonAnimationSet;
 
 /**
  * 人物实体
@@ -45,7 +45,7 @@ public class Person {
     //人物当前的方向
     private DirectionEnum facing;
     //人物动画集合
-    private AnimationSet animationSet;
+    private PersonAnimationSet animationSet;
     //当前状态(站立、走路、跑步、骑自行车、冲浪等等)
     private ActionEnum actionState;
 
@@ -75,7 +75,7 @@ public class Person {
      *
      * @param personEnum 人物枚举
      */
-    public Person(PersonEnum personEnum, AnimationSet animationSet) {
+    public Person(PersonEnum personEnum, PersonAnimationSet animationSet) {
 
         //基本信息
         this.personEnum = personEnum;

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.rock.pockmon.gdx.enums.PersonEnum;
-import com.rock.pockmon.gdx.model.animation.AnimationSet;
+import com.rock.pockmon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pockmon.gdx.model.people.Person;
 import com.rock.pockmon.gdx.screen.MainMenu;
 
@@ -70,7 +70,7 @@ public class PockMon extends Game {
         TextureAtlas walkTextureAtlas = this.assetManager.get("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
         TextureAtlas standTextureAtlas = this.assetManager.get("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
         //初始化动画集合
-        AnimationSet animations = new AnimationSet(
+        PersonAnimationSet animations = new PersonAnimationSet(
                 //载入动画 秒/帧(N图-1=帧),名字,模式
                 new Animation(0.3F / 2F, walkTextureAtlas.findRegions("north"), Animation.PlayMode.LOOP_PINGPONG),
                 new Animation(0.3F / 2F, walkTextureAtlas.findRegions("south"), Animation.PlayMode.LOOP_PINGPONG),

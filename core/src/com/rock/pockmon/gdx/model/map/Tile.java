@@ -35,9 +35,9 @@ public class Tile {
         //记录图片
         this.image = image;
 
-        //设定地图块宽高,绿宝石中,所有都是1
-        this.width = 1.0F;
-        this.height = 1.0F;
+        //设定地图块宽高,绿宝石中,所有都是1,之所以地图多0.001,是因为在极少数情况下,会出现平铺地图裂缝的问题,加0.001比例宽高,基本算是解决问题了
+        this.width = 1.001F;
+        this.height = 1.001F;
     }
 
     /**

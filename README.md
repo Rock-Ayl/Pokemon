@@ -24,7 +24,10 @@ Java 11
 Gradle 6.9.2
 
 
-LibGdx for PC
+LibGdx for PC 1.11.0
+
+
+尽量不用入侵性比较强的东西,比如Lombok之类东西.
 
 # 启动方式
 

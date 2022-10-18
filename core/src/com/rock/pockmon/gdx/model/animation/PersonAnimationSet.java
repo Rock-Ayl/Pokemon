@@ -1,6 +1,8 @@
 package com.rock.pockmon.gdx.model.animation;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pockmon.gdx.enums.DirectionEnum;
 
@@ -26,27 +28,24 @@ public class PersonAnimationSet {
     private Map<DirectionEnum, TextureRegion> standingMap;
 
     //初始化
-    public PersonAnimationSet(Animation<TextureRegion> walkNorth,
-                              Animation<TextureRegion> walkSouth,
-                              Animation<TextureRegion> walkEast,
-                              Animation<TextureRegion> walkWest,
-                              TextureRegion standNorth,
-                              TextureRegion standSouth,
-                              TextureRegion standEast,
-                              TextureRegion standWest) {
+    public PersonAnimationSet(AssetManager assetManager) {
+        //获取资源
+        TextureAtlas walkTextureAtlas = assetManager.get("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
+        TextureAtlas standTextureAtlas = assetManager.get("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
         //初始化走路map
         walkingMap = new HashMap<>();
-        walkingMap.put(DirectionEnum.NORTH, walkNorth);
-        walkingMap.put(DirectionEnum.SOUTH, walkSouth);
-        walkingMap.put(DirectionEnum.EAST, walkEast);
-        walkingMap.put(DirectionEnum.WEST, walkWest);
-
+        //循环方向枚举
+        for (DirectionEnum walkDir : DirectionEnum.values()) {
+            //载入动画 秒/帧(N图-1=帧),名字,模式,并组装
+            walkingMap.put(walkDir, new Animation(0.3F / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
+        }
         //初始化站立map
         standingMap = new HashMap<>();
-        standingMap.put(DirectionEnum.NORTH, standNorth);
-        standingMap.put(DirectionEnum.SOUTH, standSouth);
-        standingMap.put(DirectionEnum.EAST, standEast);
-        standingMap.put(DirectionEnum.WEST, standWest);
+        //循环
+        for (DirectionEnum standDir : DirectionEnum.values()) {
+            //载入图片,并组装
+            standingMap.put(standDir, standTextureAtlas.findRegion(standDir.getName()));
+        }
     }
 
     /**

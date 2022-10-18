@@ -8,8 +8,8 @@ import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
-import com.rock.pockmon.gdx.model.map.TileMap;
 import com.rock.pockmon.gdx.model.animation.PersonAnimationSet;
+import com.rock.pockmon.gdx.model.map.TileMap;
 
 /**
  * 人物实体
@@ -73,26 +73,30 @@ public class Person {
     /**
      * 使用人物枚举初始化
      *
-     * @param personEnum 人物枚举
+     * @param personEnum   人物枚举
+     * @param animationSet 人物动画集合
      */
     public Person(PersonEnum personEnum, PersonAnimationSet animationSet) {
 
-        //基本信息
+        /**
+         * 基本信息
+         */
+
+        //人物枚举
         this.personEnum = personEnum;
 
+        //动作状态
         this.actionState = ActionEnum.STAND;
 
-        //动画
+        //默认方向为南
+        this.facing = DirectionEnum.SOUTH;
+
+        //动画集合
         this.animationSet = animationSet;
 
         //设定用户宽高,绿宝石中,通常人物占接近1.5个地图网格
         this.width = 1.0F;
         this.height = 1.5F;
-
-
-        //默认方向为南
-        this.facing = DirectionEnum.SOUTH;
-
 
         /**
          * 音效
@@ -246,14 +250,6 @@ public class Person {
      * @return
      */
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
     public float getWorldX() {
         return worldX;
     }
@@ -268,10 +264,6 @@ public class Person {
 
     public float getHeight() {
         return height;
-    }
-
-    public PersonEnum getPersonEnum() {
-        return personEnum;
     }
 
 }

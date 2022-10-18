@@ -38,11 +38,11 @@ public class Settings {
      * 地图配置
      */
 
-    //地图网格大小
+    //地图/贴图网格大小
     public static int TILE_SIZE = 16;
     //缩放倍率
     public static float SCALE = 2F;
-    //地图网格真实的大小
+    //地图网格真实的大小(16的贴图看起来还是模糊,32就好点)
     public static float SCALED_TILE_SIZE = TILE_SIZE * SCALE;
 
 }

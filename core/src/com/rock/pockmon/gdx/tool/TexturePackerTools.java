@@ -10,18 +10,29 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker;
  */
 public class TexturePackerTools {
 
+    /**
+     * 将图片、动画帧打包至对应目录
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
-        //将路比走路图片打包至对应目录
+        //路比走路
         TexturePacker.process(
                 "assets/unpacked/image/people/ruby/walk/",
                 "assets/packed/image/people/ruby/walk/",
                 "textures");
 
-        //将路比站立图片打包至对应目录
+        //路比站立
         TexturePacker.process(
                 "assets/unpacked/image/people/ruby/stand/",
                 "assets/packed/image/people/ruby/stand/",
+                "textures");
+
+        //草
+        TexturePacker.process(
+                "assets/unpacked/image/map/grass/",
+                "assets/packed/image/map/grass/",
                 "textures");
 
     }

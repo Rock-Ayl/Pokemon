@@ -1,4 +1,4 @@
-package com.rock.pockmon.gdx.util;
+package com.rock.pockmon.gdx.model.animation;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

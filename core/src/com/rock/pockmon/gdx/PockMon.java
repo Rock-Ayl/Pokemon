@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.rock.pockmon.gdx.enums.PersonEnum;
+import com.rock.pockmon.gdx.model.animation.AnimationSet;
 import com.rock.pockmon.gdx.model.people.Person;
 import com.rock.pockmon.gdx.screen.MainMenu;
-import com.rock.pockmon.gdx.util.AnimationSet;
 
 /**
  * 游戏入口
@@ -87,7 +87,7 @@ public class PockMon extends Game {
          * 主角
          */
 
-        //todo 初始化主角,先使用男主角吧
+        //初始化主角,先使用男主角吧
         this.adventurer = new Person(PersonEnum.RUBE, animations);
 
         /**

@@ -42,7 +42,7 @@ public class MainMenu implements Screen {
         //黑幕
         ScreenUtils.clear(Color.BLACK);
 
-        //todo 初始化主菜单内容,有点简陋
+        //简单的假主菜单
         this.game.getBatch().begin();
         this.game.getFont().draw(this.game.getBatch(), "New Game \nSetting", Settings.WINDOW_WIDTH / 2, Settings.WINDOW_HEIGHT / 2);
         this.game.getBatch().end();

@@ -9,7 +9,7 @@ import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
 import com.rock.pockmon.gdx.model.map.TileMap;
-import com.rock.pockmon.gdx.util.AnimationSet;
+import com.rock.pockmon.gdx.model.animation.AnimationSet;
 
 /**
  * 人物实体

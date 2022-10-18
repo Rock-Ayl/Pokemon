@@ -1,4 +1,4 @@
-package com.rock.pockmon.gdx.util;
+package com.rock.pockmon.gdx.tool;
 
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 

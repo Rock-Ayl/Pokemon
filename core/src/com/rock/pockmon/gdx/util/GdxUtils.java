@@ -19,21 +19,10 @@ public class GdxUtils {
     /**
      * 渲染一个人
      *
-     * @param batch  渲染器
-     * @param person 人物实体
-     */
-    public static void drawPerson(SpriteBatch batch, Person person) {
-        //实现,默认世界坐标为0
-        drawPerson(batch, person, 0F, 0F);
-    }
-
-    /**
-     * 渲染一个人
-     *
      * @param batch       渲染器
      * @param person      人物实体
-     * @param worldStartX 世界起点x
-     * @param worldStartY 世界起点y
+     * @param worldStartX 世界起点x,没有传0
+     * @param worldStartY 世界起点y,没有传0
      */
     public static void drawPerson(SpriteBatch batch, Person person, float worldStartX, float worldStartY) {
         //实现
@@ -43,36 +32,14 @@ public class GdxUtils {
     /**
      * 渲染一个地图块
      *
-     * @param batch 渲染器
-     * @param tile  单个地图块实体
-     */
-    public static void drawTile(SpriteBatch batch, Tile tile) {
-        //实现,默认世界坐标为0
-        drawTile(batch, tile, 0F, 0F);
-    }
-
-    /**
-     * 渲染一个地图块
-     *
      * @param batch       渲染器
      * @param tile        单个地图块实体
-     * @param worldStartX 世界起点x
-     * @param worldStartY 世界起点y
+     * @param worldStartX 世界起点x,没有传0
+     * @param worldStartY 世界起点y,没有传0
      */
     public static void drawTile(SpriteBatch batch, Tile tile, float worldStartX, float worldStartY) {
         //实现
         draw(batch, tile.getTileEnum().getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), worldStartX, worldStartY);
-    }
-
-    /**
-     * 渲染一个地图网格
-     *
-     * @param batch   渲染器
-     * @param tileMap 渲染一个地图网格
-     */
-    public static void drawTileMap(SpriteBatch batch, TileMap tileMap) {
-        //实现,默认世界起点为0
-        drawTileMap(batch, tileMap, 0F, 0F);
     }
 
     /**

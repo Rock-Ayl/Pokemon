@@ -63,7 +63,7 @@ public class PockMon extends Game {
         this.assetManager.finishLoading();
 
         /**
-         * 主角
+         * 资源
          */
 
         //获取资源
@@ -83,11 +83,18 @@ public class PockMon extends Game {
                 standTextureAtlas.findRegion("west")
         );
 
+        /**
+         * 主角
+         */
+
         //todo 初始化主角,先使用男主角吧
         this.adventurer = new Person(PersonEnum.RUBE, animations);
 
+        /**
+         * 场景
+         */
 
-        //进入主目录
+        //进入主菜单
         this.setScreen(new MainMenu(this));
 
     }

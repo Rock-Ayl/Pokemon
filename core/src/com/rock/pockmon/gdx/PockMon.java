@@ -66,11 +66,11 @@ public class PockMon extends Game {
          * 主角
          */
 
-        //初始化主角动画集合
-        PersonAnimationSet animations = new PersonAnimationSet(this.getAssetManager());
+        //先初始化主角动画集合
+        PersonAnimationSet personAnimationSet = new PersonAnimationSet(this.getAssetManager());
 
-        //初始化主角,先使用男主角吧
-        this.adventurer = new Person(PersonEnum.RUBE, animations);
+        //再初始化主角,先使用男主角吧
+        this.adventurer = new Person(PersonEnum.RUBE, personAnimationSet);
 
         /**
          * 场景

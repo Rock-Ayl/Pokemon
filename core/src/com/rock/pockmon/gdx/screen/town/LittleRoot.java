@@ -48,7 +48,7 @@ public class LittleRoot implements Screen {
         this.music.setLooping(true);
 
         //初始化地图网格
-        this.tileMap = new TileMap(15, 15);
+        this.tileMap = new TileMap(this.game.getAssetManager(), 15, 15);
 
         //初始化移动控制,指定主角为可移动的角色
         this.moveController = new PersonMoveController(this.game, this.tileMap);

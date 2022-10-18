@@ -1,6 +1,6 @@
 package com.rock.pockmon.gdx.model.map;
 
-import com.rock.pockmon.gdx.enums.TileEnum;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * 单个地图块
@@ -18,36 +18,36 @@ public class Tile {
     private float width;
     private float height;
 
-    //对应地图块枚举
-    private TileEnum tileEnum;
-
-    //是否是一个墙
-    private boolean wall;
-
-    //是否是一个水
-    private boolean water;
+    //对应地图块动画
+    private TextureRegion image;
 
     /**
-     * 根据枚举初始化
+     * 初始化
      *
-     * @param tileEnum 地图块枚举
+     * @param image 动画
      */
-    public Tile(int x, int y, TileEnum tileEnum) {
-
-        //地图块枚举
-        this.tileEnum = tileEnum;
+    public Tile(int x, int y, TextureRegion image) {
 
         //坐标(视为在地图网格中的)
         this.x = x;
         this.y = y;
 
-        //默认视为可通过地形
-        this.wall = false;
-        this.water = false;
+        //记录图片
+        this.image = image;
 
         //设定地图块宽高,绿宝石中,所有都是1
         this.width = 1.0F;
         this.height = 1.0F;
+    }
+
+    /**
+     * 获取当前图片
+     *
+     * @return
+     */
+    public TextureRegion getSprite() {
+        //返回ø
+        return this.image;
     }
 
     /**
@@ -70,18 +70,6 @@ public class Tile {
 
     public float getHeight() {
         return height;
-    }
-
-    public TileEnum getTileEnum() {
-        return tileEnum;
-    }
-
-    public boolean isWall() {
-        return wall;
-    }
-
-    public boolean isWater() {
-        return water;
     }
 
 }

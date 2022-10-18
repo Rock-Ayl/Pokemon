@@ -1,6 +1,5 @@
 package com.rock.pockmon.gdx.util;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pockmon.gdx.common.Settings;
@@ -39,7 +38,7 @@ public class GdxUtils {
      */
     public static void drawTile(SpriteBatch batch, Tile tile, float worldStartX, float worldStartY) {
         //实现
-        draw(batch, tile.getTileEnum().getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), worldStartX, worldStartY);
+        draw(batch, tile.getSprite(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), worldStartX, worldStartY);
     }
 
     /**
@@ -61,33 +60,6 @@ public class GdxUtils {
                 GdxUtils.drawTile(batch, tile, worldStartX, worldStartY);
             }
         }
-    }
-
-    /**
-     * 根据信息统一渲染图片底层逻辑
-     *
-     * @param image       图片对象
-     * @param x           坐标
-     * @param y           坐标
-     * @param width       宽
-     * @param height      搞
-     * @param worldStartX 世界起点x
-     * @param worldStartY 世界起点y
-     */
-    private static void draw(SpriteBatch batch, Texture image, float x, float y, float width, float height, float worldStartX, float worldStartY) {
-        //获取网格倍率
-        float scale = Settings.SCALED_TILE_SIZE;
-        //实现
-        batch.draw(
-                //图片
-                image,
-                //真实坐标 * 网格倍率 + 当前坐标 * 网格倍率
-                worldStartX * scale + x * scale,
-                worldStartY * scale + y * scale,
-                //使用地图块的宽高 * 网格倍率
-                width * scale,
-                height * scale
-        );
     }
 
     /**

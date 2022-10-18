@@ -1,6 +1,7 @@
 package com.rock.pockmon.gdx.model.map;
 
-import com.rock.pockmon.gdx.enums.TileEnum;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /**
  * 地图网格
@@ -13,16 +14,25 @@ public class TileMap {
     //网格属性
     private int width;
     private int height;
-    //网格本身
+
+    //地图网格本身
     private Tile[][] map;
 
     /**
-     * todo 初始化地图网格,目前只有草
+     * 初始化地图网格,目前只有草
      *
-     * @param width  宽
-     * @param height 高
+     * @param assetManager 资源管理器
+     * @param width        宽
+     * @param height       高
      */
-    public TileMap(int width, int height) {
+    public TileMap(AssetManager assetManager, int width, int height) {
+
+        //获取资源
+        TextureAtlas grass = assetManager.get("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
+        //获取草1,草2
+        TextureAtlas.AtlasRegion grass1 = grass.findRegion("1");
+        TextureAtlas.AtlasRegion grass2 = grass.findRegion("2");
+
         //初始化网格及其属性
         this.width = width;
         this.height = height;
@@ -36,10 +46,10 @@ public class TileMap {
                 //根据随机数生成草
                 if (random < 0.9D) {
                     //草1
-                    this.map[x][y] = new Tile(x, y, TileEnum.GRASS_1);
+                    this.map[x][y] = new Tile(x, y, grass1);
                 } else {
                     //草2
-                    this.map[x][y] = new Tile(x, y, TileEnum.GRASS_2);
+                    this.map[x][y] = new Tile(x, y, grass2);
                 }
             }
         }

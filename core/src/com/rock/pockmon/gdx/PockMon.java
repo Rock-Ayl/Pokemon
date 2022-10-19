@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.rock.pockmon.gdx.enums.PersonEnum;
+import com.rock.pockmon.gdx.model.SoundManager;
 import com.rock.pockmon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pockmon.gdx.model.people.Person;
 import com.rock.pockmon.gdx.screen.MainMenu;
@@ -30,6 +31,9 @@ public class PockMon extends Game {
 
     //资源管理器
     private AssetManager assetManager;
+
+    //音效管理器
+    private SoundManager soundManager;
 
     /**
      * 主角
@@ -61,6 +65,9 @@ public class PockMon extends Game {
         this.assetManager.load("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
         //加载资源完成
         this.assetManager.finishLoading();
+
+        //初始化通用音效
+        this.soundManager = new SoundManager();
 
         /**
          * 主角
@@ -116,6 +123,10 @@ public class PockMon extends Game {
 
     public AssetManager getAssetManager() {
         return assetManager;
+    }
+
+    public SoundManager getSoundManager() {
+        return soundManager;
     }
 
 }

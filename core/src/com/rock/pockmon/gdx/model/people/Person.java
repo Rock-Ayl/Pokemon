@@ -1,10 +1,7 @@
 package com.rock.pockmon.gdx.model.people;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
-import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
@@ -64,13 +61,6 @@ public class Person {
     private boolean moveRequestThisFrame;
 
     /**
-     * todo 通用音效(先放这里吧)
-     */
-
-    //音效-撞墙
-    public Sound soundNoWalk;
-
-    /**
      * 使用人物枚举初始化
      *
      * @param personEnum   人物枚举
@@ -98,12 +88,6 @@ public class Person {
         this.width = 1.0F;
         this.height = 1.5F;
 
-        /**
-         * 音效
-         */
-
-        this.soundNoWalk = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
-
     }
 
     /**
@@ -114,13 +98,10 @@ public class Person {
     public void update(TileMap tileMap, float delta) {
         //根据当前状态判定
         switch (actionState) {
-            //todo
             case RUN:
                 break;
-            //todo
             case CYCLING:
                 break;
-            //todo
             case SURFING:
                 break;
             //如果是走路

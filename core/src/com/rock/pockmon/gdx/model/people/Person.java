@@ -20,6 +20,9 @@ public class Person {
      * 基本信息
      */
 
+    //人物枚举
+    private PersonEnum personEnum;
+
     //当前人物在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的),这个在人类实体里仅用来判定移动时和地图块之间的关系
     private int x;
     private int y;
@@ -32,17 +35,14 @@ public class Person {
     private float width;
     private float height;
 
-    //人物枚举
-    private PersonEnum personEnum;
-
     /**
-     * 移动参数及对象
+     * 移动相关
      */
 
-    //人物当前的方向
-    private DirectionEnum facing;
     //人物动画集合
     private PersonAnimationSet animationSet;
+    //人物当前的方向
+    private DirectionEnum facing;
     //当前状态(站立、走路、跑步、骑自行车、冲浪等等)
     private ActionEnum actionState;
 
@@ -84,7 +84,7 @@ public class Person {
         //动画集合
         this.animationSet = animationSet;
 
-        //设定用户宽高,绿宝石中,通常人物占接近1.5个地图网格
+        //设定用户宽高,绿宝石中,通常人物高度占接近1.5个地图网格
         this.width = 1.0F;
         this.height = 1.5F;
 

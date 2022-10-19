@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pockmon.gdx.enums.DirectionEnum;
+import com.rock.pockmon.gdx.enums.PersonEnum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,11 +28,16 @@ public class PersonAnimationSet {
     //站-图片map
     private Map<DirectionEnum, TextureRegion> standingMap;
 
-    //初始化
-    public PersonAnimationSet(AssetManager assetManager) {
+    /**
+     * 格局人物枚举初始化
+     *
+     * @param assetManager 资源管理器
+     * @param personEnum   人物枚举
+     */
+    public PersonAnimationSet(AssetManager assetManager, PersonEnum personEnum) {
         //获取资源
-        TextureAtlas walkTextureAtlas = assetManager.get("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
-        TextureAtlas standTextureAtlas = assetManager.get("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
+        TextureAtlas walkTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/walk/textures.atlas", TextureAtlas.class);
+        TextureAtlas standTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/stand/textures.atlas", TextureAtlas.class);
         //初始化走路map
         walkingMap = new HashMap<>();
         //循环方向枚举

@@ -1,5 +1,6 @@
 package com.rock.pockmon.gdx.model.people;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pockmon.gdx.enums.ActionEnum;
@@ -64,9 +65,9 @@ public class Person {
      * 使用人物枚举初始化
      *
      * @param personEnum   人物枚举
-     * @param animationSet 人物动画集合
+     * @param assetManager 资源管理器
      */
-    public Person(PersonEnum personEnum, PersonAnimationSet animationSet) {
+    public Person(PersonEnum personEnum, AssetManager assetManager) {
 
         /**
          * 基本信息
@@ -81,8 +82,8 @@ public class Person {
         //默认方向为南
         this.facing = DirectionEnum.SOUTH;
 
-        //动画集合
-        this.animationSet = animationSet;
+        //初始化人物动画集合
+        this.animationSet = new PersonAnimationSet(assetManager, this.personEnum);
 
         //设定用户宽高,绿宝石中,通常人物高度占接近1.5个地图网格
         this.width = 1.0F;

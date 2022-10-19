@@ -5,18 +5,21 @@ package com.rock.pockmon.gdx.enums;
  */
 public enum PersonEnum {
 
-    RUBE(1, "路比"),
-    SAPPHIRE(2, "沙菲亚"),
+    RUBE(1, "ruby", "路比"),
+    SAPPHIRE(2, "sapphire", "沙菲亚"),
 
     ;
 
     //人物编号
     private Integer number;
+    //人物名(用来获取动画资源)
+    private String name;
     //中文名
     private String zhName;
 
-    PersonEnum(Integer number, String zhName) {
+    PersonEnum(Integer number, String name, String zhName) {
         this.number = number;
+        this.name = name;
         this.zhName = zhName;
     }
 
@@ -30,8 +33,8 @@ public enum PersonEnum {
         return number;
     }
 
-    public String getZhName() {
-        return zhName;
+    public String getName() {
+        return name;
     }
 
 }

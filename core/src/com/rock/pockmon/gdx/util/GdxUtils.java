@@ -69,7 +69,7 @@ public class GdxUtils {
      * @param x           坐标
      * @param y           坐标
      * @param width       宽
-     * @param height      搞
+     * @param height      高
      * @param worldStartX 世界起点x
      * @param worldStartY 世界起点y
      */

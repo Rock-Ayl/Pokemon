@@ -71,9 +71,9 @@ public class Person {
     //完成一次动画的总时间,单位秒
     private float onceAnimTime = 0.3F;
 
-    //走路持续时间
-    private float walkTime;
-    //????
+    //持续一个方向走路的时间
+    private float continueWalkTime;
+    //持续走路时,如果方向和之前相同,那么该参数会为true,让它会继续走下去,用来判定[连续相同方向走路],否则会停下
     private boolean moveRequestThisFrame;
 
     /**
@@ -119,12 +119,12 @@ public class Person {
                 break;
             case SURFING:
                 break;
-            //如果是走路
+            //如果此时还在走路
             case WALK:
-                //叠加本次走路的动画时间
+                //叠加本次走路、动画的持续时间
                 this.animTime += delta;
-                this.walkTime += delta;
-                //计算出其真实的世界坐标,据说绿宝石是线性的,这里不太懂
+                this.continueWalkTime += delta;
+                //计算出其真实的世界坐标,据说绿宝石是线性的,这里不太懂,但大体的意思是按照线性的逻辑不断计算出对应x,y坐标
                 this.worldX = Interpolation.linear.apply(srcX, destX, animTime / onceAnimTime);
                 this.worldY = Interpolation.linear.apply(srcY, destY, animTime / onceAnimTime);
                 //如果动画时间结束了
@@ -132,16 +132,16 @@ public class Person {
                     //????
                     float leftOverTime = animTime - onceAnimTime;
                     //????
-                    walkTime -= leftOverTime;
-                    //结束走路
+                    continueWalkTime -= leftOverTime;
+                    //结束本次走路
                     walkEnd();
-                    //????????
+                    //如果此时要继续按照这个方向走路
                     if (moveRequestThisFrame) {
                         //似乎是要重置移动
                         move(tileMap, this.facing);
                     } else {
-                        //???似乎是不动了
-                        walkTime = 0F;
+                        //不再按照该方向走路了,那么持续走路时间归0
+                        continueWalkTime = 0F;
                     }
                 }
                 break;
@@ -151,7 +151,7 @@ public class Person {
                 //直接结束
                 break;
         }
-        //?????为什么呢
+        //每次该方法判定,都要固定重置为false,否则该人物会一直按照这个方向前进,操控也会失灵
         this.moveRequestThisFrame = false;
     }
 
@@ -168,7 +168,7 @@ public class Person {
             case WALK:
                 //如果此时接下来的走的方向和脸和方向一致
                 if (this.facing == directionEnum) {
-                    //???
+                    //设定继续按照该方向走路
                     this.moveRequestThisFrame = true;
                 }
                 //让他继续走下去吧
@@ -253,7 +253,7 @@ public class Person {
             //走路
             case WALK:
                 //返回走路动画帧图片
-                return this.animationSet.getWalking(this.facing).getKeyFrame(this.walkTime);
+                return this.animationSet.getWalking(this.facing).getKeyFrame(this.continueWalkTime);
             //站立
             case STAND:
                 //返回站立图片

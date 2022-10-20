@@ -29,7 +29,7 @@ public class PersonAnimationSet {
     private Map<DirectionEnum, TextureRegion> standingMap;
 
     /**
-     * 格局人物枚举初始化
+     * 根据人物枚举初始化动画集合
      *
      * @param assetManager 资源管理器
      * @param personEnum   人物枚举

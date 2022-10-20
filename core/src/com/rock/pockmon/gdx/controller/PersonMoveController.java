@@ -99,36 +99,29 @@ public class PersonMoveController extends InputAdapter {
     /**
      * 每一帧都进行更新
      *
-     * @param delta 帧时间
+     * @param delta 帧时间,可能会用到,也可能不会,看具体逻辑,传入准没错
      */
     public void update(float delta) {
 
         /**
          * 判定主角的移动
-         * 主角移动判定,同一次移动只能一个方向,按照绿宝石的手感判定, 上优先级最高,下其次,左第三,右的判定最低
+         * 主角移动判定,同一次移动只能一个方向,但输入状态可以有多个,按照绿宝石的手感判定,上优先级最高,下其次,左第三,右的判定最低
          */
 
         if (up) {
-            //更新
+            //尝试移动判定
             this.game.getAdventurer().move(tileMap, DirectionEnum.NORTH);
-            //结束
-            return;
         } else if (down) {
-            //更新
+            //尝试移动判定
             this.game.getAdventurer().move(tileMap, DirectionEnum.SOUTH);
-            //结束
-            return;
         } else if (left) {
-            //更新
+            //尝试移动判定
             this.game.getAdventurer().move(tileMap, DirectionEnum.WEST);
-            //结束
-            return;
         } else if (right) {
-            //更新
+            //尝试移动判定
             this.game.getAdventurer().move(tileMap, DirectionEnum.EAST);
-            //结束
-            return;
         }
+
     }
 
 }

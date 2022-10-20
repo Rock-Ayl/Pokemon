@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.rock.pockmon.gdx.enums.ActionEnum;
 import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.enums.PersonEnum;
+import com.rock.pockmon.gdx.model.SoundManager;
 import com.rock.pockmon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pockmon.gdx.model.map.TileMap;
 
@@ -35,6 +36,12 @@ public class Person {
     //人物宽高,设定用户宽高,绿宝石中,通常人物高度占接近1.5个地图网格
     private float width = 1.0F;
     private float height = 1.5F;
+
+    /**
+     * 音效
+     */
+
+    private SoundManager soundManager;
 
     /**
      * 移动相关
@@ -67,8 +74,9 @@ public class Person {
      *
      * @param personEnum   人物枚举
      * @param assetManager 资源管理器
+     * @param soundManager 通用的音效管理器
      */
-    public Person(PersonEnum personEnum, AssetManager assetManager) {
+    public Person(PersonEnum personEnum, AssetManager assetManager, SoundManager soundManager) {
 
         /**
          * 基本信息
@@ -81,6 +89,9 @@ public class Person {
         this.actionState = ActionEnum.STAND;
         //人物方向
         this.facing = DirectionEnum.SOUTH;
+
+        //记录通用音效
+        this.soundManager = soundManager;
 
         //初始化人物动画集合
         this.animationSet = new PersonAnimationSet(assetManager, this.personEnum);
@@ -166,6 +177,11 @@ public class Person {
                 int destY = this.y + directionEnum.getDy();
                 //判定是否要移动(越界)
                 boolean move = !(destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight());
+                //如果无法移动
+                if (move == false) {
+                    //发出撞墙音效
+                    this.soundManager.getSoundNoWalk().play();
+                }
                 //开始走路
                 walkStart(directionEnum, move);
                 //移动成功

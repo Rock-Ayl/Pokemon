@@ -73,7 +73,7 @@ public class PockMon extends Game {
          */
 
         //再初始化主角,先使用男主角吧
-        this.adventurer = new Person(PersonEnum.RUBE, this.assetManager);
+        this.adventurer = new Person(PersonEnum.RUBE, this.assetManager, this.soundManager);
 
         /**
          * 场景

@@ -148,7 +148,7 @@ public class Person {
      * @param directionEnum 接下来移动的方向
      */
     public boolean move(TileMap tileMap, DirectionEnum directionEnum) {
-        //根据人物行动状态判定
+        //根据人物此时的行动状态判定
         switch (actionState) {
             //走路
             case WALK:
@@ -170,7 +170,7 @@ public class Person {
                 int destY = this.y + directionEnum.getDy();
                 //判定是否要移动(越界)
                 boolean move = !(destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight());
-                //开始走
+                //开始走路
                 walkStart(directionEnum, move);
                 //移动成功
                 return true;
@@ -184,6 +184,8 @@ public class Person {
      * @param move          是否移动(移动坐标会改变)
      */
     private void walkStart(DirectionEnum directionEnum, boolean move) {
+        //改变人物状态为走路
+        this.actionState = ActionEnum.WALK;
         //改变脸的方向
         this.facing = directionEnum;
         //起始坐标
@@ -200,8 +202,6 @@ public class Person {
         }
         //初始化活动时间
         this.animTime = 0F;
-        //改变人物状态为走路
-        this.actionState = ActionEnum.WALK;
     }
 
     /**

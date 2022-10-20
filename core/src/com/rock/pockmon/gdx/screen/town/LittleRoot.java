@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.common.Settings;
-import com.rock.pockmon.gdx.controller.PersonMoveController;
+import com.rock.pockmon.gdx.controller.InputController;
 import com.rock.pockmon.gdx.model.map.TileMap;
 import com.rock.pockmon.gdx.util.GdxUtils;
 
@@ -26,8 +26,8 @@ public class LittleRoot implements Screen {
     //背景音乐
     private Music music;
 
-    //移动控制器
-    private PersonMoveController moveController;
+    //输入控制器
+    private InputController inputController;
 
     //地图网格
     private TileMap tileMap;
@@ -50,8 +50,8 @@ public class LittleRoot implements Screen {
         //初始化地图网格
         this.tileMap = new TileMap(this.game.getAssetManager(), 15, 15);
 
-        //初始化移动控制,指定主角为可移动的角色
-        this.moveController = new PersonMoveController(this.game, this.tileMap);
+        //初始化输入监听,控制主角的行动
+        this.inputController = new InputController(this.game, this.tileMap);
 
     }
 
@@ -62,7 +62,7 @@ public class LittleRoot implements Screen {
         this.music.play();
 
         //当显示画面时,开始监控键盘控制
-        Gdx.input.setInputProcessor(moveController);
+        Gdx.input.setInputProcessor(inputController);
 
     }
 
@@ -76,9 +76,9 @@ public class LittleRoot implements Screen {
         float worldStartX = (Gdx.graphics.getWidth() / 2 - (this.game.getAdventurer().getWorldX() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
         float worldStartY = (Gdx.graphics.getHeight() / 2 - (this.game.getAdventurer().getWorldY() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
 
-        //根据帧更新控制器
-        this.moveController.update(delta);
-        //根据帧更新主角
+        //每帧更新输入控制器
+        this.inputController.update(delta);
+        //每帧更新主角
         this.game.getAdventurer().update(this.tileMap, delta);
 
         //开始渲染

@@ -7,12 +7,12 @@ import com.rock.pockmon.gdx.enums.DirectionEnum;
 import com.rock.pockmon.gdx.model.map.TileMap;
 
 /**
- * 人物移动控制器,通过输入控制人物的移动
+ * 输入控制器,根据输入处理移动等逻辑
  *
  * @Author ayl
  * @Date 2022-10-15
  */
-public class PersonMoveController extends InputAdapter {
+public class InputController extends InputAdapter {
 
     /**
      * 基础
@@ -31,12 +31,12 @@ public class PersonMoveController extends InputAdapter {
     private boolean up, down, left, right;
 
     /**
-     * 初始化,指定要移动的人物
+     * 初始化,指定要监听的的游戏
      *
      * @param game    游戏对象
-     * @param tileMap 本次要移动的地图
+     * @param tileMap 地图网格map
      */
-    public PersonMoveController(PockMon game, TileMap tileMap) {
+    public InputController(PockMon game, TileMap tileMap) {
         //记录游戏对象及地图网格
         this.game = game;
         this.tileMap = tileMap;

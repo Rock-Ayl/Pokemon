@@ -19,7 +19,9 @@ public class Settings {
     //游戏版本
     public static final String VERSION = "0.0.4";
 
-    //游戏帧率
+    //游戏FPS(帧率),推荐200
+    public static int FPS_15 = 15;
+    public static int FPS_30 = 30;
     public static int FPS_60 = 60;
     public static int FPS_144 = 144;
     public static int FPS_200 = 200;

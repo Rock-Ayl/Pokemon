@@ -232,13 +232,13 @@ public class Person {
                 //返回走路动画帧图片
                 return this.animationSet.getWalking(this.facing).getKeyFrame(this.walkTime);
             //站立
-            case SURFING:
+            case STAND:
                 //返回站立图片
                 return this.animationSet.getStanding(this.facing);
             //其他
             default:
                 //默认站立南
-                return this.animationSet.getStanding(DirectionEnum.SOUTH);
+                return this.animationSet.getStanding(DirectionEnum.EAST);
         }
     }
 

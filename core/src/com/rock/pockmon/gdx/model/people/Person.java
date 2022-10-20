@@ -142,36 +142,45 @@ public class Person {
     }
 
     /**
-     * 人物移动,有可能不成功
+     * 人物移动判定
      *
      * @param tileMap       当前地图网格
      * @param directionEnum 根据方向移动
      */
     public boolean move(TileMap tileMap, DirectionEnum directionEnum) {
-        //如果是走路的状态
-        if (actionState == ActionEnum.WALK) {
-            //如果脸和方向一致
-            if (this.facing == directionEnum) {
-                //???
-                this.moveRequestThisFrame = true;
-            }
-            return false;
+        //根据人物行动状态判定
+        switch (actionState) {
+            //走路
+            case WALK:
+                //如果脸和方向一致
+                if (this.facing == directionEnum) {
+                    //???
+                    this.moveRequestThisFrame = true;
+                }
+                //返回
+                return false;
+            //其他
+            case CYCLING:
+            case RUN:
+            case STAND:
+            case SURFING:
+            default:
+                //计算下一步走到的位置
+                int nextX = this.x + directionEnum.getDx();
+                int nextY = this.y + directionEnum.getDy();
+                //判断地图边界问题
+                if (nextX < 0 || nextY < 0 || nextX >= tileMap.getWidth() || nextY >= tileMap.getHeight()) {
+                    //不走
+                    return false;
+                }
+                //可以移动
+                walkStart(directionEnum);
+                //真实移动
+                this.x = nextX;
+                this.y = nextY;
+                //移动成功
+                return true;
         }
-        //计算下一步走到的位置
-        int nextX = this.x + directionEnum.getDx();
-        int nextY = this.y + directionEnum.getDy();
-        //判断地图边界问题
-        if (nextX < 0 || nextY < 0 || nextX >= tileMap.getWidth() || nextY >= tileMap.getHeight()) {
-            //不走
-            return false;
-        }
-        //可以移动
-        walkStart(directionEnum);
-        //真实移动
-        this.x = nextX;
-        this.y = nextY;
-        //移动成功
-        return true;
     }
 
     /**

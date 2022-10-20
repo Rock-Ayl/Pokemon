@@ -32,9 +32,9 @@ public class Person {
     private float worldX;
     private float worldY;
 
-    //人物宽高
-    private float width;
-    private float height;
+    //人物宽高,设定用户宽高,绿宝石中,通常人物高度占接近1.5个地图网格
+    private float width = 1.0F;
+    private float height = 1.5F;
 
     /**
      * 移动相关
@@ -84,10 +84,6 @@ public class Person {
 
         //初始化人物动画集合
         this.animationSet = new PersonAnimationSet(assetManager, this.personEnum);
-
-        //设定用户宽高,绿宝石中,通常人物高度占接近1.5个地图网格
-        this.width = 1.0F;
-        this.height = 1.5F;
 
     }
 

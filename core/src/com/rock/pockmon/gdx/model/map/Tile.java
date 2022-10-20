@@ -14,9 +14,9 @@ public class Tile {
     private int x;
     private int y;
 
-    //地图块宽高
-    private float width;
-    private float height;
+    //地图块宽高,绿宝石中,所有都是1,之所以地图多0.001,是因为在极少数情况下,计算后的地图渲染会出现[地图裂缝]的问题,加0.001比例宽高,基本算是解决问题了
+    private float width = 1.001F;
+    private float height = 1.001F;
 
     //对应地图块动画
     private TextureRegion image;
@@ -35,18 +35,15 @@ public class Tile {
         //记录图片
         this.image = image;
 
-        //设定地图块宽高,绿宝石中,所有都是1,之所以地图多0.001,是因为在极少数情况下,会出现平铺地图裂缝的问题,加0.001比例宽高,基本算是解决问题了
-        this.width = 1.001F;
-        this.height = 1.001F;
     }
 
     /**
-     * 获取当前图片
+     * 获取当前地图块图片
      *
      * @return
      */
     public TextureRegion getSprite() {
-        //返回ø
+        //返回
         return this.image;
     }
 

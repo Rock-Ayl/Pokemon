@@ -14,18 +14,27 @@ import com.rock.pockmon.gdx.model.map.TileMap;
  */
 public class PersonMoveController extends InputAdapter {
 
+    /**
+     * 基础
+     */
+
     //游戏对象
     private final PockMon game;
     //当前地图网格
     private TileMap tileMap;
 
-    //代表当前输入的状态
+    /**
+     * 输入状态,状态可以全部存在,比如按上的同时也可以按下,但是怎么处理就我们说的算了
+     */
+
+    //代表当前方向的输入状态
     private boolean up, down, left, right;
 
     /**
      * 初始化,指定要移动的人物
      *
-     * @param game
+     * @param game    游戏对象
+     * @param tileMap 本次要移动的地图
      */
     public PersonMoveController(PockMon game, TileMap tileMap) {
         //记录游戏对象及地图网格
@@ -41,8 +50,7 @@ public class PersonMoveController extends InputAdapter {
      */
     @Override
     public boolean keyDown(int keycode) {
-        //主角移动判定,同一次移动只能一个方向,按照绿宝石的手感判定, 上优先级最高,下其次,左第三,右的判定最低
-        //todo this.game.getAdventurer().move(tileMap, 0, 1);
+        //根据输入决定方向状态
         switch (keycode) {
             case Input.Keys.UP:
                 up = true;
@@ -62,14 +70,14 @@ public class PersonMoveController extends InputAdapter {
     }
 
     /**
-     * 按键释放时调用
+     * 按键被释放时调用
      *
      * @param keycode 输入
      * @return
      */
     @Override
     public boolean keyUp(int keycode) {
-        //根据输入判定修改状态
+        //根据释放按键释放方向状态
         switch (keycode) {
             case Input.Keys.UP:
                 up = false;
@@ -89,34 +97,33 @@ public class PersonMoveController extends InputAdapter {
     }
 
     /**
-     * 根据帧时间更新
+     * 每一帧都进行更新
      *
      * @param delta 帧时间
      */
     public void update(float delta) {
-        //如果移动
+
+        /**
+         * 判定主角的移动
+         * 主角移动判定,同一次移动只能一个方向,按照绿宝石的手感判定, 上优先级最高,下其次,左第三,右的判定最低
+         */
+
         if (up) {
             //更新
             this.game.getAdventurer().move(tileMap, DirectionEnum.NORTH);
             //结束
             return;
-        }
-        //如果移动
-        if (down) {
+        } else if (down) {
             //更新
             this.game.getAdventurer().move(tileMap, DirectionEnum.SOUTH);
             //结束
             return;
-        }
-        //如果移动
-        if (left) {
+        } else if (left) {
             //更新
             this.game.getAdventurer().move(tileMap, DirectionEnum.WEST);
             //结束
             return;
-        }
-        //如果移动
-        if (right) {
+        } else if (right) {
             //更新
             this.game.getAdventurer().move(tileMap, DirectionEnum.EAST);
             //结束

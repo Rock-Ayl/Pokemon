@@ -41,7 +41,14 @@ public class Person {
      * 音效
      */
 
+    //通用的音效管理器
     private SoundManager soundManager;
+
+    //上次发出音效的时间(时间戳)
+    private long lastSoundTime;
+
+    //音效之间的间隔 毫秒
+    private long soundTimeInterval = 500L;
 
     /**
      * 移动相关
@@ -179,8 +186,15 @@ public class Person {
                 boolean move = !(destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight());
                 //如果无法移动
                 if (move == false) {
-                    //发出撞墙音效
-                    this.soundManager.getSoundNoWalk().play();
+                    //当前时间戳
+                    long thisTime = System.currentTimeMillis();
+                    //如果距离上次发出音效时间过了间隔期
+                    if (thisTime - soundTimeInterval >= lastSoundTime) {
+                        //发出撞墙音效
+                        this.soundManager.getSoundNoWalk().play();
+                        //记录发出音效的时间
+                        lastSoundTime = thisTime;
+                    }
                 }
                 //开始走路
                 walkStart(directionEnum, move);

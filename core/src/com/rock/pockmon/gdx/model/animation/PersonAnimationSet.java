@@ -23,8 +23,12 @@ public class PersonAnimationSet {
      * 每种动作的动画、图片缓存
      */
 
+    //原地踏步-动画map
+    private Map<DirectionEnum, Animation<TextureRegion>> steppingMap;
+
     //走-动画map
     private Map<DirectionEnum, Animation<TextureRegion>> walkingMap;
+
     //站-图片map
     private Map<DirectionEnum, TextureRegion> standingMap;
 
@@ -38,6 +42,15 @@ public class PersonAnimationSet {
         //获取资源
         TextureAtlas walkTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/walk/textures.atlas", TextureAtlas.class);
         TextureAtlas standTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/stand/textures.atlas", TextureAtlas.class);
+
+        //初始化原地踏步map(原地踏步,其实就是走路变慢)
+        steppingMap = new HashMap<>();
+        //循环方向枚举
+        for (DirectionEnum walkDir : DirectionEnum.values()) {
+            //载入动画 秒/帧(N图-1=帧),名字,模式,并组装
+            steppingMap.put(walkDir, new Animation(0.6F / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
+        }
+
         //初始化走路map
         walkingMap = new HashMap<>();
         //循环方向枚举
@@ -45,6 +58,7 @@ public class PersonAnimationSet {
             //载入动画 秒/帧(N图-1=帧),名字,模式,并组装
             walkingMap.put(walkDir, new Animation(0.3F / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
         }
+
         //初始化站立map
         standingMap = new HashMap<>();
         //循环
@@ -52,6 +66,18 @@ public class PersonAnimationSet {
             //载入图片,并组装
             standingMap.put(standDir, standTextureAtlas.findRegion(standDir.getName()));
         }
+
+    }
+
+    /**
+     * 原地踏步
+     *
+     * @param directionEnum 根据方向获取踏步动画
+     * @return
+     */
+    public Animation<TextureRegion> getStepping(DirectionEnum directionEnum) {
+        //返回
+        return this.steppingMap.get(directionEnum);
     }
 
     /**

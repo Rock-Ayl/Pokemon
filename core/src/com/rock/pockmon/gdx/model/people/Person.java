@@ -59,6 +59,8 @@ public class Person {
 
     //人物当前脸的方向(可以是走也可以是站立,只是方向,根据方向+状态不同,有不同的判定)
     private DirectionEnum facing;
+    //是否为原地踏步
+    private boolean stepping;
     //当前状态(站立、走路、跑步、骑自行车、冲浪等等,与方向一起判定)
     private ActionEnum actionState;
 
@@ -180,15 +182,15 @@ public class Person {
                 //计算出移动完的目标坐标
                 int destX = this.x + directionEnum.getDx();
                 int destY = this.y + directionEnum.getDy();
-                //判定是否要移动(越界)
-                boolean move = !(destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight());
-                //如果无法移动
-                if (move == false) {
+                //判断是否为原地踏步(越界)
+                this.stepping = destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight();
+                //如果是原地踏步
+                if (this.stepping) {
                     //发出撞墙的音效
                     playNoWalk();
                 }
                 //开始走路
-                walkStart(directionEnum, move);
+                walkStart(directionEnum);
                 //移动成功
                 return true;
         }
@@ -198,9 +200,8 @@ public class Person {
      * 开始走路
      *
      * @param directionEnum 走的方向
-     * @param move          是否移动(移动坐标会改变)
      */
-    private void walkStart(DirectionEnum directionEnum, boolean move) {
+    private void walkStart(DirectionEnum directionEnum) {
         //改变人物状态为走路
         this.actionState = ActionEnum.WALK;
         //改变脸的方向
@@ -211,8 +212,8 @@ public class Person {
         //目标坐标
         this.destX = this.x;
         this.destY = this.y;
-        //如果要移动
-        if (move) {
+        //如果不是原地踏步
+        if (this.stepping == false) {
             //计算出移动后的目标坐标
             this.destX += directionEnum.getDx();
             this.destY += directionEnum.getDy();
@@ -238,6 +239,8 @@ public class Person {
         this.destX = 0;
         this.destY = 0;
         this.animTime = 0;
+        //结束走路后,预设不是原地踏步
+        this.stepping = false;
     }
 
     /**
@@ -250,9 +253,15 @@ public class Person {
         switch (actionState) {
             //走路
             case WALK:
-                //返回走路动画帧图片
-                return this.animationSet.getWalking(this.facing).getKeyFrame(this.continueWalkTime);
-            //站立
+                //如果是踏步
+                if (this.stepping) {
+                    //返回踏步动画帧图片
+                    return this.animationSet.getStepping(this.facing).getKeyFrame(this.continueWalkTime);
+                } else {
+                    //返回走路动画帧图片
+                    return this.animationSet.getWalking(this.facing).getKeyFrame(this.continueWalkTime);
+                }
+                //站立
             case STAND:
                 //返回站立图片
                 return this.animationSet.getStanding(this.facing);

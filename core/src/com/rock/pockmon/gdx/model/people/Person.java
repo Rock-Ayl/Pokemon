@@ -42,9 +42,10 @@ public class Person {
 
     //人物动画集合
     private PersonAnimationSet animationSet;
-    //人物当前的方向
+
+    //人物当前脸的方向(可以是走也可以是站立,只是方向,根据方向+状态不同,有不同的判定)
     private DirectionEnum facing;
-    //当前状态(站立、走路、跑步、骑自行车、冲浪等等)
+    //当前状态(站立、走路、跑步、骑自行车、冲浪等等,与方向一起判定)
     private ActionEnum actionState;
 
     //起始坐标和目标坐标
@@ -145,19 +146,19 @@ public class Person {
      * 人物移动判定
      *
      * @param tileMap       当前地图网格
-     * @param directionEnum 根据方向移动
+     * @param directionEnum 接下来移动的方向
      */
     public boolean move(TileMap tileMap, DirectionEnum directionEnum) {
         //根据人物行动状态判定
         switch (actionState) {
             //走路
             case WALK:
-                //如果脸和方向一致
+                //如果此时接下来的走的方向和脸和方向一致
                 if (this.facing == directionEnum) {
                     //???
                     this.moveRequestThisFrame = true;
                 }
-                //返回
+                //让他继续走下去吧
                 return false;
             //其他
             case CYCLING:

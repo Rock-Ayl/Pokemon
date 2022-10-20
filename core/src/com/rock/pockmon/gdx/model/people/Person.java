@@ -186,15 +186,8 @@ public class Person {
                 boolean move = !(destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight());
                 //如果无法移动
                 if (move == false) {
-                    //当前时间戳
-                    long thisTime = System.currentTimeMillis();
-                    //如果距离上次发出音效时间过了间隔期
-                    if (thisTime - soundTimeInterval >= lastSoundTime) {
-                        //发出撞墙音效
-                        this.soundManager.getSoundNoWalk().play();
-                        //记录发出音效的时间
-                        lastSoundTime = thisTime;
-                    }
+                    //发出撞墙的音效
+                    playNoWalk();
                 }
                 //开始走路
                 walkStart(directionEnum, move);
@@ -270,6 +263,23 @@ public class Person {
                 //默认站立南
                 return this.animationSet.getStanding(DirectionEnum.EAST);
         }
+    }
+
+    /**
+     * 人物发出撞墙的音效
+     */
+    public void playNoWalk() {
+        //当前时间戳
+        long thisTime = System.currentTimeMillis();
+        //如果距离上次发出音效时间没有过间隔期
+        if (thisTime - soundTimeInterval < lastSoundTime) {
+            //不发出音效
+            return;
+        }
+        //发出撞墙音效
+        this.soundManager.getSoundNoWalk().play();
+        //记录发出音效的时间
+        lastSoundTime = thisTime;
     }
 
     /**

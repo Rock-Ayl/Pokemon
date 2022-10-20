@@ -166,19 +166,19 @@ public class Person {
             case STAND:
             case SURFING:
             default:
-                //计算下一步走到的位置
-                int nextX = this.x + directionEnum.getDx();
-                int nextY = this.y + directionEnum.getDy();
-                //判断地图边界问题
-                if (nextX < 0 || nextY < 0 || nextX >= tileMap.getWidth() || nextY >= tileMap.getHeight()) {
-                    //不走
+                //计算出移动完的目标坐标
+                int destX = this.x + directionEnum.getDx();
+                int destY = this.y + directionEnum.getDy();
+                //如果此事越过了地图边界
+                if (destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight()) {
+                    //先暂时判定不走
                     return false;
                 }
-                //可以移动
+                //开始走
                 walkStart(directionEnum);
                 //真实移动
-                this.x = nextX;
-                this.y = nextY;
+                this.x = destX;
+                this.y = destY;
                 //移动成功
                 return true;
         }

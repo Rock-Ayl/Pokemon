@@ -168,16 +168,10 @@ public class Person {
                 //计算出移动完的目标坐标
                 int destX = this.x + directionEnum.getDx();
                 int destY = this.y + directionEnum.getDy();
-                //如果此事越过了地图边界
-                if (destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight()) {
-                    //先暂时判定不走
-                    return false;
-                }
+                //判定是否要移动(越界)
+                boolean move = !(destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight());
                 //开始走
-                walkStart(directionEnum);
-                //真实移动
-                this.x = destX;
-                this.y = destY;
+                walkStart(directionEnum, move);
                 //移动成功
                 return true;
         }
@@ -187,14 +181,23 @@ public class Person {
      * 开始走路
      *
      * @param directionEnum 走的方向
+     * @param move          是否移动(移动坐标会改变)
      */
-    private void walkStart(DirectionEnum directionEnum) {
-        //初始化参数
+    private void walkStart(DirectionEnum directionEnum, boolean move) {
+        //改变脸的方向
         this.facing = directionEnum;
+        //起始坐标
         this.srcX = this.x;
         this.srcY = this.y;
-        this.destX = this.x + directionEnum.getDx();
-        this.destY = this.y + directionEnum.getDy();
+        //目标坐标
+        this.destX = this.x;
+        this.destY = this.y;
+        //如果要移动
+        if (move) {
+            //计算出移动后的目标坐标
+            this.destX += directionEnum.getDx();
+            this.destY += directionEnum.getDy();
+        }
         //初始化活动时间
         this.animTime = 0F;
         //改变人物状态为走路

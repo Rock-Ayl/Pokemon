@@ -77,10 +77,9 @@ public class Person {
         //人物枚举
         this.personEnum = personEnum;
 
-        //动作状态
+        //人物动作状态
         this.actionState = ActionEnum.STAND;
-
-        //默认方向为南
+        //人物方向
         this.facing = DirectionEnum.SOUTH;
 
         //初始化人物动画集合
@@ -221,19 +220,27 @@ public class Person {
         this.animTime = 0;
     }
 
+    /**
+     * 获取当前人物动画图片或帧图片
+     *
+     * @return
+     */
     public TextureRegion getSprite() {
-        //如果是走路
-        if (actionState == ActionEnum.WALK) {
-            //返回走路
-            return this.animationSet.getWalking(this.facing).getKeyFrame(this.walkTime);
+        //根据当前状态判定
+        switch (actionState) {
+            //走路
+            case WALK:
+                //返回走路动画帧图片
+                return this.animationSet.getWalking(this.facing).getKeyFrame(this.walkTime);
+            //站立
+            case SURFING:
+                //返回站立图片
+                return this.animationSet.getStanding(this.facing);
+            //其他
+            default:
+                //默认站立南
+                return this.animationSet.getStanding(DirectionEnum.SOUTH);
         }
-        //如果是站立
-        if (actionState == ActionEnum.STAND) {
-            //返回站立
-            return this.animationSet.getStanding(this.facing);
-        }
-        //默认站立南
-        return this.animationSet.getStanding(DirectionEnum.SOUTH);
     }
 
     /**

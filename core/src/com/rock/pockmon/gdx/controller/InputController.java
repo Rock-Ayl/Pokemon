@@ -30,6 +30,12 @@ public class InputController extends InputAdapter {
     //代表当前方向的输入状态
     private boolean up, down, left, right;
 
+    //每种方向的按键持续时间
+    private float upTime, downTime, leftTime, rightTime;
+
+    //方向按键持续时间不移动,方向键按住的时间小于等于该时间,则换方向不移动,大于该时间,开始移动判定
+    private float notMoveTime = 0.15F;
+
     /**
      * 初始化,指定要监听的的游戏
      *
@@ -53,16 +59,28 @@ public class InputController extends InputAdapter {
         //根据输入决定方向状态
         switch (keycode) {
             case Input.Keys.UP:
+                //方向状态开启
                 up = true;
+                //重置其持续时间
+                this.upTime = 0F;
                 break;
             case Input.Keys.DOWN:
+                //方向状态开启
                 down = true;
+                //重置其持续时间
+                this.downTime = 0F;
                 break;
             case Input.Keys.LEFT:
+                //方向状态开启
                 left = true;
+                //重置其持续时间
+                this.leftTime = 0F;
                 break;
             case Input.Keys.RIGHT:
+                //方向状态开启
                 right = true;
+                //重置其持续时间
+                this.rightTime = 0F;
                 break;
         }
         //默认返回
@@ -80,16 +98,48 @@ public class InputController extends InputAdapter {
         //根据释放按键释放方向状态
         switch (keycode) {
             case Input.Keys.UP:
+                //如果按键持续时间特别短
+                if (upTime <= notMoveTime) {
+                    //单纯的脸换个方向
+                    this.game.getAdventurer().changeDir(DirectionEnum.NORTH);
+                }
+                //关闭按键状态
                 up = false;
+                //重置持续时间
+                upTime = 0;
                 break;
             case Input.Keys.DOWN:
+                //如果按键持续时间特别短
+                if (downTime <= notMoveTime) {
+                    //单纯的脸换个方向
+                    this.game.getAdventurer().changeDir(DirectionEnum.SOUTH);
+                }
+                //关闭按键状态
                 down = false;
+                //重置持续时间
+                downTime = 0;
                 break;
             case Input.Keys.LEFT:
+                //如果按键持续时间特别短
+                if (leftTime <= notMoveTime) {
+                    //单纯的脸换个方向
+                    this.game.getAdventurer().changeDir(DirectionEnum.WEST);
+                }
+                //关闭按键状态
                 left = false;
+                //重置持续时间
+                leftTime = 0;
                 break;
             case Input.Keys.RIGHT:
+                //如果按键持续时间特别短
+                if (rightTime <= notMoveTime) {
+                    //单纯的脸换个方向
+                    this.game.getAdventurer().changeDir(DirectionEnum.EAST);
+                }
+                //关闭按键状态
                 right = false;
+                //重置持续时间
+                rightTime = 0;
                 break;
         }
         //默认返回
@@ -109,17 +159,37 @@ public class InputController extends InputAdapter {
          */
 
         if (up) {
-            //尝试移动判定
-            this.game.getAdventurer().move(tileMap, DirectionEnum.NORTH);
+            //叠加其持续时间
+            upTime += delta;
+            //如果持续按
+            if (upTime > notMoveTime) {
+                //尝试移动判定
+                this.game.getAdventurer().move(tileMap, DirectionEnum.NORTH);
+            }
         } else if (down) {
-            //尝试移动判定
-            this.game.getAdventurer().move(tileMap, DirectionEnum.SOUTH);
+            //叠加其持续时间
+            downTime += delta;
+            //如果持续按
+            if (downTime > notMoveTime) {
+                //尝试移动判定
+                this.game.getAdventurer().move(tileMap, DirectionEnum.SOUTH);
+            }
         } else if (left) {
-            //尝试移动判定
-            this.game.getAdventurer().move(tileMap, DirectionEnum.WEST);
+            //叠加其持续时间
+            leftTime += delta;
+            //如果持续按
+            if (leftTime > notMoveTime) {
+                //尝试移动判定
+                this.game.getAdventurer().move(tileMap, DirectionEnum.WEST);
+            }
         } else if (right) {
-            //尝试移动判定
-            this.game.getAdventurer().move(tileMap, DirectionEnum.EAST);
+            //叠加其持续时间
+            rightTime += delta;
+            //如果持续按
+            if (rightTime > notMoveTime) {
+                //尝试移动判定
+                this.game.getAdventurer().move(tileMap, DirectionEnum.EAST);
+            }
         }
 
     }

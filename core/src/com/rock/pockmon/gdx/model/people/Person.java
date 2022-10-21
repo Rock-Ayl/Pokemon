@@ -156,6 +156,17 @@ public class Person {
     }
 
     /**
+     * 单纯的脸换个方向
+     *
+     * @param facing 方向枚举
+     * @return
+     */
+    public void changeDir(DirectionEnum facing) {
+        //变换当前脸的方向
+        this.facing = facing;
+    }
+
+    /**
      * 人物移动判定
      *
      * @param tileMap       当前地图网格

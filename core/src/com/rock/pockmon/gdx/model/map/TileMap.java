@@ -1,7 +1,7 @@
 package com.rock.pockmon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.rock.pockmon.gdx.enums.TerrainEnum;
 
 /**
  * 地图网格
@@ -26,18 +26,12 @@ public class TileMap {
      */
     public TileMap(AssetManager assetManager, int width, int height) {
 
-        //获取资源
-        TextureAtlas grass = assetManager.get("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
-        //获取草1,草2
-        TextureAtlas.AtlasRegion grass1 = grass.findRegion("1");
-        TextureAtlas.AtlasRegion grass2 = grass.findRegion("2");
+        //初始化地图网格
+        this.map = new Tile[width][height];
 
         //初始化地图网格
         this.width = width;
         this.height = height;
-
-        //初始化地图网格
-        this.map = new Tile[width][height];
 
         //循环1
         for (int x = 0; x < this.width; x++) {
@@ -48,10 +42,10 @@ public class TileMap {
                 //根据随机数生成草
                 if (random < 0.9D) {
                     //草1
-                    this.map[x][y] = new Tile(x, y, grass1);
+                    this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_1.getImage(assetManager));
                 } else {
                     //草2
-                    this.map[x][y] = new Tile(x, y, grass2);
+                    this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_2.getImage(assetManager));
                 }
             }
         }

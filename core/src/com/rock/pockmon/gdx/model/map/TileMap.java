@@ -11,9 +11,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
  */
 public class TileMap {
 
-    //网格属性
-    private int width;
-    private int height;
+    //地图网格宽高
+    private int width, height;
 
     //地图网格本身
     private Tile[][] map;
@@ -33,10 +32,13 @@ public class TileMap {
         TextureAtlas.AtlasRegion grass1 = grass.findRegion("1");
         TextureAtlas.AtlasRegion grass2 = grass.findRegion("2");
 
-        //初始化网格及其属性
+        //初始化地图网格
         this.width = width;
         this.height = height;
+
+        //初始化地图网格
         this.map = new Tile[width][height];
+
         //循环1
         for (int x = 0; x < this.width; x++) {
             //循环2

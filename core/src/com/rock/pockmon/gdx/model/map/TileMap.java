@@ -1,6 +1,5 @@
 package com.rock.pockmon.gdx.model.map;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.rock.pockmon.gdx.enums.TerrainEnum;
 
 /**
@@ -20,11 +19,10 @@ public class TileMap {
     /**
      * 初始化地图网格,目前只有草
      *
-     * @param assetManager 资源管理器
-     * @param width        宽
-     * @param height       高
+     * @param width  宽
+     * @param height 高
      */
-    public TileMap(AssetManager assetManager, int width, int height) {
+    public TileMap(int width, int height) {
 
         //初始化地图网格
         this.map = new Tile[width][height];
@@ -42,10 +40,10 @@ public class TileMap {
                 //根据随机数生成草
                 if (random < 0.9D) {
                     //草1
-                    this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_1.getImage(assetManager));
+                    this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_1);
                 } else {
                     //草2
-                    this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_2.getImage(assetManager));
+                    this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_2);
                 }
             }
         }

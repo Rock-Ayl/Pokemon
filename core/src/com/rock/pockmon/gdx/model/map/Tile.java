@@ -1,6 +1,8 @@
 package com.rock.pockmon.gdx.model.map;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.rock.pockmon.gdx.enums.TerrainEnum;
 
 /**
  * 单个地图块
@@ -10,6 +12,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class Tile {
 
+    //地形枚举
+    private TerrainEnum terrainEnum;
+
     //当前地图块在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的)
     private int x;
     private int y;
@@ -18,33 +23,31 @@ public class Tile {
     private float width = 1.001F;
     private float height = 1.001F;
 
-    //对应地图块动画
-    private TextureRegion image;
-
     /**
-     * 初始化
+     * 初始化地图块
      *
-     * @param image 动画
+     * @param terrainEnum 地形枚举
      */
-    public Tile(int x, int y, TextureRegion image) {
+    public Tile(int x, int y, TerrainEnum terrainEnum) {
 
         //坐标(视为在地图网格中的)
         this.x = x;
         this.y = y;
 
-        //记录图片
-        this.image = image;
+        //枚举
+        this.terrainEnum = terrainEnum;
 
     }
 
     /**
      * 获取当前地图块图片
      *
+     * @param assetManager 资源管理器
      * @return
      */
-    public TextureRegion getSprite() {
+    public TextureRegion getSprite(AssetManager assetManager) {
         //返回
-        return this.image;
+        return this.terrainEnum.getImage(assetManager);
     }
 
     /**

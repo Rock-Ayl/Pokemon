@@ -1,5 +1,6 @@
 package com.rock.pockmon.gdx.util;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pockmon.gdx.common.Settings;
@@ -36,9 +37,9 @@ public class GdxUtils {
      * @param worldStartX 世界起点x,没有传0
      * @param worldStartY 世界起点y,没有传0
      */
-    public static void drawTile(SpriteBatch batch, Tile tile, float worldStartX, float worldStartY) {
+    public static void drawTile(AssetManager assetManager, SpriteBatch batch, Tile tile, float worldStartX, float worldStartY) {
         //实现
-        draw(batch, tile.getSprite(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), worldStartX, worldStartY);
+        draw(batch, tile.getSprite(assetManager), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), worldStartX, worldStartY);
     }
 
     /**
@@ -49,7 +50,7 @@ public class GdxUtils {
      * @param worldStartX 世界起点x
      * @param worldStartY 世界起点y
      */
-    public static void drawTileMap(SpriteBatch batch, TileMap tileMap, float worldStartX, float worldStartY) {
+    public static void drawTileMap(AssetManager assetManager, SpriteBatch batch, TileMap tileMap, float worldStartX, float worldStartY) {
         //循环1
         for (int x = 0; x < tileMap.getWidth(); x++) {
             //循环2
@@ -57,7 +58,7 @@ public class GdxUtils {
                 //当前地图块
                 Tile tile = tileMap.getMap()[x][y];
                 //渲染该地图块
-                GdxUtils.drawTile(batch, tile, worldStartX, worldStartY);
+                GdxUtils.drawTile(assetManager, batch, tile, worldStartX, worldStartY);
             }
         }
     }

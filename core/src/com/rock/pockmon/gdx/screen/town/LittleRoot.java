@@ -48,7 +48,7 @@ public class LittleRoot implements Screen {
         this.music.setLooping(true);
 
         //初始化地图网格
-        this.tileMap = new TileMap(this.game.getAssetManager(), 15, 15);
+        this.tileMap = new TileMap(15, 15);
 
         //初始化输入监听,控制主角的行动
         this.inputController = new InputController(this.game, this.tileMap);
@@ -85,7 +85,7 @@ public class LittleRoot implements Screen {
         this.game.getBatch().begin();
 
         //根据世界起点,渲染地图网格
-        GdxUtils.drawTileMap(this.game.getBatch(), this.tileMap, worldStartX, worldStartY);
+        GdxUtils.drawTileMap(this.game.getAssetManager(), this.game.getBatch(), this.tileMap, worldStartX, worldStartY);
 
         //根据世界起点,渲染主角
         GdxUtils.drawPerson(this.game.getBatch(), this.game.getAdventurer(), worldStartX, worldStartY);

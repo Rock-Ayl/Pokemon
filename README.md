@@ -1,6 +1,6 @@
 # Pokemon By Rock
 
-这是一个试图使用 Java 复刻 PockMon For GBA 的尝试.
+这是一个试图使用 Java 复刻 Pokemon For GBA 的尝试.
 
 我自己是个Java开发工程师,总是想要复刻一些童年中的游戏,但却没有相关的经验.
 

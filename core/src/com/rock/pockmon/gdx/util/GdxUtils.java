@@ -56,7 +56,7 @@ public class GdxUtils {
             //循环2
             for (int y = 0; y < tileMap.getHeight(); y++) {
                 //当前地图块
-                Tile tile = tileMap.getMap()[x][y];
+                Tile tile = tileMap.getTileMap()[x][y];
                 //渲染该地图块
                 GdxUtils.drawTile(assetManager, batch, tile, worldStartX, worldStartY);
             }

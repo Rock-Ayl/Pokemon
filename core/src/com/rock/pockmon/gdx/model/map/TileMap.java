@@ -63,8 +63,12 @@ public class TileMap {
         return height;
     }
 
-    public Tile[][] getMap() {
+    public Tile[][] getTileMap() {
         return map;
+    }
+
+    public Tile getTile(int x, int y) {
+        return map[x][y];
     }
 
 }

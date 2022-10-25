@@ -9,6 +9,7 @@ import com.rock.pockmon.gdx.PockMon;
 import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.controller.InputController;
+import com.rock.pockmon.gdx.model.Camera;
 import com.rock.pockmon.gdx.model.map.TileMap;
 import com.rock.pockmon.gdx.util.GdxUtils;
 
@@ -26,6 +27,9 @@ public class LittleRoot implements Screen {
     //背景音乐
     private Music music;
 
+    //一个自定义的相机
+    private Camera camera;
+
     //输入控制器
     private InputController inputController;
 
@@ -41,6 +45,9 @@ public class LittleRoot implements Screen {
 
         //记录游戏对象
         this.game = pockMon;
+
+        //初始化自定义相机
+        this.camera = new Camera();
 
         //初始化未白镇背景音乐音乐
         this.music = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
@@ -69,12 +76,18 @@ public class LittleRoot implements Screen {
     @Override
     public void render(float delta) {
 
+        //根据主角坐标更新相机坐标
+        this.camera.update(
+                this.game.getAdventurer().getWorldX() + 0.5F,
+                this.game.getAdventurer().getWorldY() + 0.5F)
+        ;
+
         //黑幕
         ScreenUtils.clear(Color.BLACK);
 
         //计算出世界的起始点,让世界始终以主角为中心(相机)
-        float worldStartX = (Gdx.graphics.getWidth() / 2 - (this.game.getAdventurer().getWorldX() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
-        float worldStartY = (Gdx.graphics.getHeight() / 2 - (this.game.getAdventurer().getWorldY() + 0.5F) * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
+        float worldStartX = (Gdx.graphics.getWidth() / 2 - this.camera.getCameraX() * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
+        float worldStartY = (Gdx.graphics.getHeight() / 2 - this.camera.getCameraY() * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
 
         //每帧更新输入控制器
         this.inputController.update(delta);

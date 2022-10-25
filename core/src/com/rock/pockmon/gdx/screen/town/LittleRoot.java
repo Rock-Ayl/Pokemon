@@ -10,8 +10,8 @@ import com.rock.pockmon.gdx.common.FilePaths;
 import com.rock.pockmon.gdx.common.Settings;
 import com.rock.pockmon.gdx.controller.InputController;
 import com.rock.pockmon.gdx.model.Camera;
+import com.rock.pockmon.gdx.model.map.Tile;
 import com.rock.pockmon.gdx.model.map.TileMap;
-import com.rock.pockmon.gdx.util.GdxUtils;
 
 /**
  * 未白镇(开局城镇)
@@ -85,23 +85,49 @@ public class LittleRoot implements Screen {
         //黑幕
         ScreenUtils.clear(Color.BLACK);
 
-        //计算出世界的起始点,让世界始终以主角为中心(相机)
-        float worldStartX = (Gdx.graphics.getWidth() / 2 - this.camera.getCameraX() * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
-        float worldStartY = (Gdx.graphics.getHeight() / 2 - this.camera.getCameraY() * Settings.SCALED_TILE_SIZE) / Settings.SCALED_TILE_SIZE;
+        //计算出世界的真实起始点,让世界始终以主角(相机)为中心
+        float worldStartX = Gdx.graphics.getWidth() / 2 - this.camera.getCameraX() * Settings.SCALED_TILE_SIZE;
+        float worldStartY = Gdx.graphics.getHeight() / 2 - this.camera.getCameraY() * Settings.SCALED_TILE_SIZE;
 
         //每帧更新输入控制器
         this.inputController.update(delta);
         //每帧更新主角
         this.game.getAdventurer().update(this.tileMap, delta);
 
-        //开始渲染
+        //开始渲染 地图、人物
         this.game.getBatch().begin();
 
-        //根据世界起点,渲染地图网格
-        GdxUtils.drawTileMap(this.game.getAssetManager(), this.game.getBatch(), this.tileMap, worldStartX, worldStartY);
+        //循环1
+        for (int x = 0; x < tileMap.getWidth(); x++) {
+            //循环2
+            for (int y = 0; y < tileMap.getHeight(); y++) {
+                //当前地图块对象
+                Tile tile = tileMap.getTileMap()[x][y];
+                //渲染
+                this.game.getBatch().draw(
+                        //图片
+                        tile.getSprite(this.game.getAssetManager()),
+                        //真实坐标 + 当前坐标 * 网格倍率
+                        worldStartX + tile.getX() * Settings.SCALED_TILE_SIZE,
+                        worldStartY + tile.getY() * Settings.SCALED_TILE_SIZE,
+                        //使用地图块的宽高 * 网格倍率
+                        tile.getWidth() * Settings.SCALED_TILE_SIZE,
+                        tile.getHeight() * Settings.SCALED_TILE_SIZE
+                );
+            }
+        }
 
         //根据世界起点,渲染主角
-        GdxUtils.drawPerson(this.game.getBatch(), this.game.getAdventurer(), worldStartX, worldStartY);
+        this.game.getBatch().draw(
+                //图片
+                this.game.getAdventurer().getSprite(),
+                //真实坐标 + 当前坐标 * 网格倍率
+                worldStartX + this.game.getAdventurer().getWorldX() * Settings.SCALED_TILE_SIZE,
+                worldStartY + this.game.getAdventurer().getWorldY() * Settings.SCALED_TILE_SIZE,
+                //使用地图块的宽高 * 网格倍率
+                this.game.getAdventurer().getWidth() * Settings.SCALED_TILE_SIZE,
+                this.game.getAdventurer().getHeight() * Settings.SCALED_TILE_SIZE
+        );
 
         //结束渲染
         this.game.getBatch().end();

@@ -17,10 +17,10 @@ public class World {
     private TileMap tileMap;
 
     //该世界的人物列表
-    private List<Person> personList;
+    private List<Person> personList = new ArrayList<>();
 
     //该世界的事物的列表(树木、草、牌子等等)
-    private List<WorldObject> worldObjectList;
+    private List<WorldObject> worldObjectList = new ArrayList<>();
 
     /**
      * 初始化世界
@@ -33,8 +33,6 @@ public class World {
         //初始化地图网格
         this.tileMap = new TileMap(width, height);
 
-        personList = new ArrayList<>();
-        worldObjectList = new ArrayList<>();
     }
 
     /**
@@ -43,7 +41,8 @@ public class World {
      * @param person 人物实体
      */
     public void addPerson(Person person) {
-        //todo
+        //组装
+        this.personList.add(person);
     }
 
     /**
@@ -52,7 +51,8 @@ public class World {
      * @param worldObject 事物实体
      */
     public void addWorldObject(WorldObject worldObject) {
-        //todo
+        //组装
+        this.worldObjectList.add(worldObject);
     }
 
     /**

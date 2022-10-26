@@ -20,8 +20,6 @@ public class Settings {
     public static final String VERSION = "0.0.4";
 
     //游戏FPS(帧率),推荐200
-    public static int FPS_15 = 15;
-    public static int FPS_30 = 30;
     public static int FPS_60 = 60;
     public static int FPS_144 = 144;
     public static int FPS_200 = 200;
@@ -37,14 +35,14 @@ public class Settings {
     public static boolean USE_VERTICAL_SYNC = true;
 
     /**
-     * 地图配置
+     * 地图、图片配置
      */
 
-    //地图/贴图网格大小
+    //地图/贴图/人物单个网格大小
     public static int TILE_SIZE = 16;
     //缩放倍率
     public static float SCALE = 2F;
-    //地图网格真实的大小(16的贴图看起来还是模糊,32就好点)
+    //一坐标数值的地图块或人物的真实的大小(16的贴图看起来还是模糊,32就好点)
     public static float SCALED_TILE_SIZE = TILE_SIZE * SCALE;
 
 }

@@ -22,7 +22,7 @@ public class Pokemon extends Game {
      * 基础
      */
 
-    //绘制图形
+    //渲染器
     private SpriteBatch batch;
 
     //字体

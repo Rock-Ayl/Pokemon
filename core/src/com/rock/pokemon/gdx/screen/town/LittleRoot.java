@@ -58,7 +58,7 @@ public class LittleRoot implements Screen {
         this.tileMap = new TileMap(15, 15);
 
         //初始化输入监听,控制主角的行动
-        this.inputController = new InputController(this.game, this.tileMap);
+        this.inputController = new InputController(this.game.getAdventurer(), this.tileMap);
 
     }
 

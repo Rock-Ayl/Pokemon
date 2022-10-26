@@ -2,9 +2,9 @@ package com.rock.pokemon.gdx.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.model.map.TileMap;
+import com.rock.pokemon.gdx.model.people.Person;
 
 /**
  * 输入控制器,根据输入处理移动等逻辑
@@ -18,8 +18,9 @@ public class InputController extends InputAdapter {
      * 基础
      */
 
-    //游戏对象
-    private final Pokemon game;
+    //控制器操控的人(一般情况下就是主角)
+    private Person person;
+
     //当前地图网格
     private TileMap tileMap;
 
@@ -37,14 +38,14 @@ public class InputController extends InputAdapter {
     private float notMoveTime = 0.15F;
 
     /**
-     * 初始化,指定要监听的的游戏
+     * 初始化,指定要监听的人物
      *
-     * @param game    游戏对象
+     * @param person  人物
      * @param tileMap 地图网格map
      */
-    public InputController(Pokemon game, TileMap tileMap) {
+    public InputController(Person person, TileMap tileMap) {
         //记录游戏对象及地图网格
-        this.game = game;
+        this.person = person;
         this.tileMap = tileMap;
     }
 
@@ -101,7 +102,7 @@ public class InputController extends InputAdapter {
                 //如果按键持续时间特别短
                 if (upTime <= notMoveTime) {
                     //单纯的脸换个方向
-                    this.game.getAdventurer().changeDir(DirectionEnum.NORTH);
+                    this.person.changeDir(DirectionEnum.NORTH);
                 }
                 //关闭按键状态
                 up = false;
@@ -112,7 +113,7 @@ public class InputController extends InputAdapter {
                 //如果按键持续时间特别短
                 if (downTime <= notMoveTime) {
                     //单纯的脸换个方向
-                    this.game.getAdventurer().changeDir(DirectionEnum.SOUTH);
+                    this.person.changeDir(DirectionEnum.SOUTH);
                 }
                 //关闭按键状态
                 down = false;
@@ -123,7 +124,7 @@ public class InputController extends InputAdapter {
                 //如果按键持续时间特别短
                 if (leftTime <= notMoveTime) {
                     //单纯的脸换个方向
-                    this.game.getAdventurer().changeDir(DirectionEnum.WEST);
+                    this.person.changeDir(DirectionEnum.WEST);
                 }
                 //关闭按键状态
                 left = false;
@@ -134,7 +135,7 @@ public class InputController extends InputAdapter {
                 //如果按键持续时间特别短
                 if (rightTime <= notMoveTime) {
                     //单纯的脸换个方向
-                    this.game.getAdventurer().changeDir(DirectionEnum.EAST);
+                    this.person.changeDir(DirectionEnum.EAST);
                 }
                 //关闭按键状态
                 right = false;
@@ -164,7 +165,7 @@ public class InputController extends InputAdapter {
             //如果持续按
             if (upTime > notMoveTime) {
                 //尝试移动判定
-                this.game.getAdventurer().move(tileMap, DirectionEnum.NORTH);
+                this.person.move(tileMap, DirectionEnum.NORTH);
             }
         } else if (down) {
             //叠加其持续时间
@@ -172,7 +173,7 @@ public class InputController extends InputAdapter {
             //如果持续按
             if (downTime > notMoveTime) {
                 //尝试移动判定
-                this.game.getAdventurer().move(tileMap, DirectionEnum.SOUTH);
+                this.person.move(tileMap, DirectionEnum.SOUTH);
             }
         } else if (left) {
             //叠加其持续时间
@@ -180,7 +181,7 @@ public class InputController extends InputAdapter {
             //如果持续按
             if (leftTime > notMoveTime) {
                 //尝试移动判定
-                this.game.getAdventurer().move(tileMap, DirectionEnum.WEST);
+                this.person.move(tileMap, DirectionEnum.WEST);
             }
         } else if (right) {
             //叠加其持续时间
@@ -188,7 +189,7 @@ public class InputController extends InputAdapter {
             //如果持续按
             if (rightTime > notMoveTime) {
                 //尝试移动判定
-                this.game.getAdventurer().move(tileMap, DirectionEnum.EAST);
+                this.person.move(tileMap, DirectionEnum.EAST);
             }
         }
 

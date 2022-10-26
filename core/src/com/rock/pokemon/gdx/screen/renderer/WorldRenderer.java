@@ -89,6 +89,8 @@ public class WorldRenderer {
             );
         }
 
+        //todo 计算人物与事物的图层关系并渲染二者
+
     }
 
 }

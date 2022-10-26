@@ -31,6 +31,10 @@ public class TileMap {
         this.width = width;
         this.height = height;
 
+        /**
+         * 这里目前先简单生成一个全是草的地图map
+         */
+
         //循环1
         for (int x = 0; x < this.width; x++) {
             //循环2

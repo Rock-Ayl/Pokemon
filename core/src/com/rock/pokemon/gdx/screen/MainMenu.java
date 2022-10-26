@@ -54,6 +54,7 @@ public class MainMenu implements Screen {
             //销毁当前资源
             this.dispose();
         }
+
     }
 
     @Override

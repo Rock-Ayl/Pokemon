@@ -74,4 +74,8 @@ public class World {
         return tileMap;
     }
 
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
 }

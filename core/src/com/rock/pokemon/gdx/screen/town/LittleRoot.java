@@ -7,11 +7,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
-import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.InputController;
 import com.rock.pokemon.gdx.model.Camera;
-import com.rock.pokemon.gdx.model.map.Tile;
-import com.rock.pokemon.gdx.model.map.TileMap;
+import com.rock.pokemon.gdx.model.map.World;
+import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
 
 /**
  * 未白镇(开局城镇)
@@ -33,8 +32,11 @@ public class LittleRoot implements Screen {
     //输入控制器
     private InputController inputController;
 
-    //地图网格
-    private TileMap tileMap;
+    //未白镇的世界实体
+    private World world;
+
+    //未白镇的世界渲染器
+    private WorldRenderer worldRenderer;
 
     /**
      * 初始化未白镇
@@ -54,11 +56,17 @@ public class LittleRoot implements Screen {
         //音乐循环播放
         this.music.setLooping(true);
 
-        //初始化地图网格
-        this.tileMap = new TileMap(15, 15);
+        //初始化世界
+        this.world = new World(15, 15);
+
+        //这个世界加入主角
+        this.world.addPerson(this.game.getAdventurer());
+
+        //初始化世界渲染器
+        this.worldRenderer = new WorldRenderer(this.game.getAssetManager(), this.world);
 
         //初始化输入监听,控制主角的行动
-        this.inputController = new InputController(this.game.getAdventurer(), this.tileMap);
+        this.inputController = new InputController(this.game.getAdventurer(), this.world.getTileMap());
 
     }
 
@@ -73,10 +81,15 @@ public class LittleRoot implements Screen {
 
     }
 
+    /**
+     * 每帧处理
+     *
+     * @param delta 帧时间
+     */
     @Override
     public void render(float delta) {
 
-        //根据主角坐标更新相机坐标
+        //每帧根据主角坐标更新相机坐标
         this.camera.update(
                 this.game.getAdventurer().getWorldX() + 0.5F,
                 this.game.getAdventurer().getWorldY() + 0.5F)
@@ -85,49 +98,16 @@ public class LittleRoot implements Screen {
         //黑幕
         ScreenUtils.clear(Color.BLACK);
 
-        //计算出世界的真实起始点,让世界始终以主角(相机)为中心
-        float worldStartX = Gdx.graphics.getWidth() / 2 - this.camera.getCameraX() * Settings.SCALED_TILE_SIZE;
-        float worldStartY = Gdx.graphics.getHeight() / 2 - this.camera.getCameraY() * Settings.SCALED_TILE_SIZE;
-
         //每帧更新输入控制器
         this.inputController.update(delta);
         //每帧更新主角
-        this.game.getAdventurer().update(this.tileMap, delta);
+        this.game.getAdventurer().update(this.world.getTileMap(), delta);
 
         //开始渲染 地图、人物
         this.game.getBatch().begin();
 
-        //循环1
-        for (int x = 0; x < tileMap.getWidth(); x++) {
-            //循环2
-            for (int y = 0; y < tileMap.getHeight(); y++) {
-                //当前地图块对象
-                Tile tile = tileMap.getTileMap()[x][y];
-                //渲染
-                this.game.getBatch().draw(
-                        //图片
-                        tile.getSprite(this.game.getAssetManager()),
-                        //真实坐标 + 当前坐标 * 网格倍率
-                        worldStartX + tile.getX() * Settings.SCALED_TILE_SIZE,
-                        worldStartY + tile.getY() * Settings.SCALED_TILE_SIZE,
-                        //使用地图块的宽高 * 网格倍率
-                        tile.getWidth() * Settings.SCALED_TILE_SIZE,
-                        tile.getHeight() * Settings.SCALED_TILE_SIZE
-                );
-            }
-        }
-
-        //根据世界起点,渲染主角
-        this.game.getBatch().draw(
-                //图片
-                this.game.getAdventurer().getSprite(),
-                //真实坐标 + 当前坐标 * 网格倍率
-                worldStartX + this.game.getAdventurer().getWorldX() * Settings.SCALED_TILE_SIZE,
-                worldStartY + this.game.getAdventurer().getWorldY() * Settings.SCALED_TILE_SIZE,
-                //使用地图块的宽高 * 网格倍率
-                this.game.getAdventurer().getWidth() * Settings.SCALED_TILE_SIZE,
-                this.game.getAdventurer().getHeight() * Settings.SCALED_TILE_SIZE
-        );
+        //渲染整个世界
+        this.worldRenderer.render(this.game.getBatch(), this.camera);
 
         //结束渲染
         this.game.getBatch().end();

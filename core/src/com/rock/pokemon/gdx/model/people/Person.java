@@ -8,7 +8,7 @@ import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.SoundManager;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
-import com.rock.pokemon.gdx.model.map.TileMap;
+import com.rock.pokemon.gdx.model.map.World;
 
 /**
  * 人物实体
@@ -54,6 +54,9 @@ public class Person {
      * 移动相关
      */
 
+    //该人物所处的世界
+    private World world;
+
     //人物动画集合
     private PersonAnimationSet animationSet;
 
@@ -82,10 +85,11 @@ public class Person {
      * 使用人物枚举初始化
      *
      * @param personEnum   人物枚举
+     * @param world        该人物所处的世界
      * @param assetManager 资源管理器
      * @param soundManager 通用的音效管理器
      */
-    public Person(PersonEnum personEnum, AssetManager assetManager, SoundManager soundManager) {
+    public Person(PersonEnum personEnum, World world, AssetManager assetManager, SoundManager soundManager) {
 
         /**
          * 基本信息
@@ -93,6 +97,9 @@ public class Person {
 
         //人物枚举
         this.personEnum = personEnum;
+
+        //记录该人物所处的世界
+        this.world = world;
 
         //人物动作状态
         this.actionState = ActionEnum.STAND;
@@ -112,7 +119,7 @@ public class Person {
      *
      * @param delta 每帧的时间
      */
-    public void update(TileMap tileMap, float delta) {
+    public void update(float delta) {
         //根据当前状态判定
         switch (actionState) {
             case RUN:
@@ -138,7 +145,7 @@ public class Person {
                     //如果此时要继续按照这个方向走路
                     if (moveRequestThisFrame) {
                         //似乎是要重置移动
-                        move(tileMap, this.facing);
+                        move(this.facing);
                     } else {
                         //不再按照该方向走路了,那么持续走路时间归0,从头算起动画帧
                         continueWalkTime = 0F;
@@ -174,10 +181,9 @@ public class Person {
     /**
      * 人物移动判定
      *
-     * @param tileMap       当前地图网格
      * @param directionEnum 接下来移动的方向
      */
-    public boolean move(TileMap tileMap, DirectionEnum directionEnum) {
+    public boolean move(DirectionEnum directionEnum) {
         //根据人物此时的行动状态判定
         switch (actionState) {
             //走路
@@ -199,7 +205,7 @@ public class Person {
                 int destX = this.x + directionEnum.getDx();
                 int destY = this.y + directionEnum.getDy();
                 //判断是否为原地踏步(越界)
-                this.stepping = destX < 0 || destY < 0 || destX >= tileMap.getWidth() || destY >= tileMap.getHeight();
+                this.stepping = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
                 //如果是原地踏步
                 if (this.stepping) {
                     //发出撞墙的音效

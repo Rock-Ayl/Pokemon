@@ -3,7 +3,6 @@ package com.rock.pokemon.gdx.controller;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
-import com.rock.pokemon.gdx.model.map.TileMap;
 import com.rock.pokemon.gdx.model.people.Person;
 
 /**
@@ -21,9 +20,6 @@ public class InputController extends InputAdapter {
     //控制器操控的人(一般情况下就是主角)
     private Person person;
 
-    //当前地图网格
-    private TileMap tileMap;
-
     /**
      * 输入状态,状态可以全部存在,比如按上的同时也可以按下,但是怎么处理就我们说的算了
      */
@@ -40,13 +36,11 @@ public class InputController extends InputAdapter {
     /**
      * 初始化,指定要监听的人物
      *
-     * @param person  人物
-     * @param tileMap 地图网格map
+     * @param person 人物
      */
-    public InputController(Person person, TileMap tileMap) {
+    public InputController(Person person) {
         //记录游戏对象及地图网格
         this.person = person;
-        this.tileMap = tileMap;
     }
 
     /**
@@ -165,7 +159,7 @@ public class InputController extends InputAdapter {
             //如果持续按
             if (upTime > notMoveTime) {
                 //尝试移动判定
-                this.person.move(tileMap, DirectionEnum.NORTH);
+                this.person.move(DirectionEnum.NORTH);
             }
         } else if (down) {
             //叠加其持续时间
@@ -173,7 +167,7 @@ public class InputController extends InputAdapter {
             //如果持续按
             if (downTime > notMoveTime) {
                 //尝试移动判定
-                this.person.move(tileMap, DirectionEnum.SOUTH);
+                this.person.move(DirectionEnum.SOUTH);
             }
         } else if (left) {
             //叠加其持续时间
@@ -181,7 +175,7 @@ public class InputController extends InputAdapter {
             //如果持续按
             if (leftTime > notMoveTime) {
                 //尝试移动判定
-                this.person.move(tileMap, DirectionEnum.WEST);
+                this.person.move(DirectionEnum.WEST);
             }
         } else if (right) {
             //叠加其持续时间
@@ -189,7 +183,7 @@ public class InputController extends InputAdapter {
             //如果持续按
             if (rightTime > notMoveTime) {
                 //尝试移动判定
-                this.person.move(tileMap, DirectionEnum.EAST);
+                this.person.move(DirectionEnum.EAST);
             }
         }
 

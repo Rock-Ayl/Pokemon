@@ -5,9 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.SoundManager;
-import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.MainMenu;
 
 /**
@@ -35,13 +33,6 @@ public class Pokemon extends Game {
     private SoundManager soundManager;
 
     /**
-     * 主角
-     */
-
-    //主角
-    private Person adventurer;
-
-    /**
      * 初始化
      */
     public void create() {
@@ -67,13 +58,6 @@ public class Pokemon extends Game {
 
         //初始化通用音效
         this.soundManager = new SoundManager();
-
-        /**
-         * 主角
-         */
-
-        //再初始化主角,先使用男主角吧
-        this.adventurer = new Person(PersonEnum.RUBE, this.assetManager, this.soundManager);
 
         /**
          * 场景
@@ -111,10 +95,6 @@ public class Pokemon extends Game {
 
     public BitmapFont getFont() {
         return font;
-    }
-
-    public Person getAdventurer() {
-        return adventurer;
     }
 
     public AssetManager getAssetManager() {

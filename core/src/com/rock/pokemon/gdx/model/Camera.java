@@ -6,11 +6,10 @@ package com.rock.pokemon.gdx.model;
 public class Camera {
 
     //相机坐标
-    private float cameraX = 0F;
-    private float cameraY = 0F;
+    private float cameraX = 0F, cameraY = 0F;
 
     /**
-     * 更新方法
+     * 更新相机坐标
      *
      * @param newCamX 新的坐标x
      * @param newCamY 新的坐标y

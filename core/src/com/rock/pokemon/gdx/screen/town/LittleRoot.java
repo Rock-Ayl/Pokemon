@@ -89,7 +89,7 @@ public class LittleRoot implements Screen {
     @Override
     public void render(float delta) {
 
-        //每帧根据主角坐标更新相机坐标
+        //每帧根据主角坐标,更新相机坐标
         this.camera.update(
                 this.game.getAdventurer().getWorldX() + 0.5F,
                 this.game.getAdventurer().getWorldY() + 0.5F)

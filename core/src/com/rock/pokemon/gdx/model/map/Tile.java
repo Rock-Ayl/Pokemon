@@ -15,7 +15,7 @@ public class Tile {
     //地形枚举
     private TerrainEnum terrainEnum;
 
-    //当前地图块在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的)
+    //当前地图块在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的),有余地图块不能移动,所以它们也是世界坐标
     private int x;
     private int y;
 
@@ -61,6 +61,14 @@ public class Tile {
     }
 
     public int getY() {
+        return y;
+    }
+
+    public int getWorldX() {
+        return x;
+    }
+
+    public int getWorldY() {
         return y;
     }
 

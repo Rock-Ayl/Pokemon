@@ -7,6 +7,7 @@ import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.Camera;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
+import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.people.Person;
 
 /**
@@ -42,7 +43,7 @@ public class WorldRenderer {
      */
     public void render(SpriteBatch batch, Camera camera) {
 
-        //计算出世界的真实起始点,让世界始终以主角(相机)为中心
+        //计算出世界的坐标,让世界和相机始终以主角为中心
         float worldStartX = Gdx.graphics.getWidth() / 2 - camera.getCameraX() * Settings.SCALED_TILE_SIZE;
         float worldStartY = Gdx.graphics.getHeight() / 2 - camera.getCameraY() * Settings.SCALED_TILE_SIZE;
 
@@ -60,10 +61,10 @@ public class WorldRenderer {
                 batch.draw(
                         //图片
                         tile.getSprite(this.assetManager),
-                        //真实坐标 + 当前坐标 * 网格倍率
-                        worldStartX + tile.getX() * Settings.SCALED_TILE_SIZE,
-                        worldStartY + tile.getY() * Settings.SCALED_TILE_SIZE,
-                        //使用地图块的宽高 * 网格倍率
+                        //世界坐标 + 当前坐标 * 网格倍率
+                        worldStartX + tile.getWorldX() * Settings.SCALED_TILE_SIZE,
+                        worldStartY + tile.getWorldY() * Settings.SCALED_TILE_SIZE,
+                        //地图块的宽高 * 网格倍率
                         tile.getWidth() * Settings.SCALED_TILE_SIZE,
                         tile.getHeight() * Settings.SCALED_TILE_SIZE
                 );
@@ -80,12 +81,31 @@ public class WorldRenderer {
             batch.draw(
                     //图片
                     person.getSprite(),
-                    //真实坐标 + 当前坐标 * 网格倍率
+                    //世界坐标 + 当前坐标 * 网格倍率
                     worldStartX + person.getWorldX() * Settings.SCALED_TILE_SIZE,
                     worldStartY + person.getWorldY() * Settings.SCALED_TILE_SIZE,
-                    //使用地图块的宽高 * 网格倍率
+                    //人物的宽高 * 网格倍率
                     person.getWidth() * Settings.SCALED_TILE_SIZE,
                     person.getHeight() * Settings.SCALED_TILE_SIZE
+            );
+        }
+
+        /**
+         * 再渲染事物
+         */
+
+        //渲染事物列表
+        for (WorldObject worldObject : this.world.getWorldObjectList()) {
+            //根据世界起点,渲染事物
+            batch.draw(
+                    //事物的图片
+                    worldObject.getSprite(),
+                    //世界坐标 + 当前坐标 * 网格倍率
+                    worldStartX + worldObject.getWorldX() * Settings.SCALED_TILE_SIZE,
+                    worldStartY + worldObject.getWorldY() * Settings.SCALED_TILE_SIZE,
+                    //事物的宽高 * 网格倍率
+                    worldObject.getWidth() * Settings.SCALED_TILE_SIZE,
+                    worldObject.getHeight() * Settings.SCALED_TILE_SIZE
             );
         }
 

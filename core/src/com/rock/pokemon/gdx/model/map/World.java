@@ -78,4 +78,8 @@ public class World {
         return personList;
     }
 
+    public List<WorldObject> getWorldObjectList() {
+        return worldObjectList;
+    }
+
 }

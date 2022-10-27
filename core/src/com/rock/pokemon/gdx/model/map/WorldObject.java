@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class WorldObject {
 
-    //当前事物的坐标
+    //当前事物的坐标,由于事物不能移动,所以x,y也是其世界坐标
     private int x, y;
 
     //该事物的图片帧
@@ -39,6 +39,34 @@ public class WorldObject {
      */
     public TextureRegion getSprite() {
         return texture;
+    }
+
+    /**
+     * 以下是 get set 方法
+     */
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getWorldX() {
+        return x;
+    }
+
+    public int getWorldY() {
+        return y;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
     }
 
 }

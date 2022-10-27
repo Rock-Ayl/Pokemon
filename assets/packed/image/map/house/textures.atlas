@@ -1,0 +1,20 @@
+
+textures.png
+size: 256, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+ruby_house
+  rotate: false
+  xy: 2, 2
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+sapphire_house
+  rotate: false
+  xy: 84, 2
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1

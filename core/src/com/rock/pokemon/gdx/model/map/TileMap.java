@@ -39,16 +39,8 @@ public class TileMap {
         for (int x = 0; x < this.width; x++) {
             //循环2
             for (int y = 0; y < this.height; y++) {
-                //一个随机数
-                double random = Math.random();
-                //根据随机数生成草
-                if (random < 0.9D) {
-                    //草1
-                    this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_1);
-                } else {
-                    //草2
-                    this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_2);
-                }
+                //草3
+                this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_3);
             }
         }
     }

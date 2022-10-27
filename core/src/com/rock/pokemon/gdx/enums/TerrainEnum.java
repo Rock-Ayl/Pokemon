@@ -11,6 +11,7 @@ public enum TerrainEnum {
 
     GRASS_1("grass", "1", "草1"),
     GRASS_2("grass", "2", "草2(隐藏物品)"),
+    GRASS_3("grass", "3", "草3标准"),
 
     ;
 

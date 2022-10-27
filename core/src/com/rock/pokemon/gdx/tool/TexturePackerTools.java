@@ -35,6 +35,12 @@ public class TexturePackerTools {
                 "assets/packed/image/map/grass/",
                 "textures");
 
+        //事物
+        TexturePacker.process(
+                "assets/unpacked/image/map/object/",
+                "assets/packed/image/map/object/",
+                "textures");
+
         //两位主角的家
         TexturePacker.process(
                 "assets/unpacked/image/map/house/",

@@ -162,6 +162,11 @@ public class Person {
      * @return
      */
     public void changeDir(DirectionEnum facing) {
+        //如果不是站着
+        if (actionState != ActionEnum.STAND) {
+            //过
+            return;
+        }
         //变换当前脸的方向
         this.facing = facing;
     }

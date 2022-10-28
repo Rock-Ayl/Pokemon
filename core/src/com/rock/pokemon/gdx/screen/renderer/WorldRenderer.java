@@ -5,10 +5,14 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.Camera;
+import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.people.Person;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 世界渲染器,用它统一渲染世界的每个地图块、人物、事物
@@ -23,6 +27,9 @@ public class WorldRenderer {
 
     //一个完整的世界实体
     private World world;
+
+    //渲染器图层列表,这个将决定人物、事物的渲染
+    private List<YSortable> sortList = new ArrayList<>();
 
     /**
      * 初始化方法,要渲染,得有世界和图片资源吧.
@@ -48,7 +55,7 @@ public class WorldRenderer {
         float worldStartY = Gdx.graphics.getHeight() / 2 - camera.getCameraY() * Settings.SCALED_TILE_SIZE;
 
         /**
-         * 先渲染地图网格(图层最下)
+         * 先渲染地图网格(图层最下,无可争议)
          */
 
         //循环1

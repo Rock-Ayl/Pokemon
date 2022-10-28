@@ -43,12 +43,22 @@ public class World {
          */
 
 
-        //载入个牌子
-        TextureRegion textureRegion = assetManager.get("assets/packed/image/map/object/textures.atlas", TextureAtlas.class).findRegion("sign");
-        //加个牌子
-        WorldObject sign = new WorldObject(5, 5, textureRegion, 1F, 1F, false);
-        //加入世界
+        //载入事物资源
+        TextureAtlas textureAtlas = assetManager.get("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
+
+        //载入个牌子图片
+        TextureRegion signImage = textureAtlas.findRegion("sign");
+        //初始化牌子
+        WorldObject sign = new WorldObject(5, 5, signImage, 1F, 1F, false);
+        //加入到世界
         this.addWorldObject(sign);
+
+        //载入个草地土块补丁图片
+        TextureRegion grassDirtPatchImage = textureAtlas.findRegion("grass_dirt_patch");
+        //初始化草地土块补丁
+        WorldObject grassDirtPatch = new WorldObject(9, 5, grassDirtPatchImage, 1F, 1F, true);
+        //加入到世界
+        this.addWorldObject(grassDirtPatch);
 
     }
 

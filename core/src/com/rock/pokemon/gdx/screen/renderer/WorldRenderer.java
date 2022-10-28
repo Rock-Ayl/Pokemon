@@ -9,9 +9,9 @@ import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
-import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -79,44 +79,58 @@ public class WorldRenderer {
         }
 
         /**
-         * 再渲染人物(图层在地图上)
-         */
-
-        //渲染人物列表
-        for (Person person : this.world.getPersonList()) {
-            //根据世界起点,渲染主角
-            batch.draw(
-                    //图片
-                    person.getSprite(),
-                    //世界坐标 + 当前坐标 * 网格倍率
-                    worldStartX + person.getWorldX() * Settings.SCALED_TILE_SIZE,
-                    worldStartY + person.getWorldY() * Settings.SCALED_TILE_SIZE,
-                    //人物的宽高 * 网格倍率
-                    person.getWidth() * Settings.SCALED_TILE_SIZE,
-                    person.getHeight() * Settings.SCALED_TILE_SIZE
-            );
-        }
-
-        /**
-         * 再渲染事物
+         * 再渲染可以行走的事物,并收集不可行走的事物进入sort列表,人物也要进入排序列表
          */
 
         //渲染事物列表
         for (WorldObject worldObject : this.world.getWorldObjectList()) {
-            //根据世界起点,渲染事物
-            batch.draw(
-                    //事物的图片
-                    worldObject.getSprite(),
-                    //世界坐标 + 当前坐标 * 网格倍率
-                    worldStartX + worldObject.getWorldX() * Settings.SCALED_TILE_SIZE,
-                    worldStartY + worldObject.getWorldY() * Settings.SCALED_TILE_SIZE,
-                    //事物的宽高 * 网格倍率
-                    worldObject.getWidth() * Settings.SCALED_TILE_SIZE,
-                    worldObject.getHeight() * Settings.SCALED_TILE_SIZE
-            );
+            //如果可以行走
+            if (worldObject.isWalkable()) {
+                //根据世界起点,直接渲染事物
+                batch.draw(
+                        //事物的图片
+                        worldObject.getSprite(),
+                        //世界坐标 + 当前坐标 * 网格倍率
+                        worldStartX + worldObject.getWorldX() * Settings.SCALED_TILE_SIZE,
+                        worldStartY + worldObject.getWorldY() * Settings.SCALED_TILE_SIZE,
+                        //事物的宽高 * 网格倍率
+                        worldObject.getWidth() * Settings.SCALED_TILE_SIZE,
+                        worldObject.getHeight() * Settings.SCALED_TILE_SIZE
+                );
+                //本轮过
+                continue;
+            }
+            //不可行走的记录到列表
+            sortList.add(worldObject);
         }
 
-        //todo 计算人物与事物的图层关系并渲染二者
+        //sort列表加入所有的人物
+        sortList.addAll(this.world.getPersonList());
+
+        /**
+         * 按照Y轴排序
+         */
+
+        Collections.sort(sortList, new WorldObjectYComparator());
+
+        /**
+         * 最后统一渲染人物、事物
+         */
+
+        //统一渲染人物、事物
+        for (YSortable ySortable : this.sortList) {
+            //根据世界起点,渲染
+            batch.draw(
+                    //图片
+                    ySortable.getSprite(),
+                    //世界坐标 + 当前坐标 * 网格倍率
+                    worldStartX + ySortable.getWorldX() * Settings.SCALED_TILE_SIZE,
+                    worldStartY + ySortable.getWorldY() * Settings.SCALED_TILE_SIZE,
+                    //人物的宽高 * 网格倍率
+                    ySortable.getWidth() * Settings.SCALED_TILE_SIZE,
+                    ySortable.getHeight() * Settings.SCALED_TILE_SIZE
+            );
+        }
 
     }
 

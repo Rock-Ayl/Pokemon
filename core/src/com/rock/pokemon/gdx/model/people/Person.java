@@ -8,7 +8,11 @@ import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.SoundManager;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
+import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
+import com.rock.pokemon.gdx.model.map.WorldObject;
+
+import java.util.Optional;
 
 /**
  * 人物实体
@@ -206,8 +210,17 @@ public class Person {
                 //计算出移动完的目标坐标
                 int destX = this.x + directionEnum.getDx();
                 int destY = this.y + directionEnum.getDy();
-                //判断是否为原地踏步(越界)
-                this.stepping = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
+                //获取目标地图块
+                Tile tile = this.world.getTileMap().getTile(destX, destY);
+                //目标位置是否越界
+                boolean indexError = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
+                //获取这个地图块是否可以行走(判断上面有没有阻挡的事物)
+                boolean walkable = Optional.ofNullable(tile)
+                        .map(Tile::getWorldObject)
+                        .map(WorldObject::isWalkable)
+                        .orElse(true);
+                //判断是否为原地踏步(越界 or 事物阻挡)
+                this.stepping = walkable == false || indexError;
                 //如果是原地踏步
                 if (this.stepping) {
                     //发出撞墙的音效

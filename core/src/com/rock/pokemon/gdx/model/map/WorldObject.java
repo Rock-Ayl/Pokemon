@@ -88,4 +88,8 @@ public class WorldObject {
         return height;
     }
 
+    public boolean isWalkable() {
+        return walkable;
+    }
+
 }

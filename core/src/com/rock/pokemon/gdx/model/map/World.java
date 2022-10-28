@@ -68,6 +68,8 @@ public class World {
      * @param worldObject 事物实体
      */
     public void addWorldObject(WorldObject worldObject) {
+        //地图块上加入事物
+        this.getTileMap().getTile(worldObject.getX(), worldObject.getY()).setWorldObject(worldObject);
         //组装
         this.worldObjectList.add(worldObject);
     }

@@ -17,7 +17,7 @@ public class Settings {
     //标题
     public static final String TITLE = "Pokemon By Rock";
     //游戏版本
-    public static final String VERSION = "0.0.4";
+    public static final String VERSION = "0.0.5";
 
     //游戏FPS(帧率),推荐200
     public static int FPS_60 = 60;

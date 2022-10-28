@@ -91,10 +91,12 @@ public class Person implements YSortable {
      *
      * @param personEnum   人物枚举
      * @param world        该人物所处的世界
+     * @param x            人物初始坐标x
+     * @param y            人物初始坐标y
      * @param assetManager 资源管理器
      * @param soundManager 通用的音效管理器
      */
-    public Person(PersonEnum personEnum, World world, AssetManager assetManager, SoundManager soundManager) {
+    public Person(PersonEnum personEnum, World world, int x, int y, AssetManager assetManager, SoundManager soundManager) {
 
         /**
          * 基本信息
@@ -102,6 +104,12 @@ public class Person implements YSortable {
 
         //人物枚举
         this.personEnum = personEnum;
+
+        //坐标
+        this.x = x;
+        this.y = y;
+        this.worldX = x;
+        this.worldY = y;
 
         //记录该人物所处的世界
         this.world = world;

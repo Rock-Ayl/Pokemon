@@ -7,6 +7,7 @@ import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.SoundManager;
+import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
@@ -20,7 +21,7 @@ import java.util.Optional;
  * @Author ayl
  * @Date 2022-10-13
  */
-public class Person {
+public class Person implements YSortable {
 
     /**
      * 基本信息

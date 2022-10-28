@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.rock.pokemon.gdx.model.YSortable;
 
 /**
  * 事物实体 可以是一个树、一朵花、一个牌子等等,在地图网格上面,可动可静,可以是图片也可以是动画
@@ -8,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * @Author ayl
  * @Date 2022-10-21
  */
-public class WorldObject {
+public class WorldObject implements YSortable {
 
     //当前事物的坐标,由于事物不能移动,所以x,y也是其世界坐标
     private int x, y;
@@ -72,11 +73,11 @@ public class WorldObject {
         return y;
     }
 
-    public int getWorldX() {
+    public float getWorldX() {
         return x;
     }
 
-    public int getWorldY() {
+    public float getWorldY() {
         return y;
     }
 

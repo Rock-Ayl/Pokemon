@@ -86,9 +86,6 @@ public class LittleRoot implements Screen {
         //初始化主角
         this.adventurer = new Person(PersonEnum.RUBE, this.world, this.game.getAssetManager(), this.game.getSoundManager());
 
-        //这个世界加入主角
-        this.world.addPerson(this.adventurer);
-
         //初始化输入监听,控制主角的行动
         this.inputController = new InputController(this.adventurer);
 

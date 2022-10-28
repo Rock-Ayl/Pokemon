@@ -100,6 +100,8 @@ public class Person {
 
         //记录该人物所处的世界
         this.world = world;
+        //该世界也加入该人物
+        this.world.addPerson(this);
 
         //人物动作状态
         this.actionState = ActionEnum.STAND;

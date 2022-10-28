@@ -124,8 +124,9 @@ public class LittleRoot implements Screen {
 
         //每帧更新输入控制器
         this.inputController.update(delta);
-        //每帧更新主角
-        this.adventurer.update(delta);
+
+        //每帧更新世界
+        this.world.update(delta);
 
         //开始渲染 地图、人物
         this.game.getBatch().begin();

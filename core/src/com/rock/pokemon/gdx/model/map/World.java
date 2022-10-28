@@ -61,7 +61,16 @@ public class World {
      * @param delta 每帧时间
      */
     public void update(float delta) {
-        //todo
+        //循环
+        for (Person person : personList) {
+            //更新人物
+            person.update(delta);
+        }
+        //循环
+        for (WorldObject worldObject : worldObjectList) {
+            //更新事物
+            worldObject.update(delta);
+        }
     }
 
     /**

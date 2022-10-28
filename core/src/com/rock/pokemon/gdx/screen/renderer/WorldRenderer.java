@@ -29,7 +29,7 @@ public class WorldRenderer {
     private World world;
 
     //渲染器图层列表,这个将决定人物、事物的渲染
-    private List<YSortable> sortList = new ArrayList<>();
+    private List<YSortable> sortList;
 
     /**
      * 初始化方法,要渲染,得有世界和图片资源吧.
@@ -40,6 +40,7 @@ public class WorldRenderer {
     public WorldRenderer(AssetManager assetManager, World world) {
         this.assetManager = assetManager;
         this.world = world;
+        this.sortList = new ArrayList<>();
     }
 
     /**
@@ -84,7 +85,7 @@ public class WorldRenderer {
 
         //渲染事物列表
         for (WorldObject worldObject : this.world.getWorldObjectList()) {
-            //如果可以行走
+            //如果可以行走,优先级仅仅比地图块高一点
             if (worldObject.isWalkable()) {
                 //根据世界起点,直接渲染事物
                 batch.draw(
@@ -131,6 +132,9 @@ public class WorldRenderer {
                     ySortable.getHeight() * Settings.SCALED_TILE_SIZE
             );
         }
+
+        //结束时清理
+        sortList.clear();
 
     }
 

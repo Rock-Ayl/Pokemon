@@ -1,5 +1,8 @@
 package com.rock.pokemon.gdx.model.map;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.ArrayList;
@@ -25,13 +28,27 @@ public class World {
     /**
      * 初始化世界
      *
-     * @param width  世界宽
-     * @param height 世界高
+     * @param assetManager 资源管理器
+     * @param width        世界宽
+     * @param height       世界高
      */
-    public World(int width, int height) {
+    public World(AssetManager assetManager, int width, int height) {
 
         //初始化地图网格
         this.tileMap = new TileMap(width, height);
+
+
+        /**
+         * 简单加点事物
+         */
+
+
+        //载入个牌子
+        TextureRegion textureRegion = assetManager.get("assets/packed/image/map/object/textures.atlas", TextureAtlas.class).findRegion("sign");
+        //加个牌子
+        WorldObject sign = new WorldObject(5, 5, textureRegion, 1F, 1F, false);
+        //加入世界
+        this.addWorldObject(sign);
 
     }
 

@@ -17,11 +17,30 @@ public class WorldObject {
     private TextureRegion texture;
 
     //一个事物实体的宽高,这个和人物、地图块不同,有的事物可以1*1(草),有的则是1*1.5(门)
-    private float width = 1F;
-    private float height = 1F;
+    private float width;
+    private float height;
 
     //是否可以行走(草可以走过去,树不行)
     private boolean walkable;
+
+    /**
+     * 基本的初始化方法
+     *
+     * @param x        坐标x
+     * @param y        坐标y
+     * @param texture  图片
+     * @param width    宽
+     * @param height   搞
+     * @param walkable 是否可以行走
+     */
+    public WorldObject(int x, int y, TextureRegion texture, float width, float height, boolean walkable) {
+        this.x = x;
+        this.y = y;
+        this.texture = texture;
+        this.width = width;
+        this.height = height;
+        this.walkable = walkable;
+    }
 
     /**
      * 每帧更新

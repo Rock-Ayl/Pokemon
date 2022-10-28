@@ -53,6 +53,7 @@ public class Pokemon extends Game {
         this.assetManager.load("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
         this.assetManager.load("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
         this.assetManager.load("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
+        this.assetManager.load("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
         //加载资源完成
         this.assetManager.finishLoading();
 

@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.rock.pokemon.gdx.enums.TerrainEnum;
 import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.ArrayList;
@@ -36,6 +37,19 @@ public class World {
 
         //初始化地图网格
         this.tileMap = new TileMap(width, height);
+
+        /**
+         * 这里目前先简单生成一个全是草的地图map
+         */
+
+        //循环1
+        for (int x = 0; x < width; x++) {
+            //循环2
+            for (int y = 0; y < height; y++) {
+                //草3
+                tileMap.getTileMap()[x][y] = new Tile(x, y, TerrainEnum.GRASS_3);
+            }
+        }
 
 
         /**

@@ -1,7 +1,5 @@
 package com.rock.pokemon.gdx.model.map;
 
-import com.rock.pokemon.gdx.enums.TerrainEnum;
-
 /**
  * 地图网格
  *
@@ -31,18 +29,6 @@ public class TileMap {
         this.width = width;
         this.height = height;
 
-        /**
-         * 这里目前先简单生成一个全是草的地图map
-         */
-
-        //循环1
-        for (int x = 0; x < this.width; x++) {
-            //循环2
-            for (int y = 0; y < this.height; y++) {
-                //草3
-                this.map[x][y] = new Tile(x, y, TerrainEnum.GRASS_3);
-            }
-        }
     }
 
     /**

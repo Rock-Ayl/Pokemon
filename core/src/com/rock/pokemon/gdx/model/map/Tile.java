@@ -1,8 +1,10 @@
 package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.TerrainEnum;
+import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.people.Person;
 
 /**
@@ -11,10 +13,12 @@ import com.rock.pokemon.gdx.model.people.Person;
  * @Author ayl
  * @Date 2022-10-16
  */
-public class Tile {
+public class Tile implements YSortable {
 
     //地形枚举
     private TerrainEnum terrainEnum;
+
+    private TextureRegion image;
 
     //当前地图块在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的),有余地图块不能移动,所以它们也是世界坐标
     private int x;
@@ -35,7 +39,7 @@ public class Tile {
      *
      * @param terrainEnum 地形枚举
      */
-    public Tile(int x, int y, TerrainEnum terrainEnum) {
+    public Tile(int x, int y, TerrainEnum terrainEnum, AssetManager assetManager) {
 
         //坐标(视为在地图网格中的)
         this.x = x;
@@ -44,17 +48,19 @@ public class Tile {
         //枚举
         this.terrainEnum = terrainEnum;
 
+        //根据枚举,获得地图块图片
+        this.image = assetManager.get("assets/packed/image/map/" + this.terrainEnum.getDir() + "/textures.atlas", TextureAtlas.class).findRegion(this.terrainEnum.getNumber());
+
     }
 
     /**
-     * 获取当前地图块图片
+     * 获取动画图片
      *
-     * @param assetManager 资源管理器
      * @return
      */
-    public TextureRegion getSprite(AssetManager assetManager) {
-        //返回
-        return this.terrainEnum.getImage(assetManager);
+    @Override
+    public TextureRegion getSprite() {
+        return image;
     }
 
     /**
@@ -71,11 +77,11 @@ public class Tile {
         return y;
     }
 
-    public int getWorldX() {
+    public float getWorldX() {
         return x;
     }
 
-    public int getWorldY() {
+    public float getWorldY() {
         return y;
     }
 

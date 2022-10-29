@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.screen.renderer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.Camera;
@@ -66,16 +67,7 @@ public class WorldRenderer {
                 //当前地图块对象
                 Tile tile = this.world.getTileMap().getTileMap()[x][y];
                 //渲染
-                batch.draw(
-                        //图片
-                        tile.getSprite(this.assetManager),
-                        //世界坐标 + 当前坐标 * 网格倍率
-                        worldStartX + tile.getWorldX() * Settings.SCALED_TILE_SIZE,
-                        worldStartY + tile.getWorldY() * Settings.SCALED_TILE_SIZE,
-                        //地图块的宽高 * 网格倍率
-                        tile.getWidth() * Settings.SCALED_TILE_SIZE,
-                        tile.getHeight() * Settings.SCALED_TILE_SIZE
-                );
+                draw(batch, tile, worldStartX, worldStartY);
             }
         }
 
@@ -87,17 +79,8 @@ public class WorldRenderer {
         for (WorldObject worldObject : this.world.getWorldObjectList()) {
             //如果可以行走,优先级仅仅比地图块高一点
             if (worldObject.isWalkable()) {
-                //根据世界起点,直接渲染事物
-                batch.draw(
-                        //事物的图片
-                        worldObject.getSprite(),
-                        //世界坐标 + 当前坐标 * 网格倍率
-                        worldStartX + worldObject.getWorldX() * Settings.SCALED_TILE_SIZE,
-                        worldStartY + worldObject.getWorldY() * Settings.SCALED_TILE_SIZE,
-                        //事物的宽高 * 网格倍率
-                        worldObject.getWidth() * Settings.SCALED_TILE_SIZE,
-                        worldObject.getHeight() * Settings.SCALED_TILE_SIZE
-                );
+                //渲染
+                draw(batch, worldObject, worldStartX, worldStartY);
                 //本轮过
                 continue;
             }
@@ -120,22 +103,35 @@ public class WorldRenderer {
 
         //统一渲染人物、事物
         for (YSortable ySortable : this.sortList) {
-            //根据世界起点,渲染
-            batch.draw(
-                    //图片
-                    ySortable.getSprite(),
-                    //世界坐标 + 当前坐标 * 网格倍率
-                    worldStartX + ySortable.getWorldX() * Settings.SCALED_TILE_SIZE,
-                    worldStartY + ySortable.getWorldY() * Settings.SCALED_TILE_SIZE,
-                    //人物的宽高 * 网格倍率
-                    ySortable.getWidth() * Settings.SCALED_TILE_SIZE,
-                    ySortable.getHeight() * Settings.SCALED_TILE_SIZE
-            );
+            //渲染
+            draw(batch, ySortable, worldStartX, worldStartY);
         }
 
         //结束时清理
         sortList.clear();
 
+    }
+
+    /**
+     * 根据实现[YSortable]的class、渲染器、世界坐标,统一渲染世界的每一个图片
+     *
+     * @param batch       渲染器
+     * @param ySortable   实现的class,可以是人物、事物、地图块
+     * @param worldStartX 世界坐标x
+     * @param worldStartY 世界坐标y
+     */
+    private void draw(Batch batch, YSortable ySortable, float worldStartX, float worldStartY) {
+        //根据世界起点,渲染
+        batch.draw(
+                //图片
+                ySortable.getSprite(),
+                //世界坐标 + 当前坐标 * 网格倍率
+                worldStartX + ySortable.getWorldX() * Settings.SCALED_TILE_SIZE,
+                worldStartY + ySortable.getWorldY() * Settings.SCALED_TILE_SIZE,
+                //人物的宽高 * 网格倍率
+                ySortable.getWidth() * Settings.SCALED_TILE_SIZE,
+                ySortable.getHeight() * Settings.SCALED_TILE_SIZE
+        );
     }
 
 }

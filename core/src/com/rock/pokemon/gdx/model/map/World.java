@@ -46,8 +46,8 @@ public class World {
         for (int x = 0; x < width; x++) {
             //循环2
             for (int y = 0; y < height; y++) {
-                //草3
-                tileMap.getTileMap()[x][y] = new Tile(x, y, TerrainEnum.GRASS_3);
+                //初始化地图块为草3
+                tileMap.getTileMap()[x][y] = new Tile(x, y, TerrainEnum.GRASS_3, assetManager);
             }
         }
 

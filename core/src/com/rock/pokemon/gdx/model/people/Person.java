@@ -178,7 +178,7 @@ public class Person implements YSortable {
     }
 
     /**
-     * 单纯的脸换个方向
+     * 单纯的脸换个方向,当然,得站着的时候
      *
      * @param facing 方向枚举
      * @return

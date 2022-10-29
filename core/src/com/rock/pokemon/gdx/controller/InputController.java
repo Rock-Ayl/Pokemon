@@ -24,15 +24,22 @@ public class InputController extends InputAdapter {
     private Person person;
 
     /**
-     * 输入
+     * 输入通用
      */
 
     //输入状态,状态可以全部存在,比如按上的同时也可以按下,但是怎么处理就我们说的算了(目前30够用了)
     private boolean[] buttonPress = new boolean[30];
+
     //输入状态的持续时间(目前30够用了)
     private float[] buttonTimeArr = new float[30];
+
+    /**
+     * 输入-方向相关
+     */
+
     //方向按键持续时间不移动,方向键按住的时间小于等于该时间,则换方向不移动,大于该时间,开始移动判定
     private float notMoveTime = 0.15F;
+
     //方向键编码列表初始化,判定也按照这个顺序来,主角移动判定,同一次移动只能一个方向,但输入状态可以有多个,按照绿宝石的手感判定,上优先级最高,下其次,左第三,右的判定最低
     private static final LinkedHashSet<Integer> dirInputKeyLinkedSet = new LinkedHashSet<>(Arrays.asList(
             Input.Keys.UP,
@@ -80,11 +87,6 @@ public class InputController extends InputAdapter {
     public boolean keyUp(int keycode) {
         //如果释放方向键
         if (dirInputKeyLinkedSet.contains(keycode)) {
-            //如果按键持续时间特别短
-            if (buttonTimeArr[keycode] <= notMoveTime) {
-                //尝试给脸还成对应方向
-                this.person.changeDir(DirectionEnum.parseByKeycode(keycode));
-            }
             //关闭按键状态
             buttonPress[keycode] = false;
             //重置持续时间
@@ -108,15 +110,19 @@ public class InputController extends InputAdapter {
                 //本轮过
                 continue;
             }
+            //无论如何,先尝试让脸换方向
+            this.person.changeDir(DirectionEnum.parseByKeycode(dirInputKey));
             //叠加其持续时间
             buttonTimeArr[dirInputKey] += delta;
-            //如果没有持续按
+            //如果按下方向键时间太短
             if (buttonTimeArr[dirInputKey] <= notMoveTime) {
                 //本轮过
                 continue;
             }
             //尝试移动判定
             this.person.move(DirectionEnum.parseByKeycode(dirInputKey));
+            //结束方向键判定
+            break;
         }
 
     }

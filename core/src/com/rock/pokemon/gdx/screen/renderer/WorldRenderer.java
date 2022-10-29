@@ -95,7 +95,7 @@ public class WorldRenderer {
          * 按照Y轴排序
          */
 
-        Collections.sort(sortList, new WorldObjectYComparator());
+        Collections.sort(sortList, new YSortComparator());
 
         /**
          * 最后统一渲染人物、事物

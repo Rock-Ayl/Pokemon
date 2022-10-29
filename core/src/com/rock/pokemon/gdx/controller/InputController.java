@@ -38,10 +38,10 @@ public class InputController extends InputAdapter {
      */
 
     //方向按键持续时间不移动,方向键按住的时间小于等于该时间,则换方向不移动,大于该时间,开始移动判定
-    private float notMoveTime = 0.15F;
+    private static final float NOT_MOVE_TIME = 0.15F;
 
     //方向键编码列表初始化,判定也按照这个顺序来,主角移动判定,同一次移动只能一个方向,但输入状态可以有多个,按照绿宝石的手感判定,上优先级最高,下其次,左第三,右的判定最低
-    private static final LinkedHashSet<Integer> dirInputKeyLinkedSet = new LinkedHashSet<>(Arrays.asList(
+    private static final LinkedHashSet<Integer> DIR_INPUT_KEY_LINKED_SET = new LinkedHashSet<>(Arrays.asList(
             Input.Keys.UP,
             Input.Keys.DOWN,
             Input.Keys.LEFT,
@@ -67,7 +67,7 @@ public class InputController extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         //如果按下方向键
-        if (dirInputKeyLinkedSet.contains(keycode)) {
+        if (DIR_INPUT_KEY_LINKED_SET.contains(keycode)) {
             //更改键位状态
             buttonPress[keycode] = true;
             //重置其持续时间
@@ -86,7 +86,7 @@ public class InputController extends InputAdapter {
     @Override
     public boolean keyUp(int keycode) {
         //如果释放方向键
-        if (dirInputKeyLinkedSet.contains(keycode)) {
+        if (DIR_INPUT_KEY_LINKED_SET.contains(keycode)) {
             //关闭按键状态
             buttonPress[keycode] = false;
             //重置持续时间
@@ -104,7 +104,7 @@ public class InputController extends InputAdapter {
     public void update(float delta) {
 
         //循环方向键判定
-        for (Integer dirInputKey : dirInputKeyLinkedSet) {
+        for (Integer dirInputKey : DIR_INPUT_KEY_LINKED_SET) {
             //如果该方向按键没有被按着
             if (buttonPress[dirInputKey] == false) {
                 //本轮过
@@ -115,7 +115,7 @@ public class InputController extends InputAdapter {
             //叠加其持续时间
             buttonTimeArr[dirInputKey] += delta;
             //如果按下方向键时间太短
-            if (buttonTimeArr[dirInputKey] <= notMoveTime) {
+            if (buttonTimeArr[dirInputKey] <= NOT_MOVE_TIME) {
                 //本轮过
                 continue;
             }

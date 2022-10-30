@@ -27,7 +27,7 @@ public class Pokemon extends Game {
 
     //GBA屏幕分辨率为 240 * 160 ,该比例固定,当然,实际使用需要根据缩放倍率计算,另外,绿宝石无论尺寸大小,x轴固定为15个长度地图块,y轴则不按照地图块算
     private float windowWidth = 240;
-    private float windowHeight = 150;
+    private float windowHeight = 160;
 
     /**
      * 基础实体

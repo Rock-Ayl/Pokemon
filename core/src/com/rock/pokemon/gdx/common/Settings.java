@@ -27,9 +27,9 @@ public class Settings {
     //todo 当前语言(暂时固定为中文)
     public static LanguageEnum LANG = LanguageEnum.SIMPLIFIED_CHINESE;
 
-    //固定为 600 * 400
-    public static int WINDOW_WIDTH = 600;
-    public static int WINDOW_HEIGHT = 400;
+    //GBA屏幕分辨率为 240 * 160 比例固定,这里默认取其一倍,另外,绿宝石无论尺寸大小,x轴固定为15个长度地图块,y轴则不按照地图块算
+    public static int WINDOW_WIDTH = 480;
+    public static int WINDOW_HEIGHT = 320;
 
     //是否使用垂直同步
     public static boolean USE_VERTICAL_SYNC = true;
@@ -41,8 +41,8 @@ public class Settings {
     //地图/贴图/人物单个网格大小
     public static int TILE_SIZE = 16;
     //缩放倍率
-    public static float SCALE = 2F;
+    public static int SCALE = 2;
     //一坐标数值的地图块或人物的真实的大小(16的贴图看起来还是模糊,32就好点)
-    public static float SCALED_TILE_SIZE = TILE_SIZE * SCALE;
+    public static int SCALED_TILE_SIZE = TILE_SIZE * SCALE;
 
 }

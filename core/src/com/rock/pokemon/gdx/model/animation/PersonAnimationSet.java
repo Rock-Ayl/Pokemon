@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.PersonEnum;
+import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +49,7 @@ public class PersonAnimationSet {
         //循环方向枚举
         for (DirectionEnum walkDir : DirectionEnum.values()) {
             //载入动画 秒/帧(N图-1=帧),名字,模式,并组装
-            steppingMap.put(walkDir, new Animation(0.6F / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
+            steppingMap.put(walkDir, new Animation(2 * Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
         }
 
         //初始化走路map
@@ -56,7 +57,7 @@ public class PersonAnimationSet {
         //循环方向枚举
         for (DirectionEnum walkDir : DirectionEnum.values()) {
             //载入动画 秒/帧(N图-1=帧),名字,模式,并组装
-            walkingMap.put(walkDir, new Animation(0.3F / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
+            walkingMap.put(walkDir, new Animation(Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
         }
 
         //初始化站立map

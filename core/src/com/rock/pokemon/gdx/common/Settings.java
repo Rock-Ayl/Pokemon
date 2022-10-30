@@ -29,7 +29,7 @@ public class Settings {
     //地图/贴图/人物单个网格大小
     public static int TILE_SIZE = 16;
     //缩放倍率
-    public static int SCALE = 2;
+    public static int SCALE = 3;
     //一坐标数值的地图块或人物的真实的大小(16的贴图看起来还是模糊,32就好点)
     public static int SCALED_TILE_SIZE = TILE_SIZE * SCALE;
 

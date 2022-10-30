@@ -18,12 +18,16 @@ public class DesktopLauncher {
         //设置FPS
         config.setForegroundFPS(Settings.FPS_200);
         config.setIdleFPS(Settings.FPS_200);
-        //窗口尺寸,初始化时肯定是整数
-        config.setWindowedMode(pokemon.getWindowWidthInt(), pokemon.getWindowHeightInt());
         //是否使用垂直同步
         config.useVsync(Settings.USE_VERTICAL_SYNC);
         //标题
         config.setTitle(Settings.TITLE);
+        //是否可以调整窗口大小
+        config.setResizable(true);
+        //窗口尺寸,初始化时肯定是整数
+        config.setWindowedMode(pokemon.getWindowWidthInt(), pokemon.getWindowHeightInt());
+        //设置屏幕尺寸最大最小值,-1为不限制
+        config.setWindowSizeLimits(pokemon.getMinWindowWidth(), pokemon.getMinWindowHeight(), -1, -1);
         //初始化
         new Lwjgl3Application(pokemon, config);
     }

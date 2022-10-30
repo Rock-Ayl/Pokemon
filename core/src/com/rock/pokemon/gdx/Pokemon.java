@@ -164,6 +164,24 @@ public class Pokemon extends Game {
     }
 
     /**
+     * 获取最小的屏幕尺寸宽,强制为int
+     *
+     * @return
+     */
+    public int getMinWindowWidth() {
+        return (int) windowWidth * 2;
+    }
+
+    /**
+     * 获取最小的屏幕尺寸高,强制为int
+     *
+     * @return
+     */
+    public int getMinWindowHeight() {
+        return (int) windowHeight * 2;
+    }
+
+    /**
      * 屏幕尺寸宽,强制为int
      *
      * @return

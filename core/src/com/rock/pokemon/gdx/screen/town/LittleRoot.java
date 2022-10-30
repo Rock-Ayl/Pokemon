@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.controller.InputController;
 import com.rock.pokemon.gdx.enums.PersonEnum;
-import com.rock.pokemon.gdx.model.Camera;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
@@ -28,8 +28,8 @@ public class LittleRoot implements Screen {
     //背景音乐
     private Music music;
 
-    //一个自定义的相机
-    private Camera camera;
+    //相机
+    private OrthographicCamera camera;
 
     //输入控制器
     private InputController inputController;
@@ -58,7 +58,7 @@ public class LittleRoot implements Screen {
         this.game = pokemon;
 
         //初始化自定义相机
-        this.camera = new Camera();
+        this.camera = new OrthographicCamera(this.game.getWindowWidth(), this.game.getWindowHeight());
 
         /**
          * 音乐
@@ -110,11 +110,23 @@ public class LittleRoot implements Screen {
     @Override
     public void render(float delta) {
 
+        /**
+         * 相机
+         */
+
         //每帧根据主角坐标,更新相机坐标
-        this.camera.update(
-                this.adventurer.getWorldX() + 0.5F,
-                this.adventurer.getWorldY() + 0.5F)
-        ;
+        this.camera.position.x = (this.adventurer.getWorldX() + 0.5F) * this.game.getScaledTileSize();
+        this.camera.position.y = (this.adventurer.getWorldY() + 0.5F) * this.game.getScaledTileSize();
+
+        //更新相机
+        this.camera.update();
+
+        //渲染时使用相机
+        this.game.getBatch().setProjectionMatrix(this.camera.combined);
+
+        /**
+         * 渲染
+         */
 
         //黑幕
         ScreenUtils.clear(Color.BLACK);
@@ -129,7 +141,7 @@ public class LittleRoot implements Screen {
         this.game.getBatch().begin();
 
         //渲染整个世界
-        this.worldRenderer.render(this.game, this.camera);
+        this.worldRenderer.render(this.game);
 
         //结束渲染
         this.game.getBatch().end();
@@ -138,6 +150,9 @@ public class LittleRoot implements Screen {
 
     @Override
     public void resize(int width, int height) {
+
+        //更新相机尺寸
+        this.camera.setToOrtho(false, width, height);
 
     }
 

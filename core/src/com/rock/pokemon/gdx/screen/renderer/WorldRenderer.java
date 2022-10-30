@@ -1,9 +1,7 @@
 package com.rock.pokemon.gdx.screen.renderer;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.rock.pokemon.gdx.Pokemon;
-import com.rock.pokemon.gdx.model.Camera;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
@@ -46,13 +44,8 @@ public class WorldRenderer {
      * 使用渲染器和相机,计算世界坐标,然后计算人物、地图块、事物的图层,最后渲染
      *
      * @param pokemon 游戏对象
-     * @param camera  相机
      */
-    public void render(Pokemon pokemon, Camera camera) {
-
-        //计算出世界的坐标,让世界和相机始终以主角为中心
-        float worldStartX = Gdx.graphics.getWidth() / 2 - camera.getCameraX() * pokemon.getScaledTileSize();
-        float worldStartY = Gdx.graphics.getHeight() / 2 - camera.getCameraY() * pokemon.getScaledTileSize();
+    public void render(Pokemon pokemon) {
 
         /**
          * 先渲染地图网格(图层最下,无可争议)
@@ -65,7 +58,7 @@ public class WorldRenderer {
                 //当前地图块对象
                 Tile tile = this.world.getTileMap().getTileMap()[x][y];
                 //渲染
-                draw(pokemon, tile, worldStartX, worldStartY);
+                draw(pokemon, tile);
             }
         }
 
@@ -78,7 +71,7 @@ public class WorldRenderer {
             //如果可以行走,优先级仅仅比地图块高一点
             if (worldObject.isWalkable()) {
                 //渲染
-                draw(pokemon, worldObject, worldStartX, worldStartY);
+                draw(pokemon, worldObject);
                 //本轮过
                 continue;
             }
@@ -102,7 +95,7 @@ public class WorldRenderer {
         //统一渲染人物、事物
         for (YSortable ySortable : this.sortList) {
             //渲染
-            draw(pokemon, ySortable, worldStartX, worldStartY);
+            draw(pokemon, ySortable);
         }
 
         //结束时清理
@@ -111,21 +104,19 @@ public class WorldRenderer {
     }
 
     /**
-     * 根据实现[YSortable]的class、渲染器、世界坐标,统一渲染世界的每一个图片
+     * 根据实现[YSortable]的class、渲染器,统一渲染世界的每一个图片
      *
-     * @param pokemon     游戏对象
-     * @param ySortable   实现的class,可以是人物、事物、地图块
-     * @param worldStartX 世界坐标x
-     * @param worldStartY 世界坐标y
+     * @param pokemon   游戏对象
+     * @param ySortable 实现的class,可以是人物、事物、地图块
      */
-    private void draw(Pokemon pokemon, YSortable ySortable, float worldStartX, float worldStartY) {
+    private void draw(Pokemon pokemon, YSortable ySortable) {
         //根据世界起点,渲染
         pokemon.getBatch().draw(
                 //图片
                 ySortable.getSprite(),
-                //世界坐标 + 当前坐标 * 当前网格倍率
-                worldStartX + ySortable.getWorldX() * pokemon.getScaledTileSize(),
-                worldStartY + ySortable.getWorldY() * pokemon.getScaledTileSize(),
+                //当前坐标 * 当前网格倍率
+                ySortable.getWorldX() * pokemon.getScaledTileSize(),
+                ySortable.getWorldY() * pokemon.getScaledTileSize(),
                 //人物的宽高 * 当前网格倍率
                 ySortable.getWidth() * pokemon.getScaledTileSize(),
                 ySortable.getHeight() * pokemon.getScaledTileSize()

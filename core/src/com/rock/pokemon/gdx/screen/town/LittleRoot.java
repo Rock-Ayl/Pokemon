@@ -129,7 +129,7 @@ public class LittleRoot implements Screen {
         this.game.getBatch().begin();
 
         //渲染整个世界
-        this.worldRenderer.render(this.game.getBatch(), this.camera);
+        this.worldRenderer.render(this.game, this.camera);
 
         //结束渲染
         this.game.getBatch().end();

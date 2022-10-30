@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pokemon.gdx.Pokemon;
-import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.screen.town.LittleRoot;
 
 /**
@@ -44,7 +43,7 @@ public class MainMenu implements Screen {
 
         //简单的假主菜单
         this.game.getBatch().begin();
-        this.game.getFont().draw(this.game.getBatch(), "New Game \nSetting", Settings.WINDOW_WIDTH / 2, Settings.WINDOW_HEIGHT / 2);
+        this.game.getFont().draw(this.game.getBatch(), "New Game \nSetting", this.game.getWindowWidth() / 2, this.game.getWindowHeight() / 2);
         this.game.getBatch().end();
 
         //如果点击屏幕 或 按回车

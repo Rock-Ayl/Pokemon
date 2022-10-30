@@ -11,19 +11,21 @@ import com.rock.pokemon.gdx.common.Settings;
 public class DesktopLauncher {
 
     public static void main(String[] arg) {
+        //初始化游戏对象
+        Pokemon pokemon = new Pokemon();
         //初始化配置
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         //设置FPS
         config.setForegroundFPS(Settings.FPS_200);
         config.setIdleFPS(Settings.FPS_200);
-        //窗口尺寸
-        config.setWindowedMode(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
+        //窗口尺寸,初始化时肯定是整数
+        config.setWindowedMode(pokemon.getWindowWidthInt(), pokemon.getWindowHeightInt());
         //是否使用垂直同步
         config.useVsync(Settings.USE_VERTICAL_SYNC);
         //标题
         config.setTitle(Settings.TITLE);
         //初始化
-        new Lwjgl3Application(new Pokemon(), config);
+        new Lwjgl3Application(pokemon, config);
     }
 
 }

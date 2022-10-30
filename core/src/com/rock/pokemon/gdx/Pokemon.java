@@ -17,7 +17,20 @@ import com.rock.pokemon.gdx.screen.MainMenu;
 public class Pokemon extends Game {
 
     /**
-     * 基础
+     * 基础属性
+     */
+
+    //缩放倍率,游戏的任何等比缩放,都与其有关
+    private float scale = 3F;
+    //地图/贴图/人物单个网格大小
+    private float tileSize = 16F;
+
+    //GBA屏幕分辨率为 240 * 160 ,该比例固定,当然,实际使用需要根据缩放倍率计算,另外,绿宝石无论尺寸大小,x轴固定为15个长度地图块,y轴则不按照地图块算
+    private float windowWidth = 240;
+    private float windowHeight = 150;
+
+    /**
+     * 基础实体
      */
 
     //渲染器
@@ -87,7 +100,70 @@ public class Pokemon extends Game {
     }
 
     /**
-     * 以下是 get set 方法
+     * 缩放倍率
+     *
+     * @return
+     */
+    public float getScale() {
+        return scale;
+    }
+
+    /**
+     * 设置缩放比率
+     *
+     * @param scale 传入设置
+     */
+    public void setScale(float scale) {
+        this.scale = scale;
+    }
+
+    /**
+     * 获取1坐标数值的地图块或人物的真实的大小,该数值随着缩放倍率变动
+     *
+     * @return
+     */
+    public float getScaledTileSize() {
+        return tileSize * scale;
+    }
+
+    /**
+     * 屏幕尺寸宽,强制为int
+     *
+     * @return
+     */
+    public int getWindowWidthInt() {
+        return (int) (windowWidth * scale);
+    }
+
+    /**
+     * 屏幕尺寸高,强制为int
+     *
+     * @return
+     */
+    public int getWindowHeightInt() {
+        return (int) (windowHeight * scale);
+    }
+
+    /**
+     * 屏幕尺寸宽
+     *
+     * @return
+     */
+    public float getWindowWidth() {
+        return windowWidth * scale;
+    }
+
+    /**
+     * 屏幕尺寸高
+     *
+     * @return
+     */
+    public float getWindowHeight() {
+        return windowHeight * scale;
+    }
+
+    /**
+     * 以下是普通 get set 方法
      */
 
     public SpriteBatch getBatch() {

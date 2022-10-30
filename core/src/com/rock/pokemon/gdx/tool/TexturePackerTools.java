@@ -47,6 +47,12 @@ public class TexturePackerTools {
                 "assets/packed/image/map/house/",
                 "textures");
 
+        //ui
+        TexturePacker.process(
+                "assets/unpacked/image/ui/",
+                "assets/packed/image/ui/",
+                "textures");
+
     }
 
 }

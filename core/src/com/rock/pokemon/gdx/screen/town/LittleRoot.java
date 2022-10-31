@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.controller.InputController;
@@ -30,6 +31,9 @@ public class LittleRoot implements Screen {
 
     //相机
     private OrthographicCamera camera;
+
+    //屏幕
+    private FitViewport viewport;
 
     //输入控制器
     private InputController inputController;
@@ -57,8 +61,11 @@ public class LittleRoot implements Screen {
         //记录游戏对象
         this.game = pokemon;
 
-        //初始化自定义相机
+        //初始化相机
         this.camera = new OrthographicCamera(this.game.getWindowWidth(), this.game.getWindowHeight());
+
+        //初始化Fit屏幕,保证游戏横纵比,并使用相机
+        this.viewport = new FitViewport(this.game.getWindowWidth(), this.game.getWindowHeight(), this.camera);
 
         /**
          * 音乐
@@ -151,8 +158,8 @@ public class LittleRoot implements Screen {
     @Override
     public void resize(int width, int height) {
 
-        //更新相机尺寸
-        this.camera.setToOrtho(false, width, height);
+        //更新当前屏幕宽高和更新相机
+        viewport.update(width, height);
 
     }
 

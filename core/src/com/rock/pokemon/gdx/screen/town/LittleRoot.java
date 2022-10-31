@@ -6,7 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.controller.InputController;
@@ -32,8 +32,8 @@ public class LittleRoot implements Screen {
     //相机
     private OrthographicCamera camera;
 
-    //屏幕
-    private FitViewport viewport;
+    //屏幕,我们这里使用[ExtendViewport],让相机识等比,同时拖动屏幕也不会有问题
+    private ExtendViewport viewport;
 
     //输入控制器
     private InputController inputController;
@@ -64,8 +64,8 @@ public class LittleRoot implements Screen {
         //初始化相机
         this.camera = new OrthographicCamera();
 
-        //初始化Fit屏幕,保证游戏横纵比,并使用相机
-        this.viewport = new FitViewport(this.game.getWindowWidth(), this.game.getWindowHeight(), this.camera);
+        //初始化[ExtendViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
+        this.viewport = new ExtendViewport(this.game.getWindowWidth(), this.game.getWindowHeight(), this.camera);
 
         /**
          * 音乐

@@ -62,7 +62,7 @@ public class LittleRoot implements Screen {
         this.game = pokemon;
 
         //初始化相机
-        this.camera = new OrthographicCamera(this.game.getWindowWidth(), this.game.getWindowHeight());
+        this.camera = new OrthographicCamera();
 
         //初始化Fit屏幕,保证游戏横纵比,并使用相机
         this.viewport = new FitViewport(this.game.getWindowWidth(), this.game.getWindowHeight(), this.camera);

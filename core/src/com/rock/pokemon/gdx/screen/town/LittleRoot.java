@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.rock.pokemon.gdx.Pokemon;
@@ -29,14 +30,29 @@ public class LittleRoot implements Screen {
     //背景音乐
     private Music music;
 
+    /**
+     * UI
+     */
+
     //相机
     private OrthographicCamera camera;
 
-    //屏幕,我们这里使用[ExtendViewport],让相机识等比,同时拖动屏幕也不会有问题
+    //屏幕,我们这里使用[ExtendViewport],让相机等比缩放,同时拖动屏幕也不会有问题
     private ExtendViewport viewport;
+
+    //舞台
+    private Stage stage;
+
+    /**
+     * 控制器
+     */
 
     //输入控制器
     private InputController inputController;
+
+    /**
+     * 世界
+     */
 
     //未白镇的世界实体
     private World world;
@@ -61,11 +77,18 @@ public class LittleRoot implements Screen {
         //记录游戏对象
         this.game = pokemon;
 
+        /**
+         * UI
+         */
+
         //初始化相机
         this.camera = new OrthographicCamera();
 
         //初始化[ExtendViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
         this.viewport = new ExtendViewport(this.game.getWindowWidth(), this.game.getWindowHeight(), this.camera);
+
+        //初始化舞台
+        this.stage = new Stage(this.viewport);
 
         /**
          * 音乐
@@ -159,7 +182,7 @@ public class LittleRoot implements Screen {
     public void resize(int width, int height) {
 
         //更新当前屏幕宽高和更新相机
-        viewport.update(width, height);
+        this.stage.getViewport().update(width, height);
 
     }
 

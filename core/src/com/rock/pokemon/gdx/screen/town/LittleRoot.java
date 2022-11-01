@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.rock.pokemon.gdx.Pokemon;
@@ -43,6 +44,9 @@ public class LittleRoot implements Screen {
     //舞台
     private Stage stage;
 
+    //主表格
+    private Table table;
+
     /**
      * 控制器
      */
@@ -78,19 +82,6 @@ public class LittleRoot implements Screen {
         this.game = pokemon;
 
         /**
-         * UI
-         */
-
-        //初始化相机
-        this.camera = new OrthographicCamera();
-
-        //初始化[ExtendViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
-        this.viewport = new ExtendViewport(this.game.getWindowWidth(), this.game.getWindowHeight(), this.camera);
-
-        //初始化舞台
-        this.stage = new Stage(this.viewport);
-
-        /**
          * 音乐
          */
 
@@ -118,6 +109,29 @@ public class LittleRoot implements Screen {
 
         //初始化输入监听,控制主角的行动
         this.inputController = new InputController(this.adventurer);
+
+        /**
+         * UI
+         */
+
+        //初始化相机
+        this.camera = new OrthographicCamera();
+
+        //初始化[ExtendViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
+        this.viewport = new ExtendViewport(this.game.getWindowWidth(), this.game.getWindowHeight(), this.camera);
+
+        //初始化舞台
+        this.stage = new Stage(this.viewport);
+
+        //初始化主表格
+        table = new Table();
+        //该设置仅用于主表格
+        table.setFillParent(true);
+        //开启debug table.setDebug(true);
+        //舞台加入主表格
+        stage.addActor(table);
+
+        //todo 这里开始往主表格加入小组件
 
     }
 
@@ -155,7 +169,7 @@ public class LittleRoot implements Screen {
         this.game.getBatch().setProjectionMatrix(this.camera.combined);
 
         /**
-         * 渲染
+         * 渲染世界及更新
          */
 
         //黑幕
@@ -175,6 +189,13 @@ public class LittleRoot implements Screen {
 
         //结束渲染
         this.game.getBatch().end();
+
+        /**
+         * 渲染UI
+         */
+
+        this.stage.act(delta);
+        this.stage.draw();
 
     }
 
@@ -207,6 +228,7 @@ public class LittleRoot implements Screen {
     @Override
     public void dispose() {
         this.music.dispose();
+        this.stage.dispose();
     }
 
 }

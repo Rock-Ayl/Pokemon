@@ -25,18 +25,9 @@ public class Pokemon extends Game {
     //地图/贴图/人物单个网格大小
     private final float tileSize = 16F;
 
-    //GBA屏幕分辨率为 240 * 160 ,该比例固定,当然,实际使用需要根据缩放倍率计算,另外,绿宝石无论尺寸大小,x轴固定为15个长度地图块,y轴则不按照地图块算
-
-    //屏幕尺寸,默认为GBA原生分辨率[1.5:1],但总体不会固定为这个比率,要看用户设置
+    //屏幕尺寸,GBA屏幕分辨率为 240 * 160 ,该比例固定,默认为GBA原生分辨率[1.5:1],但总体不会固定为这个比率,要看用户设置
     private float windowWidth = 240;
     private float windowHeight = 160;
-
-    //宽高比,GBA屏幕分辨率为 240 * 160 ,比例为1.5
-    private final float whProportion = 1.5F;
-
-    //相机比率,相机比例永远是[1.5:1],默认为屏幕尺寸
-    private float camreaWidth = windowWidth;
-    private float camreaHeight = windowWidth / whProportion;
 
     /**
      * 基础实体
@@ -119,20 +110,6 @@ public class Pokemon extends Game {
         //屏幕尺寸变更为该尺寸
         this.windowWidth = width;
         this.windowHeight = height;
-
-        //该屏幕尺寸的宽高比
-        float thisWhProportion = width / height;
-
-        //判断比率和游戏设定的关系
-        if (thisWhProportion > this.whProportion) {
-            //todo 根据当前宽高比,更新相机尺寸
-        } else if (thisWhProportion < this.whProportion) {
-            //todo 根据当前宽高比,更新相机尺寸
-        } else {
-            //既然比率固定
-            this.camreaWidth = width;
-            this.camreaHeight = height;
-        }
 
     }
 

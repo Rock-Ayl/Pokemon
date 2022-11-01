@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -57,8 +58,9 @@ public class Pokemon extends Game {
         //初始化一个SpriteBatch,游戏中只有一个,直到游戏结束后销毁
         this.batch = new SpriteBatch();
 
-        //使用默认的字体
-        this.font = new BitmapFont();
+        //字体使用中文
+        this.font = new BitmapFont(Gdx.files.internal("assets/font/song/STSong.fnt"),
+                Gdx.files.internal("assets/font/song/STSong.png"), false);
 
         //初始化资源管理器
         this.assetManager = new AssetManager();

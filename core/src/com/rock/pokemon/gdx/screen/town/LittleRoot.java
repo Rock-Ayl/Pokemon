@@ -181,6 +181,9 @@ public class LittleRoot implements Screen {
     @Override
     public void resize(int width, int height) {
 
+        //修改当前游戏屏幕尺寸
+        this.game.updateWindows(width, height);
+
         //更新当前屏幕宽高和更新相机
         this.stage.getViewport().update(width, height);
 

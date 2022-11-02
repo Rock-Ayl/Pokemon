@@ -1,13 +1,14 @@
 package com.rock.pokemon.gdx;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rock.pokemon.gdx.model.SoundManager;
 import com.rock.pokemon.gdx.screen.MainMenu;
+import com.rock.pokemon.gdx.ui.SkinLoading;
 
 /**
  * 游戏入口
@@ -37,6 +38,9 @@ public class Pokemon extends Game {
     //渲染器
     private SpriteBatch batch;
 
+    //皮肤
+    private Skin skin;
+
     //字体
     private BitmapFont font;
 
@@ -58,19 +62,24 @@ public class Pokemon extends Game {
         //初始化一个SpriteBatch,游戏中只有一个,直到游戏结束后销毁
         this.batch = new SpriteBatch();
 
-        //字体使用中文
-        this.font = new BitmapFont(Gdx.files.internal("assets/font/song/STSong.fnt"),
-                Gdx.files.internal("assets/font/song/STSong.png"), false);
-
         //初始化资源管理器
         this.assetManager = new AssetManager();
-        //加载已打包的图片资源
+        //加载已打包的各种资源
         this.assetManager.load("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
         this.assetManager.load("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
         this.assetManager.load("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
         this.assetManager.load("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
+        this.assetManager.load("assets/packed/image/ui/textures.atlas", TextureAtlas.class);
         //加载资源完成
         this.assetManager.finishLoading();
+
+        //初始化皮肤
+        this.skin = SkinLoading.initSkin(this.getAssetManager());
+
+        //使用皮肤中初始化的字体
+        this.font = this.skin.getFont("font");
+        //设置字体缩放
+        this.font.getData().setScale(1.5F);
 
         //初始化通用音效
         this.soundManager = new SoundManager();

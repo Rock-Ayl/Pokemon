@@ -225,4 +225,8 @@ public class Pokemon extends Game {
         return soundManager;
     }
 
+    public Skin getSkin() {
+        return skin;
+    }
+
 }

@@ -239,4 +239,8 @@ public class Pokemon extends Game {
         return skin;
     }
 
+    public Map<Integer, String> getTextMap() {
+        return textMap;
+    }
+
 }

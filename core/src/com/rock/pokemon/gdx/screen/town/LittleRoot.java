@@ -136,6 +136,8 @@ public class LittleRoot implements Screen {
 
         //初始化一个对话框
         DialogueBox dialogueBox = new DialogueBox(this.game.getSkin());
+        //随便根据编号弄一个文本
+        dialogueBox.setText(this.game.getTextMap().get(2));
         //将对话框放在主表格的下方
         this.table.add(dialogueBox)
                 .expand()

@@ -23,13 +23,23 @@ public class DialogueBox extends Table {
         super(skin);
         //使用从皮肤中使用背景
         this.setBackground("dialogueBox");
-        //测试文本
-        textLabel = new Label("This is a test 这是一段测试文本.", skin);
+        //初始化label
+        this.textLabel = new Label("", skin);
         //将文本组装至文本框中,左对齐,空5F
-        this.add(textLabel)
+        this.add(this.textLabel)
                 .expand()
                 .align(Align.left)
                 .pad(5f);
+    }
+
+    /**
+     * 设置文本
+     *
+     * @param text 文本内容
+     */
+    public void setText(String text) {
+        //设置文本
+        this.textLabel.setText(text);
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
@@ -36,9 +35,6 @@ public class LittleRoot implements Screen {
     /**
      * UI
      */
-
-    //相机
-    private OrthographicCamera camera;
 
     //屏幕,我们这里使用[ExtendViewport],让相机等比缩放,同时拖动屏幕也不会有问题
     private ExtendViewport viewport;
@@ -119,11 +115,8 @@ public class LittleRoot implements Screen {
          * UI
          */
 
-        //初始化相机
-        this.camera = new OrthographicCamera();
-
         //初始化[ExtendViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
-        this.viewport = new ExtendViewport(this.game.getWindowWidth(), this.game.getWindowHeight(), this.camera);
+        this.viewport = new ExtendViewport(this.game.getWindowWidth(), this.game.getWindowHeight());
 
         //初始化舞台
         this.stage = new Stage(this.viewport);
@@ -176,14 +169,14 @@ public class LittleRoot implements Screen {
          */
 
         //每帧根据主角坐标,更新相机坐标
-        this.camera.position.x = (this.adventurer.getWorldX() + 0.5F) * this.game.getScaledTileSize();
-        this.camera.position.y = (this.adventurer.getWorldY() + 0.5F) * this.game.getScaledTileSize();
+        this.viewport.getCamera().position.x = (this.adventurer.getWorldX() + 0.5F) * this.game.getScaledTileSize();
+        this.viewport.getCamera().position.y = (this.adventurer.getWorldY() + 0.5F) * this.game.getScaledTileSize();
 
         //更新相机
-        this.camera.update();
+        this.viewport.getCamera().update();
 
         //渲染时使用相机
-        this.game.getBatch().setProjectionMatrix(this.camera.combined);
+        this.game.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
 
         /**
          * 渲染世界及更新

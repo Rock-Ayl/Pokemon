@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.rock.pokemon.gdx.Pokemon;
@@ -16,6 +17,7 @@ import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
+import com.rock.pokemon.gdx.ui.DialogueBox;
 
 /**
  * 未白镇(开局城镇)
@@ -128,10 +130,16 @@ public class LittleRoot implements Screen {
         //该设置仅用于主表格
         table.setFillParent(true);
         //开启debug table.setDebug(true);
+
         //舞台加入主表格
         stage.addActor(table);
 
-        //todo 这里开始往主表格加入小组件
+        //初始化一个对话框
+        DialogueBox dialogueBox = new DialogueBox(this.game.getSkin());
+        //将对话框放在主表格的下方
+        this.table.add(dialogueBox)
+                .expand()
+                .align(Align.bottom);
 
     }
 

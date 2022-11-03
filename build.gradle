@@ -46,7 +46,10 @@ project(":desktop") {
     apply plugin: "java-library"
 
     dependencies {
+        
         implementation project(":core")
+
+        //gdx
         api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         api "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-desktop"
@@ -54,6 +57,11 @@ project(":desktop") {
         api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         api "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdxControllersVersion"
         api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+
+        //apache-commons工具包
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+        compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+        compile group: 'commons-io', name: 'commons-io', version: '2.5'
 
     }
 
@@ -64,6 +72,8 @@ project(":core") {
     apply plugin: "java-library"
 
     dependencies {
+
+        //gdx
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
         api "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
@@ -73,6 +83,11 @@ project(":core") {
         api "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         api "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+
+        //apache-commons工具包
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+        compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+        compile group: 'commons-io', name: 'commons-io', version: '2.5'
 
     }
 }

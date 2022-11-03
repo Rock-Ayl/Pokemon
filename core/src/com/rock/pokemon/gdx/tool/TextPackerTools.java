@@ -1,8 +1,11 @@
 package com.rock.pokemon.gdx.tool;
 
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 文本打包器,将所有文本目录下的文本读取到内存中,去重,方便制作fnt
@@ -17,6 +20,11 @@ public class TextPackerTools {
         File dir = new File("assets/text");
         //收集该目录及子目录下的所有文件
         List<File> fileList = collectFiles(dir);
+        //只保留txt文件
+        fileList = fileList.stream()
+                .filter(p -> "txt".equalsIgnoreCase(FilenameUtils.getExtension(p.getName())))
+                .collect(Collectors.toList());
+
         System.out.println();
     }
 

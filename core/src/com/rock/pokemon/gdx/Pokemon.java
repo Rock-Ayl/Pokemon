@@ -6,9 +6,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.rock.pokemon.gdx.enums.LanguageEnum;
 import com.rock.pokemon.gdx.model.SoundManager;
 import com.rock.pokemon.gdx.screen.MainMenu;
 import com.rock.pokemon.gdx.ui.SkinLoading;
+import com.rock.pokemon.gdx.ui.TextLoading;
+
+import java.util.Map;
 
 /**
  * 游戏入口
@@ -43,6 +47,9 @@ public class Pokemon extends Game {
 
     //字体
     private BitmapFont font;
+
+    //文本map[编号,文本]
+    private Map<Integer, String> textMap;
 
     //资源管理器
     private AssetManager assetManager;
@@ -80,6 +87,9 @@ public class Pokemon extends Game {
         this.font = new BitmapFont();
         //设置字体缩放
         this.font.getData().setScale(1.5F);
+
+        //根据语言,载入文本,默认使用中文吧
+        this.textMap = TextLoading.initText(LanguageEnum.SIMPLIFIED_CHINESE);
 
         //初始化通用音效
         this.soundManager = new SoundManager();

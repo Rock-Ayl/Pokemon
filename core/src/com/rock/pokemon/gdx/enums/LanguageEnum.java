@@ -5,27 +5,32 @@ package com.rock.pokemon.gdx.enums;
  */
 public enum LanguageEnum {
 
-    SIMPLIFIED_CHINESE("Simplified Chinese", "简体中文(默认)"),
-    ENGLISH("English", "英语"),
+    SIMPLIFIED_CHINESE("Simplified Chinese", "zh", "简体中文(默认)"),
+    ENGLISH("English", "en", "英语"),
 
     ;
 
     //编码
     private String code;
+    //路径
+    private String path;
     //中文
     private String zh;
 
-    LanguageEnum(String code, String zh) {
+    LanguageEnum(String code, String path, String zh) {
         this.code = code;
+        this.path = path;
         this.zh = zh;
     }
 
-    public String getCode() {
-        return code;
-    }
+    /**
+     * 以下为 get set 方法
+     *
+     * @return
+     */
 
-    public String getZh() {
-        return zh;
+    public String getPath() {
+        return path;
     }
 
 }

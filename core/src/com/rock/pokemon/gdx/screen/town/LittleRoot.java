@@ -49,6 +49,9 @@ public class LittleRoot implements Screen {
     //主表格
     private Table table;
 
+    //对话框
+    private DialogueBox dialogueBox;
+
     /**
      * 控制器
      */
@@ -136,15 +139,16 @@ public class LittleRoot implements Screen {
         stage.addActor(table);
 
         //初始化一个对话框
-        DialogueBox dialogueBox = new DialogueBox(this.game.getSkin());
+        this.dialogueBox = new DialogueBox(this.game.getSkin());
         //随便根据编号弄一个文本
-        dialogueBox.setText(this.game.getTextMap().get(2));
+        this.dialogueBox.setText(this.game.getTextMap().get(2));
         //是否绘制这个对框框,默认是
-        dialogueBox.setVisible(true);
+        this.dialogueBox.setVisible(true);
         //将对话框放在主表格的下方
-        this.table.add(dialogueBox)
-                .expand()
-                .align(Align.bottom);
+        this.table.add(this.dialogueBox)
+                .align(Align.bottom)
+                .space(8f)
+                .row();
 
     }
 
@@ -207,6 +211,13 @@ public class LittleRoot implements Screen {
          * 渲染UI
          */
 
+        //todo 修正对话框的位置,先这么做吧,这么做肯定是不对的
+        this.dialogueBox.setPosition(
+                (this.adventurer.getWorldX() - 7) * this.game.getScaledTileSize(),
+                (this.adventurer.getWorldY() - 4) * this.game.getScaledTileSize()
+        );
+
+        //更新舞台帧
         this.stage.act(delta);
         this.stage.draw();
 
@@ -219,7 +230,7 @@ public class LittleRoot implements Screen {
         this.game.updateWindows(width, height);
 
         //更新当前屏幕宽高和更新相机
-        this.stage.getViewport().update(width, height);
+        this.stage.getViewport().update(width, height, true);
 
     }
 

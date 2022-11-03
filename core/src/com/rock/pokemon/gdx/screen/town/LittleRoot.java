@@ -129,7 +129,8 @@ public class LittleRoot implements Screen {
         table = new Table();
         //该设置仅用于主表格
         table.setFillParent(true);
-        //开启debug table.setDebug(true);
+        //开启debug,默认不开启
+        table.setDebug(false);
 
         //舞台加入主表格
         stage.addActor(table);
@@ -138,6 +139,8 @@ public class LittleRoot implements Screen {
         DialogueBox dialogueBox = new DialogueBox(this.game.getSkin());
         //随便根据编号弄一个文本
         dialogueBox.setText(this.game.getTextMap().get(2));
+        //是否绘制这个对框框,默认是
+        dialogueBox.setVisible(true);
         //将对话框放在主表格的下方
         this.table.add(dialogueBox)
                 .expand()

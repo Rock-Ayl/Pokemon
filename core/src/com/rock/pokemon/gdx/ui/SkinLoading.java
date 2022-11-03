@@ -38,19 +38,17 @@ public class SkinLoading {
          * 载入字体
          */
 
-        //载入字体
-        BitmapFont font = new BitmapFont(
+        //载入对框框字体
+        BitmapFont dialogueBoxFont = new BitmapFont(
                 Gdx.files.internal("assets/font/song/STSong.fnt"),
                 Gdx.files.internal("assets/font/song/STSong.png"),
                 false
         );
-        //字体组装至皮肤o
-        skin.add("font", font);
-        //初始化默认字体
+        //初始化Label样式
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        //设置
-        labelStyle.font = font;
-        //组装至皮肤默认
+        //设置字体
+        labelStyle.font = dialogueBoxFont;
+        //组装至默认皮肤
         skin.add("default", labelStyle);
 
         //返回皮肤

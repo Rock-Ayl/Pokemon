@@ -76,8 +76,8 @@ public class Pokemon extends Game {
         //初始化皮肤
         this.skin = SkinLoading.initSkin(this.getAssetManager());
 
-        //使用皮肤中初始化的字体
-        this.font = this.skin.getFont("font");
+        //使用默认字体
+        this.font = new BitmapFont();
         //设置字体缩放
         this.font.getData().setScale(1.5F);
 

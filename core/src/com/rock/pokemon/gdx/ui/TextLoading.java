@@ -1,7 +1,14 @@
 package com.rock.pokemon.gdx.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.rock.pokemon.gdx.enums.LanguageEnum;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,8 +23,38 @@ public class TextLoading {
      * @return
      */
     public static Map<Integer, String> initText(LanguageEnum languageEnum) {
-
-        return null;
+        //初始化结果
+        Map<Integer, String> result = new HashMap<>();
+        //获取对应语言文本
+        File file = new File("assets/text/" + languageEnum.getPath() + "/Text.txt");
+        try {
+            //读取行列表
+            List<String> stringList = FileUtils.readLines(file, "UTF-8");
+            //循环
+            for (String sentence : stringList) {
+                //判空
+                if (StringUtils.isBlank(sentence)) {
+                    //本轮过
+                    continue;
+                }
+                //根据=切割
+                String[] arr = sentence.split("=");
+                //如果不符合规则
+                if (arr.length != 2) {
+                    //本轮过
+                    continue;
+                }
+                //组装编号及文本
+                result.put(Integer.valueOf(arr[0]), arr[1]);
+            }
+        } catch (IOException e) {
+            //日志
+            Gdx.app.error("LoadingError", "载入文本失败", e);
+            //直接返回
+            return result;
+        }
+        //返回
+        return result;
     }
 
 }

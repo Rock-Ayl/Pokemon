@@ -24,8 +24,10 @@ public class DialogueBox extends Table {
         this.setBackground("dialogueBox");
         //初始化label
         this.textLabel = new Label("", skin);
-        //将文本组装至文本框中,左对齐,空5F
-        this.add(this.textLabel);
+        //将文本组装至文本框中
+        this.add(this.textLabel)
+                //均匀分布该label
+                .expand();
     }
 
     /**

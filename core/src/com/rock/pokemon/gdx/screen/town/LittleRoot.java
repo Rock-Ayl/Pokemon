@@ -139,8 +139,13 @@ public class LittleRoot implements Screen {
         this.dialogueBox.setVisible(true);
         //将对话框放在主表格的下方
         this.table.add(this.dialogueBox)
+                //横坐标成长到最大(拉伸)
+                .growX()
+                //向下对齐
                 .align(Align.bottom)
-                .space(8f)
+                //空一点
+                .space(this.game.getScaledTileSize() / 4)
+                //换行
                 .row();
 
     }

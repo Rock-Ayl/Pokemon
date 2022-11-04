@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.ui;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 
 /**
  * 对话框实体
@@ -27,7 +28,10 @@ public class DialogueBox extends Table {
         //将文本组装至文本框中
         this.add(this.textLabel)
                 //均匀分布该label
-                .expand();
+                .expand()
+                //左对齐
+                .align(Align.left)
+                .pad(8F);
     }
 
     /**

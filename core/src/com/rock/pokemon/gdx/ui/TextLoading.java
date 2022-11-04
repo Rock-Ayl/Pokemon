@@ -44,8 +44,10 @@ public class TextLoading {
                     //本轮过
                     continue;
                 }
+                //获取文本并替换里面的换行
+                String text = arr[1].replaceAll("\\\\n", "\n");
                 //组装编号及文本
-                result.put(Integer.valueOf(arr[0]), arr[1]);
+                result.put(Integer.valueOf(arr[0]), text);
             }
         } catch (IOException e) {
             //日志

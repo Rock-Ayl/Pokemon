@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
@@ -37,8 +37,8 @@ public class LittleRoot implements Screen {
      * UI
      */
 
-    //屏幕,我们这里使用[ExtendViewport],让相机等比缩放,同时拖动屏幕也不会有问题
-    private ExtendViewport viewport;
+    //屏幕,我们这里使用[FitViewport],让相机等比缩放
+    private FitViewport viewport;
 
     //舞台
     private Stage stage;
@@ -116,8 +116,8 @@ public class LittleRoot implements Screen {
          * UI
          */
 
-        //初始化[ExtendViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
-        this.viewport = new ExtendViewport(this.game.getWindowWidth(), this.game.getWindowHeight());
+        //初始化[FitViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
+        this.viewport = new FitViewport(this.game.getWindowWidth(), this.game.getWindowHeight());
 
         //初始化舞台
         this.stage = new Stage(new ScreenViewport());

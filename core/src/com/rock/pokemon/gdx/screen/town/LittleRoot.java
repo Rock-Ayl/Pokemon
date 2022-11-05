@@ -178,8 +178,8 @@ public class LittleRoot implements Screen {
         this.viewport.getCamera().position.x = (this.adventurer.getWorldX() + 0.5F) * this.game.getScaledTileSize();
         this.viewport.getCamera().position.y = (this.adventurer.getWorldY() + 0.5F) * this.game.getScaledTileSize();
 
-        //更新相机
-        this.viewport.getCamera().update();
+        //更新当前屏幕的宽高,如果不这么做,当拖拽窗口时,将会拉伸屏幕,破坏屏幕比例,顺道更新相机了
+        this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         //渲染时使用相机
         this.game.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);

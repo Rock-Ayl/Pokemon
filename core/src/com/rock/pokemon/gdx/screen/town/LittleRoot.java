@@ -120,7 +120,7 @@ public class LittleRoot implements Screen {
         this.viewport = new FitViewport(this.game.getWindowWidth(), this.game.getWindowHeight());
 
         //初始化舞台
-        this.stage = new Stage(new ScreenViewport());
+        this.stage = new Stage(new FitViewport(this.game.getWindowWidth(), this.game.getWindowHeight()));
 
         //初始化主表格
         table = new Table();

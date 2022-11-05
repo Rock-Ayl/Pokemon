@@ -34,8 +34,8 @@ public class Settings {
      * 屏幕、地图、贴图
      */
 
-    //缩放倍率,游戏的任何等比缩放,都与其有关,目前固定为2,整数
-    public static float SCALE = 2F;
+    //缩放倍率,游戏的任何等比缩放,都与其有关,目前固定为3,整数
+    public static float SCALE = 3F;
     //地图/贴图/人物单个网格大小
     public final static float TILE_SIZE = 16F;
     //整体的比例

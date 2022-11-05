@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.rock.pokemon.gdx.common.Settings;
 
 /**
  * 对话框实体
@@ -30,7 +31,9 @@ public class DialogueBox extends Table {
                 //均匀分布该label
                 .expand()
                 //左对齐
-                .align(Align.left);
+                .align(Align.left)
+                //和周围间距
+                .pad(Settings.SCALE * 3);
     }
 
     /**

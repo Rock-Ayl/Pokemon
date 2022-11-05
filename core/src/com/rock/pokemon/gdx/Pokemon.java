@@ -23,19 +23,6 @@ import java.util.Map;
 public class Pokemon extends Game {
 
     /**
-     * 基础属性
-     */
-
-    //缩放倍率,游戏的任何等比缩放,都与其有关
-    private float scale = 3F;
-    //地图/贴图/人物单个网格大小
-    private final float tileSize = 16F;
-
-    //屏幕尺寸,GBA屏幕分辨率为 240 * 160 ,该比例固定,默认为GBA原生分辨率[1.5:1],但总体不会固定为这个比率,要看用户设置
-    private float windowWidth = 240;
-    private float windowHeight = 160;
-
-    /**
      * 基础实体
      */
 
@@ -118,101 +105,6 @@ public class Pokemon extends Game {
         this.batch.dispose();
         this.font.dispose();
         this.assetManager.dispose();
-    }
-
-    /**
-     * 根据当前屏幕尺寸更新窗口配置(本质上是根据[屏幕尺寸宽]更新[缩放倍率])
-     *
-     * @param width
-     * @param height
-     */
-    public void updateWindows(int width, int height) {
-
-        //屏幕尺寸变更为该尺寸
-        this.windowWidth = width;
-        this.windowHeight = height;
-
-    }
-
-    /**
-     * 缩放倍率
-     *
-     * @return
-     */
-    public float getScale() {
-        return scale;
-    }
-
-    /**
-     * 设置缩放比率
-     *
-     * @param scale 传入设置
-     */
-    public void setScale(float scale) {
-        this.scale = scale;
-    }
-
-    /**
-     * 获取1坐标数值的地图块或人物的真实的大小,该数值随着缩放倍率变动
-     *
-     * @return
-     */
-    public float getScaledTileSize() {
-        return tileSize * scale;
-    }
-
-    /**
-     * 获取最小的屏幕尺寸宽,强制为int
-     *
-     * @return
-     */
-    public int getMinWindowWidth() {
-        return (int) windowWidth * 2;
-    }
-
-    /**
-     * 获取最小的屏幕尺寸高,强制为int
-     *
-     * @return
-     */
-    public int getMinWindowHeight() {
-        return (int) windowHeight * 2;
-    }
-
-    /**
-     * 屏幕尺寸宽,强制为int
-     *
-     * @return
-     */
-    public int getWindowWidthInt() {
-        return (int) (windowWidth * scale);
-    }
-
-    /**
-     * 屏幕尺寸高,强制为int
-     *
-     * @return
-     */
-    public int getWindowHeightInt() {
-        return (int) (windowHeight * scale);
-    }
-
-    /**
-     * 屏幕尺寸宽
-     *
-     * @return
-     */
-    public float getWindowWidth() {
-        return windowWidth * scale;
-    }
-
-    /**
-     * 屏幕尺寸高
-     *
-     * @return
-     */
-    public float getWindowHeight() {
-        return windowHeight * scale;
     }
 
     /**

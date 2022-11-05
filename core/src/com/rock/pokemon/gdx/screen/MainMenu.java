@@ -43,7 +43,7 @@ public class MainMenu implements Screen {
 
         //简单的假主菜单
         this.game.getBatch().begin();
-        this.game.getFont().draw(this.game.getBatch(), "New Game \nSetting", this.game.getWindowWidth() / 2, this.game.getWindowHeight() / 2);
+        this.game.getFont().draw(this.game.getBatch(), "New Game \nSetting", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         this.game.getBatch().end();
 
         //如果点击屏幕 或 按回车

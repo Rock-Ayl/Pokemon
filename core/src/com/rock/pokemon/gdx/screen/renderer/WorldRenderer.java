@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.screen.renderer;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
@@ -115,11 +116,11 @@ public class WorldRenderer {
                 //图片
                 ySortable.getSprite(),
                 //当前坐标 * 当前网格倍率
-                ySortable.getWorldX() * pokemon.getScaledTileSize(),
-                ySortable.getWorldY() * pokemon.getScaledTileSize(),
+                ySortable.getWorldX() * Settings.SCALE_TILE_SIZE,
+                ySortable.getWorldY() * Settings.SCALE_TILE_SIZE,
                 //人物的宽高 * 当前网格倍率
-                ySortable.getWidth() * pokemon.getScaledTileSize(),
-                ySortable.getHeight() * pokemon.getScaledTileSize()
+                ySortable.getWidth() * Settings.SCALE_TILE_SIZE,
+                ySortable.getHeight() * Settings.SCALE_TILE_SIZE
         );
     }
 

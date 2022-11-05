@@ -30,4 +30,18 @@ public class Settings {
     public static final int FPS_144 = 144;
     public static final int FPS_200 = 200;
 
+    /**
+     * 屏幕、地图、贴图
+     */
+
+    //缩放倍率,游戏的任何等比缩放,都与其有关
+    public static float SCALE = 2F;
+    //地图/贴图/人物单个网格大小
+    public final static float TILE_SIZE = 16F;
+    //整体的比例
+    public final static float SCALE_TILE_SIZE = SCALE * TILE_SIZE;
+    //屏幕宽高
+    public final static int width = (int) (240 * SCALE);
+    public final static int height = (int) (160 * SCALE);
+
 }

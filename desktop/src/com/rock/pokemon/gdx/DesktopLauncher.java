@@ -11,8 +11,6 @@ import com.rock.pokemon.gdx.common.Settings;
 public class DesktopLauncher {
 
     public static void main(String[] arg) {
-        //初始化游戏对象
-        Pokemon pokemon = new Pokemon();
         //初始化配置
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         //设置FPS
@@ -25,11 +23,11 @@ public class DesktopLauncher {
         //是否可以调整窗口大小
         config.setResizable(true);
         //窗口尺寸,初始化时肯定是整数
-        config.setWindowedMode(pokemon.getWindowWidthInt(), pokemon.getWindowHeightInt());
+        config.setWindowedMode(Settings.width, Settings.height);
         //设置屏幕尺寸最大最小值,-1为不限制
-        config.setWindowSizeLimits(pokemon.getMinWindowWidth(), pokemon.getMinWindowHeight(), -1, -1);
+        config.setWindowSizeLimits(Settings.width, Settings.height, -1, -1);
         //初始化
-        new Lwjgl3Application(pokemon, config);
+        new Lwjgl3Application(new Pokemon(), config);
     }
 
 }

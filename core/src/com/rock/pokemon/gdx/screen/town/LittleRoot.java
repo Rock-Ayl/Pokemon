@@ -9,9 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
+import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.InputController;
 import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.map.World;
@@ -117,10 +117,10 @@ public class LittleRoot implements Screen {
          */
 
         //初始化[FitViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
-        this.viewport = new FitViewport(this.game.getWindowWidth(), this.game.getWindowHeight());
+        this.viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         //初始化舞台
-        this.stage = new Stage(new FitViewport(this.game.getWindowWidth(), this.game.getWindowHeight()));
+        this.stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
         //初始化主表格
         table = new Table();
@@ -128,6 +128,8 @@ public class LittleRoot implements Screen {
         table.setFillParent(true);
         //开启debug,默认不开启
         table.setDebug(false);
+        //是否显示本UI
+        table.setVisible(true);
 
         //舞台加入主表格
         stage.addActor(table);
@@ -145,8 +147,6 @@ public class LittleRoot implements Screen {
                 .growX()
                 //向下对齐
                 .align(Align.bottom)
-                //空一点
-                .space(this.game.getScaledTileSize() / 4)
         ;
 
     }
@@ -175,8 +175,8 @@ public class LittleRoot implements Screen {
          */
 
         //每帧根据主角坐标,更新相机坐标
-        this.viewport.getCamera().position.x = (this.adventurer.getWorldX() + 0.5F) * this.game.getScaledTileSize();
-        this.viewport.getCamera().position.y = (this.adventurer.getWorldY() + 0.5F) * this.game.getScaledTileSize();
+        this.viewport.getCamera().position.x = (this.adventurer.getWorldX() + 0.5F) * Settings.SCALE_TILE_SIZE;
+        this.viewport.getCamera().position.y = (this.adventurer.getWorldY() + 0.5F) * Settings.SCALE_TILE_SIZE;
 
         //更新当前屏幕的宽高,如果不这么做,当拖拽窗口时,将会拉伸屏幕,破坏屏幕比例,顺道更新相机了
         this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -218,9 +218,6 @@ public class LittleRoot implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
-        //修改当前游戏屏幕尺寸
-        this.game.updateWindows(width, height);
 
         //更新舞台
         this.stage.getViewport().update(width, height, true);

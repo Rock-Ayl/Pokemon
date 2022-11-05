@@ -30,8 +30,7 @@ public class DialogueBox extends Table {
                 //均匀分布该label
                 .expand()
                 //左对齐
-                .align(Align.left)
-                .pad(8F);
+                .align(Align.left);
     }
 
     /**

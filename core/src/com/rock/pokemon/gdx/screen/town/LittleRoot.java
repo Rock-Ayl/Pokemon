@@ -41,10 +41,10 @@ public class LittleRoot implements Screen {
     private FitViewport viewport;
 
     //舞台
-    private Stage stage;
+    private Stage uiStage;
 
     //主表格
-    private Table table;
+    private Table rootTable;
 
     //对话框
     private DialogueBox dialogueBox;
@@ -120,19 +120,19 @@ public class LittleRoot implements Screen {
         this.viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         //初始化舞台
-        this.stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+        this.uiStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
         //初始化主表格
-        table = new Table();
+        rootTable = new Table();
         //该设置仅用于主表格
-        table.setFillParent(true);
+        rootTable.setFillParent(true);
         //开启debug,默认不开启
-        table.setDebug(false);
+        rootTable.setDebug(false);
         //是否显示本UI
-        table.setVisible(true);
+        rootTable.setVisible(true);
 
         //舞台加入主表格
-        stage.addActor(table);
+        uiStage.addActor(rootTable);
 
         //初始化一个对话框
         this.dialogueBox = new DialogueBox(this.game.getSkin());
@@ -141,7 +141,7 @@ public class LittleRoot implements Screen {
         //是否绘制这个对框框,默认是
         this.dialogueBox.setVisible(true);
         //将对话框放在主表格的下方
-        this.table.add(this.dialogueBox)
+        this.rootTable.add(this.dialogueBox)
                 .expand()
                 //横坐标成长到最大(拉伸)
                 .growX()
@@ -217,8 +217,8 @@ public class LittleRoot implements Screen {
          */
 
         //更新舞台帧
-        this.stage.act(delta);
-        this.stage.draw();
+        this.uiStage.act(delta);
+        this.uiStage.draw();
 
     }
 
@@ -226,7 +226,7 @@ public class LittleRoot implements Screen {
     public void resize(int width, int height) {
 
         //更新舞台
-        this.stage.getViewport().update(width, height, true);
+        this.uiStage.getViewport().update(width, height, true);
 
         //更新屏幕
         this.viewport.update(width, height);
@@ -251,7 +251,7 @@ public class LittleRoot implements Screen {
     @Override
     public void dispose() {
         this.music.dispose();
-        this.stage.dispose();
+        this.uiStage.dispose();
     }
 
 }

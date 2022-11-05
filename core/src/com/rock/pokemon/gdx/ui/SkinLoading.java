@@ -45,8 +45,8 @@ public class SkinLoading {
 
         //载入对框框字体
         BitmapFont dialogueBoxFont = new BitmapFont(
-                Gdx.files.internal("assets/font/song/黑体.fnt"),
-                Gdx.files.internal("assets/font/song/黑体.png"),
+                Gdx.files.internal("assets/font/black/黑体.fnt"),
+                Gdx.files.internal("assets/font/black/黑体.png"),
                 false
         );
         //初始化Label样式

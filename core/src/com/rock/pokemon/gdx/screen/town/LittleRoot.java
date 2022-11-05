@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.controller.InputController;
@@ -119,7 +120,7 @@ public class LittleRoot implements Screen {
         this.viewport = new ExtendViewport(this.game.getWindowWidth(), this.game.getWindowHeight());
 
         //初始化舞台
-        this.stage = new Stage(this.viewport);
+        this.stage = new Stage(new ScreenViewport());
 
         //初始化主表格
         table = new Table();
@@ -139,14 +140,14 @@ public class LittleRoot implements Screen {
         this.dialogueBox.setVisible(true);
         //将对话框放在主表格的下方
         this.table.add(this.dialogueBox)
+                .expand()
                 //横坐标成长到最大(拉伸)
                 .growX()
                 //向下对齐
                 .align(Align.bottom)
                 //空一点
                 .space(this.game.getScaledTileSize() / 4)
-                //换行
-                .row();
+        ;
 
     }
 
@@ -209,12 +210,6 @@ public class LittleRoot implements Screen {
          * 渲染UI
          */
 
-        //todo 修正对话框的位置,先这么做吧,这么做肯定是不对的
-        this.dialogueBox.setPosition(
-                (this.adventurer.getWorldX() - 7) * this.game.getScaledTileSize(),
-                (this.adventurer.getWorldY() - 4) * this.game.getScaledTileSize()
-        );
-
         //更新舞台帧
         this.stage.act(delta);
         this.stage.draw();
@@ -227,8 +222,11 @@ public class LittleRoot implements Screen {
         //修改当前游戏屏幕尺寸
         this.game.updateWindows(width, height);
 
-        //更新当前屏幕宽高和更新相机
+        //更新舞台
         this.stage.getViewport().update(width, height, true);
+
+        //更新屏幕
+        this.viewport.update(width, height);
 
     }
 

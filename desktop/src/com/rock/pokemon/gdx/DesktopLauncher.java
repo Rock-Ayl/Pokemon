@@ -23,9 +23,9 @@ public class DesktopLauncher {
         //是否可以调整窗口大小
         config.setResizable(true);
         //窗口尺寸,初始化时肯定是整数
-        config.setWindowedMode(Settings.width, Settings.height);
+        config.setWindowedMode(Settings.WIDTH, Settings.HEIGHT);
         //设置屏幕尺寸最大最小值,-1为不限制
-        config.setWindowSizeLimits(Settings.width, Settings.height, -1, -1);
+        config.setWindowSizeLimits(Settings.WIDTH, Settings.HEIGHT, -1, -1);
         //初始化
         new Lwjgl3Application(new Pokemon(), config);
     }

@@ -41,7 +41,7 @@ public class Settings {
     //整体的比例
     public final static float SCALE_TILE_SIZE = SCALE * TILE_SIZE;
     //屏幕宽高
-    public final static int width = (int) (240 * SCALE);
-    public final static int height = (int) (160 * SCALE);
+    public final static int WIDTH = (int) (240 * SCALE);
+    public final static int HEIGHT = (int) (160 * SCALE);
 
 }

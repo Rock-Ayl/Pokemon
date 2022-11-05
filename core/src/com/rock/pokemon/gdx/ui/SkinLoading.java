@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.rock.pokemon.gdx.common.Settings;
 
 /**
  * 皮肤载入
@@ -31,7 +32,11 @@ public class SkinLoading {
         //获取ui资源
         TextureAtlas uiAtlas = assetManager.get("assets/packed/image/ui/textures.atlas");
 
+        //获取对话框
         NinePatch buttonSquareBlue = new NinePatch(uiAtlas.findRegion("dialogue_box"), 10, 10, 5, 5);
+        //设置该图片的宽高比
+        buttonSquareBlue.scale(Settings.SCALE, Settings.SCALE);
+        //组装至皮肤
         skin.add("dialogueBox", buttonSquareBlue);
 
         /**

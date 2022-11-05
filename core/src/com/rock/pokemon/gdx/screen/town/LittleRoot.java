@@ -145,6 +145,8 @@ public class LittleRoot implements Screen {
                 .expand()
                 //横坐标成长到最大(拉伸)
                 .growX()
+                //高大概是两格
+                .height(Settings.SCALE_TILE_SIZE * 2.5F)
                 //向下对齐
                 .align(Align.bottom)
                 //和边界的间隙,左右小点,下面大点

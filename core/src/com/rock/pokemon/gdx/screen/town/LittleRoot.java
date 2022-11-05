@@ -147,6 +147,10 @@ public class LittleRoot implements Screen {
                 .growX()
                 //向下对齐
                 .align(Align.bottom)
+                //和边界的间隙,左右小点,下面大点
+                .padLeft(Settings.SCALE)
+                .padRight(Settings.SCALE)
+                .padBottom(Settings.SCALE * 3)
         ;
 
     }

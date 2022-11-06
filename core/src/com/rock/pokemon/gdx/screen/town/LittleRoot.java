@@ -218,6 +218,8 @@ public class LittleRoot implements Screen {
 
         //更新舞台帧
         this.uiStage.act(delta);
+
+        //渲染整个舞台
         this.uiStage.draw();
 
     }

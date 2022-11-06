@@ -136,8 +136,8 @@ public class LittleRoot implements Screen {
 
         //初始化一个对话框
         this.dialogueBox = new DialogueBox(this.game.getSkin());
-        //随便根据编号弄一个文本
-        this.dialogueBox.setText(this.game.getTextMap().get(5));
+        //随便根据编号弄一个文本,组装到对话框播放动画
+        this.dialogueBox.animateText(this.game.getTextMap().get(4));
         //是否绘制这个对框框,默认是
         this.dialogueBox.setVisible(true);
         //将对话框放在主表格的下方

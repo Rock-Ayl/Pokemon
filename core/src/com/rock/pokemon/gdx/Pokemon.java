@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.LanguageEnum;
 import com.rock.pokemon.gdx.model.SoundManager;
 import com.rock.pokemon.gdx.screen.MainMenu;
@@ -29,6 +30,12 @@ public class Pokemon extends Game {
     //渲染器
     private SpriteBatch batch;
 
+    //资源管理器
+    private AssetManager assetManager;
+
+    //音效管理器
+    private SoundManager soundManager;
+
     //皮肤
     private Skin skin;
 
@@ -37,12 +44,6 @@ public class Pokemon extends Game {
 
     //文本map[编号,文本]
     private Map<Integer, String> textMap;
-
-    //资源管理器
-    private AssetManager assetManager;
-
-    //音效管理器
-    private SoundManager soundManager;
 
     /**
      * 初始化
@@ -59,19 +60,19 @@ public class Pokemon extends Game {
         //初始化资源管理器,并载入资源
         this.assetManager = AssetManagerLoading.initAssetManager();
 
+        //初始化通用音效
+        this.soundManager = new SoundManager();
+
         //初始化皮肤,并载入资源
         this.skin = SkinLoading.initSkin(this.getAssetManager());
 
         //使用默认字体
         this.font = new BitmapFont();
         //设置字体缩放
-        this.font.getData().setScale(1.5F);
+        this.font.getData().setScale(Settings.SCALE);
 
         //根据语言,载入文本,默认使用中文吧
         this.textMap = TextLoading.initText(LanguageEnum.SIMPLIFIED_CHINESE);
-
-        //初始化通用音效
-        this.soundManager = new SoundManager();
 
         /**
          * 场景

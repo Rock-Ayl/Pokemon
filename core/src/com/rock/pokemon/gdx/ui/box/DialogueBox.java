@@ -57,10 +57,10 @@ public class DialogueBox extends Table {
     public DialogueBox(Skin skin) {
         //初始化父级
         super(skin);
-        //使用从皮肤中使用背景
-        this.setBackground("dialogueBox");
-        //初始化[label],并从皮肤中获取对话框样式的皮肤,并使用
-        this.textLabel = new Label("", skin, Settings.STYLE_DIALOGUE_BOX_LABEL);
+        //使用对话框本身的背景图片
+        this.setBackground(Settings.UI_IMAGE_DIALOGUE_BOX);
+        //初始化[label],并从皮肤中获取[对话框][样式]的皮肤,并使用
+        this.textLabel = new Label("\n", skin, Settings.STYLE_DIALOGUE_BOX_LABEL);
         //将文本组装至文本框中
         this.add(this.textLabel)
                 //均匀分布该label

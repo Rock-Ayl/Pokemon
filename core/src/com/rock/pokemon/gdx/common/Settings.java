@@ -45,6 +45,13 @@ public class Settings {
     public final static int HEIGHT = (int) (160 * SCALE);
 
     /**
+     * UI图片皮肤key(ui image skin key)
+     */
+
+    //对话框-图片-key
+    public final static String UI_IMAGE_DIALOGUE_BOX = "dialogueBox";
+
+    /**
      * 皮肤样式名key(Skin style name key)
      */
 

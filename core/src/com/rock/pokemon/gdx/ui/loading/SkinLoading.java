@@ -37,7 +37,7 @@ public class SkinLoading {
         //设置该图片的宽高比
         buttonSquareBlue.scale(Settings.SCALE, Settings.SCALE);
         //组装至皮肤
-        skin.add("dialogueBox", buttonSquareBlue);
+        skin.add(Settings.UI_IMAGE_DIALOGUE_BOX, buttonSquareBlue);
 
         /**
          * 载入样式

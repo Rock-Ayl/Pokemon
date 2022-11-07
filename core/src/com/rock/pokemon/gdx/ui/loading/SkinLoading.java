@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.ui;
+package com.rock.pokemon.gdx.ui.loading;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;

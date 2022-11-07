@@ -17,7 +17,7 @@ import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
-import com.rock.pokemon.gdx.ui.DialogueBox;
+import com.rock.pokemon.gdx.ui.box.DialogueBox;
 
 /**
  * 未白镇(开局城镇)

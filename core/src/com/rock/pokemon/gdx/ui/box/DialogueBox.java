@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.ui;
+package com.rock.pokemon.gdx.ui.box;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;

@@ -4,13 +4,13 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rock.pokemon.gdx.enums.LanguageEnum;
 import com.rock.pokemon.gdx.model.SoundManager;
 import com.rock.pokemon.gdx.screen.MainMenu;
-import com.rock.pokemon.gdx.ui.SkinLoading;
-import com.rock.pokemon.gdx.ui.TextLoading;
+import com.rock.pokemon.gdx.ui.loading.AssetManagerLoading;
+import com.rock.pokemon.gdx.ui.loading.SkinLoading;
+import com.rock.pokemon.gdx.ui.loading.TextLoading;
 
 import java.util.Map;
 
@@ -56,18 +56,10 @@ public class Pokemon extends Game {
         //初始化一个SpriteBatch,游戏中只有一个,直到游戏结束后销毁
         this.batch = new SpriteBatch();
 
-        //初始化资源管理器
-        this.assetManager = new AssetManager();
-        //加载已打包的各种资源
-        this.assetManager.load("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
-        this.assetManager.load("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
-        this.assetManager.load("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
-        this.assetManager.load("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
-        this.assetManager.load("assets/packed/image/ui/textures.atlas", TextureAtlas.class);
-        //加载资源完成
-        this.assetManager.finishLoading();
+        //初始化资源管理器,并载入资源
+        this.assetManager = AssetManagerLoading.initAssetManager();
 
-        //初始化皮肤
+        //初始化皮肤,并载入资源
         this.skin = SkinLoading.initSkin(this.getAssetManager());
 
         //使用默认字体

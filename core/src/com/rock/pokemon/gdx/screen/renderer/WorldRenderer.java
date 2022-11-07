@@ -1,6 +1,5 @@
 package com.rock.pokemon.gdx.screen.renderer;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.YSortable;
@@ -20,9 +19,6 @@ import java.util.List;
  */
 public class WorldRenderer {
 
-    //资源管理器
-    private AssetManager assetManager;
-
     //一个完整的世界实体
     private World world;
 
@@ -32,11 +28,9 @@ public class WorldRenderer {
     /**
      * 初始化方法,要渲染,得有世界和图片资源吧.
      *
-     * @param assetManager 资源管理器
-     * @param world        世界实体
+     * @param world 世界实体
      */
-    public WorldRenderer(AssetManager assetManager, World world) {
-        this.assetManager = assetManager;
+    public WorldRenderer(World world) {
         this.world = world;
         this.sortList = new ArrayList<>();
     }

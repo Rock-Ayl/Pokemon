@@ -40,21 +40,19 @@ public class SkinLoading {
         skin.add("dialogueBox", buttonSquareBlue);
 
         /**
-         * 载入字体
+         * 载入样式
          */
 
-        //载入对框框字体
-        BitmapFont dialogueBoxFont = new BitmapFont(
+        //初始化[对话框][Label]样式
+        Label.LabelStyle dialogueBoxLabelStyle = new Label.LabelStyle();
+        //载入对话框字体,并设置字体
+        dialogueBoxLabelStyle.font = new BitmapFont(
                 Gdx.files.internal("assets/font/black/黑体.fnt"),
                 Gdx.files.internal("assets/font/black/黑体.png"),
                 false
         );
-        //初始化Label样式
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        //设置字体
-        labelStyle.font = dialogueBoxFont;
-        //组装至默认皮肤
-        skin.add("default", labelStyle);
+        //组装[对话框][Label]样式至皮肤中
+        skin.add(Settings.STYLE_DIALOGUE_BOX_LABEL, dialogueBoxLabelStyle);
 
         //返回皮肤
         return skin;

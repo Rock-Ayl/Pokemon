@@ -24,13 +24,13 @@ public class DialogueBox extends Table {
     //对话框当前动画总时长(会按照字数计算)
     private float animationTotalTime = 0F;
 
-    //一个字的动画市场
-    private float TIME_PER_CHARACTER = 0.05F;
+    //一个char的动画时长
+    private static final float TIME_PER_CHARACTER = 0.05F;
 
     //当前对话框状态,默认空闲
     private STATE state = STATE.IDLE;
 
-    //对惶恐状态枚举
+    //对话框状态枚举
     private enum STATE {
 
         //动画中
@@ -59,8 +59,8 @@ public class DialogueBox extends Table {
         super(skin);
         //使用从皮肤中使用背景
         this.setBackground("dialogueBox");
-        //初始化label
-        this.textLabel = new Label("", skin);
+        //初始化[label],并从皮肤中获取对话框样式的皮肤,并使用
+        this.textLabel = new Label("", skin, Settings.STYLE_DIALOGUE_BOX_LABEL);
         //将文本组装至文本框中
         this.add(this.textLabel)
                 //均匀分布该label
@@ -80,11 +80,11 @@ public class DialogueBox extends Table {
         //记录目标文本
         this.targetText = text;
         //计算并初始化本次动画总时长
-        animationTotalTime = text.length() * TIME_PER_CHARACTER;
+        this.animationTotalTime = text.length() * TIME_PER_CHARACTER;
         //更改对话框状态
-        state = STATE.ANIMATING;
+        this.state = STATE.ANIMATING;
         //初始化当前动画时长
-        animTimer = 0F;
+        this.animTimer = 0F;
     }
 
     /**
@@ -95,7 +95,7 @@ public class DialogueBox extends Table {
     private void setText(String text) {
         //判断一个文本是否包含换行,如果不包含
         if (text.contains("\n") == false) {
-            //我们要给它加一个换行(始终保持最少两行,因为绿宝石就是这么设置的)
+            //我们要给它加一个换行(这样会始终保持最少两行,让我们显示保持2行,模仿绿宝石)
             text += "\n";
         }
         //设置文本
@@ -109,23 +109,32 @@ public class DialogueBox extends Table {
      */
     @Override
     public void act(float delta) {
-        //如果是动画状态
-        if (state == STATE.ANIMATING) {
-            //叠加动画总市场
-            animTimer += delta;
-            //如果动画时长过了总时间了
-            if (animTimer >= animationTotalTime) {
-                //更改状态
-                state = STATE.IDLE;
-                //变更为总时间
-                animTimer = animationTotalTime;
-            }
-            //计算出当前动画时间该播放的文本数量/坐标(转化为整数)
-            int charactersToDisplay = (int) ((animTimer / animationTotalTime) * targetText.length());
-            //实际对话文本
-            String actuallyDisplayedText = targetText.substring(0, charactersToDisplay);
-            //设置当前文本
-            setText(actuallyDisplayedText);
+        //根据状态处理
+        switch (state) {
+            //动画中
+            case ANIMATING:
+                //叠加动画总市场
+                animTimer += delta;
+                //如果动画时长过了总时间了
+                if (animTimer >= animationTotalTime) {
+                    //更改状态
+                    state = STATE.IDLE;
+                    //变更为总时间
+                    animTimer = animationTotalTime;
+                }
+                //计算出当前动画时间该播放的文本数量/坐标(转化为整数)
+                int charactersToDisplay = (int) ((animTimer / animationTotalTime) * targetText.length());
+                //从总文本中切割出实际对话文本
+                String actuallyDisplayedText = targetText.substring(0, charactersToDisplay);
+                //设置实际对话文本
+                setText(actuallyDisplayedText);
+                //结束
+                break;
+            //空闲/其他
+            case IDLE:
+            default:
+                //结束
+                break;
         }
     }
 

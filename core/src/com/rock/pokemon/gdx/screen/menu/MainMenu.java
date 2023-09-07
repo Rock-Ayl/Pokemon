@@ -17,34 +17,41 @@ import com.rock.pokemon.gdx.screen.town.LittleRoot;
 public class MainMenu implements Screen {
 
     //游戏对象
-    private final Pokemon game;
+    private Pokemon game;
 
     /**
-     * 初始化主菜单
+     * 初始化/进入
      *
      * @param pokemon 游戏对象
      */
-    public MainMenu(final Pokemon pokemon) {
+    public MainMenu(Pokemon pokemon) {
         //记录游戏对象
         this.game = pokemon;
     }
 
-
-    @Override
-    public void show() {
-
-    }
-
+    /**
+     * 渲染
+     *
+     * @param delta
+     */
     @Override
     public void render(float delta) {
+
+        /**
+         * 渲染页面
+         */
 
         //黑幕
         ScreenUtils.clear(Color.BLACK);
 
-        //简单的假主菜单
+        //超级简单的主菜单
         this.game.getBatch().begin();
         this.game.getFont().draw(this.game.getBatch(), "New Game \nSetting", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         this.game.getBatch().end();
+
+        /**
+         * 控制逻辑
+         */
 
         //如果点击屏幕 或 按回车
         if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
@@ -53,6 +60,11 @@ public class MainMenu implements Screen {
             //销毁当前资源
             this.dispose();
         }
+
+    }
+
+    @Override
+    public void show() {
 
     }
 

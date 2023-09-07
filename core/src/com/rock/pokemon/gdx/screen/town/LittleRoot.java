@@ -157,13 +157,10 @@ public class LittleRoot implements Screen {
 
     @Override
     public void show() {
-
         //当显示画面时,立即播放音乐
         this.music.play();
-
         //当显示画面时,开始监控键盘控制
         Gdx.input.setInputProcessor(inputController);
-
     }
 
     /**
@@ -181,10 +178,8 @@ public class LittleRoot implements Screen {
         //每帧根据主角坐标,更新相机坐标
         this.viewport.getCamera().position.x = (this.adventurer.getWorldX() + 0.5F) * Settings.SCALE_TILE_SIZE;
         this.viewport.getCamera().position.y = (this.adventurer.getWorldY() + 0.5F) * Settings.SCALE_TILE_SIZE;
-
         //更新当前屏幕的宽高,如果不这么做,当拖拽窗口时,将会拉伸屏幕,破坏屏幕比例,顺道更新相机了
         this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
         //渲染时使用相机
         this.game.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
 
@@ -197,16 +192,12 @@ public class LittleRoot implements Screen {
 
         //每帧更新输入控制器
         this.inputController.update(delta);
-
         //每帧更新世界
         this.world.update(delta);
-
         //开始渲染 地图、人物
         this.game.getBatch().begin();
-
         //渲染整个世界
         this.worldRenderer.render(this.game);
-
         //结束渲染
         this.game.getBatch().end();
 
@@ -216,7 +207,6 @@ public class LittleRoot implements Screen {
 
         //更新舞台帧
         this.uiStage.act(delta);
-
         //渲染整个舞台
         this.uiStage.draw();
 
@@ -224,14 +214,18 @@ public class LittleRoot implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
         //更新舞台
         this.uiStage.getViewport().update(width, height, true);
-
         //更新屏幕
         this.viewport.update(width, height);
-
     }
+
+    @Override
+    public void dispose() {
+        this.music.dispose();
+        this.uiStage.dispose();
+    }
+
 
     @Override
     public void pause() {
@@ -246,12 +240,6 @@ public class LittleRoot implements Screen {
     @Override
     public void hide() {
 
-    }
-
-    @Override
-    public void dispose() {
-        this.music.dispose();
-        this.uiStage.dispose();
     }
 
 }

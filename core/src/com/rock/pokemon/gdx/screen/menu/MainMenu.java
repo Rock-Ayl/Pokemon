@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.screen;
+package com.rock.pokemon.gdx.screen.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

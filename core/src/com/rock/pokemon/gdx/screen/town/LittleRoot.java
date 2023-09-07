@@ -70,7 +70,7 @@ public class LittleRoot implements Screen {
     private Person adventurer;
 
     /**
-     * 初始化未白镇
+     * 初始化/进入未白镇
      *
      * @param pokemon 游戏对象
      */
@@ -152,9 +152,7 @@ public class LittleRoot implements Screen {
                 //和边界的间隙,左右小点,下面大点
                 .padLeft(Settings.SCALE)
                 .padRight(Settings.SCALE)
-                .padBottom(Settings.SCALE * 3)
-        ;
-
+                .padBottom(Settings.SCALE * 3);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.rock.pokemon.gdx.ui.loading;
 
 import com.badlogic.gdx.Gdx;
-import com.rock.pokemon.gdx.enums.LanguageEnum;
+import com.rock.pokemon.gdx.common.Settings;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,17 +16,16 @@ import java.util.Map;
 public class TextLoading {
 
     /**
-     * 根据语言枚举,载入全部文本
+     * 载入游戏全部文本
      *
-     * @param languageEnum 语言枚举
      * @return
      */
-    public static Map<Integer, String> initText(LanguageEnum languageEnum) {
+    public static Map<Integer, String> initText() {
         //初始化结果
         Map<Integer, String> result = new HashMap<>();
         try {
-            //获取对应语言文本
-            File file = new File("assets/text/" + languageEnum.getPath() + "/Text.txt");
+            //根据当前语言,获取对应语言文本
+            File file = new File("assets/text/" + Settings.LANG.getPath() + "/Text.txt");
             //读取行列表
             List<String> stringList = FileUtils.readLines(file, "UTF-8");
             //循环

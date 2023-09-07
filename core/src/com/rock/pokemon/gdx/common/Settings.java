@@ -19,7 +19,7 @@ public class Settings {
     //游戏版本
     public static final String VERSION = "0.0.7";
 
-    //todo 当前语言(暂时固定为中文)
+    //当前语言(暂时固定为中文)
     public static final LanguageEnum LANG = LanguageEnum.SIMPLIFIED_CHINESE;
 
     //是否使用垂直同步

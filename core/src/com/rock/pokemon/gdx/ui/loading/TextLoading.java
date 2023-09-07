@@ -6,7 +6,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +24,9 @@ public class TextLoading {
     public static Map<Integer, String> initText(LanguageEnum languageEnum) {
         //初始化结果
         Map<Integer, String> result = new HashMap<>();
-        //获取对应语言文本
-        File file = new File("assets/text/" + languageEnum.getPath() + "/Text.txt");
         try {
+            //获取对应语言文本
+            File file = new File("assets/text/" + languageEnum.getPath() + "/Text.txt");
             //读取行列表
             List<String> stringList = FileUtils.readLines(file, "UTF-8");
             //循环
@@ -49,11 +48,9 @@ public class TextLoading {
                 //组装编号及文本
                 result.put(Integer.valueOf(arr[0]), text);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             //日志
             Gdx.app.error("LoadingError", "载入文本失败", e);
-            //直接返回
-            return result;
         }
         //返回
         return result;

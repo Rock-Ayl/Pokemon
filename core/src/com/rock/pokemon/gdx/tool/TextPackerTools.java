@@ -99,10 +99,17 @@ public class TextPackerTools {
             //过
             return new ArrayList<>();
         }
+        //获取文件列表
+        File[] fileArr = dir.listFiles();
+        //如果没有文件
+        if (fileArr == null || fileArr.length < 1) {
+            //过
+            return new ArrayList<>();
+        }
         //初始化文件列表
         List<File> result = new ArrayList<>();
         //循环
-        for (File file : dir.listFiles()) {
+        for (File file : fileArr) {
             //如果是文件
             if (file.isFile()) {
                 //直接组装

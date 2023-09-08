@@ -13,9 +13,10 @@ public class FilePaths {
      * 文本
      */
 
-    //文本路径
+    //文本文件目录
     public static final String TEXT_PATH = "assets/text/";
-    //文本路径
+
+    //文本文件地址
     public static final String TEXT_FILE_PATH = "assets/text/%s/Text.txt";
 
     /**

@@ -14,8 +14,9 @@ public enum DirectionEnum {
 
     ;
 
-    //该方向每次移动坐标
-    private int dx, dy;
+    //该方向每次移动坐标值
+    private int dx;
+    private int dy;
 
     //该方向对应的输入按键编码(暂时用枚举)
     private int keycode;

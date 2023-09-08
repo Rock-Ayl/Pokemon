@@ -88,9 +88,9 @@ public class InputController extends InputAdapter {
         //如果释放方向键
         if (DIR_INPUT_KEY_LINKED_SET.contains(keycode)) {
             //关闭按键状态
-            buttonPress[keycode] = false;
+            this.buttonPress[keycode] = false;
             //重置持续时间
-            buttonTimeArr[keycode] = 0;
+            this.buttonTimeArr[keycode] = 0;
         }
         //默认返回
         return false;
@@ -102,29 +102,29 @@ public class InputController extends InputAdapter {
      * @param delta 帧时间,可能会用到,也可能不会,看具体逻辑,传入准没错
      */
     public void update(float delta) {
-
         //循环方向键判定
         for (Integer dirInputKey : DIR_INPUT_KEY_LINKED_SET) {
             //如果该方向按键没有被按着
-            if (buttonPress[dirInputKey] == false) {
+            if (this.buttonPress[dirInputKey] == false) {
                 //本轮过
                 continue;
             }
+            //对应方向
+            DirectionEnum directionEnum = DirectionEnum.parseByKeycode(dirInputKey);
             //无论如何,先尝试让脸换方向
-            this.person.changeDir(DirectionEnum.parseByKeycode(dirInputKey));
+            this.person.changeDir(directionEnum);
             //叠加其持续时间
-            buttonTimeArr[dirInputKey] += delta;
+            this.buttonTimeArr[dirInputKey] += delta;
             //如果按下方向键时间太短
-            if (buttonTimeArr[dirInputKey] <= NOT_MOVE_TIME) {
+            if (this.buttonTimeArr[dirInputKey] <= NOT_MOVE_TIME) {
                 //本轮过
                 continue;
             }
             //尝试移动判定
-            this.person.move(DirectionEnum.parseByKeycode(dirInputKey));
+            this.person.move(directionEnum);
             //结束方向键判定
             break;
         }
-
     }
 
 }

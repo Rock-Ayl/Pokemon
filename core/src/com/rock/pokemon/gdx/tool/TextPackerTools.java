@@ -1,6 +1,5 @@
 package com.rock.pokemon.gdx.tool;
 
-import com.rock.pokemon.gdx.common.FilePaths;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,9 +20,14 @@ import java.util.stream.Collectors;
  */
 public class TextPackerTools {
 
+    //文本打包目录
+    private static final String TEXT_PATH = "assets/text/";
+    //输出文件名
+    private static final String OUT_FILE_NAME = "out.txt";
+
     public static void main(String[] args) throws IOException {
         //文本目录
-        File dir = new File(FilePaths.TEXT_PATH);
+        File dir = new File(TEXT_PATH);
         //收集该目录及子目录下的所有文件
         List<File> fileList = collectFiles(dir);
         //只保留txt文件
@@ -64,7 +68,7 @@ public class TextPackerTools {
             str.append(character);
         }
         //初始化输出文件
-        File outFile = new File(FilePaths.TEXT_PATH + "out.txt");
+        File outFile = new File(TEXT_PATH + OUT_FILE_NAME);
         //如果存在
         if (outFile.exists()) {
             //删除

@@ -1,13 +1,20 @@
 package com.rock.pokemon.gdx.common;
 
 /**
- * 文件地址类,所有文件都存放在这里
- * 文件包括: 图片、音效、音乐
+ * 文件地址类,所有文件路径都存放在这里
+ * 文件包括: 图片、音效、音乐、文本
  *
  * @Author ayl
  * @Date 2022-10-12
  */
 public class FilePaths {
+
+    /**
+     * 文本
+     */
+
+    //文本路径
+    public static final String TEXT_FILE_PATH = "assets/text/%s/Text.txt";
 
     /**
      * 音乐

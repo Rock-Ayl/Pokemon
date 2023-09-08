@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx.ui.loading;
 
 import com.badlogic.gdx.Gdx;
+import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +26,7 @@ public class TextLoading {
         Map<Integer, String> result = new HashMap<>();
         try {
             //根据当前语言,获取对应语言文本
-            File file = new File("assets/text/" + Settings.LANG.getPath() + "/Text.txt");
+            File file = new File(String.format(FilePaths.TEXT_FILE_PATH, Settings.LANG.getPath()));
             //读取行列表
             List<String> stringList = FileUtils.readLines(file, "UTF-8");
             //循环

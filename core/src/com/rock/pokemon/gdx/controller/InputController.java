@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 
 /**
- * 输入控制器,根据输入处理移动等逻辑
+ * 人物输入控制器,根据输入处理移动等逻辑
  *
  * @Author ayl
  * @Date 2022-10-15

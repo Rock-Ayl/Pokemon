@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Align;
 import com.rock.pokemon.gdx.common.Settings;
 
 /**
- * 对话框实体
+ * 对话框 实体
  */
 public class DialogueBox extends Table {
 

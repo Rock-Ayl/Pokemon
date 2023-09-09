@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx.screen.town;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
@@ -185,6 +186,16 @@ public class LittleRoot implements Screen {
         this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //渲染时使用相机
         this.game.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
+
+        /**
+         * 对话框操作
+         */
+
+        //如果按回车 and 对话完毕
+        if (Gdx.input.isKeyPressed(Input.Keys.ENTER) && this.dialogueBox.isFinished()) {
+            //取消对话框
+            this.dialogueBox.remove();
+        }
 
         /**
          * 渲染世界及更新

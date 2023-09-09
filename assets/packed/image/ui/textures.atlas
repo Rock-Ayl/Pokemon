@@ -1,13 +1,34 @@
 
 textures.png
-size: 32, 32
+size: 64, 32
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
+arrow
+  rotate: false
+  xy: 27, 20
+  size: 6, 10
+  orig: 6, 10
+  offset: 0, 0
+  index: -1
 dialogue_box
   rotate: false
-  xy: 2, 2
+  xy: 2, 17
   size: 23, 13
   orig: 23, 13
+  offset: 0, 0
+  index: -1
+option_box
+  rotate: false
+  xy: 2, 2
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+option_box原件
+  rotate: false
+  xy: 17, 2
+  size: 13, 13
+  orig: 13, 13
   offset: 0, 0
   index: -1

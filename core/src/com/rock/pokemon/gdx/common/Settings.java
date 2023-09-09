@@ -51,6 +51,9 @@ public class Settings {
     //对话框-图片-key
     public final static String UI_IMAGE_DIALOGUE_BOX = "dialogueBox";
 
+    //可选项框-图片-key
+    public final static String UI_IMAGE_OPTION_BOX = "optionBox";
+
     /**
      * 皮肤样式名key(Skin style name key)
      */

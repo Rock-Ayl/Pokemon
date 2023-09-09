@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.screen.town;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
@@ -14,6 +15,7 @@ import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.InputController;
+import com.rock.pokemon.gdx.controller.OptionBoxController;
 import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.people.Person;
@@ -58,8 +60,14 @@ public class LittleRoot implements Screen {
      * 控制器
      */
 
-    //输入控制器
+    //所有控制器
+    private InputMultiplexer inputMultiplexer;
+
+    //人物 控制器
     private InputController inputController;
+
+    //可选项框 控制器
+    private OptionBoxController optionBoxController;
 
     /**
      * 世界
@@ -116,9 +124,6 @@ public class LittleRoot implements Screen {
 
         //初始化主角
         this.adventurer = new Person(PersonEnum.RUBE, this.world, 7, 3, this.game.getAssetManager(), this.game.getSoundManager());
-
-        //初始化输入监听,控制主角的行动
-        this.inputController = new InputController(this.adventurer);
 
         /**
          * UI
@@ -187,6 +192,22 @@ public class LittleRoot implements Screen {
                 .padLeft(Settings.SCALE)
                 .padRight(Settings.SCALE)
                 .padBottom(Settings.SCALE * 3);
+
+        /**
+         * 控制器
+         */
+
+        //初始化所有控制器
+        this.inputMultiplexer = new InputMultiplexer();
+        //初始化可选项框控制器
+        this.optionBoxController = new OptionBoxController(this.optionBox);
+        //初始化输入监听,控制主角的行动
+        this.inputController = new InputController(this.adventurer);
+
+        //组装至所有控制器
+        this.inputMultiplexer.addProcessor(inputController);
+        this.inputMultiplexer.addProcessor(optionBoxController);
+
     }
 
     @Override
@@ -194,7 +215,7 @@ public class LittleRoot implements Screen {
         //当显示画面时,立即播放音乐
         this.music.play();
         //当显示画面时,开始监控键盘控制
-        Gdx.input.setInputProcessor(inputController);
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     /**
@@ -225,11 +246,6 @@ public class LittleRoot implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER) && this.dialogueBox.isFinished()) {
             //对话框不可见
             this.dialogueBox.setVisible(false);
-        }
-        //如果按回车 and 对话完毕
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-            //可选项不见
-            this.optionBox.setVisible(false);
         }
 
         /**

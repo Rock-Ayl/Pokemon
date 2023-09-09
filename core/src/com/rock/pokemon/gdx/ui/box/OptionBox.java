@@ -89,7 +89,12 @@ public class OptionBox extends Table {
      */
     public void moveUp() {
         //向上移动一行,不可越界
-        this.selectorIndex = Math.max(this.selectorIndex - 1, 0);
+        this.selectorIndex = this.selectorIndex - 1;
+        //如果越界
+        if (this.selectorIndex < 0) {
+            //重置为另一边
+            this.selectorIndex = this.arrows.size() - 1;
+        }
         //重置当前箭头可见
         restArrowVisible();
     }
@@ -98,8 +103,13 @@ public class OptionBox extends Table {
      * 箭头向下移动
      */
     public void moveDown() {
-        //向下移动一行,不可越界
-        this.selectorIndex = Math.min(this.selectorIndex + 1, this.arrows.size() - 1);
+        //向下移动一行
+        this.selectorIndex = this.selectorIndex + 1;
+        //如果越界
+        if (this.selectorIndex >= this.arrows.size()) {
+            //重置为另一边
+            this.selectorIndex = 0;
+        }
         //重置当前箭头可见
         restArrowVisible();
     }

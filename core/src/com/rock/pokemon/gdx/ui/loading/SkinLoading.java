@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rock.pokemon.gdx.common.Settings;
@@ -32,6 +33,10 @@ public class SkinLoading {
         //获取ui资源
         TextureAtlas uiAtlas = assetManager.get("assets/packed/image/ui/textures.atlas");
 
+        /**
+         * ui 对话框
+         */
+
         //获取对话框
         NinePatch buttonSquareBlue = new NinePatch(uiAtlas.findRegion("dialogue_box"), 10, 10, 5, 5);
         //设置该图片的宽高比
@@ -40,19 +45,35 @@ public class SkinLoading {
         skin.add(Settings.UI_IMAGE_DIALOGUE_BOX, buttonSquareBlue);
 
         /**
-         * 载入样式
+         * ui 可选项框
          */
 
-        //初始化[对话框][Label]样式
-        Label.LabelStyle dialogueBoxLabelStyle = new Label.LabelStyle();
-        //载入对话框字体,并设置字体
-        dialogueBoxLabelStyle.font = new BitmapFont(
+        //获取可选项框
+        NinePatch option = new NinePatch(uiAtlas.findRegion("option_box"), 5, 5, 5, 5);
+        //设置该图片的宽高比
+        option.scale(Settings.SCALE, Settings.SCALE);
+        //组装至皮肤
+        skin.add(Settings.UI_IMAGE_OPTION_BOX, option);
+
+        //获取可选项箭头
+        TextureAtlas.AtlasRegion arrow = uiAtlas.findRegion("arrow");
+        //组装至皮肤
+        skin.add(Settings.UI_IMAGE_OPTION_ARROW, arrow, TextureRegion.class);
+
+        /**
+         * 通用字体样式
+         */
+
+        //初始化通用字体样式
+        Label.LabelStyle normalFontLabel = new Label.LabelStyle();
+        //载入字体
+        normalFontLabel.font = new BitmapFont(
                 Gdx.files.internal("assets/font/black/黑体.fnt"),
                 Gdx.files.internal("assets/font/black/黑体.png"),
                 false
         );
-        //组装[对话框][Label]样式至皮肤中
-        skin.add(Settings.STYLE_DIALOGUE_BOX_LABEL, dialogueBoxLabelStyle);
+        //组装至皮肤
+        skin.add(Settings.SYSTEM_FONT_LABEL, normalFontLabel);
 
         //返回皮肤
         return skin;

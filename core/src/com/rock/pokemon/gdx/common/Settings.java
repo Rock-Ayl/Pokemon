@@ -45,20 +45,22 @@ public class Settings {
     public final static int HEIGHT = (int) (160 * SCALE);
 
     /**
-     * UI图片皮肤key(ui image skin key)
+     * 皮肤-key-UI
      */
 
-    //对话框-图片-key
+    //对话框-皮肤-key
     public final static String UI_IMAGE_DIALOGUE_BOX = "dialogueBox";
 
-    //可选项框-图片-key
+    //可选项框-皮肤-key
     public final static String UI_IMAGE_OPTION_BOX = "optionBox";
+    //可选项框-箭头-key
+    public final static String UI_IMAGE_OPTION_ARROW = "arrow";
 
     /**
-     * 皮肤样式名key(Skin style name key)
+     * 皮肤-key-子体
      */
 
-    //对话框-文字-样式-key
-    public final static String STYLE_DIALOGUE_BOX_LABEL = "dialogueBoxLabelStyle";
+    //通用字体样式-key
+    public final static String SYSTEM_FONT_LABEL = "systemFontLabel";
 
 }

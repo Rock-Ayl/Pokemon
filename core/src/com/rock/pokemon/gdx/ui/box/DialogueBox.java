@@ -57,10 +57,10 @@ public class DialogueBox extends Table {
     public DialogueBox(Skin skin) {
         //初始化父级
         super(skin);
-        //使用对话框本身的背景图片
+        //设置整体背景贴图
         this.setBackground(Settings.UI_IMAGE_DIALOGUE_BOX);
-        //初始化[label],并从皮肤中获取[对话框][样式]的皮肤,并使用
-        this.textLabel = new Label("\n", skin, Settings.STYLE_DIALOGUE_BOX_LABEL);
+        //初始化字体,载入字体
+        this.textLabel = new Label("\n", skin, Settings.SYSTEM_FONT_LABEL);
         //将文本组装至文本框中
         this.add(this.textLabel)
                 //均匀分布该label
@@ -144,11 +144,8 @@ public class DialogueBox extends Table {
      * @return
      */
     public boolean isFinished() {
-        if (state == STATE.IDLE) {
-            return true;
-        } else {
-            return false;
-        }
+        //返回
+        return state == STATE.IDLE;
     }
 
 }

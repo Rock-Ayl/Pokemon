@@ -19,6 +19,7 @@ import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.ui.box.DialogueBox;
+import com.rock.pokemon.gdx.ui.box.OptionBox;
 
 /**
  * 未白镇(开局城镇)
@@ -49,6 +50,9 @@ public class LittleRoot implements Screen {
 
     //对话框
     private DialogueBox dialogueBox;
+
+    //可选项框
+    private OptionBox optionBox;
 
     /**
      * 控制器
@@ -138,6 +142,32 @@ public class LittleRoot implements Screen {
         //舞台加入主表格
         uiStage.addActor(rootTable);
 
+        /**
+         * 创建一个可选项框
+         */
+
+        this.optionBox = new OptionBox(this.game.getSkin());
+        this.optionBox.addOption("图鉴");
+        this.optionBox.addOption("精灵");
+        this.optionBox.addOption("背包");
+        //this.optionBox.addOption("领航员");
+        //this.optionBox.addOption("主角");
+        this.optionBox.addOption("保存");
+        this.optionBox.addOption("设置");
+        this.optionBox.addOption("退出");
+        this.optionBox.setVisible(true);
+        this.rootTable.add(this.optionBox)
+                .expand()
+                .align(Align.right)
+                //和边界的间隙
+                .padRight(Settings.SCALE)
+                //换行
+                .row();
+
+        /**
+         * 创建一个对话框
+         */
+
         //初始化一个对话框
         this.dialogueBox = new DialogueBox(this.game.getSkin());
         //随便根据编号弄一个文本,组装到对话框播放动画
@@ -193,8 +223,8 @@ public class LittleRoot implements Screen {
 
         //如果按回车 and 对话完毕
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER) && this.dialogueBox.isFinished()) {
-            //取消对话框
-            this.dialogueBox.remove();
+            //对话框不可见
+            this.dialogueBox.setVisible(false);
         }
 
         /**

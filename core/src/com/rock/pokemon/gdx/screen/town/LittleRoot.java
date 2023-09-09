@@ -226,6 +226,11 @@ public class LittleRoot implements Screen {
             //对话框不可见
             this.dialogueBox.setVisible(false);
         }
+        //如果按回车 and 对话完毕
+        if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+            //可选项不见
+            this.optionBox.setVisible(false);
+        }
 
         /**
          * 渲染世界及更新

@@ -98,7 +98,7 @@ public class WorldRenderer {
     }
 
     /**
-     * 根据实现[YSortable]的class、渲染器,统一渲染世界的每一个图片
+     * 根据实现了 {@link YSortable} 的类,统一渲染世界的每一个图片
      *
      * @param pokemon   游戏对象
      * @param ySortable 实现的class,可以是人物、事物、地图块
@@ -106,7 +106,7 @@ public class WorldRenderer {
     private void draw(Pokemon pokemon, YSortable ySortable) {
         //根据世界起点,渲染
         pokemon.getBatch().draw(
-                //图片
+                //当前类的当前帧的图片
                 ySortable.getSprite(),
                 //当前坐标 * 当前网格倍率
                 ySortable.getWorldX() * Settings.SCALE_TILE_SIZE,

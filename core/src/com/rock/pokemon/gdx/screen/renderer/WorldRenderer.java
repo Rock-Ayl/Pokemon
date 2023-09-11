@@ -8,7 +8,6 @@ import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -63,7 +62,7 @@ public class WorldRenderer {
 
         //渲染事物列表
         for (WorldObject worldObject : this.world.getWorldObjectList()) {
-            //如果可以行走,优先级仅仅比地图块高一点
+            //如果可以行走,优先级仅仅比地图块高一级
             if (worldObject.isWalkable()) {
                 //渲染
                 draw(pokemon, worldObject);
@@ -84,7 +83,7 @@ public class WorldRenderer {
         sortList.sort(new YSortComparator());
 
         /**
-         * 最后统一渲染人物、事物
+         * 最后统一渲染人物、不可行走的事物
          */
 
         //统一渲染人物、事物

@@ -2,7 +2,6 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.TerrainEnum;
 import com.rock.pokemon.gdx.model.people.Person;
 
@@ -56,22 +55,16 @@ public class World {
          * 简单加点事物
          */
 
-
         //载入事物资源
         TextureAtlas textureAtlas = assetManager.get("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
 
-        //载入个牌子图片
-        TextureRegion signImage = textureAtlas.findRegion("sign");
         //初始化牌子
-        WorldObject sign = new WorldObject(5, 5, signImage, 1F, 1F, false);
-        //加入到世界
-        this.addWorldObject(sign);
-
-        //载入个草地土块补丁图片
-        TextureRegion grassDirtPatchImage = textureAtlas.findRegion("grass_dirt_patch");
+        WorldObject sign = new WorldObject(5, 5, textureAtlas.findRegion("sign"), 1F, 1F, false);
         //初始化草地土块补丁
-        WorldObject grassDirtPatch = new WorldObject(9, 5, grassDirtPatchImage, 1F, 1F, true);
-        //加入到世界
+        WorldObject grassDirtPatch = new WorldObject(9, 5, textureAtlas.findRegion("grass_dirt_patch"), 1F, 1F, true);
+
+        //事物加入到世界
+        this.addWorldObject(sign);
         this.addWorldObject(grassDirtPatch);
 
     }

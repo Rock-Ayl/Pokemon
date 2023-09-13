@@ -40,32 +40,30 @@ public class PersonAnimationSet {
      * @param personEnum   人物枚举
      */
     public PersonAnimationSet(AssetManager assetManager, PersonEnum personEnum) {
-        //获取资源
+
+        //获取动画资源
         TextureAtlas walkTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/walk/textures.atlas", TextureAtlas.class);
         TextureAtlas standTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/stand/textures.atlas", TextureAtlas.class);
 
-        //初始化原地踏步map(原地踏步,其实就是走路变慢)
-        steppingMap = new HashMap<>();
-        //循环方向枚举
-        for (DirectionEnum walkDir : DirectionEnum.values()) {
-            //载入动画 秒/帧(N图-1=帧),名字,模式,并组装
-            steppingMap.put(walkDir, new Animation(2 * Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
-        }
-
         //初始化走路map
         walkingMap = new HashMap<>();
-        //循环方向枚举
-        for (DirectionEnum walkDir : DirectionEnum.values()) {
-            //载入动画 秒/帧(N图-1=帧),名字,模式,并组装
-            walkingMap.put(walkDir, new Animation(Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(walkDir.getName()), Animation.PlayMode.LOOP_PINGPONG));
-        }
-
+        //初始化原地踏步map(原地踏步,其实就是走路变慢)
+        steppingMap = new HashMap<>();
         //初始化站立map
         standingMap = new HashMap<>();
-        //循环
-        for (DirectionEnum standDir : DirectionEnum.values()) {
-            //载入图片,并组装
-            standingMap.put(standDir, standTextureAtlas.findRegion(standDir.getName()));
+
+        //循环方向枚举
+        for (DirectionEnum directionEnum : DirectionEnum.values()) {
+
+            //载入走路动画 秒/帧(N图-1=帧),名字,模式,并组装
+            walkingMap.put(directionEnum, new Animation(Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+
+            //载入原地踏步动画 秒/帧(N图-1=帧),名字,模式,并组装
+            steppingMap.put(directionEnum, new Animation(2 * Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+
+            //载入站立图片,并组装
+            standingMap.put(directionEnum, standTextureAtlas.findRegion(directionEnum.getName()));
+
         }
 
     }

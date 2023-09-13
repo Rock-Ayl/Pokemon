@@ -10,6 +10,13 @@ package com.rock.pokemon.gdx.common;
 public class FilePaths {
 
     /**
+     * 世界配置
+     */
+
+    //未白镇地图配置文件路径
+    public static final String MAP_CONFIG_PATH_OF_LITTLE_ROOT = "assets/worldMap/LittleRoot.json";
+
+    /**
      * 文本
      */
 

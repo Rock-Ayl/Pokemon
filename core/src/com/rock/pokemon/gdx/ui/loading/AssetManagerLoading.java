@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.ui.loading;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.worldloader.WorldLoader;
 
@@ -44,7 +45,7 @@ public class AssetManagerLoading {
          */
 
         //载入世界配置
-        assetManager.load("assets/worldMap/LittleRoot.json", World.class);
+        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, World.class);
 
         //加载资源完成
         assetManager.finishLoading();

@@ -19,8 +19,11 @@ public class MapConfig {
     //世界高
     private Integer height;
 
-    //世界内容节点列表
-    private List<MapNode> mapNodeList;
+    //地图块节点列表
+    private List<MapNode> tileNodeList;
+
+    //事物节点列表
+    private List<MapNode> worldObjectNodeList;
 
     /**
      * 以下为 get set
@@ -52,12 +55,20 @@ public class MapConfig {
         this.height = height;
     }
 
-    public List<MapNode> getMapNodeList() {
-        return mapNodeList;
+    public List<MapNode> getTileNodeList() {
+        return tileNodeList;
     }
 
-    public void setMapNodeList(List<MapNode> mapNodeList) {
-        this.mapNodeList = mapNodeList;
+    public void setTileNodeList(List<MapNode> tileNodeList) {
+        this.tileNodeList = tileNodeList;
+    }
+
+    public List<MapNode> getWorldObjectNodeList() {
+        return worldObjectNodeList;
+    }
+
+    public void setWorldObjectNodeList(List<MapNode> worldObjectNodeList) {
+        this.worldObjectNodeList = worldObjectNodeList;
     }
 
 }

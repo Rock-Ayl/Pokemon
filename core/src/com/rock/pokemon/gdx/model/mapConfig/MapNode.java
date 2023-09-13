@@ -8,9 +8,6 @@ package com.rock.pokemon.gdx.model.mapConfig;
  */
 public class MapNode {
 
-    //节点类型
-    private String type;
-
     //节点操作
     private String operate;
 
@@ -37,14 +34,6 @@ public class MapNode {
     /**
      * 以下为 get set
      */
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getOperate() {
         return operate;

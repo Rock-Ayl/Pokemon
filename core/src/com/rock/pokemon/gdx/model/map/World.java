@@ -8,7 +8,6 @@ import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 世界对象,代表一个世界(比如未白镇)
@@ -42,15 +41,8 @@ public class World {
          * 载入地图
          */
 
-        //收集所有地图节点
-        List<MapNode> tileList = mapConfig
-                .getMapNodeList()
-                .stream()
-                //地图类型
-                .filter(p -> "tile".equals(p.getType()))
-                .collect(Collectors.toList());
         //循环地图节点
-        for (MapNode tileMapNode : tileList) {
+        for (MapNode tileMapNode : mapConfig.getTileNodeList()) {
             //获取操作
             String operate = tileMapNode.getOperate();
             //根据操作处理
@@ -78,15 +70,8 @@ public class World {
          * 载入事物
          */
 
-        //收集所有事务节点
-        List<MapNode> worldObjectMapNodeList = mapConfig
-                .getMapNodeList()
-                .stream()
-                //事务类型
-                .filter(p -> "worldObject".equals(p.getType()))
-                .collect(Collectors.toList());
-        //循环地图节点
-        for (MapNode worldObjectMapNode : worldObjectMapNodeList) {
+        //循环事务节点
+        for (MapNode worldObjectMapNode : mapConfig.getWorldObjectNodeList()) {
             //获取操作
             String operate = worldObjectMapNode.getOperate();
             //根据操作处理

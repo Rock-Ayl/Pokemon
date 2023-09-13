@@ -2,16 +2,16 @@
   "name": "未白镇地图配置",
   "width": 15,
   "height": 10,
-  "mapNodeList": [
+  "tileNodeList": [
     {
-      "type": "tile",
       "operate": "fill",
       "remark": "填充所有地图为草",
       "filePath": "assets/packed/image/map/grass/textures.atlas",
       "regionName": "3"
-    },
+    }
+  ],
+  "worldObjectNodeList": [
     {
-      "type": "worldObject",
       "operate": "one",
       "remark": "一个牌子",
       "filePath": "assets/packed/image/map/object/textures.atlas",
@@ -23,7 +23,6 @@
       "walkable": false
     },
     {
-      "type": "worldObject",
       "operate": "one",
       "remark": "一个草地土块补丁",
       "filePath": "assets/packed/image/map/object/textures.atlas",

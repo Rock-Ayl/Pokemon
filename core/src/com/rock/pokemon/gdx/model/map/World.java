@@ -50,7 +50,6 @@ public class World {
             }
         }
 
-
         /**
          * 简单加点事物
          */

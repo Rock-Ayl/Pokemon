@@ -9,7 +9,8 @@ package com.rock.pokemon.gdx.model.map;
 public class TileMap {
 
     //地图网格宽高
-    private int width, height;
+    private int width;
+    private int height;
 
     //地图网格本身
     private Tile[][] map;

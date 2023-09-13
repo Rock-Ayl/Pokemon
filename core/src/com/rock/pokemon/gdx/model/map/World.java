@@ -2,11 +2,13 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.rock.pokemon.gdx.enums.TerrainEnum;
+import com.rock.pokemon.gdx.model.mapConfig.MapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.MapNode;
 import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 世界对象,代表一个世界(比如未白镇)
@@ -29,42 +31,81 @@ public class World {
      * 初始化世界
      *
      * @param assetManager 资源管理器
-     * @param width        世界宽
-     * @param height       世界高
+     * @param mapConfig    世界配置类
      */
-    public World(AssetManager assetManager, int width, int height) {
+    public World(AssetManager assetManager, MapConfig mapConfig) {
 
         //初始化地图网格
-        this.tileMap = new TileMap(width, height);
+        this.tileMap = new TileMap(mapConfig.getWidth(), mapConfig.getHeight());
 
         /**
-         * 这里目前先简单生成一个全是草的地图map
+         * 载入地图
          */
 
-        //循环1
-        for (int x = 0; x < width; x++) {
-            //循环2
-            for (int y = 0; y < height; y++) {
-                //初始化地图块为草3
-                tileMap.getTileMap()[x][y] = new Tile(x, y, TerrainEnum.GRASS_3, assetManager);
+        //收集所有地图节点
+        List<MapNode> tileList = mapConfig
+                .getMapNodeList()
+                .stream()
+                //地图类型
+                .filter(p -> "tile".equals(p.getType()))
+                .collect(Collectors.toList());
+        //循环地图节点
+        for (MapNode tileMapNode : tileList) {
+            //获取操作
+            String operate = tileMapNode.getOperate();
+            //根据操作处理
+            switch (operate) {
+                //填充全部
+                case "fill":
+                    //循环1
+                    for (int x = 0; x < mapConfig.getWidth(); x++) {
+                        //循环2
+                        for (int y = 0; y < mapConfig.getHeight(); y++) {
+                            //填充对应坐标
+                            this.tileMap.getTileMap()[x][y] = new Tile(x, y, assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName()));
+                        }
+                    }
+                    break;
+                //默认
+                default:
+                    //填充对应坐标
+                    this.tileMap.getTileMap()[tileMapNode.getX()][tileMapNode.getY()] = new Tile(tileMapNode.getX(), tileMapNode.getY(), assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName()));
+                    break;
             }
         }
 
         /**
-         * 简单加点事物
+         * 载入事物
          */
 
-        //载入事物资源
-        TextureAtlas textureAtlas = assetManager.get("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
-
-        //初始化牌子
-        WorldObject sign = new WorldObject(5, 5, textureAtlas.findRegion("sign"), 1F, 1F, false);
-        //初始化草地土块补丁
-        WorldObject grassDirtPatch = new WorldObject(9, 5, textureAtlas.findRegion("grass_dirt_patch"), 1F, 1F, true);
-
-        //事物加入到世界
-        this.addWorldObject(sign);
-        this.addWorldObject(grassDirtPatch);
+        //收集所有事务节点
+        List<MapNode> worldObjectMapNodeList = mapConfig
+                .getMapNodeList()
+                .stream()
+                //事务类型
+                .filter(p -> "worldObject".equals(p.getType()))
+                .collect(Collectors.toList());
+        //循环地图节点
+        for (MapNode worldObjectMapNode : worldObjectMapNodeList) {
+            //获取操作
+            String operate = worldObjectMapNode.getOperate();
+            //根据操作处理
+            switch (operate) {
+                //默认
+                default:
+                    //初始化事物
+                    WorldObject worldObject = new WorldObject(
+                            worldObjectMapNode.getX(),
+                            worldObjectMapNode.getY(),
+                            assetManager.get(worldObjectMapNode.getFilePath(), TextureAtlas.class)
+                                    .findRegion(worldObjectMapNode.getRegionName()),
+                            worldObjectMapNode.getWidth(), worldObjectMapNode.getHeight(),
+                            worldObjectMapNode.getWalkable());
+                    //加入到世界
+                    this.addWorldObject(worldObject);
+                    break;
+            }
+        }
 
     }
 

@@ -110,7 +110,7 @@ public class LittleRoot implements Screen {
          */
 
         //初始化世界
-        this.world = new World(this.game.getAssetManager(), 15, 10);
+        this.world = this.game.getAssetManager().get("assets/worldMap/LittleRoot.json", World.class);
 
         //初始化世界渲染器
         this.worldRenderer = new WorldRenderer(this.world);

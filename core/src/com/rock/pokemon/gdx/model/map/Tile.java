@@ -1,9 +1,6 @@
 package com.rock.pokemon.gdx.model.map;
 
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.rock.pokemon.gdx.enums.TerrainEnum;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.people.Person;
 
@@ -14,9 +11,6 @@ import com.rock.pokemon.gdx.model.people.Person;
  * @Date 2022-10-16
  */
 public class Tile implements YSortable {
-
-    //地形枚举
-    private TerrainEnum terrainEnum;
 
     //当前地图块图片
     private TextureRegion image;
@@ -38,20 +32,14 @@ public class Tile implements YSortable {
     /**
      * 初始化地图块
      *
-     * @param terrainEnum 地形枚举
+     * @param image 图片
      */
-    public Tile(int x, int y, TerrainEnum terrainEnum, AssetManager assetManager) {
-
-        //坐标(视为在地图网格中的)
+    public Tile(int x, int y, TextureRegion image) {
+        //坐标
         this.x = x;
         this.y = y;
-
-        //枚举
-        this.terrainEnum = terrainEnum;
-
-        //根据枚举,获得地图块图片
-        this.image = assetManager.get("assets/packed/image/map/" + this.terrainEnum.getDir() + "/textures.atlas", TextureAtlas.class).findRegion(this.terrainEnum.getNumber());
-
+        //图片
+        this.image = image;
     }
 
     /**

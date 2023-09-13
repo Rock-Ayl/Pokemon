@@ -18,6 +18,7 @@ public class Tile implements YSortable {
     //地形枚举
     private TerrainEnum terrainEnum;
 
+    //当前地图块图片
     private TextureRegion image;
 
     //当前地图块在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的),有余地图块不能移动,所以它们也是世界坐标
@@ -25,8 +26,8 @@ public class Tile implements YSortable {
     private int y;
 
     //地图块宽高,绿宝石中,所有都是1,之所以地图多0.001,是因为在极少数情况下,计算后的地图渲染会出现[地图裂缝]的问题,加0.001比例宽高,基本算是解决问题了
-    private float width = 1.001F;
-    private float height = 1.001F;
+    private static float width = 1.001F;
+    private static float height = 1.001F;
 
     //一个地图块上,最多有一个事物
     private WorldObject worldObject;

@@ -14,7 +14,7 @@ import java.util.LinkedHashSet;
  * @Author ayl
  * @Date 2022-10-15
  */
-public class InputController extends InputAdapter {
+public class PersonController extends InputAdapter {
 
     /**
      * 基础
@@ -53,7 +53,7 @@ public class InputController extends InputAdapter {
      *
      * @param person 人物
      */
-    public InputController(Person person) {
+    public PersonController(Person person) {
         //记录游戏对象及地图网格
         this.person = person;
     }

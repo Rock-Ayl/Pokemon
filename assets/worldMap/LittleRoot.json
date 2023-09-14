@@ -7,7 +7,7 @@
       "operate": "fill",
       "remark": "填充所有地图为草",
       "filePath": "assets/packed/image/map/grass/textures.atlas",
-      "regionName": "3"
+      "regionName": "grass3"
     }
   ],
   "worldObjectNodeList": [

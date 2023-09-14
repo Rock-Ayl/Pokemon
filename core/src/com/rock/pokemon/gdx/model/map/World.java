@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.rock.pokemon.gdx.model.mapConfig.MapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.MapNode;
 import com.rock.pokemon.gdx.model.people.Person;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,38 +44,36 @@ public class World {
 
         //循环地图节点
         for (MapNode tileMapNode : mapConfig.getTileNodeList()) {
-            //获取操作
-            String operate = tileMapNode.getOperate();
-            //根据操作处理
-            switch (operate) {
-                //填充全部
-                case "fill":
-                    //循环1
-                    for (int x = 0; x < mapConfig.getWidth(); x++) {
-                        //循环2
-                        for (int y = 0; y < mapConfig.getHeight(); y++) {
-                            //填充对应坐标
-                            this.tileMap.getTileMap()[x][y] = new Tile(
-                                    //坐标
-                                    x,
-                                    y,
-                                    //对应图片资源
-                                    assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
-                            );
-                        }
+            //获取坐标列表
+            List<MapNode.Location> locationList = tileMapNode.getLocationList();
+            //如果没有则填充所有、有则按照指定的填充
+            if (CollectionUtils.isEmpty(locationList)) {
+                //循环1
+                for (int x = 0; x < mapConfig.getWidth(); x++) {
+                    //循环2
+                    for (int y = 0; y < mapConfig.getHeight(); y++) {
+                        //填充对应坐标
+                        this.tileMap.getTileMap()[x][y] = new Tile(
+                                //坐标
+                                x,
+                                y,
+                                //对应图片资源
+                                assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
+                        );
                     }
-                    break;
-                //默认
-                default:
+                }
+            } else {
+                //循环
+                for (MapNode.Location location : locationList) {
                     //填充对应坐标
-                    this.tileMap.getTileMap()[tileMapNode.getX()][tileMapNode.getY()] = new Tile(
+                    this.tileMap.getTileMap()[location.getX()][location.getY()] = new Tile(
                             //坐标
-                            tileMapNode.getX(),
-                            tileMapNode.getY(),
+                            location.getX(),
+                            location.getY(),
                             //获取对应图片资源
                             assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
                     );
-                    break;
+                }
             }
         }
 
@@ -84,21 +83,24 @@ public class World {
 
         //循环事务节点
         for (MapNode worldObjectMapNode : mapConfig.getWorldObjectNodeList()) {
-            //初始化事物
-            WorldObject worldObject = new WorldObject(
-                    //坐标
-                    worldObjectMapNode.getX(),
-                    worldObjectMapNode.getY(),
-                    //读取图片资源
-                    assetManager.get(worldObjectMapNode.getFilePath(), TextureAtlas.class)
-                            .findRegion(worldObjectMapNode.getRegionName()),
-                    //宽高
-                    worldObjectMapNode.getWidth(),
-                    worldObjectMapNode.getHeight(),
-                    //是否可以走
-                    worldObjectMapNode.getWalkable());
-            //加入到世界
-            this.addWorldObject(worldObject);
+            //循环坐标列表
+            for (MapNode.Location location : worldObjectMapNode.getLocationList()) {
+                //初始化事物
+                WorldObject worldObject = new WorldObject(
+                        //坐标
+                        location.getX(),
+                        location.getY(),
+                        //读取图片资源
+                        assetManager.get(worldObjectMapNode.getFilePath(), TextureAtlas.class)
+                                .findRegion(worldObjectMapNode.getRegionName()),
+                        //宽高
+                        worldObjectMapNode.getWidth(),
+                        worldObjectMapNode.getHeight(),
+                        //是否可以走
+                        worldObjectMapNode.getWalkable());
+                //加入到世界
+                this.addWorldObject(worldObject);
+            }
         }
 
     }

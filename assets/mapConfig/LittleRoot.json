@@ -4,10 +4,10 @@
   "height": 10,
   "tileNodeList": [
     {
-      "operate": "fill",
       "remark": "填充所有地图为草",
       "filePath": "assets/packed/image/map/grass/textures.atlas",
-      "regionName": "grass3"
+      "regionName": "grass3",
+      "locationList": []
     }
   ],
   "worldObjectNodeList": [
@@ -15,8 +15,12 @@
       "remark": "一个牌子",
       "filePath": "assets/packed/image/map/object/textures.atlas",
       "regionName": "sign",
-      "x": 5,
-      "y": 5,
+      "locationList": [
+        {
+          "x": 5,
+          "y": 5
+        }
+      ],
       "width": 1,
       "height": 1,
       "walkable": false
@@ -25,8 +29,12 @@
       "remark": "一个草地土块补丁",
       "filePath": "assets/packed/image/map/object/textures.atlas",
       "regionName": "grass_dirt_patch",
-      "x": 8,
-      "y": 5,
+      "locationList": [
+        {
+          "x": 8,
+          "y": 5
+        }
+      ],
       "width": 1,
       "height": 1,
       "walkable": true

@@ -54,14 +54,26 @@ public class World {
                         //循环2
                         for (int y = 0; y < mapConfig.getHeight(); y++) {
                             //填充对应坐标
-                            this.tileMap.getTileMap()[x][y] = new Tile(x, y, assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName()));
+                            this.tileMap.getTileMap()[x][y] = new Tile(
+                                    //坐标
+                                    x,
+                                    y,
+                                    //对应图片资源
+                                    assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
+                            );
                         }
                     }
                     break;
                 //默认
                 default:
                     //填充对应坐标
-                    this.tileMap.getTileMap()[tileMapNode.getX()][tileMapNode.getY()] = new Tile(tileMapNode.getX(), tileMapNode.getY(), assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName()));
+                    this.tileMap.getTileMap()[tileMapNode.getX()][tileMapNode.getY()] = new Tile(
+                            //坐标
+                            tileMapNode.getX(),
+                            tileMapNode.getY(),
+                            //获取对应图片资源
+                            assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
+                    );
                     break;
             }
         }

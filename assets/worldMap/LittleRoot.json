@@ -12,7 +12,6 @@
   ],
   "worldObjectNodeList": [
     {
-      "operate": "one",
       "remark": "一个牌子",
       "filePath": "assets/packed/image/map/object/textures.atlas",
       "regionName": "sign",
@@ -23,7 +22,6 @@
       "walkable": false
     },
     {
-      "operate": "one",
       "remark": "一个草地土块补丁",
       "filePath": "assets/packed/image/map/object/textures.atlas",
       "regionName": "grass_dirt_patch",

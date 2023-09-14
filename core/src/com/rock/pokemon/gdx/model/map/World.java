@@ -72,24 +72,21 @@ public class World {
 
         //循环事务节点
         for (MapNode worldObjectMapNode : mapConfig.getWorldObjectNodeList()) {
-            //获取操作
-            String operate = worldObjectMapNode.getOperate();
-            //根据操作处理
-            switch (operate) {
-                //默认
-                default:
-                    //初始化事物
-                    WorldObject worldObject = new WorldObject(
-                            worldObjectMapNode.getX(),
-                            worldObjectMapNode.getY(),
-                            assetManager.get(worldObjectMapNode.getFilePath(), TextureAtlas.class)
-                                    .findRegion(worldObjectMapNode.getRegionName()),
-                            worldObjectMapNode.getWidth(), worldObjectMapNode.getHeight(),
-                            worldObjectMapNode.getWalkable());
-                    //加入到世界
-                    this.addWorldObject(worldObject);
-                    break;
-            }
+            //初始化事物
+            WorldObject worldObject = new WorldObject(
+                    //坐标
+                    worldObjectMapNode.getX(),
+                    worldObjectMapNode.getY(),
+                    //读取图片资源
+                    assetManager.get(worldObjectMapNode.getFilePath(), TextureAtlas.class)
+                            .findRegion(worldObjectMapNode.getRegionName()),
+                    //宽高
+                    worldObjectMapNode.getWidth(),
+                    worldObjectMapNode.getHeight(),
+                    //是否可以走
+                    worldObjectMapNode.getWalkable());
+            //加入到世界
+            this.addWorldObject(worldObject);
         }
 
     }

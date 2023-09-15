@@ -126,7 +126,7 @@ public class World {
     public void addWorldObject(WorldObject worldObject) {
         //循环
         for (GridPoint2 gridPoint2 : worldObject.getGridPointList()) {
-            //对应网格地图块上加入事物
+            //对应网格地图块上加入事物(体积碰撞)
             this.getTileMap().getTile(worldObject.getX() + gridPoint2.x, worldObject.getY() + gridPoint2.y).setWorldObject(worldObject);
         }
         //组装

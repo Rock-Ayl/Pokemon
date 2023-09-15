@@ -22,7 +22,7 @@ public class WorldObject implements YSortable {
     private int x;
     private int y;
 
-    //当前事务占用地图网格的列表,可以说是体积,1*1=1个点,2*5=10个点
+    //当前事务占用地图网格的列表,可以理解为碰撞体积,1*1=1个点,2*5=10个点,当不可以行走时,这里的地图块就无法行走
     private List<GridPoint2> gridPointList;
 
     //该事物的图片帧
@@ -68,7 +68,6 @@ public class WorldObject implements YSortable {
             }
         }
 
-        //todo
     }
 
     /**

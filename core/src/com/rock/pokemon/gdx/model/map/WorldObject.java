@@ -12,12 +12,13 @@ import com.rock.pokemon.gdx.model.YSortable;
 public class WorldObject implements YSortable {
 
     //当前事物的坐标,由于事物不能移动,所以x,y也是其世界坐标
-    private int x, y;
+    private int x;
+    private int y;
 
     //该事物的图片帧
     private TextureRegion texture;
 
-    //一个事物实体的宽高,这个和人物、地图块不同,有的事物可以1*1(草),有的则是1*1.5(门)
+    //一个事物实体的宽高,这个和人物、地图块不同,有的事物可以1*1(草),有的则是1*1.5(门),甚至可以是房子5*6等等
     private float width;
     private float height;
 

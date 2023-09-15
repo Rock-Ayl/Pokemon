@@ -1,7 +1,23 @@
 {
   "name": "所有世界上事物的配置,主要是用来处理体积的,比如牌子是1*1,树是2*2,房子是4*5等等这种情况",
-  "worldObjectList": [
-    {
+  "worldObjectMap": {
+    "grassDirtPatch": {
+      "remark": "一个草地土块补丁",
+      "filePath": "assets/packed/image/map/object/textures.atlas",
+      "regionName": "grass_dirt_patch",
+      "width": 1,
+      "height": 1,
+      "tileDefaultWalkable": true
+    },
+    "sign": {
+      "remark": "牌子",
+      "filePath": "assets/packed/image/map/object/textures.atlas",
+      "regionName": "sign",
+      "width": 1,
+      "height": 1,
+      "tileDefaultWalkable": false
+    },
+    "bigTree": {
       "remark": "大树1号",
       "filePath": "assets/packed/image/map/object/textures.atlas",
       "regionName": "big_tree",
@@ -18,24 +34,7 @@
           "y": 2
         }
       ],
-      "notWalkableTileList": [
-      ]
-    },
-    {
-      "remark": "牌子",
-      "filePath": "assets/packed/image/map/object/textures.atlas",
-      "regionName": "sign",
-      "width": 1,
-      "height": 1,
-      "tileDefaultWalkable": false
-    },
-    {
-      "remark": "一个草地土块补丁",
-      "filePath": "assets/packed/image/map/object/textures.atlas",
-      "regionName": "grass_dirt_patch",
-      "width": 1,
-      "height": 1,
-      "tileDefaultWalkable": true
+      "notWalkableTileList": []
     }
-  ]
+  }
 }

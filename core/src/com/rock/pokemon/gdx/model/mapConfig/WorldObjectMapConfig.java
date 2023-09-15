@@ -1,6 +1,6 @@
 package com.rock.pokemon.gdx.model.mapConfig;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * 事物配置类实体
@@ -13,8 +13,8 @@ public class WorldObjectMapConfig {
     //配置名称
     private String name;
 
-    //事物列表
-    private List<WorldObjectMapNode> worldObjectList;
+    //事物Map
+    private Map<String, WorldObjectMapNode> worldObjectMap;
 
     /**
      * 以下为 get set
@@ -30,12 +30,12 @@ public class WorldObjectMapConfig {
         this.name = name;
     }
 
-    public List<WorldObjectMapNode> getWorldObjectList() {
-        return worldObjectList;
+    public Map<String, WorldObjectMapNode> getWorldObjectMap() {
+        return worldObjectMap;
     }
 
-    public void setWorldObjectList(List<WorldObjectMapNode> worldObjectList) {
-        this.worldObjectList = worldObjectList;
+    public void setWorldObjectMap(Map<String, WorldObjectMapNode> worldObjectMap) {
+        this.worldObjectMap = worldObjectMap;
     }
 
 }

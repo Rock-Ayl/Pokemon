@@ -2,8 +2,8 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.rock.pokemon.gdx.model.mapConfig.MapConfig;
-import com.rock.pokemon.gdx.model.mapConfig.MapNode;
+import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.WorldMapNode;
 import com.rock.pokemon.gdx.model.people.Person;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -30,28 +30,28 @@ public class World {
     /**
      * 初始化世界
      *
-     * @param assetManager 资源管理器
-     * @param mapConfig    世界配置类
+     * @param assetManager   资源管理器
+     * @param worldMapConfig 世界配置类
      */
-    public World(AssetManager assetManager, MapConfig mapConfig) {
+    public World(AssetManager assetManager, WorldMapConfig worldMapConfig) {
 
         //初始化地图网格
-        this.tileMap = new TileMap(mapConfig.getWidth(), mapConfig.getHeight());
+        this.tileMap = new TileMap(worldMapConfig.getWidth(), worldMapConfig.getHeight());
 
         /**
          * 载入地图
          */
 
         //循环地图节点
-        for (MapNode tileMapNode : mapConfig.getTileNodeList()) {
+        for (WorldMapNode tileMapNode : worldMapConfig.getTileNodeList()) {
             //获取坐标列表
-            List<MapNode.Location> locationList = tileMapNode.getLocationList();
+            List<WorldMapNode.Location> locationList = tileMapNode.getLocationList();
             //如果没有则填充所有、有则按照指定的填充
             if (CollectionUtils.isEmpty(locationList)) {
                 //循环1
-                for (int x = 0; x < mapConfig.getWidth(); x++) {
+                for (int x = 0; x < worldMapConfig.getWidth(); x++) {
                     //循环2
-                    for (int y = 0; y < mapConfig.getHeight(); y++) {
+                    for (int y = 0; y < worldMapConfig.getHeight(); y++) {
                         //填充对应坐标
                         this.tileMap.getTileMap()[x][y] = new Tile(
                                 //坐标
@@ -64,7 +64,7 @@ public class World {
                 }
             } else {
                 //循环
-                for (MapNode.Location location : locationList) {
+                for (WorldMapNode.Location location : locationList) {
                     //填充对应坐标
                     this.tileMap.getTileMap()[location.getX()][location.getY()] = new Tile(
                             //坐标
@@ -82,9 +82,9 @@ public class World {
          */
 
         //循环事务节点
-        for (MapNode worldObjectMapNode : mapConfig.getWorldObjectNodeList()) {
+        for (WorldMapNode worldObjectMapNode : worldMapConfig.getWorldObjectNodeList()) {
             //循环坐标列表
-            for (MapNode.Location location : worldObjectMapNode.getLocationList()) {
+            for (WorldMapNode.Location location : worldObjectMapNode.getLocationList()) {
                 //初始化事物
                 WorldObject worldObject = new WorldObject(
                         //坐标

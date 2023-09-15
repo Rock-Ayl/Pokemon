@@ -9,7 +9,7 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.rock.pokemon.gdx.model.map.World;
-import com.rock.pokemon.gdx.model.mapConfig.MapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 
 /**
  * 加载世界对象
@@ -26,7 +26,7 @@ public class WorldLoader extends AsynchronousAssetLoader<World, WorldLoader.Worl
     @Override
     public void loadAsync(AssetManager assetManager, String filename, FileHandle file, WorldParameter parameter) {
         //读取配置文件、解析为对应配置实体、初始化世界
-        this.world = new World(assetManager, JSON.parseObject(file.readString(), MapConfig.class));
+        this.world = new World(assetManager, JSON.parseObject(file.readString(), WorldMapConfig.class));
     }
 
     @Override

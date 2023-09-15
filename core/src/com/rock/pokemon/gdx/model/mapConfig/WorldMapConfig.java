@@ -8,7 +8,7 @@ import java.util.List;
  * @Author ayl
  * @Date 2023-09-13
  */
-public class MapConfig {
+public class WorldMapConfig {
 
     //世界名称
     private String name;
@@ -20,10 +20,10 @@ public class MapConfig {
     private Integer height;
 
     //地图块节点列表
-    private List<MapNode> tileNodeList;
+    private List<WorldMapNode> tileNodeList;
 
     //事物节点列表
-    private List<MapNode> worldObjectNodeList;
+    private List<WorldMapNode> worldObjectNodeList;
 
     /**
      * 以下为 get set
@@ -55,19 +55,19 @@ public class MapConfig {
         this.height = height;
     }
 
-    public List<MapNode> getTileNodeList() {
+    public List<WorldMapNode> getTileNodeList() {
         return tileNodeList;
     }
 
-    public void setTileNodeList(List<MapNode> tileNodeList) {
+    public void setTileNodeList(List<WorldMapNode> tileNodeList) {
         this.tileNodeList = tileNodeList;
     }
 
-    public List<MapNode> getWorldObjectNodeList() {
+    public List<WorldMapNode> getWorldObjectNodeList() {
         return worldObjectNodeList;
     }
 
-    public void setWorldObjectNodeList(List<MapNode> worldObjectNodeList) {
+    public void setWorldObjectNodeList(List<WorldMapNode> worldObjectNodeList) {
         this.worldObjectNodeList = worldObjectNodeList;
     }
 

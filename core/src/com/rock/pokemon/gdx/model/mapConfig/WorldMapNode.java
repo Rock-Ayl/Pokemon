@@ -8,7 +8,7 @@ import java.util.List;
  * @Author ayl
  * @Date 2023-09-13
  */
-public class MapNode {
+public class WorldMapNode {
 
     //节点备注
     private String remark;

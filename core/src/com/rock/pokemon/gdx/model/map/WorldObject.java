@@ -54,8 +54,8 @@ public class WorldObject implements YSortable {
         this.width = mapNode.getWidth();
         this.height = mapNode.getHeight();
 
-        //todo 是否可以行走
-        this.walkable = mapNode.getTileDefaultWalkable();
+        //是否可以行走
+        this.walkable = mapNode.getWalkable();
 
         //初始化
         this.gridPointList = new ArrayList<>();

@@ -7,7 +7,13 @@
       "regionName": "grass_dirt_patch",
       "width": 1,
       "height": 1,
-      "tileDefaultWalkable": true
+      "walkable": true,
+      "tileList": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
     },
     "sign": {
       "remark": "牌子",
@@ -15,7 +21,13 @@
       "regionName": "sign",
       "width": 1,
       "height": 1,
-      "tileDefaultWalkable": false
+      "walkable": false,
+      "tileList": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
     },
     "bigTree": {
       "remark": "大树1号",
@@ -23,18 +35,25 @@
       "regionName": "big_tree",
       "width": 2,
       "height": 3,
-      "tileDefaultWalkable": false,
-      "canWalkableTileList": [
+      "walkable": false,
+      "tileList": [
         {
           "x": 0,
-          "y": 2
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 1
         },
         {
           "x": 1,
-          "y": 2
+          "y": 0
+        },
+        {
+          "x": 1,
+          "y": 1
         }
-      ],
-      "notWalkableTileList": []
+      ]
     }
   }
 }

@@ -23,14 +23,11 @@ public class WorldObjectMapNode {
     private Float width;
     private Float height;
 
-    //默认事物是否可以行走
-    private Boolean tileDefaultWalkable;
+    //事物是否可以行走
+    private Boolean walkable;
 
     //指定 可以 行走的坐标列表
-    private List<Location> canWalkableTileList;
-
-    //指定 不可以 行走的坐标列表
-    private List<Location> notWalkableTileList;
+    private List<Location> tileList;
 
     /**
      * 坐标对象
@@ -107,28 +104,20 @@ public class WorldObjectMapNode {
         this.height = height;
     }
 
-    public Boolean getTileDefaultWalkable() {
-        return tileDefaultWalkable;
+    public Boolean getWalkable() {
+        return walkable;
     }
 
-    public void setTileDefaultWalkable(Boolean tileDefaultWalkable) {
-        this.tileDefaultWalkable = tileDefaultWalkable;
+    public void setWalkable(Boolean walkable) {
+        this.walkable = walkable;
     }
 
-    public List<Location> getCanWalkableTileList() {
-        return canWalkableTileList;
+    public List<Location> getTileList() {
+        return tileList;
     }
 
-    public void setCanWalkableTileList(List<Location> canWalkableTileList) {
-        this.canWalkableTileList = canWalkableTileList;
-    }
-
-    public List<Location> getNotWalkableTileList() {
-        return notWalkableTileList;
-    }
-
-    public void setNotWalkableTileList(List<Location> notWalkableTileList) {
-        this.notWalkableTileList = notWalkableTileList;
+    public void setTileList(List<Location> tileList) {
+        this.tileList = tileList;
     }
 
 }

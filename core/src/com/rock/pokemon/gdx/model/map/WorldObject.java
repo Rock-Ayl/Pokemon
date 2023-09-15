@@ -1,8 +1,11 @@
 package com.rock.pokemon.gdx.model.map;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.model.YSortable;
+import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapNode;
 
 import java.util.List;
 
@@ -48,6 +51,28 @@ public class WorldObject implements YSortable {
         this.width = width;
         this.height = height;
         this.walkable = walkable;
+    }
+
+    /**
+     * 通过配置的初始化方式
+     *
+     * @param assetManager 资源管理器
+     * @param mapNode      事物配置类
+     * @param x            坐标x
+     * @param y            坐标y
+     */
+    public WorldObject(AssetManager assetManager, WorldObjectMapNode mapNode, int x, int y) {
+        //坐标
+        this.x = x;
+        this.y = y;
+        //读取图片资源
+        this.texture = assetManager.get(mapNode.getFilePath(), TextureAtlas.class).findRegion(mapNode.getRegionName());
+        //宽高
+        this.width = mapNode.getWidth();
+        this.height = mapNode.getHeight();
+        //todo 是否可以行走
+        this.walkable = mapNode.getTileDefaultWalkable();
+        //todo
     }
 
     /**

@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapNode;
@@ -123,8 +124,11 @@ public class World {
      * @param worldObject 事物实体
      */
     public void addWorldObject(WorldObject worldObject) {
-        //地图块上加入事物
-        this.getTileMap().getTile(worldObject.getX(), worldObject.getY()).setWorldObject(worldObject);
+        //循环
+        for (GridPoint2 gridPoint2 : worldObject.getGridPointList()) {
+            //对应网格地图块上加入事物
+            this.getTileMap().getTile(worldObject.getX() + gridPoint2.x, worldObject.getY() + gridPoint2.y).setWorldObject(worldObject);
+        }
         //组装
         this.worldObjectList.add(worldObject);
     }

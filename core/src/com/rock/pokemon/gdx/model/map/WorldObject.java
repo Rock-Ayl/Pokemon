@@ -59,13 +59,10 @@ public class WorldObject implements YSortable {
 
         //初始化
         this.gridPointList = new ArrayList<>();
-        //循环宽
-        for (int i = 0; i < this.width; i++) {
-            //循环高
-            for (int j = 0; j < this.height; j++) {
-                //组装占用的地图网格
-                this.gridPointList.add(new GridPoint2(i, j));
-            }
+        //循环碰撞体积
+        for (WorldObjectMapNode.Location location : mapNode.getTileList()) {
+            //组装占用的地图网格
+            this.gridPointList.add(new GridPoint2(location.getX(), location.getY()));
         }
 
     }

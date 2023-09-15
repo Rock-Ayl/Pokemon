@@ -104,8 +104,8 @@ public class World {
                         location.getX(),
                         location.getY(),
                         //读取图片资源
-                        assetManager.get(worldObjectNode.getFilePath(), TextureAtlas.class)
-                                .findRegion(worldObjectNode.getRegionName()),
+                        assetManager.get(worldObjectNodeConfig.getFilePath(), TextureAtlas.class)
+                                .findRegion(worldObjectNodeConfig.getRegionName()),
                         //宽高
                         worldObjectNodeConfig.getWidth(),
                         worldObjectNodeConfig.getHeight(),

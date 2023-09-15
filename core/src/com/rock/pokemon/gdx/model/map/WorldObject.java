@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +52,7 @@ public class WorldObject implements YSortable {
         this.width = width;
         this.height = height;
         this.walkable = walkable;
+        this.gridPointList = new ArrayList<>();
     }
 
     /**
@@ -62,6 +64,7 @@ public class WorldObject implements YSortable {
      * @param y            坐标y
      */
     public WorldObject(AssetManager assetManager, WorldObjectMapNode mapNode, int x, int y) {
+
         //坐标
         this.x = x;
         this.y = y;
@@ -70,8 +73,21 @@ public class WorldObject implements YSortable {
         //宽高
         this.width = mapNode.getWidth();
         this.height = mapNode.getHeight();
+
         //todo 是否可以行走
         this.walkable = mapNode.getTileDefaultWalkable();
+
+        //初始化
+        this.gridPointList = new ArrayList<>();
+        //循环宽
+        for (int i = 0; i < this.width; i++) {
+            //循环高
+            for (int j = 0; j < this.height; j++) {
+                //组装占用的地图网格
+                this.gridPointList.add(new GridPoint2(i, j));
+            }
+        }
+
         //todo
     }
 

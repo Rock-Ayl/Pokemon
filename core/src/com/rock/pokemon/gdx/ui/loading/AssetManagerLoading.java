@@ -4,8 +4,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.rock.pokemon.gdx.common.FilePaths;
-import com.rock.pokemon.gdx.model.map.World;
-import com.rock.pokemon.gdx.worldloader.WorldLoader;
+import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
+import com.rock.pokemon.gdx.worldloader.WorldMapConfigLoader;
 
 /**
  * 资源管理器载入
@@ -37,15 +37,15 @@ public class AssetManagerLoading {
          * 载入 各种解析器
          */
 
-        //载入世界解析器
-        assetManager.setLoader(World.class, new WorldLoader(new InternalFileHandleResolver()));
+        //载入世界配置解析器
+        assetManager.setLoader(WorldMapConfig.class, new WorldMapConfigLoader(new InternalFileHandleResolver()));
 
         /**
          * 载入 世界
          */
 
         //载入世界配置
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, World.class);
+        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, WorldMapConfig.class);
 
         //加载资源完成
         assetManager.finishLoading();

@@ -1,9 +1,16 @@
 
 textures.png
-size: 64, 32
+size: 64, 64
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
+big_tree
+  rotate: false
+  xy: 2, 20
+  size: 32, 40
+  orig: 32, 40
+  offset: 0, 0
+  index: -1
 grass_dirt_patch
   rotate: false
   xy: 2, 2
@@ -13,7 +20,7 @@ grass_dirt_patch
   index: -1
 sign
   rotate: false
-  xy: 20, 2
+  xy: 36, 44
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

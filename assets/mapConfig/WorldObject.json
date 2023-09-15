@@ -1,0 +1,25 @@
+{
+  "name": "所有世界上事物的配置,主要是用来处理体积的,比如牌子是1*1,树是2*2,房子是4*5等等这种情况",
+  "worldObjectNodeList": [
+    {
+      "remark": "大树1号",
+      "filePath": "assets/packed/image/map/object/textures.atlas",
+      "regionName": "big_tree",
+      "width": 2,
+      "height": 3,
+      "tileDefaultWalkable": false,
+      "canWalkableTileList": [
+        {
+          "x": 0,
+          "y": 2
+        },
+        {
+          "x": 1,
+          "y": 2
+        }
+      ],
+      "notWalkableTileList": [
+      ]
+    }
+  ]
+}

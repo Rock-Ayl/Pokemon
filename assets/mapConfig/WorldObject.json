@@ -34,7 +34,7 @@
       "filePath": "assets/packed/image/map/object/textures.atlas",
       "regionName": "big_tree",
       "width": 2,
-      "height": 3,
+      "height": 2.55,
       "walkable": false,
       "tileList": [
         {

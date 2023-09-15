@@ -2,7 +2,6 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapNode;
 import com.rock.pokemon.gdx.model.people.Person;
@@ -31,12 +30,13 @@ public class World {
     /**
      * 初始化世界
      *
-     * @param assetManager 资源管理器
+     * @param assetManager  资源管理器
+     * @param mapConfigPath 世界配置路径
      */
-    public World(AssetManager assetManager) {
+    public World(AssetManager assetManager, String mapConfigPath) {
 
         //读取世界配置
-        WorldMapConfig worldMapConfig = assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, WorldMapConfig.class);
+        WorldMapConfig worldMapConfig = assetManager.get(mapConfigPath, WorldMapConfig.class);
 
         //初始化地图网格
         this.tileMap = new TileMap(worldMapConfig.getWidth(), worldMapConfig.getHeight());

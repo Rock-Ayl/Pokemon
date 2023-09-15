@@ -19,15 +19,11 @@ public class WorldMapNode {
     //资源区域名
     private String regionName;
 
+    //事物名称
+    private String worldObjectName;
+
     //坐标列表
     private List<Location> locationList;
-
-    //资源宽高
-    private Float width;
-    private Float height;
-
-    //是否可以行走
-    private Boolean walkable;
 
     /**
      * 坐标对象
@@ -96,28 +92,12 @@ public class WorldMapNode {
         this.locationList = locationList;
     }
 
-    public Float getWidth() {
-        return width;
+    public String getWorldObjectName() {
+        return worldObjectName;
     }
 
-    public void setWidth(Float width) {
-        this.width = width;
-    }
-
-    public Float getHeight() {
-        return height;
-    }
-
-    public void setHeight(Float height) {
-        this.height = height;
-    }
-
-    public Boolean getWalkable() {
-        return walkable;
-    }
-
-    public void setWalkable(Boolean walkable) {
-        this.walkable = walkable;
+    public void setWorldObjectName(String worldObjectName) {
+        this.worldObjectName = worldObjectName;
     }
 
 }

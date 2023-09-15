@@ -2,8 +2,11 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapNode;
+import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapNode;
 import com.rock.pokemon.gdx.model.people.Person;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -37,6 +40,9 @@ public class World {
 
         //读取世界配置
         WorldMapConfig worldMapConfig = assetManager.get(mapConfigPath, WorldMapConfig.class);
+
+        //读取事物配置
+        WorldObjectMapConfig worldObjectMapConfig = assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
 
         //初始化地图网格
         this.tileMap = new TileMap(worldMapConfig.getWidth(), worldMapConfig.getHeight());
@@ -84,23 +90,27 @@ public class World {
          * 载入事物
          */
 
-        //循环事务节点
-        for (WorldMapNode worldObjectMapNode : worldMapConfig.getWorldObjectNodeList()) {
+        //循环世界事务节点
+        for (WorldMapNode worldObjectNode : worldMapConfig.getWorldObjectNodeList()) {
+            //获取事物名称
+            String worldObjectName = worldObjectNode.getWorldObjectName();
+            //读取对应事物配置
+            WorldObjectMapNode worldObjectNodeConfig = worldObjectMapConfig.getWorldObjectMap().get(worldObjectName);
             //循环坐标列表
-            for (WorldMapNode.Location location : worldObjectMapNode.getLocationList()) {
+            for (WorldMapNode.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
                 WorldObject worldObject = new WorldObject(
                         //坐标
                         location.getX(),
                         location.getY(),
                         //读取图片资源
-                        assetManager.get(worldObjectMapNode.getFilePath(), TextureAtlas.class)
-                                .findRegion(worldObjectMapNode.getRegionName()),
+                        assetManager.get(worldObjectNode.getFilePath(), TextureAtlas.class)
+                                .findRegion(worldObjectNode.getRegionName()),
                         //宽高
-                        worldObjectMapNode.getWidth(),
-                        worldObjectMapNode.getHeight(),
+                        worldObjectNodeConfig.getWidth(),
+                        worldObjectNodeConfig.getHeight(),
                         //是否可以走
-                        worldObjectMapNode.getWalkable());
+                        worldObjectNodeConfig.getTileDefaultWalkable());
                 //加入到世界
                 this.addWorldObject(worldObject);
             }

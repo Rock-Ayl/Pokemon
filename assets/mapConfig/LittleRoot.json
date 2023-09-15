@@ -13,31 +13,23 @@
   "worldObjectNodeList": [
     {
       "remark": "一个牌子",
-      "filePath": "assets/packed/image/map/object/textures.atlas",
-      "regionName": "sign",
+      "worldObjectName": "sign",
       "locationList": [
         {
           "x": 5,
           "y": 5
         }
-      ],
-      "width": 1,
-      "height": 1,
-      "walkable": false
+      ]
     },
     {
       "remark": "一个草地土块补丁",
-      "filePath": "assets/packed/image/map/object/textures.atlas",
-      "regionName": "grass_dirt_patch",
+      "worldObjectName": "grassDirtPatch",
       "locationList": [
         {
           "x": 8,
           "y": 5
         }
-      ],
-      "width": 1,
-      "height": 1,
-      "walkable": true
+      ]
     }
   ]
 }

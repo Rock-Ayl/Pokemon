@@ -23,7 +23,7 @@ public class Tile implements YSortable {
     private static float width = 1.001F;
     private static float height = 1.001F;
 
-    //一个地图块上,最多有一个事物
+    //一个地图块上,最多有一个事物,但是多个地图上,可以有同一个事物(比如房子5*5,25个地图块上有同一个事物)
     private WorldObject worldObject;
 
     //一个地图块上,同时最多有一个人

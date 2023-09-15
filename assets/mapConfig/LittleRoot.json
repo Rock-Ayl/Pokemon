@@ -1,7 +1,7 @@
 {
   "name": "未白镇地图配置",
-  "width": 15,
-  "height": 10,
+  "width": 30,
+  "height": 20,
   "tileNodeList": [
     {
       "remark": "填充所有地图为草",
@@ -26,7 +26,17 @@
       "worldObjectName": "grassDirtPatch",
       "locationList": [
         {
-          "x": 8,
+          "x": 3,
+          "y": 4
+        }
+      ]
+    },
+    {
+      "remark": "路比的家",
+      "worldObjectName": "rubyHouse",
+      "locationList": [
+        {
+          "x": 0,
           "y": 5
         }
       ]

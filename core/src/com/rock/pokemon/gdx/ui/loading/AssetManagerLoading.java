@@ -33,6 +33,7 @@ public class AssetManagerLoading {
         assetManager.load("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
+        assetManager.load("assets/packed/image/map/house/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/ui/textures.atlas", TextureAtlas.class);
 
         /**

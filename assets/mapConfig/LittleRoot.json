@@ -30,6 +30,16 @@
           "y": 5
         }
       ]
+    },
+    {
+      "remark": "一棵树",
+      "worldObjectName": "bigTree",
+      "locationList": [
+        {
+          "x": 12,
+          "y": 5
+        }
+      ]
     }
   ]
 }

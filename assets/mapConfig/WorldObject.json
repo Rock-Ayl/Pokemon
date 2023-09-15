@@ -20,6 +20,22 @@
       ],
       "notWalkableTileList": [
       ]
+    },
+    {
+      "remark": "牌子",
+      "filePath": "assets/packed/image/map/object/textures.atlas",
+      "regionName": "sign",
+      "width": 1,
+      "height": 1,
+      "tileDefaultWalkable": false
+    },
+    {
+      "remark": "一个草地土块补丁",
+      "filePath": "assets/packed/image/map/object/textures.atlas",
+      "regionName": "grass_dirt_patch",
+      "width": 1,
+      "height": 1,
+      "tileDefaultWalkable": true
     }
   ]
 }

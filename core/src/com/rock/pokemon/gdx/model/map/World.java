@@ -99,18 +99,7 @@ public class World {
             //循环坐标列表
             for (WorldMapNode.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
-                WorldObject worldObject = new WorldObject(
-                        //坐标
-                        location.getX(),
-                        location.getY(),
-                        //读取图片资源
-                        assetManager.get(worldObjectNodeConfig.getFilePath(), TextureAtlas.class)
-                                .findRegion(worldObjectNodeConfig.getRegionName()),
-                        //宽高
-                        worldObjectNodeConfig.getWidth(),
-                        worldObjectNodeConfig.getHeight(),
-                        //是否可以走
-                        worldObjectNodeConfig.getTileDefaultWalkable());
+                WorldObject worldObject = new WorldObject(assetManager, worldObjectNodeConfig, location.getX(), location.getY());
                 //加入到世界
                 this.addWorldObject(worldObject);
             }

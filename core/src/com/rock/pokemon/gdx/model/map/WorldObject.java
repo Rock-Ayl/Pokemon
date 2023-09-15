@@ -36,26 +36,6 @@ public class WorldObject implements YSortable {
     private boolean walkable;
 
     /**
-     * 基本的初始化方法
-     *
-     * @param x        坐标x
-     * @param y        坐标y
-     * @param texture  图片
-     * @param width    宽
-     * @param height   搞
-     * @param walkable 是否可以行走
-     */
-    public WorldObject(int x, int y, TextureRegion texture, float width, float height, boolean walkable) {
-        this.x = x;
-        this.y = y;
-        this.texture = texture;
-        this.width = width;
-        this.height = height;
-        this.walkable = walkable;
-        this.gridPointList = new ArrayList<>();
-    }
-
-    /**
      * 通过配置的初始化方式
      *
      * @param assetManager 资源管理器

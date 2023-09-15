@@ -1,7 +1,10 @@
 package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.model.YSortable;
+
+import java.util.List;
 
 /**
  * 事物实体 可以是一个树、一朵花、一个牌子等等,在地图网格上面,可动可静,可以是图片也可以是动画
@@ -11,9 +14,12 @@ import com.rock.pokemon.gdx.model.YSortable;
  */
 public class WorldObject implements YSortable {
 
-    //当前事物的坐标,由于事物不能移动,所以x,y也是其世界坐标
+    //当前事物的坐标
     private int x;
     private int y;
+
+    //当前事务占用地图网格的列表,可以说是体积,1*1=1个点,2*5=10个点
+    private List<GridPoint2> gridPointList;
 
     //该事物的图片帧
     private TextureRegion texture;
@@ -92,6 +98,14 @@ public class WorldObject implements YSortable {
 
     public boolean isWalkable() {
         return walkable;
+    }
+
+    public List<GridPoint2> getGridPointList() {
+        return gridPointList;
+    }
+
+    public void setGridPointList(List<GridPoint2> gridPointList) {
+        this.gridPointList = gridPointList;
     }
 
 }

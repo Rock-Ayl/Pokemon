@@ -1,0 +1,134 @@
+package com.rock.pokemon.gdx.model.mapConfig;
+
+import java.util.List;
+
+/**
+ * 事物节点配置类实体
+ *
+ * @Author ayl
+ * @Date 2023-09-15
+ */
+public class WorldObjectMapNode {
+
+    //节点备注
+    private String remark;
+
+    //资源路径
+    private String filePath;
+
+    //资源区域名
+    private String regionName;
+
+    //事物宽高
+    private Float width;
+    private Float height;
+
+    //默认事物是否可以行走
+    private Boolean tileDefaultWalkable;
+
+    //指定 可以 行走的坐标列表
+    private List<Location> canWalkableTileList;
+
+    //指定 不可以 行走的坐标列表
+    private List<Location> notWalkableTileList;
+
+    /**
+     * 坐标对象
+     */
+    public static class Location {
+
+        //资源坐标
+        private Integer x;
+        private Integer y;
+
+        /**
+         * 以下为 get set
+         */
+
+        public Integer getX() {
+            return x;
+        }
+
+        public void setX(Integer x) {
+            this.x = x;
+        }
+
+        public Integer getY() {
+            return y;
+        }
+
+        public void setY(Integer y) {
+            this.y = y;
+        }
+
+    }
+
+    /**
+     * 以下为 get set
+     */
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getRegionName() {
+        return regionName;
+    }
+
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
+    }
+
+    public Float getWidth() {
+        return width;
+    }
+
+    public void setWidth(Float width) {
+        this.width = width;
+    }
+
+    public Float getHeight() {
+        return height;
+    }
+
+    public void setHeight(Float height) {
+        this.height = height;
+    }
+
+    public Boolean getTileDefaultWalkable() {
+        return tileDefaultWalkable;
+    }
+
+    public void setTileDefaultWalkable(Boolean tileDefaultWalkable) {
+        this.tileDefaultWalkable = tileDefaultWalkable;
+    }
+
+    public List<Location> getCanWalkableTileList() {
+        return canWalkableTileList;
+    }
+
+    public void setCanWalkableTileList(List<Location> canWalkableTileList) {
+        this.canWalkableTileList = canWalkableTileList;
+    }
+
+    public List<Location> getNotWalkableTileList() {
+        return notWalkableTileList;
+    }
+
+    public void setNotWalkableTileList(List<Location> notWalkableTileList) {
+        this.notWalkableTileList = notWalkableTileList;
+    }
+
+}

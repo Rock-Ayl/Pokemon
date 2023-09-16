@@ -18,11 +18,10 @@ public class OptionBox extends Table {
 
     //可选项指针索引
     private int selectorIndex = 0;
-
     //可选项列表
-    private List<Label> options = new ArrayList<>();
+    private List<Label> optionList = new ArrayList<>();
     //箭头列表
-    private List<Image> arrows = new ArrayList<>();
+    private List<Image> arrowList = new ArrayList<>();
 
     private Table uiContainer;
 
@@ -51,7 +50,7 @@ public class OptionBox extends Table {
         //初始化文字,载入字体
         Label optionLabel = new Label(option, this.getSkin(), Settings.SYSTEM_FONT_LABEL);
         //组装至列表
-        this.options.add(optionLabel);
+        this.optionList.add(optionLabel);
 
         //初始化箭头图片
         Image selectorLabel = new Image(this.getSkin(), Settings.UI_IMAGE_OPTION_ARROW);
@@ -59,7 +58,7 @@ public class OptionBox extends Table {
         selectorLabel.setScaling(Scaling.none);
         selectorLabel.setScale(Settings.SCALE / 1.5F);
         //组装至列表
-        this.arrows.add(selectorLabel);
+        this.arrowList.add(selectorLabel);
 
         //重新计算箭头是否可见
         restArrowVisible();
@@ -93,7 +92,7 @@ public class OptionBox extends Table {
         //如果越界
         if (this.selectorIndex < 0) {
             //重置为另一边
-            this.selectorIndex = this.arrows.size() - 1;
+            this.selectorIndex = this.arrowList.size() - 1;
         }
         //重置当前箭头可见
         restArrowVisible();
@@ -106,7 +105,7 @@ public class OptionBox extends Table {
         //向下移动一行
         this.selectorIndex = this.selectorIndex + 1;
         //如果越界
-        if (this.selectorIndex >= this.arrows.size()) {
+        if (this.selectorIndex >= this.arrowList.size()) {
             //重置为另一边
             this.selectorIndex = 0;
         }
@@ -119,14 +118,14 @@ public class OptionBox extends Table {
      */
     private void restArrowVisible() {
         //循环所有箭头列表
-        for (int i = 0; i < this.arrows.size(); i++) {
+        for (int i = 0; i < this.arrowList.size(); i++) {
             //如果是选定的箭头
             if (i == this.selectorIndex) {
                 //开启
-                this.arrows.get(i).setVisible(true);
+                this.arrowList.get(i).setVisible(true);
             } else {
                 //否则关闭
-                this.arrows.get(i).setVisible(false);
+                this.arrowList.get(i).setVisible(false);
             }
         }
     }
@@ -136,8 +135,8 @@ public class OptionBox extends Table {
      */
     public void clearChoices() {
         this.uiContainer.clearChildren();
-        this.options.clear();
-        this.arrows.clear();
+        this.optionList.clear();
+        this.arrowList.clear();
         this.selectorIndex = 0;
     }
 

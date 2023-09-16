@@ -64,14 +64,14 @@ public class OptionBox extends Table {
         restArrowVisible();
 
         //将箭头、文字组装至窗口
-        uiContainer.add(selectorLabel)
+        this.uiContainer.add(selectorLabel)
                 //拉伸
                 .expand()
                 //左对齐
                 .align(Align.left)
                 //周围组件间距
                 .space(Settings.TILE_SIZE / 2F);
-        uiContainer.add(optionLabel)
+        this.uiContainer.add(optionLabel)
                 //拉伸
                 .expand()
                 //右对齐
@@ -79,7 +79,7 @@ public class OptionBox extends Table {
                 //周围组件间距
                 .space(Settings.TILE_SIZE / 2F);
         //换行
-        uiContainer.row();
+        this.uiContainer.row();
 
     }
 
@@ -119,14 +119,8 @@ public class OptionBox extends Table {
     private void restArrowVisible() {
         //循环所有箭头列表
         for (int i = 0; i < this.arrowList.size(); i++) {
-            //如果是选定的箭头
-            if (i == this.selectorIndex) {
-                //开启
-                this.arrowList.get(i).setVisible(true);
-            } else {
-                //否则关闭
-                this.arrowList.get(i).setVisible(false);
-            }
+            //决定开启 or 关闭
+            this.arrowList.get(i).setVisible(i == this.selectorIndex);
         }
     }
 

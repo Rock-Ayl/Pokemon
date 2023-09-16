@@ -23,6 +23,7 @@ public class OptionBox extends Table {
     //箭头列表
     private List<Image> arrowList = new ArrayList<>();
 
+    //存储着箭头和文本的小盒子
     private Table uiContainer;
 
     /**

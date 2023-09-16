@@ -13,7 +13,7 @@ import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
 /**
  * 加载事物配置对象
  */
-public class WorldObjectMapConfigLoader extends AsynchronousAssetLoader<WorldObjectMapConfig, WorldObjectMapConfigLoader.WorldParameter> {
+public class WorldObjectMapConfigLoader extends AsynchronousAssetLoader<WorldObjectMapConfig, AssetLoaderParameters<WorldObjectMapConfig>> {
 
     //加载世界配置
     private WorldObjectMapConfig worldObjectMapConfig;
@@ -23,24 +23,20 @@ public class WorldObjectMapConfigLoader extends AsynchronousAssetLoader<WorldObj
     }
 
     @Override
-    public void loadAsync(AssetManager assetManager, String filename, FileHandle file, WorldParameter parameter) {
+    public void loadAsync(AssetManager assetManager, String filename, FileHandle file, AssetLoaderParameters<WorldObjectMapConfig> parameter) {
         //读取配置文件、解析为对应配置实体、初始化世界
         this.worldObjectMapConfig = JSON.parseObject(file.readString(), WorldObjectMapConfig.class);
     }
 
     @Override
-    public WorldObjectMapConfig loadSync(AssetManager arg0, String arg1, FileHandle arg2, WorldParameter arg3) {
+    public WorldObjectMapConfig loadSync(AssetManager arg0, String arg1, FileHandle arg2, AssetLoaderParameters<WorldObjectMapConfig> arg3) {
         //返回
         return worldObjectMapConfig;
     }
 
     @Override
-    public Array<AssetDescriptor> getDependencies(String filename, FileHandle file, WorldParameter parameter) {
+    public Array<AssetDescriptor> getDependencies(String filename, FileHandle file, AssetLoaderParameters<WorldObjectMapConfig> parameter) {
         return null;
-    }
-
-    public static class WorldParameter extends AssetLoaderParameters<WorldObjectMapConfig> {
-
     }
 
 }

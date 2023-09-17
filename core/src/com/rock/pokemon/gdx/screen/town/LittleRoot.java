@@ -116,14 +116,14 @@ public class LittleRoot implements Screen {
         this.worldRenderer = new WorldRenderer(this.world);
 
         //一个普通NPC
-        this.world.addPerson(new Person(PersonEnum.RUBE, this.world, 10, 5, this.game.getAssetManager(), this.game.getSoundManager()));
+        this.world.addPerson(new Person(PersonEnum.RUBE, this.world, 15, 10, this.game.getAssetManager(), this.game.getSoundManager()));
 
         /**
          * 主角相关
          */
 
         //初始化主角
-        this.adventurer = new Person(PersonEnum.RUBE, this.world, 17, 13, this.game.getAssetManager(), this.game.getSoundManager());
+        this.adventurer = new Person(PersonEnum.RUBE, this.world, 10, 10, this.game.getAssetManager(), this.game.getSoundManager());
 
         /**
          * UI

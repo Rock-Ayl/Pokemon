@@ -42,6 +42,16 @@
       ]
     },
     {
+      "remark": "未白镇-小田卷博士的家",
+      "worldObjectName": "xiaoTianJuanDoctorHouse",
+      "locationList": [
+        {
+          "x": 11,
+          "y": 11
+        }
+      ]
+    },
+    {
       "remark": "未白镇-大树",
       "worldObjectName": "bigTree",
       "locationList": [

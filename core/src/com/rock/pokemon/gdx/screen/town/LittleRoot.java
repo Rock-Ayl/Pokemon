@@ -123,7 +123,7 @@ public class LittleRoot implements Screen {
          */
 
         //初始化主角
-        this.adventurer = new Person(PersonEnum.RUBE, this.world, 10, 10, this.game.getAssetManager(), this.game.getSoundManager());
+        this.adventurer = new Person(PersonEnum.RUBE, this.world, 19, 18, this.game.getAssetManager(), this.game.getSoundManager());
 
         /**
          * UI

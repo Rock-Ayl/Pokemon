@@ -12,6 +12,8 @@
 
 学习和灵感来自 : [https://www.youtube.com/playlist?list=PLVOwyy-CHLyrFO9A60_z0Q_x8RfpvgrbM]
 
+![image of the program](https://raw.githubusercontent.com/Rock-Ayl/Rock-Ayl-File.github.io/main/theme.png)
+
 # 起始时间 
 
 2022 10 12

@@ -41,7 +41,7 @@ public class TexturePackerTools {
                 "assets/packed/image/map/object/",
                 "textures");
 
-        //两位主角的家
+        //各种房子
         TexturePacker.process(
                 "assets/unpacked/image/map/house/",
                 "assets/packed/image/map/house/",

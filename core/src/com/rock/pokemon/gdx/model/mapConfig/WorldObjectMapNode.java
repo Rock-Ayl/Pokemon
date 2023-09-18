@@ -13,6 +13,9 @@ public class WorldObjectMapNode {
     //节点备注
     private String remark;
 
+    //动画帧持续时间(如果有,则视为动画,否则视为静态图片)
+    private Float frameDuration;
+
     //资源路径
     private String filePath;
 
@@ -118,6 +121,14 @@ public class WorldObjectMapNode {
 
     public void setTileList(List<Location> tileList) {
         this.tileList = tileList;
+    }
+
+    public Float getFrameDuration() {
+        return frameDuration;
+    }
+
+    public void setFrameDuration(Float frameDuration) {
+        this.frameDuration = frameDuration;
     }
 
 }

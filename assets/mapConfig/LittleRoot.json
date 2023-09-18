@@ -48,6 +48,34 @@
       ]
     },
     {
+      "remark": "一个花(会动)",
+      "worldObjectName": "flower1",
+      "locationList": [
+        {
+          "x": 11,
+          "y": 10
+        },
+        {
+          "x": 11,
+          "y": 9
+        },{
+          "x": 12,
+          "y": 10
+        },
+        {
+          "x": 12,
+          "y": 9
+        },{
+          "x": 13,
+          "y": 10
+        },
+        {
+          "x": 13,
+          "y": 9
+        }
+      ]
+    },
+    {
       "remark": "未白镇-路比的家",
       "worldObjectName": "rubyHouse",
       "locationList": [

@@ -1,6 +1,21 @@
 {
   "name": "所有世界上事物的配置,主要是用来处理体积的,比如牌子是1*1,树是2*2,房子是4*5等等这种情况",
   "worldObjectMap": {
+    "flower1": {
+      "remark": "一个普通的花(动)",
+      "filePath": "assets/packed/image/map/flower/textures.atlas",
+      "regionName": "flower1",
+      "width": 1,
+      "height": 1,
+      "frameDuration": 0.3,
+      "walkable": true,
+      "tileList": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
     "grassDirtPatch": {
       "remark": "一个草地土块补丁",
       "filePath": "assets/packed/image/map/object/textures.atlas",
@@ -140,7 +155,8 @@
           "y": 3
         }
       ]
-    },"sapphireHouse": {
+    },
+    "sapphireHouse": {
       "remark": "沙菲亚的家",
       "filePath": "assets/packed/image/map/house/textures.atlas",
       "regionName": "sapphire_house",

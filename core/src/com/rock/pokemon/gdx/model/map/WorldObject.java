@@ -90,10 +90,16 @@ public class WorldObject implements YSortable {
         //判断是动画还是静态
         if (mapNode.getFrameDuration() == null) {
             //读取图片资源
-            this.texture = assetManager.get(mapNode.getFilePath(), TextureAtlas.class).findRegion(mapNode.getRegionName());
+            this.texture = assetManager
+                    .get(mapNode.getFilePath(), TextureAtlas.class)
+                    .findRegion(mapNode.getRegionName());
         } else {
-            //读取动画资源
-            this.animation = new Animation(mapNode.getFrameDuration(), assetManager.get(mapNode.getFilePath(), TextureAtlas.class).findRegions(mapNode.getRegionName()), Animation.PlayMode.LOOP_PINGPONG);
+            //读取动画资源,暂时默认动画模式
+            this.animation = new Animation(
+                    mapNode.getFrameDuration(),
+                    assetManager.get(mapNode.getFilePath(), TextureAtlas.class)
+                            .findRegions(mapNode.getRegionName()),
+                    Animation.PlayMode.LOOP_PINGPONG);
         }
 
     }

@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
@@ -18,6 +19,10 @@ import java.util.List;
  */
 public class WorldObject implements YSortable {
 
+    /**
+     * 基本数据
+     */
+
     //当前事物的坐标
     private int x;
     private int y;
@@ -25,15 +30,24 @@ public class WorldObject implements YSortable {
     //当前事务占用地图网格的列表,可以理解为碰撞体积,1*1=1个点,2*5=10个点,当不可以行走时,这里的地图块就无法行走
     private List<GridPoint2> gridPointList;
 
-    //该事物的图片帧
-    private TextureRegion texture;
-
     //一个事物实体的宽高,这个和人物、地图块不同,有的事物可以1*1(草),有的则是1*1.5(门),甚至可以是房子5*6等等
     private float width;
     private float height;
 
     //是否可以行走(草可以走过去,树不行)
     private boolean walkable;
+
+    /**
+     * 图片 or 动画
+     */
+
+    //该事物的图片帧
+    private TextureRegion texture;
+
+    //该事物的动画
+    private Animation<TextureRegion> animation;
+    //该事物的动画帧
+    private float animationTimer;
 
     /**
      * 通过配置的初始化方式
@@ -48,8 +62,7 @@ public class WorldObject implements YSortable {
         //坐标
         this.x = x;
         this.y = y;
-        //读取图片资源
-        this.texture = assetManager.get(mapNode.getFilePath(), TextureAtlas.class).findRegion(mapNode.getRegionName());
+
         //宽高
         this.width = mapNode.getWidth();
         this.height = mapNode.getHeight();
@@ -65,6 +78,15 @@ public class WorldObject implements YSortable {
             this.gridPointList.add(new GridPoint2(location.getX(), location.getY()));
         }
 
+        /**
+         * todo 处理动画、图片资源
+         */
+
+        //读取图片资源
+        this.texture = assetManager.get(mapNode.getFilePath(), TextureAtlas.class).findRegion(mapNode.getRegionName());
+        this.animationTimer = 0F;
+        this.animation = null;
+
     }
 
     /**
@@ -73,7 +95,11 @@ public class WorldObject implements YSortable {
      * @param delta 每帧时间
      */
     public void update(float delta) {
-        //todo
+        //如果存在动画
+        if (animation != null) {
+            //叠加
+            animationTimer += delta;
+        }
     }
 
     /**
@@ -82,7 +108,18 @@ public class WorldObject implements YSortable {
      * @return
      */
     public TextureRegion getSprite() {
-        return texture;
+        //如果存在图片
+        if (texture != null) {
+            //返回图片
+            return texture;
+        }
+        //如果动画存在
+        if (animation != null) {
+            //返回动画帧图片
+            return animation.getKeyFrame(animationTimer);
+        }
+        //默认
+        return null;
     }
 
     /**

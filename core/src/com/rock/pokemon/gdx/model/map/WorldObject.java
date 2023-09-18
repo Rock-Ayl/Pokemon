@@ -82,19 +82,18 @@ public class WorldObject implements YSortable {
          * 处理动画、图片资源
          */
 
+        //默认
+        this.animationTimer = 0F;
+        this.animation = null;
+        this.texture = null;
+
         //判断是动画还是静态
         if (mapNode.getFrameDuration() == null) {
             //读取图片资源
             this.texture = assetManager.get(mapNode.getFilePath(), TextureAtlas.class).findRegion(mapNode.getRegionName());
-            //默认
-            this.animationTimer = 0F;
-            this.animation = null;
         } else {
             //读取动画资源
             this.animation = new Animation(mapNode.getFrameDuration(), assetManager.get(mapNode.getFilePath(), TextureAtlas.class).findRegions(mapNode.getRegionName()), Animation.PlayMode.LOOP_PINGPONG);
-            this.animationTimer = 0F;
-            //默认
-            this.texture = null;
         }
 
     }

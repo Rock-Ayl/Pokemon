@@ -106,7 +106,7 @@ public class WorldObject implements YSortable {
     public void update(float delta) {
         //如果存在动画
         if (animation != null) {
-            //叠加
+            //叠加帧时间
             animationTimer += delta;
         }
     }

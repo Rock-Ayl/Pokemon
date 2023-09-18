@@ -35,6 +35,12 @@ public class TexturePackerTools {
                 "assets/packed/image/map/grass/",
                 "textures");
 
+        //花
+        TexturePacker.process(
+                "assets/unpacked/image/map/flower/",
+                "assets/packed/image/map/flower/",
+                "textures");
+
         //事物
         TexturePacker.process(
                 "assets/unpacked/image/map/object/",

@@ -54,4 +54,8 @@ public class TileMap {
         return map[x][y];
     }
 
+    public Tile getTile(Float x, Float y) {
+        return map[x.intValue()][y.intValue()];
+    }
+
 }

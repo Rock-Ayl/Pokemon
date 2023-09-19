@@ -59,7 +59,7 @@ public class PersonAnimationSet {
             walkingMap.put(directionEnum, new Animation<>(Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
 
             //载入原地踏步动画 秒/帧(N图-1=帧),名字,模式,并组装
-            steppingMap.put(directionEnum, new Animation<>(2 * Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+            steppingMap.put(directionEnum, new Animation<>(Person.ONCE_ANIM_TIME, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
 
             //载入站立图片,并组装
             standingMap.put(directionEnum, standTextureAtlas.findRegion(directionEnum.getName()));

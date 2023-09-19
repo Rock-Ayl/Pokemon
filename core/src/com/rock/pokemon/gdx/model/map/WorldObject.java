@@ -95,7 +95,7 @@ public class WorldObject implements YSortable {
                     .findRegion(mapNode.getRegionName());
         } else {
             //读取动画资源,暂时默认动画模式
-            this.animation = new Animation(
+            this.animation = new Animation<>(
                     mapNode.getFrameDuration(),
                     assetManager.get(mapNode.getFilePath(), TextureAtlas.class)
                             .findRegions(mapNode.getRegionName()),

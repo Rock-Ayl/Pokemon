@@ -221,17 +221,6 @@ public class Person implements YSortable {
                 int destY = this.y + directionEnum.getDy();
                 //首先,判断目标位置是否越界
                 this.stepping = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
-                //循环循环世界中的每个人
-                for (Person person : this.world.getPersonList()) {
-                    //如果人物并不是自己
-                    if (person != this) {
-                        //如果二者即将撞上了
-                        if (person.getWorldX() == destX && person.getWorldY() == destY) {
-                            //不可移动
-                            this.stepping = true;
-                        }
-                    }
-                }
                 //如果未越界
                 if (this.stepping == false) {
                     //获取目标地图块
@@ -245,6 +234,11 @@ public class Person implements YSortable {
                             .map(p -> !p)
                             //默认
                             .orElse(false);
+                    //如果可以行走地图块
+                    if (this.stepping == false) {
+                        //该地图块有人则无法通过
+                        this.stepping = tile.getPerson() != null;
+                    }
                 }
                 //如果是原地踏步
                 if (this.stepping) {

@@ -67,8 +67,8 @@ public class DialogueBox extends Table {
                 .expand()
                 //左对齐
                 .align(Align.left)
-                //和周围间距
-                .pad(Settings.SCALE * 3);
+                //和左边的间距
+                .padLeft(Settings.SCALE_TILE_SIZE / 2);
     }
 
     /**

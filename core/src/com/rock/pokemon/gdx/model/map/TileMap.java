@@ -1,5 +1,7 @@
 package com.rock.pokemon.gdx.model.map;
 
+import com.rock.pokemon.gdx.model.people.Person;
+
 /**
  * 地图网格
  *
@@ -30,6 +32,40 @@ public class TileMap {
         this.width = width;
         this.height = height;
 
+    }
+
+    /**
+     * 为某一个单元格设置对应人物
+     *
+     * @param x      对应坐标
+     * @param y      对应坐标
+     * @param person 要设置的人物
+     */
+    public void setPerson(int x, int y, Person person) {
+        //如果越界
+        if (x < 0 || y < 0 || x >= width || y >= height) {
+            //过
+            return;
+        }
+        //设置人物
+        getTile(x, y).setPerson(person);
+    }
+
+    /**
+     * 为某一个单元格删除对应人物
+     *
+     * @param x      对应坐标
+     * @param y      对应坐标
+     * @param person 要设置的人物
+     */
+    public void removePerson(int x, int y, Person person) {
+        //如果越界
+        if (x < 0 || y < 0 || x >= width || y >= height) {
+            //过
+            return;
+        }
+        //删除人物
+        getTile(x, y).removePerson(person);
     }
 
     /**

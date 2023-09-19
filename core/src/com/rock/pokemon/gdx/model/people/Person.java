@@ -311,12 +311,12 @@ public class Person implements YSortable {
         //获取当前世界的地图块
         TileMap tileMap = this.world.getTileMap();
         //人物加入最新的地图块
-        tileMap.getTile(this.x, this.y).setPerson(this);
+        tileMap.setPerson(this.x, this.y, this);
         //以下尝试删除旧位置的人物
-        tileMap.getTile(this.x + 1, this.y).removePerson(this);
-        tileMap.getTile(this.x - 1, this.y).removePerson(this);
-        tileMap.getTile(this.x, this.y + 1).removePerson(this);
-        tileMap.getTile(this.x, this.y - 1).removePerson(this);
+        tileMap.removePerson(this.x + 1, this.y, this);
+        tileMap.removePerson(this.x - 1, this.y, this);
+        tileMap.removePerson(this.x, this.y + 1, this);
+        tileMap.removePerson(this.x, this.y - 1, this);
     }
 
     /**

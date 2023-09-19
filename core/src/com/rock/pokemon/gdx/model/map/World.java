@@ -115,7 +115,7 @@ public class World {
      */
     public void addPerson(Person person) {
         //加入到地图块
-        this.getTileMap().getTile(person.getWorldX(), person.getWorldY()).setPerson(person);
+        this.getTileMap().getTile(person.getX(), person.getY()).setPerson(person);
         //加入到人物列表
         this.personList.add(person);
     }

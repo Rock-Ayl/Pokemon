@@ -93,13 +93,20 @@ public class DialogueBox extends Table {
      * @param text 文本内容
      */
     private void setText(String text) {
-        //判断一个文本是否包含换行,如果不包含
-        if (text.contains("\n") == false) {
-            //我们要给它加一个换行(这样会始终保持最少两行,让我们显示保持2行,模仿绿宝石)
-            text += "\n";
+        //根据分段拆分句子为数组
+        String[] sentenceArr = text.split("\n");
+        //如果只有一行
+        if (sentenceArr.length == 1) {
+            //固定为2行
+            String sentence = sentenceArr[sentenceArr.length - 1] + "\n";
+            //设置文本
+            this.textLabel.setText(sentence);
+        } else {
+            //永远只需要两行
+            String sentence = sentenceArr[sentenceArr.length - 2] + "\n" + sentenceArr[sentenceArr.length - 1];
+            //设置文本
+            this.textLabel.setText(sentence);
         }
-        //设置文本
-        this.textLabel.setText(text);
     }
 
     /**

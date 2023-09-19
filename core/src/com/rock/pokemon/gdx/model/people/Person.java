@@ -10,6 +10,7 @@ import com.rock.pokemon.gdx.model.SoundManager;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pokemon.gdx.model.map.Tile;
+import com.rock.pokemon.gdx.model.map.TileMap;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 
@@ -282,6 +283,11 @@ public class Person implements YSortable {
      * 结束走路
      */
     private void walkEnd() {
+
+        /**
+         * 人物自身判定
+         */
+
         //改变人物状态为站立
         this.actionState = ActionEnum.STAND;
         //将当前坐标改为移动结束的坐标(这么做还有个好处,该坐标可以转化为int)
@@ -297,6 +303,20 @@ public class Person implements YSortable {
         this.animTime = 0;
         //结束走路后,预设不是原地踏步
         this.stepping = false;
+
+        /**
+         * 移动地图块对应的人物
+         */
+
+        //获取当前世界的地图块
+        TileMap tileMap = this.world.getTileMap();
+        //人物加入最新的地图块
+        tileMap.getTile(this.worldX, this.worldY).setPerson(this);
+        //以下尝试删除旧位置的人物
+        tileMap.getTile(this.worldX + 1, this.worldY).removePerson(this);
+        tileMap.getTile(this.worldX - 1, this.worldY).removePerson(this);
+        tileMap.getTile(this.worldX, this.worldY + 1).removePerson(this);
+        tileMap.getTile(this.worldX, this.worldY - 1).removePerson(this);
     }
 
     /**

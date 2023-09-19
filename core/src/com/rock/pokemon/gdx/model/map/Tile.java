@@ -53,6 +53,19 @@ public class Tile implements YSortable {
     }
 
     /**
+     * 如果是同一个人,删除之
+     *
+     * @param person
+     */
+    public void removePerson(Person person) {
+        //如果是同一个对象
+        if (this.person == person) {
+            //删除之
+            this.person = null;
+        }
+    }
+
+    /**
      * Get Set 方法
      *
      * @return

@@ -30,6 +30,9 @@ public class PersonAnimationSet {
     //走-动画map
     private Map<DirectionEnum, Animation<TextureRegion>> walkingMap;
 
+    //跑步-动画map
+    private Map<DirectionEnum, Animation<TextureRegion>> runningMap;
+
     //站-图片map
     private Map<DirectionEnum, TextureRegion> standingMap;
 
@@ -44,34 +47,40 @@ public class PersonAnimationSet {
         //获取动画资源
         TextureAtlas walkTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/walk/textures.atlas", TextureAtlas.class);
         TextureAtlas standTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/stand/textures.atlas", TextureAtlas.class);
+        TextureAtlas runTextureAtlas = assetManager.get("assets/packed/image/people/" + personEnum.getName() + "/run/textures.atlas", TextureAtlas.class);
 
         //初始化走路map
-        walkingMap = new HashMap<>();
+        this.walkingMap = new HashMap<>();
         //初始化原地踏步map(原地踏步,其实就是走路变慢)
-        steppingMap = new HashMap<>();
+        this.steppingMap = new HashMap<>();
         //初始化站立map
-        standingMap = new HashMap<>();
+        this.standingMap = new HashMap<>();
+        //初始化跑步map
+        this.runningMap = new HashMap<>();
 
         //循环方向枚举
         for (DirectionEnum directionEnum : DirectionEnum.values()) {
 
+            //载入跑步动画 秒/帧(N图-1=帧),名字,模式,并组装
+            this.runningMap.put(directionEnum, new Animation<>(Person.ONCE_ANIM_TIME / 4F, runTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+
             //载入走路动画 秒/帧(N图-1=帧),名字,模式,并组装
-            walkingMap.put(directionEnum, new Animation<>(Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+            this.walkingMap.put(directionEnum, new Animation<>(Person.ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
 
             //载入原地踏步动画 秒/帧(N图-1=帧),名字,模式,并组装
-            steppingMap.put(directionEnum, new Animation<>(Person.ONCE_ANIM_TIME, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+            this.steppingMap.put(directionEnum, new Animation<>(Person.ONCE_ANIM_TIME, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
 
             //载入站立图片,并组装
-            standingMap.put(directionEnum, standTextureAtlas.findRegion(directionEnum.getName()));
+            this.standingMap.put(directionEnum, standTextureAtlas.findRegion(directionEnum.getName()));
 
         }
 
     }
 
     /**
-     * 原地踏步
+     * 获取原地踏步动画
      *
-     * @param directionEnum 根据方向获取踏步动画
+     * @param directionEnum 方向
      * @return
      */
     public Animation<TextureRegion> getStepping(DirectionEnum directionEnum) {
@@ -80,9 +89,9 @@ public class PersonAnimationSet {
     }
 
     /**
-     * 走路
+     * 获取走路动画
      *
-     * @param directionEnum 根据方向获取走路动画
+     * @param directionEnum 方向
      * @return
      */
     public Animation<TextureRegion> getWalking(DirectionEnum directionEnum) {
@@ -91,14 +100,25 @@ public class PersonAnimationSet {
     }
 
     /**
-     * 站立
+     * 获取站立图片
      *
-     * @param directionEnum 根据方向获取站立图片
+     * @param directionEnum 方向
      * @return
      */
     public TextureRegion getStanding(DirectionEnum directionEnum) {
         //返回
         return this.standingMap.get(directionEnum);
+    }
+
+    /**
+     * 获取跑步动画
+     *
+     * @param directionEnum 方向
+     * @return
+     */
+    public Animation<TextureRegion> getRunning(DirectionEnum directionEnum) {
+        //返回
+        return this.runningMap.get(directionEnum);
     }
 
 }

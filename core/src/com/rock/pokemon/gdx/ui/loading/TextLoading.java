@@ -26,7 +26,7 @@ public class TextLoading {
         Map<Integer, String> result = new HashMap<>();
         try {
             //根据当前语言,获取对应语言文本
-            File file = new File(String.format(FilePaths.TEXT_FILE_PATH, Settings.LANG.getPath()));
+            File file = new File(String.format(FilePaths.SYSTEM_CONFIG_TEXT_FILE_PATH, Settings.LANG.getPath()));
             //读取行列表
             List<String> stringList = FileUtils.readLines(file, "UTF-8");
             //循环

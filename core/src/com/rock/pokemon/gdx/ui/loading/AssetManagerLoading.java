@@ -25,16 +25,21 @@ public class AssetManagerLoading {
         AssetManager assetManager = new AssetManager();
 
         /**
-         * 载入 基本资源
+         * 载入 已打包的各种资源
          */
 
-        //加载已打包的各种资源
+        //人物
         assetManager.load("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
+        assetManager.load("assets/packed/image/people/ruby/run/textures.atlas", TextureAtlas.class);
+
+        //地图相关
         assetManager.load("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/map/flower/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/map/house/textures.atlas", TextureAtlas.class);
+
+        //ui相关
         assetManager.load("assets/packed/image/ui/textures.atlas", TextureAtlas.class);
 
         /**

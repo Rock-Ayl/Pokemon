@@ -29,6 +29,12 @@ public class TexturePackerTools {
                 "assets/packed/image/people/ruby/stand/",
                 "textures");
 
+        //路比跑
+        TexturePacker.process(
+                "assets/unpacked/image/people/ruby/run/",
+                "assets/packed/image/people/ruby/run/",
+                "textures");
+
         //草
         TexturePacker.process(
                 "assets/unpacked/image/map/grass/",

@@ -1,0 +1,90 @@
+
+textures.png
+size: 256, 32
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+east
+  rotate: false
+  xy: 2, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 0
+east
+  rotate: false
+  xy: 20, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 1
+east
+  rotate: false
+  xy: 38, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 2
+north
+  rotate: false
+  xy: 56, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 0
+north
+  rotate: false
+  xy: 74, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 1
+north
+  rotate: false
+  xy: 92, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 2
+south
+  rotate: false
+  xy: 110, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 0
+south
+  rotate: false
+  xy: 128, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 1
+south
+  rotate: false
+  xy: 146, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 2
+west
+  rotate: false
+  xy: 164, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 0
+west
+  rotate: false
+  xy: 182, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 1
+west
+  rotate: false
+  xy: 200, 2
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 2

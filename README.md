@@ -43,6 +43,17 @@ use IDE import build.gradle
 
 run class DesktopLauncher
 
+# 操控方式
+
+方向键控制方向
+
+z:确认/交谈/调查
+
+x:取消/跑步
+
+回车:菜单
+
+空格:加速
 
 # 更新日志
 

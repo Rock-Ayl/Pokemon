@@ -226,7 +226,7 @@ public class LittleRoot implements Screen {
     @Override
     public void render(float delta) {
 
-        //如果按回车 and 对话完毕
+        //如果按回车
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             //优先计算加速
             delta = delta * Settings.SYSTEM_SPEED_MULTIPLIER;

@@ -17,7 +17,7 @@ import com.rock.pokemon.gdx.model.map.WorldObject;
 import java.util.Optional;
 
 /**
- * 人物实体
+ * 人物实体(可以是精灵、人物、甚至道具精灵球)
  *
  * @Author ayl
  * @Date 2022-10-13

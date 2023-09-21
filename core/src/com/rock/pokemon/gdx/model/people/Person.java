@@ -138,14 +138,9 @@ public class Person implements YSortable {
     public void update(float delta) {
         //根据当前状态判定
         switch (actionState) {
-            case RUN:
-                break;
-            case CYCLING:
-                break;
-            case SURFING:
-                break;
-            //如果此时还在走路
+            //如果此时还在走路、跑步
             case WALK:
+            case RUN:
                 //叠加本次走路、动画的持续时间
                 this.animTime += delta;
                 this.continueWalkTime += delta;
@@ -161,7 +156,7 @@ public class Person implements YSortable {
                     //如果此时要继续按照这个方向走路
                     if (moveRequestThisFrame) {
                         //似乎是要重置移动
-                        move(this.facing);
+                        move(this.facing, actionState);
                     } else {
                         //不再按照该方向走路了,那么持续走路时间归0,从头算起动画帧
                         continueWalkTime = 0F;
@@ -170,6 +165,8 @@ public class Person implements YSortable {
                 break;
             //站立或其他
             case STAND:
+            case CYCLING:
+            case SURFING:
             default:
                 //直接结束
                 break;
@@ -198,12 +195,14 @@ public class Person implements YSortable {
      * 人物移动判定
      *
      * @param directionEnum 接下来移动的方向
+     * @param actionState   走路的状态(走步、跑步)
      */
-    public boolean move(DirectionEnum directionEnum) {
+    public boolean move(DirectionEnum directionEnum, ActionEnum actionState) {
         //根据人物此时的行动状态判定
         switch (actionState) {
             //走路
             case WALK:
+            case RUN:
                 //如果此时接下来的走的方向和脸和方向一致
                 if (this.facing == directionEnum) {
                     //设定继续按照该方向走路
@@ -213,7 +212,6 @@ public class Person implements YSortable {
                 return false;
             //其他
             case CYCLING:
-            case RUN:
             case STAND:
             case SURFING:
             default:
@@ -247,7 +245,7 @@ public class Person implements YSortable {
                     playNoWalk();
                 }
                 //开始走路
-                walkStart(directionEnum);
+                walkStart(directionEnum, actionState);
                 //移动成功
                 return true;
         }
@@ -257,10 +255,11 @@ public class Person implements YSortable {
      * 开始走路
      *
      * @param directionEnum 走的方向
+     * @param actionState   走路的状态(走步,跑步)
      */
-    private void walkStart(DirectionEnum directionEnum) {
+    private void walkStart(DirectionEnum directionEnum, ActionEnum actionState) {
         //改变人物状态为走路
-        this.actionState = ActionEnum.WALK;
+        this.actionState = actionState;
         //改变脸的方向
         this.facing = directionEnum;
         //起始坐标
@@ -327,6 +326,10 @@ public class Person implements YSortable {
     public TextureRegion getSprite() {
         //根据当前状态判定
         switch (actionState) {
+            //跑步
+            case RUN:
+                //返回跑步动画帧图片
+                return this.animationSet.getRunning(this.facing).getKeyFrame(this.continueWalkTime);
             //走路
             case WALK:
                 //如果是踏步

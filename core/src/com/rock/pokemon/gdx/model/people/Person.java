@@ -193,7 +193,7 @@ public class Person implements YSortable {
      */
     public boolean move(DirectionEnum directionEnum, ActionEnum actionState) {
         //根据人物此时的行动状态判定
-        switch (actionState) {
+        switch (this.actionState) {
             //走路
             case WALK:
             case RUN:

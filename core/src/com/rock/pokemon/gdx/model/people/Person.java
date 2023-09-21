@@ -50,12 +50,6 @@ public class Person implements YSortable {
     //通用的音效管理器
     private SoundManager soundManager;
 
-    //上次发出音效的时间(时间戳)
-    private long lastSoundTime;
-
-    //音效之间的间隔 毫秒
-    private static final long SOUND_TIME_INTERVAL = 500L;
-
     /**
      * 移动相关
      */
@@ -241,8 +235,8 @@ public class Person implements YSortable {
                 }
                 //如果是原地踏步
                 if (this.stepping) {
-                    //发出撞墙的音效
-                    playNoWalk();
+                    //尝试发出撞墙的音效
+                    soundManager.playNoWalk();
                 }
                 //开始走路
                 walkStart(directionEnum, actionState);
@@ -349,23 +343,6 @@ public class Person implements YSortable {
                 //默认站立南
                 return this.animationSet.getStanding(DirectionEnum.EAST);
         }
-    }
-
-    /**
-     * 人物发出撞墙的音效
-     */
-    public void playNoWalk() {
-        //当前时间戳
-        long thisTime = System.currentTimeMillis();
-        //如果距离上次发出音效时间没有过间隔期
-        if (thisTime - SOUND_TIME_INTERVAL < lastSoundTime) {
-            //不发出音效
-            return;
-        }
-        //发出撞墙音效
-        this.soundManager.getSoundNoWalk().play();
-        //记录发出音效的时间
-        lastSoundTime = thisTime;
     }
 
     /**

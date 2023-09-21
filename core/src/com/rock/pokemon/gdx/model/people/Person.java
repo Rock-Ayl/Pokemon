@@ -73,8 +73,12 @@ public class Person implements YSortable {
 
     //动画持续时间
     private float animTime;
-    //完成一次动画的总时间,单位秒
-    public static final float ONCE_ANIM_TIME = 0.3F;
+
+    //完成一次走步动画的总时间,单位秒
+    public static final float WALK_ONCE_ANIM_TIME = 0.3F;
+
+    //完成一次跑步动画的总时间,单位秒
+    public static final float RUN_ONCE_ANIM_TIME = 0.15F;
 
     //持续一个方向走路的时间
     private float continueWalkTime;
@@ -131,20 +135,30 @@ public class Person implements YSortable {
      */
     public void update(float delta) {
         //根据当前状态判定
-        switch (actionState) {
+        switch (this.actionState) {
             //如果此时还在走路、跑步
             case WALK:
             case RUN:
+                //一次动画时间
+                float onceAnimTime;
+                //如果是跑步
+                if (this.actionState == ActionEnum.RUN) {
+                    //使用跑步的
+                    onceAnimTime = RUN_ONCE_ANIM_TIME;
+                } else {
+                    //使用走路的
+                    onceAnimTime = WALK_ONCE_ANIM_TIME;
+                }
                 //叠加本次走路、动画的持续时间
                 this.animTime += delta;
                 this.continueWalkTime += delta;
                 //计算出其真实的世界坐标,据说绿宝石是线性的,这里不太懂,但大体的意思是按照线性的逻辑不断计算出对应x,y坐标
-                this.worldX = Interpolation.linear.apply(srcX, destX, animTime / ONCE_ANIM_TIME);
-                this.worldY = Interpolation.linear.apply(srcY, destY, animTime / ONCE_ANIM_TIME);
+                this.worldX = Interpolation.linear.apply(srcX, destX, animTime / onceAnimTime);
+                this.worldY = Interpolation.linear.apply(srcY, destY, animTime / onceAnimTime);
                 //每次持续动画时间结束时(如果继续走,代表要进行下一次动画了)
-                if (animTime >= ONCE_ANIM_TIME) {
+                if (animTime >= onceAnimTime) {
                     //计算出本次动画多出的那极少一部分时间(因为每次都会有极少的误差),给持续一个方向走路的时间,让动画稳定
-                    continueWalkTime = continueWalkTime - (animTime - ONCE_ANIM_TIME);
+                    continueWalkTime = continueWalkTime - (animTime - onceAnimTime);
                     //结束本次走路
                     walkEnd();
                     //如果此时要继续按照这个方向走路

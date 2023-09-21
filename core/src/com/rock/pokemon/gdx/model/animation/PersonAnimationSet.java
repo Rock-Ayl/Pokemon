@@ -62,7 +62,7 @@ public class PersonAnimationSet {
         for (DirectionEnum directionEnum : DirectionEnum.values()) {
 
             //载入跑步动画 秒/帧(N图-1=帧),名字,模式,并组装
-            this.runningMap.put(directionEnum, new Animation<>(Person.RUN_ONCE_ANIM_TIME / 3F, runTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+            this.runningMap.put(directionEnum, new Animation<>(Person.RUN_ONCE_ANIM_TIME / 2.2F, runTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
 
             //载入走路动画 秒/帧(N图-1=帧),名字,模式,并组装
             this.walkingMap.put(directionEnum, new Animation<>(Person.WALK_ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));

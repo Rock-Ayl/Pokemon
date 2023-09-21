@@ -153,21 +153,21 @@ public class Person implements YSortable {
                 this.animTime += delta;
                 this.continueWalkTime += delta;
                 //计算出其真实的世界坐标,据说绿宝石是线性的,这里不太懂,但大体的意思是按照线性的逻辑不断计算出对应x,y坐标
-                this.worldX = Interpolation.linear.apply(srcX, destX, animTime / onceAnimTime);
-                this.worldY = Interpolation.linear.apply(srcY, destY, animTime / onceAnimTime);
+                this.worldX = Interpolation.linear.apply(this.srcX, this.destX, this.animTime / onceAnimTime);
+                this.worldY = Interpolation.linear.apply(this.srcY, this.destY, this.animTime / onceAnimTime);
                 //每次持续动画时间结束时(如果继续走,代表要进行下一次动画了)
-                if (animTime >= onceAnimTime) {
+                if (this.animTime >= onceAnimTime) {
                     //计算出本次动画多出的那极少一部分时间(因为每次都会有极少的误差),给持续一个方向走路的时间,让动画稳定
-                    continueWalkTime = continueWalkTime - (animTime - onceAnimTime);
+                    this.continueWalkTime = this.continueWalkTime - (this.animTime - onceAnimTime);
                     //结束本次走路
                     walkEnd();
                     //如果此时要继续按照这个方向走路
-                    if (moveRequestThisFrame) {
+                    if (this.moveRequestThisFrame) {
                         //似乎是要重置移动
-                        move(this.facing, actionState);
+                        move(this.facing, this.actionState);
                     } else {
                         //不再按照该方向走路了,那么持续走路时间归0,从头算起动画帧
-                        continueWalkTime = 0F;
+                        this.continueWalkTime = 0F;
                     }
                 }
                 break;
@@ -191,7 +191,7 @@ public class Person implements YSortable {
      */
     public void changeDir(DirectionEnum facing) {
         //如果不是站着
-        if (actionState != ActionEnum.STAND) {
+        if (this.actionState != ActionEnum.STAND) {
             //过
             return;
         }
@@ -250,7 +250,7 @@ public class Person implements YSortable {
                 //如果是原地踏步
                 if (this.stepping) {
                     //尝试发出撞墙的音效
-                    soundManager.playNoWalk();
+                    this.soundManager.playNoWalk();
                 }
                 //开始走路
                 walkStart(directionEnum, actionState);

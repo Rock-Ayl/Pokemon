@@ -77,15 +77,13 @@ public class Person implements YSortable {
     private int destX;
     private int destY;
 
-    //动画持续时间
-    private float animTime;
-
     //完成一次走步动画的总时间,单位秒
     public static final float WALK_ONCE_ANIM_TIME = 0.3F;
-
     //完成一次跑步动画的总时间,单位秒
     public static final float RUN_ONCE_ANIM_TIME = 0.15F;
 
+    //动画持续时间
+    private float animTime;
     //持续一个方向走路的时间
     private float continueWalkTime;
     //持续走路时,如果方向和之前相同,那么该参数会为true,让它会继续走下去,用来判定[连续相同方向走路],否则会停下

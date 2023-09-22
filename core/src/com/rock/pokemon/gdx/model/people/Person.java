@@ -62,10 +62,12 @@ public class Person implements YSortable {
 
     //人物当前脸的方向(可以是走也可以是站立,只是方向,根据方向+状态不同,有不同的判定)
     private DirectionEnum facing;
-    //是否为原地踏步
-    private boolean stepping;
+
     //当前状态(站立、走路、跑步、骑自行车、冲浪等等,与方向一起判定)
     private ActionEnum actionState;
+
+    //是否为原地踏步
+    private boolean stepping;
 
     //起始坐标和目标坐标
     private int srcX, srcY;

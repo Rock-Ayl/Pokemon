@@ -151,7 +151,7 @@ public class PersonController extends InputAdapter {
             }
 
             /**
-             * 计算走路方式
+             * 计算移动方式
              */
 
             //默认为走路
@@ -161,8 +161,14 @@ public class PersonController extends InputAdapter {
                 //改为跑步
                 actionState = ActionEnum.RUN;
             }
+
+            /**
+             * 移动
+             */
+
             //尝试移动判定
             this.person.move(directionEnum, actionState);
+
             //结束方向键判定
             break;
         }

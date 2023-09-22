@@ -185,7 +185,7 @@ public class PersonController extends InputAdapter {
         }
 
         //如果人物没有移动的倾向
-        if (moveTendency) {
+        if (moveTendency == false) {
             //对人物的移动状态进行修正
             this.person.walkEnd(false);
         }

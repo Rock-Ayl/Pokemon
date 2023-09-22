@@ -188,22 +188,6 @@ public class Person implements YSortable {
     }
 
     /**
-     * 单纯的脸换个方向,当然,得站着的时候
-     *
-     * @param facing 方向枚举
-     * @return
-     */
-    public void changeDir(DirectionEnum facing) {
-        //如果不是站着
-        if (this.actionState != ActionEnum.STAND) {
-            //过
-            return;
-        }
-        //变换当前脸的方向
-        this.facing = facing;
-    }
-
-    /**
      * 人物移动判定
      *
      * @param directionEnum 接下来移动的方向
@@ -270,6 +254,11 @@ public class Person implements YSortable {
      * @param actionState   走路的状态(走步,跑步)
      */
     private void walkStart(DirectionEnum directionEnum, ActionEnum actionState) {
+
+        /**
+         * 人物自身实体 移动判定
+         */
+
         //改变人物状态为走路
         this.actionState = actionState;
         //改变脸的方向
@@ -288,6 +277,7 @@ public class Person implements YSortable {
         }
         //初始化活动时间
         this.animTime = 0F;
+
     }
 
     /**
@@ -296,7 +286,7 @@ public class Person implements YSortable {
     private void walkEnd() {
 
         /**
-         * 人物自身判定
+         * 人物自身实体 移动判定
          */
 
         //改变人物状态为站立
@@ -316,7 +306,7 @@ public class Person implements YSortable {
         this.stepping = false;
 
         /**
-         * 移动地图块对应的人物
+         * 移动 地图块内 对应的人物实体
          */
 
         //获取当前世界的地图块
@@ -328,6 +318,23 @@ public class Person implements YSortable {
         tileMap.removePerson(this.x - 1, this.y, this);
         tileMap.removePerson(this.x, this.y + 1, this);
         tileMap.removePerson(this.x, this.y - 1, this);
+
+    }
+
+    /**
+     * 单纯的脸换个方向,当然,得站着的时候
+     *
+     * @param facing 方向枚举
+     * @return
+     */
+    public void changeFacingDir(DirectionEnum facing) {
+        //如果不是站着
+        if (this.actionState != ActionEnum.STAND) {
+            //过
+            return;
+        }
+        //变换当前脸的方向
+        this.facing = facing;
     }
 
     /**
@@ -342,7 +349,7 @@ public class Person implements YSortable {
             case RUN:
                 //返回跑步动画帧图片
                 return this.animationSet.getRunning(this.facing).getKeyFrame(this.continueWalkTime);
-            //走路
+            //走路/踏步
             case WALK:
                 //如果是踏步
                 if (this.stepping) {

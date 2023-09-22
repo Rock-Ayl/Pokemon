@@ -140,7 +140,7 @@ public class PersonController extends InputAdapter {
             DirectionEnum directionEnum = DirectionEnum.parseByKeycode(dirInputKey);
 
             //无论如何,先尝试让脸换方向
-            this.person.changeDir(directionEnum);
+            this.person.changeFacingDir(directionEnum);
 
             //叠加其持续时间
             this.buttonTimeArr[dirInputKey] += delta;

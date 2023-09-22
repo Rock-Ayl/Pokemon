@@ -108,15 +108,15 @@ public class Person implements YSortable {
         //人物枚举
         this.personEnum = personEnum;
 
-        //坐标
+        //设置当前任务所在坐标
         this.x = x;
         this.y = y;
         this.worldX = x;
         this.worldY = y;
 
-        //记录该人物所处的世界
+        //人物记录要加入的世界
         this.world = world;
-        //该世界也加入该人物
+        //人物加入世界
         this.world.addPerson(this);
 
         //人物动作状态

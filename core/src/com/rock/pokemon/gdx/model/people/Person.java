@@ -164,7 +164,7 @@ public class Person implements YSortable {
                     //计算出本次动画多出的那极少一部分时间(因为每次都会有极少的误差),给持续一个方向走路的时间,让动画稳定
                     this.continueWalkTime = this.continueWalkTime - (this.animTime - onceAnimTime);
                     //结束本次走路,并重新定位人物位置(确保精度)
-                    walkEnd(true);
+                    walkEnd(false, true);
                     //如果此时要继续按照这个方向走路
                     if (this.moveRequestThisFrame) {
                         //似乎是要重置移动
@@ -283,19 +283,23 @@ public class Person implements YSortable {
     /**
      * 结束走路
      *
-     * @param resetPersonSite 重置人物位置
+     * @param resetState 重置人物状态
+     * @param resetSite  重置人物位置
      */
-    public void walkEnd(boolean resetPersonSite) {
+    public void walkEnd(boolean resetState, boolean resetSite) {
 
         /**
          * 人物自身实体 移动判定
          */
 
-        //改变人物状态为站立
-        this.actionState = ActionEnum.STAND;
+        //如果需要重置人物状态
+        if (resetState) {
+            //改变人物状态为站立
+            this.actionState = ActionEnum.STAND;
+        }
 
         //如果需要重置人物位置
-        if (resetPersonSite) {
+        if (resetSite) {
             //将当前坐标改为移动结束的坐标(这么做还有个好处,该坐标可以转化为int)
             this.worldX = this.destX;
             this.worldY = this.destY;

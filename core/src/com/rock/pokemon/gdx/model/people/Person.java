@@ -69,9 +69,13 @@ public class Person implements YSortable {
     //是否为原地踏步
     private boolean stepping;
 
-    //起始坐标和目标坐标
-    private int srcX, srcY;
-    private int destX, destY;
+    //移动起始坐标
+    private int srcX;
+    private int srcY;
+
+    //移动目标坐标
+    private int destX;
+    private int destY;
 
     //动画持续时间
     private float animTime;

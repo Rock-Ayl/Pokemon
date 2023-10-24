@@ -165,11 +165,8 @@ public class Person implements YSortable {
                     this.continueWalkTime = this.continueWalkTime - (this.animTime - onceAnimTime);
                     //结束本次走路,并重新定位人物位置(确保精度)
                     walkEnd();
-                    //如果此时要继续按照这个方向走路
-                    if (this.moveRequestThisFrame) {
-                        //似乎是要重置移动
-                        move(this.facing, this.actionState);
-                    } else {
+                    //如果此时要换方向走了
+                    if (this.moveRequestThisFrame == false) {
                         //不再按照该方向走路了,那么持续走路时间归0,从头算起动画帧
                         this.continueWalkTime = 0F;
                     }

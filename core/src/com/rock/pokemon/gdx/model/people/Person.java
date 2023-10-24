@@ -206,10 +206,12 @@ public class Person implements YSortable {
                 }
                 //让他继续走下去吧
                 return false;
-            //其他
+            //todo 其他
             case CYCLING:
-            case STAND:
             case SURFING:
+                return false;
+            //默认、站立(或者说是刚走完上一步)
+            case STAND:
             default:
                 //计算出移动完的目标坐标
                 int destX = this.x + directionEnum.getDx();

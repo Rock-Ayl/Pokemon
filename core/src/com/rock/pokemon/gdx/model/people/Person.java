@@ -164,7 +164,7 @@ public class Person implements YSortable {
                     //计算出本次动画多出的那极少一部分时间(因为每次都会有极少的误差),给持续一个方向走路的时间,让动画稳定
                     this.continueWalkTime = this.continueWalkTime - (this.animTime - onceAnimTime);
                     //结束本次走路,并重新定位人物位置(确保精度)
-                    walkEnd(false, true);
+                    walkEnd();
                     //如果此时要继续按照这个方向走路
                     if (this.moveRequestThisFrame) {
                         //似乎是要重置移动
@@ -282,30 +282,21 @@ public class Person implements YSortable {
 
     /**
      * 结束走路
-     *
-     * @param resetState 重置人物状态
-     * @param resetSite  重置人物位置
      */
-    public void walkEnd(boolean resetState, boolean resetSite) {
+    public void walkEnd() {
 
         /**
          * 人物自身实体 移动判定
          */
 
-        //如果需要重置人物状态
-        if (resetState) {
-            //改变人物状态为站立
-            this.actionState = ActionEnum.STAND;
-        }
+        //改变人物状态为站立
+        this.actionState = ActionEnum.STAND;
 
-        //如果需要重置人物位置
-        if (resetSite) {
-            //将当前坐标改为移动结束的坐标(这么做还有个好处,该坐标可以转化为int)
-            this.worldX = this.destX;
-            this.worldY = this.destY;
-            this.x = this.destX;
-            this.y = this.destY;
-        }
+        //将当前坐标改为移动结束的坐标(这么做还有个好处,该坐标可以转化为int)
+        this.worldX = this.destX;
+        this.worldY = this.destY;
+        this.x = this.destX;
+        this.y = this.destY;
 
         //其他走路参数置0
         this.srcX = 0;
@@ -342,7 +333,7 @@ public class Person implements YSortable {
      * @return
      */
     public void changeFacingDir(DirectionEnum facing) {
-        //如果不是站着
+        //如果不是站着,无需换脸
         if (this.actionState != ActionEnum.STAND) {
             //过
             return;

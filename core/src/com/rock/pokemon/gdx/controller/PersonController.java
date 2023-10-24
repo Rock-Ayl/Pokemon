@@ -129,9 +129,6 @@ public class PersonController extends InputAdapter {
          * 移动判定
          */
 
-        //人物是否移动有移动的倾向,默认没有
-        boolean moveTendency = false;
-
         //循环方向键判定
         for (Integer dirInputKey : DIR_INPUT_KEY_LINKED_SET) {
 
@@ -145,11 +142,9 @@ public class PersonController extends InputAdapter {
                 continue;
             }
 
-            //记录人物有移动的倾向
-            moveTendency = true;
-
             //对应方向
             DirectionEnum directionEnum = DirectionEnum.parseByKeycode(dirInputKey);
+
             //无论如何,先尝试让脸换方向
             this.person.changeFacingDir(directionEnum);
 
@@ -182,12 +177,6 @@ public class PersonController extends InputAdapter {
 
             //结束方向键判定
             break;
-        }
-
-        //如果人物没有移动的倾向
-        if (moveTendency == false) {
-            //对人物的移动状态进行修正
-            this.person.walkEnd(true, false);
         }
 
     }

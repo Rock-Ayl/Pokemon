@@ -196,11 +196,8 @@ public class Person implements YSortable {
             //走路
             case WALK:
             case RUN:
-                //如果此时接下来的走的方向和脸和方向一致
-                if (this.facing == directionEnum) {
-                    //设定继续按照该方向走路
-                    this.moveRequestThisFrame = true;
-                }
+                //判断是否还是按照这个方向走路
+                this.moveRequestThisFrame = this.facing == directionEnum;
                 //让他继续走下去吧
                 return false;
             //todo 其他

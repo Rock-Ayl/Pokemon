@@ -350,7 +350,7 @@ public class Person implements YSortable {
      */
     public TextureRegion getSprite() {
         //根据当前状态判定
-        switch (actionState) {
+        switch (this.actionState) {
             //跑步
             case RUN:
                 //返回跑步动画帧图片

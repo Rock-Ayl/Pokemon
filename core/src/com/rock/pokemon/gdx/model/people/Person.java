@@ -237,11 +237,8 @@ public class Person implements YSortable {
                 }
                 //如果是原地踏步
                 if (this.stepping) {
-                    //如果当前走路是跑步
-                    if (this.walkState == WalkEnum.RUN) {
-                        //变为走路
-                        walkEnum = WalkEnum.WALK;
-                    }
+                    //变为走路
+                    walkEnum = WalkEnum.WALK;
                     //尝试发出撞墙的音效
                     this.soundManager.playNoWalk();
                 }

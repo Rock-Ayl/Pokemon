@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.PersonEnum;
+import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.SoundManager;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
@@ -63,8 +64,11 @@ public class Person implements YSortable {
     //人物当前脸的方向(可以是走也可以是站立,只是方向,根据方向+状态不同,有不同的判定)
     private DirectionEnum facing;
 
-    //当前状态(站立、走路、跑步、骑自行车、冲浪等等,与方向一起判定)
+    //当前人物-动作状态
     private ActionEnum actionState;
+
+    //当前人物-走路状态(走、跑、骑车)
+    private WalkEnum walkState;
 
     //是否为原地踏步
     private boolean stepping;
@@ -119,9 +123,11 @@ public class Person implements YSortable {
         //人物加入世界
         this.world.addPerson(this);
 
-        //人物动作状态
+        //人物动作-默认站立
         this.actionState = ActionEnum.STAND;
-        //人物方向
+        //人物移动-默认站立
+        this.walkState = WalkEnum.STAND;
+        //人物方向-默认南
         this.facing = DirectionEnum.SOUTH;
 
         //记录通用音效
@@ -140,18 +146,23 @@ public class Person implements YSortable {
     public void update(float delta) {
         //根据当前状态判定
         switch (this.actionState) {
-            //如果此时还在走路、跑步
+            //如果此时还在走
             case WALK:
-            case RUN:
                 //一次动画时间
                 float onceAnimTime;
-                //如果是跑步
-                if (this.actionState == ActionEnum.RUN) {
-                    //使用跑步的
-                    onceAnimTime = RUN_ONCE_ANIM_TIME;
-                } else {
-                    //使用走路的
-                    onceAnimTime = WALK_ONCE_ANIM_TIME;
+                //根据当前走路状态判定
+                switch (this.walkState) {
+                    //跑步
+                    case RUN:
+                        //使用跑步的
+                        onceAnimTime = RUN_ONCE_ANIM_TIME;
+                        break;
+                    //走路
+                    case WALK:
+                    default:
+                        //使用走路的
+                        onceAnimTime = WALK_ONCE_ANIM_TIME;
+                        break;
                 }
                 //叠加本次走路、动画的持续时间
                 this.animTime += delta;
@@ -174,8 +185,6 @@ public class Person implements YSortable {
                 break;
             //站立或其他
             case STAND:
-            case CYCLING:
-            case SURFING:
             default:
                 //直接结束
                 break;
@@ -188,21 +197,16 @@ public class Person implements YSortable {
      * 人物移动判定
      *
      * @param directionEnum 接下来移动的方向
-     * @param actionState   走路的状态(走步、跑步)
+     * @param walkEnum      走路状态
      */
-    public boolean move(DirectionEnum directionEnum, ActionEnum actionState) {
+    public boolean move(DirectionEnum directionEnum, WalkEnum walkEnum) {
         //根据人物此时的行动状态判定
         switch (this.actionState) {
             //走路
             case WALK:
-            case RUN:
                 //判断是否还是按照这个方向走路
                 this.moveRequestThisFrame = this.facing == directionEnum;
                 //让他继续走下去吧
-                return false;
-            //todo 其他
-            case CYCLING:
-            case SURFING:
                 return false;
             //默认、站立(或者说是刚走完上一步)
             case STAND:
@@ -233,16 +237,16 @@ public class Person implements YSortable {
                 }
                 //如果是原地踏步
                 if (this.stepping) {
-                    //如果是跑步
-                    if (actionState == ActionEnum.RUN) {
+                    //如果当前走路是跑步
+                    if (this.walkState == WalkEnum.RUN) {
                         //变为走路
-                        actionState = ActionEnum.WALK;
+                        walkEnum = WalkEnum.WALK;
                     }
                     //尝试发出撞墙的音效
                     this.soundManager.playNoWalk();
                 }
                 //开始走路
-                walkStart(directionEnum, actionState);
+                walkStart(directionEnum, walkEnum);
                 //移动成功
                 return true;
         }
@@ -252,16 +256,19 @@ public class Person implements YSortable {
      * 开始走路
      *
      * @param directionEnum 走的方向
-     * @param actionState   走路的状态(走步,跑步)
+     * @param walkEnum      走路的状态(走步,跑步)
      */
-    private void walkStart(DirectionEnum directionEnum, ActionEnum actionState) {
+    private void walkStart(DirectionEnum directionEnum, WalkEnum walkEnum) {
 
         /**
          * 人物自身实体 移动判定
          */
 
-        //改变人物状态为走路
-        this.actionState = actionState;
+        //人物动作变为走路
+        this.actionState = ActionEnum.WALK;
+        //走路的状态
+        this.walkState = walkEnum;
+
         //改变脸的方向
         this.facing = directionEnum;
         //起始坐标
@@ -328,6 +335,17 @@ public class Person implements YSortable {
     }
 
     /**
+     * 停止行走
+     */
+    public void walkStop() {
+        //如果移动状态是站立
+        if (this.actionState == ActionEnum.STAND) {
+            //改变动作状态为站立
+            this.walkState = WalkEnum.STAND;
+        }
+    }
+
+    /**
      * 单纯的脸换个方向,当然,得站着的时候
      *
      * @param facing 方向枚举
@@ -350,7 +368,7 @@ public class Person implements YSortable {
      */
     public TextureRegion getSprite() {
         //根据当前状态判定
-        switch (this.actionState) {
+        switch (this.walkState) {
             //跑步
             case RUN:
                 //返回跑步动画帧图片
@@ -365,14 +383,11 @@ public class Person implements YSortable {
                     //返回走路动画帧图片
                     return this.animationSet.getWalking(this.facing).getKeyFrame(this.continueWalkTime);
                 }
-                //站立
+                //默认站立
             case STAND:
+            default:
                 //返回站立图片
                 return this.animationSet.getStanding(this.facing);
-            //其他
-            default:
-                //默认站立南
-                return this.animationSet.getStanding(DirectionEnum.EAST);
         }
     }
 

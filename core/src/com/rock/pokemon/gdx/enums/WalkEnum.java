@@ -1,15 +1,18 @@
 package com.rock.pokemon.gdx.enums;
 
 /**
- * 人物动作枚举
+ * 人物走路枚举
  *
  * @Author ayl
  * @Date 2022-10-15
  */
-public enum ActionEnum {
+public enum WalkEnum {
 
     STAND("stand", "站立"),
     WALK("walk", "走路"),
+    RUN("run", "跑步"),
+    CYCLING("cycling", "骑自行车"),
+    SURFING("surfing", "冲浪"),
 
     ;
 
@@ -18,7 +21,7 @@ public enum ActionEnum {
     //中文名
     private String zhName;
 
-    ActionEnum(String path, String zhName) {
+    WalkEnum(String path, String zhName) {
         this.path = path;
         this.zhName = zhName;
     }

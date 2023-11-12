@@ -2,8 +2,8 @@ package com.rock.pokemon.gdx.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
+import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.Arrays;
@@ -129,6 +129,8 @@ public class PersonController extends InputAdapter {
          * 移动判定
          */
 
+        //是否行走,默认false
+        boolean walk = false;
         //循环方向键判定
         for (Integer dirInputKey : DIR_INPUT_KEY_LINKED_SET) {
 
@@ -141,6 +143,9 @@ public class PersonController extends InputAdapter {
                 //本轮过
                 continue;
             }
+
+            //从这里开始计算行走了
+            walk = true;
 
             //对应方向
             DirectionEnum directionEnum = DirectionEnum.parseByKeycode(dirInputKey);
@@ -161,11 +166,11 @@ public class PersonController extends InputAdapter {
              */
 
             //默认为走路
-            ActionEnum actionState = ActionEnum.WALK;
+            WalkEnum walkEnum = WalkEnum.WALK;
             //如果按住了跑步
             if (this.buttonPressArr[RUN_INPUT_KEY]) {
                 //改为跑步
-                actionState = ActionEnum.RUN;
+                walkEnum = WalkEnum.RUN;
             }
 
             /**
@@ -173,10 +178,15 @@ public class PersonController extends InputAdapter {
              */
 
             //尝试移动判定
-            this.person.move(directionEnum, actionState);
+            this.person.move(directionEnum, walkEnum);
 
             //结束方向键判定
             break;
+        }
+        //如果不走
+        if (walk == false) {
+            //站立
+            this.person.walkStop();
         }
 
     }

@@ -39,4 +39,9 @@ public class FilePaths {
     //撞墙音效
     public static final String SOUND_NO_WALK = "music/sound/emerald_0007_no_walk.wav";
 
+    //菜单开启音效
+    public static final String SOUND_MENU_OPEN = "music/sound/emerald_0006_menu_open.wav";
+    //菜单关闭音效
+    public static final String SOUND_MENU_CLOSE = "music/sound/emerald_0005_menu_close.wav";
+
 }

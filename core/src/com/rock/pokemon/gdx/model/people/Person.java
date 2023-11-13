@@ -66,7 +66,6 @@ public class Person implements YSortable {
     //移动起始坐标
     private int srcX;
     private int srcY;
-
     //移动目标坐标
     private int destX;
     private int destY;
@@ -285,11 +284,13 @@ public class Person implements YSortable {
         //校准当前坐标
         this.srcX = this.x;
         this.srcY = this.y;
-        this.destX = this.x;
-        this.destY = this.y;
         //如果不是原地踏步
         if (steppingState == false) {
-            //覆盖目标移动坐标
+            //原地踏步
+            this.destX = this.x;
+            this.destY = this.y;
+        } else {
+            //覆盖为目的地坐标
             this.destX = destX;
             this.destY = destY;
         }

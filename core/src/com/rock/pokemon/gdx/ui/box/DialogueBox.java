@@ -117,22 +117,22 @@ public class DialogueBox extends Table {
     @Override
     public void act(float delta) {
         //根据状态处理
-        switch (state) {
+        switch (this.state) {
             //动画中
             case ANIMATING:
                 //叠加动画总市场
-                animTimer += delta;
+                this.animTimer += delta;
                 //如果动画时长过了总时间了
-                if (animTimer >= animationTotalTime) {
+                if (this.animTimer >= this.animationTotalTime) {
                     //更改状态
-                    state = STATE.IDLE;
+                    this.state = STATE.IDLE;
                     //变更为总时间
-                    animTimer = animationTotalTime;
+                    this.animTimer = this.animationTotalTime;
                 }
                 //计算出当前动画时间该播放的文本数量/坐标(转化为整数)
-                int charactersToDisplay = (int) ((animTimer / animationTotalTime) * targetText.length());
+                int charactersToDisplay = (int) ((this.animTimer / this.animationTotalTime) * this.targetText.length());
                 //从总文本中切割出实际对话文本
-                String actuallyDisplayedText = targetText.substring(0, charactersToDisplay);
+                String actuallyDisplayedText = this.targetText.substring(0, charactersToDisplay);
                 //设置实际对话文本
                 setText(actuallyDisplayedText);
                 //结束
@@ -152,7 +152,7 @@ public class DialogueBox extends Table {
      */
     public boolean isFinished() {
         //返回
-        return state == STATE.IDLE;
+        return this.state == STATE.IDLE;
     }
 
 }

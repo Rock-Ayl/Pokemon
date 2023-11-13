@@ -45,11 +45,6 @@ public class OptionBoxController extends InputAdapter {
 
     @Override
     public boolean keyUp(int keycode) {
-        //如果不可见
-        if (optionBox.isVisible() == false) {
-            //过
-            return false;
-        }
         //根据按键判断
         switch (keycode) {
             //上
@@ -66,8 +61,14 @@ public class OptionBoxController extends InputAdapter {
                 return true;
             //默认X为取消
             case Keys.X:
-                //不可见
-                this.optionBox.setVisible(false);
+                //处理取消
+                this.optionBox.change(false);
+                //是
+                return true;
+            //回车
+            case Keys.ENTER:
+                //开/关
+                this.optionBox.change();
                 //是
                 return true;
             //默认

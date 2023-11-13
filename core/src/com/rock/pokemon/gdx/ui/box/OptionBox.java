@@ -126,6 +126,40 @@ public class OptionBox extends Table {
     }
 
     /**
+     * 改变可见
+     */
+    public void change() {
+        //对可见取反
+        if (this.isVisible()) {
+            //设置为不可见
+            change(false);
+        } else {
+            //可见
+            change(true);
+        }
+    }
+
+    /**
+     * 改变可见
+     *
+     * @param open 是否可见
+     */
+    public void change(boolean open) {
+        //如果打开
+        if (open) {
+            //从0开始
+            this.selectorIndex = 0;
+            //重置当前箭头可见
+            this.restArrowVisible();
+            //设置为可见
+            this.setVisible(true);
+        } else {
+            //设置为不可见
+            this.setVisible(false);
+        }
+    }
+
+    /**
      * 清理所有可选项
      */
     public void clearChoices() {

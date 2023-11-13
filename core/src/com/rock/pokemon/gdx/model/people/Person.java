@@ -284,8 +284,8 @@ public class Person implements YSortable {
         //校准当前坐标
         this.srcX = this.x;
         this.srcY = this.y;
-        //如果不是原地踏步
-        if (steppingState == false) {
+        //如果是原地踏步
+        if (steppingState) {
             //原地踏步
             this.destX = this.x;
             this.destY = this.y;

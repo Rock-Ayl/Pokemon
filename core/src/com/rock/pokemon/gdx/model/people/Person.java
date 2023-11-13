@@ -209,37 +209,61 @@ public class Person implements YSortable {
             //默认、站立(或者说是刚走完上一步)
             case STAND:
             default:
+
                 //计算出移动完的目标坐标
                 int destX = this.x + directionEnum.getDx();
                 int destY = this.y + directionEnum.getDy();
-                //首先,判断目标位置是否越界
-                this.stepping = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
-                //如果未越界
-                if (this.stepping == false) {
-                    //获取目标地图块
-                    Tile tile = this.world.getTileMap().getTile(destX, destY);
-                    //获取这个地图块是否可以行走(判断上面有没有阻挡的事物)
-                    this.stepping = Optional.ofNullable(tile)
-                            .map(Tile::getWorldObject)
-                            //这里获取是否可行走
-                            .map(WorldObject::isWalkable)
-                            //相反的判定
-                            .map(p -> !p)
-                            //默认
-                            .orElse(false);
-                    //如果可以行走地图块
-                    if (this.stepping == false) {
-                        //该地图块有人则无法通过
-                        this.stepping = tile.getPerson() != null;
-                    }
-                }
+
+                /**
+                 * 计算本次移动是否为原地踏步
+                 */
+
+                //step 1 判断目标位置,对于地图来说,是否越界,如果越界,则为原地踏步
+                boolean stepping = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
+
+                //step 2 如果不是原地踏步,判断对应目的地上事物是否可以行走
+                stepping = stepping == true ? true : Optional.ofNullable(this.world)
+                        //获取地图块矩阵
+                        .map(World::getTileMap)
+                        //获取对应目的地
+                        .map(p -> p.getTile(destX, destY))
+                        //获取事物
+                        .map(Tile::getWorldObject)
+                        //获取这个是否是否可以取走
+                        .map(WorldObject::isWalkable)
+                        //翻转
+                        .map(p -> !p)
+                        //默认
+                        .orElse(false);
+
+                //step 3 判断对应地图块是否有人,如果有人则原地踏步
+                stepping = stepping == true ? true : Optional.ofNullable(this.world)
+                        //获取地图块矩阵
+                        .map(World::getTileMap)
+                        //获取对应目的地
+                        .map(p -> p.getTile(destX, destY))
+                        //获取人
+                        .map(Tile::getPerson)
+                        //如果人是否存在
+                        .map(obj -> true)
+                        //默认
+                        .orElse(false);
+
+                /**
+                 * 根据是否原地踏步,开始处理逻辑
+                 */
+
                 //如果是原地踏步
-                if (this.stepping) {
+                if (stepping) {
                     //变为走路
                     walkEnum = WalkEnum.WALK;
                     //尝试发出撞墙的音效
                     this.soundManager.playNoWalk();
                 }
+
+                //覆盖本次是否可以移动的结果
+                this.stepping = stepping;
+
                 //开始走路
                 walkStart(directionEnum, walkEnum);
                 //移动成功

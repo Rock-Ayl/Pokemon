@@ -26,6 +26,15 @@ public class SoundManager {
     private static final long NO_WALK_SOUND_TIME_INTERVAL = 500L;
 
     /**
+     * 菜单
+     */
+
+    //音效-菜单开启
+    private Sound MENU_OPEN;
+    //音效-菜单关闭
+    private Sound MENU_CLOSE;
+
+    /**
      * 初始化
      */
 
@@ -33,6 +42,8 @@ public class SoundManager {
     public SoundManager() {
         //初始化撞墙
         this.NO_WALK = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
+        this.MENU_OPEN = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_MENU_OPEN));
+        this.MENU_CLOSE = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_MENU_CLOSE));
     }
 
     /**
@@ -50,6 +61,22 @@ public class SoundManager {
         this.NO_WALK.play();
         //记录发出音效的时间
         NO_WALK_LAST_SOUND_TIME = thisTime;
+    }
+
+    /**
+     * 打开菜单音效
+     */
+    public void playMenuOpen() {
+        //菜单开启音效
+        this.MENU_OPEN.play();
+    }
+
+    /**
+     * 关闭菜单音效
+     */
+    public void playMenuClose() {
+        //菜单关闭音效
+        this.MENU_CLOSE.play();
     }
 
 }

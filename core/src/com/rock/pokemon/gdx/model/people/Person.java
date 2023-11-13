@@ -60,9 +60,8 @@ public class Person implements YSortable {
     private ActionEnum actionState;
     //当前人物-走路状态(走、跑、骑车)
     private WalkEnum walkState;
-
-    //是否为原地踏步
-    private boolean stepping;
+    //当前人物-是否为原地踏步
+    private boolean steppingState;
 
     //移动起始坐标
     private int srcX;
@@ -209,62 +208,7 @@ public class Person implements YSortable {
             //默认、站立(或者说是刚走完上一步)
             case STAND:
             default:
-
-                //计算出移动完的目标坐标
-                int destX = this.x + directionEnum.getDx();
-                int destY = this.y + directionEnum.getDy();
-
-                /**
-                 * 计算本次移动是否为原地踏步
-                 */
-
-                //step 1 判断目标位置,对于地图来说,是否越界,如果越界,则为原地踏步
-                boolean stepping = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
-
-                //step 2 如果不是原地踏步,判断对应目的地上事物是否可以行走
-                stepping = stepping == true ? true : Optional.ofNullable(this.world)
-                        //获取地图块矩阵
-                        .map(World::getTileMap)
-                        //获取对应目的地
-                        .map(p -> p.getTile(destX, destY))
-                        //获取事物
-                        .map(Tile::getWorldObject)
-                        //获取这个是否是否可以取走
-                        .map(WorldObject::isWalkable)
-                        //翻转
-                        .map(p -> !p)
-                        //默认
-                        .orElse(false);
-
-                //step 3 判断对应地图块是否有人,如果有人则原地踏步
-                stepping = stepping == true ? true : Optional.ofNullable(this.world)
-                        //获取地图块矩阵
-                        .map(World::getTileMap)
-                        //获取对应目的地
-                        .map(p -> p.getTile(destX, destY))
-                        //获取人
-                        .map(Tile::getPerson)
-                        //如果人是否存在
-                        .map(obj -> true)
-                        //默认
-                        .orElse(false);
-
-                /**
-                 * 根据是否原地踏步,开始处理逻辑
-                 */
-
-                //如果是原地踏步
-                if (stepping) {
-                    //变为走路
-                    walkEnum = WalkEnum.WALK;
-                    //尝试发出撞墙的音效
-                    this.soundManager.playNoWalk();
-                }
-
-                //覆盖本次是否可以移动的结果
-                this.stepping = stepping;
-
-                //开始走路
+                //开始走路判定
                 walkStart(directionEnum, walkEnum);
                 //移动成功
                 return true;
@@ -272,7 +216,7 @@ public class Person implements YSortable {
     }
 
     /**
-     * 开始走路
+     * 尝试开始本次走路
      *
      * @param directionEnum 走的方向
      * @param walkEnum      走路的状态(走步,跑步)
@@ -280,30 +224,90 @@ public class Person implements YSortable {
     private void walkStart(DirectionEnum directionEnum, WalkEnum walkEnum) {
 
         /**
-         * 人物自身实体 移动判定
+         * 计算出本次移动的ø目的地
          */
 
+        //计算出移动完的目标坐标
+        int destX = this.x + directionEnum.getDx();
+        int destY = this.y + directionEnum.getDy();
+
+        /**
+         * 计算本次移动是否为原地踏步
+         */
+
+        //step 1 判断目标位置,对于地图来说,是否越界,如果越界,则为原地踏步
+        boolean steppingState = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
+
+        //step 2 如果不是原地踏步,判断对应目的地上事物是否可以行走
+        steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
+                //获取地图块矩阵
+                .map(World::getTileMap)
+                //获取对应目的地
+                .map(p -> p.getTile(destX, destY))
+                //获取事物
+                .map(Tile::getWorldObject)
+                //获取这个是否是否可以取走
+                .map(WorldObject::isWalkable)
+                //翻转
+                .map(p -> !p)
+                //默认
+                .orElse(false);
+
+        //step 3 判断对应地图块是否有人,如果有人则原地踏步
+        steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
+                //获取地图块矩阵
+                .map(World::getTileMap)
+                //获取对应目的地
+                .map(p -> p.getTile(destX, destY))
+                //获取人
+                .map(Tile::getPerson)
+                //如果人是否存在
+                .map(obj -> true)
+                //默认
+                .orElse(false);
+
+        /**
+         * 根据是否原地踏步,开始处理逻辑
+         */
+
+        //如果是原地踏步
+        if (steppingState) {
+            //变为走路
+            walkEnum = WalkEnum.WALK;
+            //尝试发出撞墙的音效
+            this.soundManager.playNoWalk();
+        }
+
+        /**
+         * 移动判定 人物坐标
+         */
+
+        //校准当前坐标
+        this.srcX = this.x;
+        this.srcY = this.y;
+        this.destX = this.x;
+        this.destY = this.y;
+        //如果不是原地踏步
+        if (steppingState == false) {
+            //覆盖目标移动坐标
+            this.destX = destX;
+            this.destY = destY;
+        }
+
+        /**
+         * 移动判定 人物动画状态
+         */
+
+        //初始化活动时间
+        this.animTime = 0F;
         //人物动作变为走路
         this.actionState = ActionEnum.WALK;
         //走路的状态
         this.walkState = walkEnum;
-
         //改变脸的方向
         this.facingState = directionEnum;
-        //起始坐标
-        this.srcX = this.x;
-        this.srcY = this.y;
-        //目标坐标
-        this.destX = this.x;
-        this.destY = this.y;
-        //如果不是原地踏步
-        if (this.stepping == false) {
-            //计算出移动后的目标坐标
-            this.destX += directionEnum.getDx();
-            this.destY += directionEnum.getDy();
-        }
-        //初始化活动时间
-        this.animTime = 0F;
+        //覆盖是否原地踏步的状态
+        this.steppingState = steppingState;
 
     }
 
@@ -313,11 +317,8 @@ public class Person implements YSortable {
     private void walkEnd() {
 
         /**
-         * 人物自身实体 移动判定
+         * 移动判定,人物坐标
          */
-
-        //改变人物状态为站立
-        this.actionState = ActionEnum.STAND;
 
         //将当前坐标改为移动结束的坐标(这么做还有个好处,该坐标可以转化为int)
         this.worldX = this.destX;
@@ -331,11 +332,16 @@ public class Person implements YSortable {
         this.destX = 0;
         this.destY = 0;
 
+        /**
+         * 移动判定 人物动画状态
+         */
+
         //动画持续时间重置
         this.animTime = 0;
-
-        //结束走路后,预设不是原地踏步
-        this.stepping = false;
+        //改变人物状态为站立
+        this.actionState = ActionEnum.STAND;
+        //重置人物是否原地踏步状态
+        this.steppingState = false;
 
         /**
          * 移动 地图块内 对应的人物实体
@@ -395,7 +401,7 @@ public class Person implements YSortable {
             //走路/踏步
             case WALK:
                 //如果是踏步
-                if (this.stepping) {
+                if (this.steppingState) {
                     //返回踏步动画帧图片
                     return this.animationSet.getStepping(this.facingState).getKeyFrame(this.continueWalkTime);
                 } else {

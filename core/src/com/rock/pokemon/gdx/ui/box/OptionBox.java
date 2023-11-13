@@ -172,6 +172,11 @@ public class OptionBox extends Table {
     public void change(boolean open) {
         //如果打开
         if (open) {
+            //如果已经开启了
+            if (this.isVisible()) {
+                //过
+                return;
+            }
             //从0开始
             this.selectorIndex = 0;
             //重置当前箭头可见
@@ -181,6 +186,11 @@ public class OptionBox extends Table {
             //菜单打开音效
             this.soundManager.playMenuOpen();
         } else {
+            //如果已经关闭了
+            if (this.isVisible() == false) {
+                //过
+                return;
+            }
             //设置为不可见
             this.setVisible(false);
             //菜单关闭音效

@@ -235,10 +235,10 @@ public class Person implements YSortable {
          * 计算本次移动是否为原地踏步
          */
 
-        //step 1 判断目标位置,对于地图来说,是否越界,如果越界,则为原地踏步
+        //step 1 根据地图边界,判断原地踏步
         boolean steppingState = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
 
-        //step 2 如果不是原地踏步,判断对应目的地上事物是否可以行走
+        //step 2 根据地图块事物,判断原地踏步
         steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
                 //获取地图块矩阵
                 .map(World::getTileMap)
@@ -253,7 +253,7 @@ public class Person implements YSortable {
                 //默认
                 .orElse(false);
 
-        //step 3 判断对应地图块是否有人,如果有人则原地踏步
+        //step 3 根据地图块人物,判断原地踏步
         steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
                 //获取地图块矩阵
                 .map(World::getTileMap)
@@ -272,7 +272,7 @@ public class Person implements YSortable {
 
         //如果是原地踏步
         if (steppingState) {
-            //变为走路
+            //强制变为走路
             walkEnum = WalkEnum.WALK;
             //尝试发出撞墙的音效
             this.soundManager.playNoWalk();

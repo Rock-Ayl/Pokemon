@@ -45,13 +45,6 @@ public class Person implements YSortable {
     private float height = 1.5F;
 
     /**
-     * 音效
-     */
-
-    //通用的音效管理器
-    private SoundManager soundManager;
-
-    /**
      * 移动相关
      */
 
@@ -92,6 +85,13 @@ public class Person implements YSortable {
     private float continueWalkTime;
     //持续走路时,如果方向和之前相同,那么该参数会为true,让它会继续走下去,用来判定[连续相同方向走路],否则会停下
     private boolean moveRequestThisFrame;
+
+    /**
+     * 音效
+     */
+
+    //通用的音效管理器
+    private SoundManager soundManager;
 
     /**
      * 使用人物枚举初始化
@@ -288,7 +288,7 @@ public class Person implements YSortable {
     /**
      * 结束走路
      */
-    public void walkEnd() {
+    private void walkEnd() {
 
         /**
          * 人物自身实体 移动判定
@@ -332,7 +332,7 @@ public class Person implements YSortable {
     }
 
     /**
-     * 停止行走
+     * 尝试停止走路
      */
     public void walkStop() {
         //如果移动状态是站立

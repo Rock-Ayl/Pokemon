@@ -183,9 +183,9 @@ public class PersonController extends InputAdapter {
             //结束方向键判定
             break;
         }
-        //如果不走
+        //如果不再按键走路
         if (walk == false) {
-            //站立
+            //尝试停止走路
             this.person.walkStop();
         }
 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.model.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,19 @@ public class OptionBox extends Table {
     private Table uiContainer;
 
     /**
+     * 音效
+     */
+
+    //通用的音效管理器
+    private SoundManager soundManager;
+
+    /**
      * 初始化 可选项框
      *
-     * @param skin
+     * @param skin         皮肤
+     * @param soundManager 音效管理器
      */
-    public OptionBox(Skin skin) {
+    public OptionBox(Skin skin, SoundManager soundManager) {
         //初始化父级
         super(skin);
         //设置整体背景贴图
@@ -39,6 +48,8 @@ public class OptionBox extends Table {
         this.uiContainer = new Table();
         this.add(this.uiContainer)
                 .pad(15f);
+        //记录音效管理器
+        this.soundManager = soundManager;
     }
 
     /**
@@ -88,6 +99,11 @@ public class OptionBox extends Table {
      * 箭头向上移动
      */
     public void moveUp() {
+        //如果未开启
+        if (this.isVisible() == false) {
+            //过
+            return;
+        }
         //向上移动一行,不可越界
         this.selectorIndex = this.selectorIndex - 1;
         //如果越界
@@ -97,12 +113,19 @@ public class OptionBox extends Table {
         }
         //重置当前箭头可见
         restArrowVisible();
+        //移动音效
+        this.soundManager.playMenuClose();
     }
 
     /**
      * 箭头向下移动
      */
     public void moveDown() {
+        //如果未开启
+        if (this.isVisible() == false) {
+            //过
+            return;
+        }
         //向下移动一行
         this.selectorIndex = this.selectorIndex + 1;
         //如果越界
@@ -112,6 +135,8 @@ public class OptionBox extends Table {
         }
         //重置当前箭头可见
         restArrowVisible();
+        //移动音效
+        this.soundManager.playMenuClose();
     }
 
     /**
@@ -153,9 +178,13 @@ public class OptionBox extends Table {
             this.restArrowVisible();
             //设置为可见
             this.setVisible(true);
+            //菜单打开音效
+            this.soundManager.playMenuOpen();
         } else {
             //设置为不可见
             this.setVisible(false);
+            //菜单关闭音效
+            this.soundManager.playMenuClose();
         }
     }
 

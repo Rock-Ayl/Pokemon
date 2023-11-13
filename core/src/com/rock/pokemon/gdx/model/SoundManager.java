@@ -72,7 +72,7 @@ public class SoundManager {
     }
 
     /**
-     * 关闭菜单音效
+     * 关闭/移动菜单音效
      */
     public void playMenuClose() {
         //菜单关闭音效

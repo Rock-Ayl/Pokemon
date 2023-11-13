@@ -151,7 +151,7 @@ public class LittleRoot implements Screen {
          * 创建一个可选项框
          */
 
-        this.optionBox = new OptionBox(this.game.getSkin());
+        this.optionBox = new OptionBox(this.game.getSkin(), this.game.getSoundManager());
         this.optionBox.addOption("图鉴");
         this.optionBox.addOption("精灵");
         this.optionBox.addOption("背包");

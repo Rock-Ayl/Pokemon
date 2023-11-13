@@ -54,12 +54,10 @@ public class Person implements YSortable {
     //人物动画集合
     private PersonAnimationSet animationSet;
 
-    //人物当前脸的方向(可以是走也可以是站立,只是方向,根据方向+状态不同,有不同的判定)
-    private DirectionEnum facing;
-
+    //当前人物-脸的方向(可以是走也可以是站立,只是方向,根据方向+状态不同,有不同的判定)
+    private DirectionEnum facingState;
     //当前人物-动作状态
     private ActionEnum actionState;
-
     //当前人物-走路状态(走、跑、骑车)
     private WalkEnum walkState;
 
@@ -128,7 +126,7 @@ public class Person implements YSortable {
         //人物移动-默认站立
         this.walkState = WalkEnum.STAND;
         //人物方向-默认南
-        this.facing = DirectionEnum.SOUTH;
+        this.facingState = DirectionEnum.SOUTH;
 
         //记录通用音效
         this.soundManager = soundManager;
@@ -205,7 +203,7 @@ public class Person implements YSortable {
             //走路
             case WALK:
                 //判断是否还是按照这个方向走路
-                this.moveRequestThisFrame = this.facing == directionEnum;
+                this.moveRequestThisFrame = this.facingState == directionEnum;
                 //让他继续走下去吧
                 return false;
             //默认、站立(或者说是刚走完上一步)
@@ -267,7 +265,7 @@ public class Person implements YSortable {
         this.walkState = walkEnum;
 
         //改变脸的方向
-        this.facing = directionEnum;
+        this.facingState = directionEnum;
         //起始坐标
         this.srcX = this.x;
         this.srcY = this.y;
@@ -355,7 +353,7 @@ public class Person implements YSortable {
             return;
         }
         //变换当前脸的方向
-        this.facing = facing;
+        this.facingState = facing;
     }
 
     /**
@@ -369,22 +367,22 @@ public class Person implements YSortable {
             //跑步
             case RUN:
                 //返回跑步动画帧图片
-                return this.animationSet.getRunning(this.facing).getKeyFrame(this.continueWalkTime);
+                return this.animationSet.getRunning(this.facingState).getKeyFrame(this.continueWalkTime);
             //走路/踏步
             case WALK:
                 //如果是踏步
                 if (this.stepping) {
                     //返回踏步动画帧图片
-                    return this.animationSet.getStepping(this.facing).getKeyFrame(this.continueWalkTime);
+                    return this.animationSet.getStepping(this.facingState).getKeyFrame(this.continueWalkTime);
                 } else {
                     //返回走路动画帧图片
-                    return this.animationSet.getWalking(this.facing).getKeyFrame(this.continueWalkTime);
+                    return this.animationSet.getWalking(this.facingState).getKeyFrame(this.continueWalkTime);
                 }
                 //默认站立
             case STAND:
             default:
                 //返回站立图片
-                return this.animationSet.getStanding(this.facing);
+                return this.animationSet.getStanding(this.facingState);
         }
     }
 

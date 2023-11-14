@@ -26,7 +26,7 @@ public class SoundManager {
     private static final long NO_WALK_SOUND_TIME_INTERVAL = 500L;
 
     /**
-     * 菜单
+     * 菜单音效
      */
 
     //音效-菜单开启
@@ -40,7 +40,7 @@ public class SoundManager {
 
     //初始化音效管理器
     public SoundManager() {
-        //初始化撞墙
+        //初始化各种音乐
         this.NO_WALK = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
         this.MENU_OPEN = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_MENU_OPEN));
         this.MENU_CLOSE = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_MENU_CLOSE));

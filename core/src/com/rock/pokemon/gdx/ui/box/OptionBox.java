@@ -177,10 +177,6 @@ public class OptionBox extends Table {
                 //过
                 return;
             }
-            //从0开始
-            this.selectorIndex = 0;
-            //重置当前箭头可见
-            this.restArrowVisible();
             //设置为可见
             this.setVisible(true);
             //菜单打开音效

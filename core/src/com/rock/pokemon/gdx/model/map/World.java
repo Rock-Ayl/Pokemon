@@ -142,12 +142,12 @@ public class World {
      */
     public void update(float delta) {
         //循环
-        for (Person person : personList) {
+        for (Person person : this.personList) {
             //更新人物
             person.update(delta);
         }
         //循环
-        for (WorldObject worldObject : worldObjectList) {
+        for (WorldObject worldObject : this.worldObjectList) {
             //更新事物
             worldObject.update(delta);
         }
@@ -160,15 +160,15 @@ public class World {
      */
 
     public TileMap getTileMap() {
-        return tileMap;
+        return this.tileMap;
     }
 
     public List<Person> getPersonList() {
-        return personList;
+        return this.personList;
     }
 
     public List<WorldObject> getWorldObjectList() {
-        return worldObjectList;
+        return this.worldObjectList;
     }
 
 }

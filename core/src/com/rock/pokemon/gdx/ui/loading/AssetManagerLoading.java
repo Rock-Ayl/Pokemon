@@ -28,10 +28,14 @@ public class AssetManagerLoading {
          * 载入 已打包的各种资源
          */
 
-        //人物
-        assetManager.load("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
+        //人物-路比
         assetManager.load("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
+        assetManager.load("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/people/ruby/run/textures.atlas", TextureAtlas.class);
+
+        //人物-小田卷
+        assetManager.load("assets/packed/image/people/prof_birch/stand/textures.atlas", TextureAtlas.class);
+        assetManager.load("assets/packed/image/people/prof_birch/walk/textures.atlas", TextureAtlas.class);
 
         //地图相关
         assetManager.load("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);

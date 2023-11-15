@@ -7,6 +7,7 @@ public enum PersonEnum {
 
     RUBE(1, "ruby", "路比"),
     SAPPHIRE(2, "sapphire", "沙菲亚"),
+    PROF_BIRCH(3, "prof_birch", "小田卷博士"),
 
     ;
 

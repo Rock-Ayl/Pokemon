@@ -17,22 +17,28 @@ public class TexturePackerTools {
      */
     public static void main(String[] args) {
 
-        //路比走路
+        //路比 走路、站立、跑
         TexturePacker.process(
                 "assets/unpacked/image/people/ruby/walk/",
                 "assets/packed/image/people/ruby/walk/",
                 "textures");
-
-        //路比站立
         TexturePacker.process(
                 "assets/unpacked/image/people/ruby/stand/",
                 "assets/packed/image/people/ruby/stand/",
                 "textures");
-
-        //路比跑
         TexturePacker.process(
                 "assets/unpacked/image/people/ruby/run/",
                 "assets/packed/image/people/ruby/run/",
+                "textures");
+
+        //小田卷博士 走路、站立、跑
+        TexturePacker.process(
+                "assets/unpacked/image/people/prof_birch/walk/",
+                "assets/packed/image/people/prof_birch/walk/",
+                "textures");
+        TexturePacker.process(
+                "assets/unpacked/image/people/prof_birch/stand/",
+                "assets/packed/image/people/prof_birch/stand/",
                 "textures");
 
         //草

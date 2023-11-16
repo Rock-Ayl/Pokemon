@@ -23,24 +23,7 @@ public class OptionBoxController extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
-        //如果可选框不可见
-        if (this.optionBox.isVisible() == false) {
-            //过
-            return false;
-        }
-        //根据按键判断
-        switch (keycode) {
-            //上下X
-            case Input.Keys.UP:
-            case Input.Keys.DOWN:
-            case Input.Keys.X:
-                //是
-                return true;
-            //默认
-            default:
-                //过
-                return false;
-        }
+        return false;
     }
 
     @Override

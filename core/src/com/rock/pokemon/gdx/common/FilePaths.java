@@ -1,5 +1,7 @@
 package com.rock.pokemon.gdx.common;
 
+import com.rock.pokemon.gdx.enums.PersonEnum;
+
 /**
  * 文件地址类,所有文件路径都存放在这里
  * 文件包括: 图片、音效、音乐、文本
@@ -33,13 +35,13 @@ public class FilePaths {
     public static final String TEXTURES_ALTA_PEOPLE_RUN = "assets/packed/image/people/%s/run/textures.atlas";
 
     //人物-路比
-    public static final String TEXTURES_ALTA_PEOPLE_RUBY_STAND = String.format(TEXTURES_ALTA_PEOPLE_STAND, "ruby");
-    public static final String TEXTURES_ALTA_PEOPLE_RUBY_WALK = String.format(TEXTURES_ALTA_PEOPLE_WALK, "ruby");
-    public static final String TEXTURES_ALTA_PEOPLE_RUBY_RUN = String.format(TEXTURES_ALTA_PEOPLE_RUN, "ruby");
+    public static final String TEXTURES_ALTA_PEOPLE_RUBY_STAND = String.format(TEXTURES_ALTA_PEOPLE_STAND, PersonEnum.RUBE.getName());
+    public static final String TEXTURES_ALTA_PEOPLE_RUBY_WALK = String.format(TEXTURES_ALTA_PEOPLE_WALK, PersonEnum.RUBE.getName());
+    public static final String TEXTURES_ALTA_PEOPLE_RUBY_RUN = String.format(TEXTURES_ALTA_PEOPLE_RUN, PersonEnum.RUBE.getName());
 
     //人物-小田卷
-    public static final String TEXTURES_ALTA_PEOPLE_PROF_BIRCH_STAND = String.format(TEXTURES_ALTA_PEOPLE_STAND, "prof_birch");
-    public static final String TEXTURES_ALTA_PEOPLE_PROF_BIRCH_WALK = String.format(TEXTURES_ALTA_PEOPLE_WALK, "prof_birch");
+    public static final String TEXTURES_ALTA_PEOPLE_PROF_BIRCH_STAND = String.format(TEXTURES_ALTA_PEOPLE_STAND, PersonEnum.PROF_BIRCH.getName());
+    public static final String TEXTURES_ALTA_PEOPLE_PROF_BIRCH_WALK = String.format(TEXTURES_ALTA_PEOPLE_WALK, PersonEnum.PROF_BIRCH.getName());
 
     //地图相关
     public static final String TEXTURES_ALTA_MAP_OBJECT = "assets/packed/image/map/object/textures.atlas";

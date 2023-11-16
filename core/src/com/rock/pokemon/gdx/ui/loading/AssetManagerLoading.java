@@ -29,20 +29,20 @@ public class AssetManagerLoading {
          */
 
         //人物-路比
-        assetManager.load("assets/packed/image/people/ruby/stand/textures.atlas", TextureAtlas.class);
-        assetManager.load("assets/packed/image/people/ruby/walk/textures.atlas", TextureAtlas.class);
-        assetManager.load("assets/packed/image/people/ruby/run/textures.atlas", TextureAtlas.class);
+        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_RUBY_STAND, TextureAtlas.class);
+        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_RUBY_WALK, TextureAtlas.class);
+        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_RUBY_RUN, TextureAtlas.class);
 
         //人物-小田卷
-        assetManager.load("assets/packed/image/people/prof_birch/stand/textures.atlas", TextureAtlas.class);
-        assetManager.load("assets/packed/image/people/prof_birch/walk/textures.atlas", TextureAtlas.class);
+        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_PROF_BIRCH_STAND, TextureAtlas.class);
+        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_PROF_BIRCH_WALK, TextureAtlas.class);
 
         //地图相关
-        assetManager.load("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
-        assetManager.load("assets/packed/image/map/house/textures.atlas", TextureAtlas.class);
+        assetManager.load(FilePaths.TEXTURES_ALTA_MAP_OBJECT, TextureAtlas.class);
+        assetManager.load(FilePaths.TEXTURES_ALTA_MAP_HOUSE, TextureAtlas.class);
 
         //ui相关
-        assetManager.load("assets/packed/image/ui/textures.atlas", TextureAtlas.class);
+        assetManager.load(FilePaths.TEXTURES_ATLAS_UI, TextureAtlas.class);
 
         /**
          * 载入 各种解析器

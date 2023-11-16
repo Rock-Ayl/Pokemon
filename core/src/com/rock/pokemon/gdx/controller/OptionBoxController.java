@@ -21,11 +21,23 @@ public class OptionBoxController extends InputAdapter {
         this.optionBox = box;
     }
 
+    /**
+     * 按键按下时调用
+     *
+     * @param keycode
+     * @return
+     */
     @Override
     public boolean keyDown(int keycode) {
         return false;
     }
 
+    /**
+     * 按键被释放时调用
+     *
+     * @param keycode 输入
+     * @return
+     */
     @Override
     public boolean keyUp(int keycode) {
         //根据按键判断

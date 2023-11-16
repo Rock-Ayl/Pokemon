@@ -70,17 +70,17 @@ public class WorldRenderer {
                 continue;
             }
             //不可行走的记录到列表
-            sortList.add(worldObject);
+            this.sortList.add(worldObject);
         }
 
         //sort列表加入所有的人物
-        sortList.addAll(this.world.getPersonList());
+        this.sortList.addAll(this.world.getPersonList());
 
         /**
          * 按照Y轴排序
          */
 
-        sortList.sort(new YSortComparator());
+        this.sortList.sort(new YSortComparator());
 
         /**
          * 最后统一渲染人物、不可行走的事物
@@ -93,7 +93,7 @@ public class WorldRenderer {
         }
 
         //结束时清理
-        sortList.clear();
+        this.sortList.clear();
 
     }
 

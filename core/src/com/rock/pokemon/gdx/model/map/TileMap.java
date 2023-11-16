@@ -43,7 +43,7 @@ public class TileMap {
      */
     public void setPerson(int x, int y, Person person) {
         //如果越界
-        if (x < 0 || y < 0 || x >= width || y >= height) {
+        if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
             //过
             return;
         }
@@ -60,7 +60,7 @@ public class TileMap {
      */
     public void removePerson(int x, int y, Person person) {
         //如果越界
-        if (x < 0 || y < 0 || x >= width || y >= height) {
+        if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
             //过
             return;
         }
@@ -75,19 +75,19 @@ public class TileMap {
      */
 
     public int getWidth() {
-        return width;
+        return this.width;
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     public Tile[][] getTileMap() {
-        return map;
+        return this.map;
     }
 
     public Tile getTile(int x, int y) {
-        return map[x][y];
+        return this.map[x][y];
     }
 
 }

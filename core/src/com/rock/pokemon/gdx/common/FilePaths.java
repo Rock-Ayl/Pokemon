@@ -13,8 +13,19 @@ public class FilePaths {
      * 系统配置
      */
 
-    //文本文件地址
+    //文本-文件地址
     public static final String SYSTEM_CONFIG_TEXT_FILE_PATH = "assets/text/%s/Text.txt";
+
+    //文本-文字皮肤
+    public static final String SYSTEM_TEXT_FONT_FNT = "assets/font/black/黑体.fnt";
+    public static final String SYSTEM_TEXT_FONT_IMAGE = "assets/font/black/黑体.png";
+
+    /**
+     * 图片资源
+     */
+
+    //ui
+    public static final String TEXTURES_ATLAS_UI = "assets/packed/image/ui/textures.atlas";
 
     /**
      * 世界配置

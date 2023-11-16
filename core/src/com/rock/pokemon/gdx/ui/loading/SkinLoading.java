@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 
 /**
@@ -31,7 +32,7 @@ public class SkinLoading {
          */
 
         //获取ui资源
-        TextureAtlas uiAtlas = assetManager.get("assets/packed/image/ui/textures.atlas");
+        TextureAtlas uiAtlas = assetManager.get(FilePaths.TEXTURES_ATLAS_UI);
 
         /**
          * ui 对话框
@@ -68,8 +69,8 @@ public class SkinLoading {
         Label.LabelStyle normalFontLabel = new Label.LabelStyle();
         //载入字体
         normalFontLabel.font = new BitmapFont(
-                Gdx.files.internal("assets/font/black/黑体.fnt"),
-                Gdx.files.internal("assets/font/black/黑体.png"),
+                Gdx.files.internal(FilePaths.SYSTEM_TEXT_FONT_FNT),
+                Gdx.files.internal(FilePaths.SYSTEM_TEXT_FONT_IMAGE),
                 false
         );
         //组装至皮肤

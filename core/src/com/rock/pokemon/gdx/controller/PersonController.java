@@ -165,13 +165,8 @@ public class PersonController extends InputAdapter {
              * 计算移动方式
              */
 
-            //默认为走路
-            WalkEnum walkEnum = WalkEnum.WALK;
-            //如果按住了跑步
-            if (this.buttonPressArr[RUN_INPUT_KEY]) {
-                //改为跑步
-                walkEnum = WalkEnum.RUN;
-            }
+            //判断是 跑步 or 走路
+            WalkEnum walkEnum = this.buttonPressArr[RUN_INPUT_KEY] ? WalkEnum.RUN : WalkEnum.WALK;
 
             /**
              * 移动

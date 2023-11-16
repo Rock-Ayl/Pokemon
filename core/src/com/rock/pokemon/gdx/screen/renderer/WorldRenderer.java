@@ -41,6 +41,9 @@ public class WorldRenderer {
      */
     public void render(Pokemon pokemon) {
 
+        //开始时清理
+        this.sortList.clear();
+
         /**
          * 先渲染地图网格(图层最下,无可争议)
          */

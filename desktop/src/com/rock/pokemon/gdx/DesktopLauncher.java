@@ -6,7 +6,8 @@ import com.rock.pokemon.gdx.common.Settings;
 
 /**
  * Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
- * 请注意，在macOS上，您的应用程序需要使用 [-XstartOnFirstThread] JVM参数启动
+ * 注意事项1:在macOS上，您的应用程序需要使用 [-XstartOnFirstThread] JVM参数启动
+ * 注意事项2:如果启动后java进程无响应,请重启电脑,暂时不知道原因
  */
 public class DesktopLauncher {
 

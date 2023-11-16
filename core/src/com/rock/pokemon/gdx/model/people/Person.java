@@ -45,13 +45,6 @@ public class Person implements YSortable {
     private float height = 1.5F;
 
     /**
-     * 随机移动
-     */
-
-    //是否会随机移动,默认不会
-    private boolean randomMove;
-
-    /**
      * 移动相关
      */
 
@@ -105,9 +98,8 @@ public class Person implements YSortable {
      * @param y            人物初始坐标y
      * @param assetManager 资源管理器
      * @param soundManager 通用的音效管理器
-     * @param randomMove   是否会随机移动
      */
-    public Person(PersonEnum personEnum, World world, int x, int y, AssetManager assetManager, SoundManager soundManager, boolean randomMove) {
+    public Person(PersonEnum personEnum, World world, int x, int y, AssetManager assetManager, SoundManager soundManager) {
 
         /**
          * 基本信息
@@ -133,9 +125,6 @@ public class Person implements YSortable {
         this.walkState = WalkEnum.STAND;
         //人物方向-默认南
         this.facingState = DirectionEnum.SOUTH;
-
-        //设置随机移动参数
-        this.randomMove = randomMove;
 
         //记录通用音效
         this.soundManager = soundManager;

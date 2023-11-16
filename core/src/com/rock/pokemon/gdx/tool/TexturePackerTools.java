@@ -41,19 +41,7 @@ public class TexturePackerTools {
                 "assets/packed/image/people/prof_birch/stand/",
                 "textures");
 
-        //草
-        TexturePacker.process(
-                "assets/unpacked/image/map/grass/",
-                "assets/packed/image/map/grass/",
-                "textures");
-
-        //花
-        TexturePacker.process(
-                "assets/unpacked/image/map/flower/",
-                "assets/packed/image/map/flower/",
-                "textures");
-
-        //事物
+        //各种事物
         TexturePacker.process(
                 "assets/unpacked/image/map/object/",
                 "assets/packed/image/map/object/",

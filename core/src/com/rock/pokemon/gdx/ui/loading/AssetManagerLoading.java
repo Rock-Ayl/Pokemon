@@ -38,8 +38,6 @@ public class AssetManagerLoading {
         assetManager.load("assets/packed/image/people/prof_birch/walk/textures.atlas", TextureAtlas.class);
 
         //地图相关
-        assetManager.load("assets/packed/image/map/grass/textures.atlas", TextureAtlas.class);
-        assetManager.load("assets/packed/image/map/flower/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/map/object/textures.atlas", TextureAtlas.class);
         assetManager.load("assets/packed/image/map/house/textures.atlas", TextureAtlas.class);
 

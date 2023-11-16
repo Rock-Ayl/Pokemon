@@ -5,7 +5,7 @@
   "tileNodeList": [
     {
       "remark": "填充所有地图为草",
-      "filePath": "assets/packed/image/map/grass/textures.atlas",
+      "filePath": "assets/packed/image/map/object/textures.atlas",
       "regionName": "grass3",
       "locationList": []
     }

@@ -3,7 +3,7 @@
   "worldObjectMap": {
     "flower1": {
       "remark": "一个普通的花(动)",
-      "filePath": "assets/packed/image/map/flower/textures.atlas",
+      "filePath": "assets/packed/image/map/object/textures.atlas",
       "regionName": "flower1",
       "width": 1,
       "height": 1,

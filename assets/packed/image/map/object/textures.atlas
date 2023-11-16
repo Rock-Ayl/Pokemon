@@ -1,6 +1,6 @@
 
 textures.png
-size: 64, 64
+size: 128, 64
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
@@ -11,16 +11,58 @@ big_tree
   orig: 32, 40
   offset: 0, 0
   index: -1
-grass_dirt_patch
+flower1
   rotate: false
   xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 0
+flower1
+  rotate: false
+  xy: 36, 44
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+flower1
+  rotate: false
+  xy: 36, 26
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+grass1
+  rotate: false
+  xy: 54, 44
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+grass2
+  rotate: false
+  xy: 54, 26
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+grass3
+  rotate: false
+  xy: 72, 44
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+grass_dirt_patch
+  rotate: false
+  xy: 72, 26
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 sign
   rotate: false
-  xy: 36, 44
+  xy: 90, 44
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

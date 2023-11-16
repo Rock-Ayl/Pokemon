@@ -111,9 +111,9 @@ public class WorldObject implements YSortable {
      */
     public void update(float delta) {
         //如果存在动画
-        if (animation != null) {
+        if (this.animation != null) {
             //叠加帧时间
-            animationTimer += delta;
+            this.animationTimer += delta;
         }
     }
 
@@ -124,14 +124,14 @@ public class WorldObject implements YSortable {
      */
     public TextureRegion getSprite() {
         //如果存在图片
-        if (texture != null) {
+        if (this.texture != null) {
             //返回图片
-            return texture;
+            return this.texture;
         }
         //如果动画存在
-        if (animation != null) {
+        if (this.animation != null) {
             //返回动画帧图片
-            return animation.getKeyFrame(animationTimer);
+            return this.animation.getKeyFrame(this.animationTimer);
         }
         //默认
         return null;
@@ -142,35 +142,35 @@ public class WorldObject implements YSortable {
      */
 
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public int getY() {
-        return y;
+        return this.y;
     }
 
     public float getWorldX() {
-        return x;
+        return this.x;
     }
 
     public float getWorldY() {
-        return y;
+        return this.y;
     }
 
     public float getWidth() {
-        return width;
+        return this.width;
     }
 
     public float getHeight() {
-        return height;
+        return this.height;
     }
 
     public boolean isWalkable() {
-        return walkable;
+        return this.walkable;
     }
 
     public List<GridPoint2> getGridPointList() {
-        return gridPointList;
+        return this.gridPointList;
     }
 
     public void setGridPointList(List<GridPoint2> gridPointList) {

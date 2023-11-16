@@ -27,14 +27,19 @@ public class FilePaths {
     //ui
     public static final String TEXTURES_ATLAS_UI = "assets/packed/image/ui/textures.atlas";
 
+    //人物-通用路径
+    public static final String TEXTURES_ALTA_PEOPLE_STAND = "assets/packed/image/people/%s/stand/textures.atlas";
+    public static final String TEXTURES_ALTA_PEOPLE_WALK = "assets/packed/image/people/%s/walk/textures.atlas";
+    public static final String TEXTURES_ALTA_PEOPLE_RUN = "assets/packed/image/people/%s/run/textures.atlas";
+
     //人物-路比
-    public static final String TEXTURES_ALTA_PEOPLE_RUBY_STAND = "assets/packed/image/people/ruby/stand/textures.atlas";
-    public static final String TEXTURES_ALTA_PEOPLE_RUBY_WALK = "assets/packed/image/people/ruby/walk/textures.atlas";
-    public static final String TEXTURES_ALTA_PEOPLE_RUBY_RUN = "assets/packed/image/people/ruby/run/textures.atlas";
+    public static final String TEXTURES_ALTA_PEOPLE_RUBY_STAND = String.format(TEXTURES_ALTA_PEOPLE_STAND, "ruby");
+    public static final String TEXTURES_ALTA_PEOPLE_RUBY_WALK = String.format(TEXTURES_ALTA_PEOPLE_WALK, "ruby");
+    public static final String TEXTURES_ALTA_PEOPLE_RUBY_RUN = String.format(TEXTURES_ALTA_PEOPLE_RUN, "ruby");
 
     //人物-小田卷
-    public static final String TEXTURES_ALTA_PEOPLE_PROF_BIRCH_STAND = "assets/packed/image/people/prof_birch/stand/textures.atlas";
-    public static final String TEXTURES_ALTA_PEOPLE_PROF_BIRCH_WALK = "assets/packed/image/people/prof_birch/walk/textures.atlas";
+    public static final String TEXTURES_ALTA_PEOPLE_PROF_BIRCH_STAND = String.format(TEXTURES_ALTA_PEOPLE_STAND, "prof_birch");
+    public static final String TEXTURES_ALTA_PEOPLE_PROF_BIRCH_WALK = String.format(TEXTURES_ALTA_PEOPLE_WALK, "prof_birch");
 
     //地图相关
     public static final String TEXTURES_ALTA_MAP_OBJECT = "assets/packed/image/map/object/textures.atlas";

@@ -30,18 +30,18 @@ public class FilePaths {
      */
 
     //未白镇Bgm
-    public static final String LITTLE_ROOT_BGM = "music/town/LittleRoot.mp3";
+    public static final String LITTLE_ROOT_BGM = "audio/music/LittleRoot.mp3";
 
     /**
      * 音效
      */
 
     //撞墙音效
-    public static final String SOUND_NO_WALK = "music/sound/emerald_0007_no_walk.wav";
+    public static final String SOUND_NO_WALK = "audio/sound/emerald_0007_no_walk.wav";
 
     //菜单开启音效
-    public static final String SOUND_MENU_OPEN = "music/sound/emerald_0006_menu_open.wav";
+    public static final String SOUND_MENU_OPEN = "audio/sound/emerald_0006_menu_open.wav";
     //菜单关闭音效
-    public static final String SOUND_MENU_CLOSE = "music/sound/emerald_0005_menu_close.wav";
+    public static final String SOUND_MENU_CLOSE = "audio/sound/emerald_0005_menu_close.wav";
 
 }

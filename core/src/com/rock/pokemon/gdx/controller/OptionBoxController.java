@@ -1,11 +1,11 @@
 package com.rock.pokemon.gdx.controller;
 
-import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.rock.pokemon.gdx.ui.box.OptionBox;
 
 /**
- * 对话框输入控制器
+ * 对话框 输入控制器
  */
 public class OptionBoxController extends InputAdapter {
 
@@ -31,9 +31,9 @@ public class OptionBoxController extends InputAdapter {
         //根据按键判断
         switch (keycode) {
             //上下X
-            case Keys.UP:
-            case Keys.DOWN:
-            case Keys.X:
+            case Input.Keys.UP:
+            case Input.Keys.DOWN:
+            case Input.Keys.X:
                 //是
                 return true;
             //默认
@@ -48,25 +48,25 @@ public class OptionBoxController extends InputAdapter {
         //根据按键判断
         switch (keycode) {
             //上
-            case Keys.UP:
+            case Input.Keys.UP:
                 //移动
                 this.optionBox.moveUp();
                 //是
                 return true;
             //下
-            case Keys.DOWN:
+            case Input.Keys.DOWN:
                 //移动
                 this.optionBox.moveDown();
                 //是
                 return true;
             //默认X为取消
-            case Keys.X:
+            case Input.Keys.X:
                 //处理取消
                 this.optionBox.change(false);
                 //是
                 return true;
             //回车
-            case Keys.ENTER:
+            case Input.Keys.ENTER:
                 //开/关
                 this.optionBox.change();
                 //是

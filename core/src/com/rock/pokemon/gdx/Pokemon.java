@@ -104,27 +104,37 @@ public class Pokemon extends Game {
      */
 
     public SpriteBatch getBatch() {
-        return batch;
+        return this.batch;
     }
 
     public BitmapFont getFont() {
-        return font;
+        return this.font;
     }
 
+    /**
+     * 获取资源管理器
+     *
+     * @return
+     */
     public AssetManager getAssetManager() {
-        return assetManager;
+        return this.assetManager;
     }
 
+    /**
+     * 获取音效管理器
+     *
+     * @return
+     */
     public SoundManager getSoundManager() {
-        return soundManager;
+        return this.soundManager;
     }
 
     public Skin getSkin() {
-        return skin;
+        return this.skin;
     }
 
     public Map<Integer, String> getTextMap() {
-        return textMap;
+        return this.textMap;
     }
 
 }

@@ -5,11 +5,11 @@ import com.badlogic.gdx.InputAdapter;
 import com.rock.pokemon.gdx.ui.box.OptionBox;
 
 /**
- * 对话框 输入控制器
+ * 可选项框 输入控制器
  */
 public class OptionBoxController extends InputAdapter {
 
-    //对应的对话框
+    //可选项框实体
     private OptionBox optionBox;
 
     /**

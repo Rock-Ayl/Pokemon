@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.model.SoundManager;
+import com.rock.pokemon.gdx.model.manager.SoundManager;
 import com.rock.pokemon.gdx.screen.menu.MainMenu;
 import com.rock.pokemon.gdx.ui.loading.AssetManagerLoading;
 import com.rock.pokemon.gdx.ui.loading.SkinLoading;

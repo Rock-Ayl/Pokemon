@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.model.SoundManager;
+import com.rock.pokemon.gdx.model.manager.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;

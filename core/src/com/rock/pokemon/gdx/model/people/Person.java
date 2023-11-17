@@ -1,13 +1,12 @@
 package com.rock.pokemon.gdx.model.people;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
-import com.rock.pokemon.gdx.model.manager.SoundManager;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pokemon.gdx.model.map.Tile;
@@ -28,6 +27,9 @@ public class Person implements YSortable {
     /**
      * 基本信息
      */
+
+    //游戏对象
+    private final Pokemon game;
 
     //人物枚举
     private PersonEnum personEnum;
@@ -83,28 +85,22 @@ public class Person implements YSortable {
     private boolean moveRequestThisFrame;
 
     /**
-     * 音效
-     */
-
-    //通用的音效管理器
-    private SoundManager soundManager;
-
-    /**
      * 使用人物枚举初始化
      *
-     * @param personEnum   人物枚举
-     * @param world        该人物所处的世界
-     * @param x            人物初始坐标x
-     * @param y            人物初始坐标y
-     * @param assetManager 资源管理器
-     * @param soundManager 通用的音效管理器
+     * @param personEnum 人物枚举
+     * @param world      该人物所处的世界
+     * @param x          人物初始坐标x
+     * @param y          人物初始坐标y
+     * @param game       游戏对象
      */
-    public Person(PersonEnum personEnum, World world, int x, int y, AssetManager assetManager, SoundManager soundManager) {
+    public Person(PersonEnum personEnum, World world, int x, int y, Pokemon game) {
 
         /**
          * 基本信息
          */
 
+        //游戏对象
+        this.game = game;
         //人物枚举
         this.personEnum = personEnum;
 
@@ -121,11 +117,8 @@ public class Person implements YSortable {
         //人物方向-默认南
         this.facingState = DirectionEnum.SOUTH;
 
-        //记录通用音效
-        this.soundManager = soundManager;
-
         //初始化人物动画集合
-        this.animationSet = new PersonAnimationSet(assetManager, this.personEnum);
+        this.animationSet = new PersonAnimationSet(this.game.getAssetManager(), this.personEnum);
 
         /**
          * 与世界关联
@@ -278,7 +271,7 @@ public class Person implements YSortable {
             //强制变为走路
             walkEnum = WalkEnum.WALK;
             //尝试发出撞墙的音效
-            this.soundManager.playNoWalk();
+            this.game.getSoundManager().playNoWalk();
         }
 
         /**

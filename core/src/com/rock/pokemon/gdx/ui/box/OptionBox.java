@@ -2,12 +2,11 @@ package com.rock.pokemon.gdx.ui.box;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
+import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.model.manager.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,39 +16,45 @@ import java.util.List;
  */
 public class OptionBox extends Table {
 
+    /**
+     * 基础
+     */
+
+    //游戏对象
+    private final Pokemon game;
+
+    /**
+     * 可选项内容
+     */
+
     //可选项指针索引
     private int selectorIndex = 0;
     //可选项列表
     private List<Label> optionList = new ArrayList<>();
     //箭头列表
     private List<Image> arrowList = new ArrayList<>();
-
     //存储着箭头和文本的小盒子
     private Table uiContainer;
 
     /**
-     * 音效
-     */
-
-    //通用的音效管理器
-    private SoundManager soundManager;
-
-    /**
      * 初始化 可选项框
      *
-     * @param skin         皮肤
-     * @param soundManager 音效管理器
+     * @param game 游戏对象
      */
-    public OptionBox(Skin skin, SoundManager soundManager) {
+    public OptionBox(Pokemon game) {
+
         //初始化父级
-        super(skin);
+        super(game.getSkin());
+
+        //记录游戏对象
+        this.game = game;
+
         //设置整体背景贴图
         this.setBackground(Settings.UI_IMAGE_OPTION_BOX);
         this.uiContainer = new Table();
         this.add(this.uiContainer)
                 .pad(15f);
-        //记录音效管理器
-        this.soundManager = soundManager;
+
     }
 
     /**
@@ -114,7 +119,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.soundManager.playMenuClose();
+        this.game.getSoundManager().playMenuClose();
     }
 
     /**
@@ -136,7 +141,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.soundManager.playMenuClose();
+        this.game.getSoundManager().playMenuClose();
     }
 
     /**
@@ -180,7 +185,7 @@ public class OptionBox extends Table {
             //设置为可见
             this.setVisible(true);
             //菜单打开音效
-            this.soundManager.playMenuOpen();
+            this.game.getSoundManager().playMenuOpen();
         } else {
             //如果已经关闭了
             if (this.isVisible() == false) {
@@ -190,7 +195,7 @@ public class OptionBox extends Table {
             //设置为不可见
             this.setVisible(false);
             //菜单关闭音效
-            this.soundManager.playMenuClose();
+            this.game.getSoundManager().playMenuClose();
         }
     }
 

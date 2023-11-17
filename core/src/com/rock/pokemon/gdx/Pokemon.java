@@ -23,7 +23,7 @@ import java.util.Map;
 public class Pokemon extends Game {
 
     /**
-     * 基础实体
+     * 游戏基础实体,无论到哪里都用得上的东西
      */
 
     //渲染器
@@ -107,6 +107,11 @@ public class Pokemon extends Game {
         return this.batch;
     }
 
+    /**
+     * 获取游戏默认font
+     *
+     * @return
+     */
     public BitmapFont getFont() {
         return this.font;
     }
@@ -129,10 +134,20 @@ public class Pokemon extends Game {
         return this.soundManager;
     }
 
+    /**
+     * 获取皮肤
+     *
+     * @return
+     */
     public Skin getSkin() {
         return this.skin;
     }
 
+    /**
+     * 获取文本map[编号,文本]
+     *
+     * @return
+     */
     public Map<Integer, String> getTextMap() {
         return this.textMap;
     }

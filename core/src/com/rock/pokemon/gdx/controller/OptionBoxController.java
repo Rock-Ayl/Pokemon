@@ -13,12 +13,12 @@ public class OptionBoxController extends InputAdapter {
     private OptionBox optionBox;
 
     /**
-     * 初始化 对话框
+     * 初始化 可选项框
      *
-     * @param box 传入可选项
+     * @param optionBox 传入可选项
      */
-    public OptionBoxController(OptionBox box) {
-        this.optionBox = box;
+    public OptionBoxController(OptionBox optionBox) {
+        this.optionBox = optionBox;
     }
 
     /**

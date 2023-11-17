@@ -114,11 +114,6 @@ public class Person implements YSortable {
         this.worldX = x;
         this.worldY = y;
 
-        //人物记录要加入的世界
-        this.world = world;
-        //人物加入世界
-        this.world.addPerson(this);
-
         //人物动作-默认站立
         this.actionState = ActionEnum.STAND;
         //人物移动-默认站立
@@ -131,6 +126,15 @@ public class Person implements YSortable {
 
         //初始化人物动画集合
         this.animationSet = new PersonAnimationSet(assetManager, this.personEnum);
+
+        /**
+         * 与世界关联
+         */
+
+        //人物记录要加入的世界
+        this.world = world;
+        //人物加入世界
+        this.world.addPerson(this);
 
     }
 

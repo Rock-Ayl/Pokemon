@@ -1,15 +1,22 @@
 package com.rock.pokemon.gdx.ui.box;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.Settings;
 
 /**
  * 对话框 实体
  */
 public class DialogueBox extends Table {
+
+    /**
+     * 基础
+     */
+
+    //游戏对象
+    private final Pokemon game;
 
     /**
      * 动画元素
@@ -50,17 +57,22 @@ public class DialogueBox extends Table {
     private Label textLabel;
 
     /**
-     * 根据皮肤初始化对话框
+     * 初始化对话框
      *
-     * @param skin
+     * @param game 游戏对象
      */
-    public DialogueBox(Skin skin) {
+    public DialogueBox(Pokemon game) {
+
         //初始化父级
-        super(skin);
+        super(game.getSkin());
+
+        //记录游戏
+        this.game = game;
+
         //设置整体背景贴图
         this.setBackground(Settings.UI_IMAGE_DIALOGUE_BOX);
         //初始化字体,载入字体
-        this.textLabel = new Label("\n", skin, Settings.SYSTEM_FONT_LABEL);
+        this.textLabel = new Label("\n", this.game.getSkin(), Settings.SYSTEM_FONT_LABEL);
         //将文本组装至文本框中
         this.add(this.textLabel)
                 //均匀分布该label

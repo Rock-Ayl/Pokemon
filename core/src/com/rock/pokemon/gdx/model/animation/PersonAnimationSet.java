@@ -4,7 +4,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.people.Person;
@@ -46,9 +45,9 @@ public class PersonAnimationSet {
     public PersonAnimationSet(AssetManager assetManager, NpcMapNode npcMapNode) {
 
         //获取动画资源,没有也无所谓,毕竟不是所有人都有主角那么多的动作
-        TextureAtlas walkTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_WALK, npcMapNode.getRegionName()), TextureAtlas.class, false);
-        TextureAtlas standTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_STAND, npcMapNode.getRegionName()), TextureAtlas.class, false);
-        TextureAtlas runTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_RUN, npcMapNode.getRegionName()), TextureAtlas.class, false);
+        TextureAtlas walkTextureAtlas = assetManager.get(npcMapNode.getWalkFilePath(), TextureAtlas.class, false);
+        TextureAtlas standTextureAtlas = assetManager.get(npcMapNode.getStandFilePath(), TextureAtlas.class, false);
+        TextureAtlas runTextureAtlas = assetManager.get(npcMapNode.getRunFilePath(), TextureAtlas.class, false);
 
         //初始化走路map
         this.walkingMap = new HashMap<>();

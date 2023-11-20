@@ -14,6 +14,15 @@ public class NpcMapNode {
     //资源区域名
     private String regionName;
 
+    //站立
+    private String standFilePath;
+
+    //走
+    private String walkFilePath;
+
+    //跑步
+    private String runFilePath;
+
     /**
      * 以下为 get set 方法
      */
@@ -32,6 +41,30 @@ public class NpcMapNode {
 
     public void setRegionName(String regionName) {
         this.regionName = regionName;
+    }
+
+    public String getStandFilePath() {
+        return standFilePath;
+    }
+
+    public void setStandFilePath(String standFilePath) {
+        this.standFilePath = standFilePath;
+    }
+
+    public String getWalkFilePath() {
+        return walkFilePath;
+    }
+
+    public void setWalkFilePath(String walkFilePath) {
+        this.walkFilePath = walkFilePath;
+    }
+
+    public String getRunFilePath() {
+        return runFilePath;
+    }
+
+    public void setRunFilePath(String runFilePath) {
+        this.runFilePath = runFilePath;
     }
 
 }

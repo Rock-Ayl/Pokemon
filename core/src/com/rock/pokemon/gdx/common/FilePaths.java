@@ -30,11 +30,6 @@ public class FilePaths {
     //人物资源-通用路径
     public static final String TEXTURES_ALTA_PEOPLE = "assets/packed/image/people/";
 
-    //人物动作资源-通用路径
-    public static final String TEXTURES_ALTA_PEOPLE_STAND = "assets/packed/image/people/%s/stand/textures.atlas";
-    public static final String TEXTURES_ALTA_PEOPLE_WALK = "assets/packed/image/people/%s/walk/textures.atlas";
-    public static final String TEXTURES_ALTA_PEOPLE_RUN = "assets/packed/image/people/%s/run/textures.atlas";
-
     //地图相关
     public static final String TEXTURES_ALTA_MAP_OBJECT = "assets/packed/image/map/object/textures.atlas";
     public static final String TEXTURES_ALTA_MAP_HOUSE = "assets/packed/image/map/house/textures.atlas";

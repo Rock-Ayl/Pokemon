@@ -3,15 +3,24 @@
   "npcMap": {
     "ruby_1": {
       "remark": "路比(男主)-1",
-      "regionName": "ruby"
+      "regionName": "ruby",
+      "standFilePath": "assets/packed/image/people/ruby/stand/textures.atlas",
+      "walkFilePath": "assets/packed/image/people/ruby/walk/textures.atlas",
+      "runFilePath": "assets/packed/image/people/ruby/run/textures.atlas"
     },
     "sapphire_1": {
       "remark": "沙菲亚(女主)-1",
-      "regionName": "sapphire"
+      "regionName": "sapphire",
+      "standFilePath": "",
+      "walkFilePath": "",
+      "runFilePath": ""
     },
     "prof_birch_1": {
       "remark": "小田卷博士-1",
-      "regionName": "prof_birch"
+      "regionName": "prof_birch",
+      "standFilePath": "assets/packed/image/people/prof_birch/stand/textures.atlas",
+      "walkFilePath": "assets/packed/image/people/prof_birch/walk/textures.atlas",
+      "runFilePath": ""
     }
   }
 }

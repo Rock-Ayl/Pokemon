@@ -15,7 +15,7 @@ import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
  */
 public class WorldObjectMapConfigLoader extends AsynchronousAssetLoader<WorldObjectMapConfig, AssetLoaderParameters<WorldObjectMapConfig>> {
 
-    //加载世界配置
+    //加载事物配置
     private WorldObjectMapConfig worldObjectMapConfig;
 
     public WorldObjectMapConfigLoader(FileHandleResolver resolver) {
@@ -24,7 +24,7 @@ public class WorldObjectMapConfigLoader extends AsynchronousAssetLoader<WorldObj
 
     @Override
     public void loadAsync(AssetManager assetManager, String filename, FileHandle file, AssetLoaderParameters<WorldObjectMapConfig> parameter) {
-        //读取配置文件、解析为对应配置实体、初始化世界
+        //读取配置文件、解析为对应配置实体、初始化
         this.worldObjectMapConfig = JSON.parseObject(file.readString(), WorldObjectMapConfig.class);
     }
 

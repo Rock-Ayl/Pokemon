@@ -1,0 +1,9 @@
+{
+  "name": "所有NPC配置(不包括主角),一个NPC,可以在地图上出现多个,所以不去重",
+  "npcMap": {
+    "prof_birch_1": {
+      "remark": "小田卷博士-1",
+      "regionName": "prof_birch"
+    }
+  }
+}

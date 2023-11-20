@@ -64,10 +64,9 @@ public class OptionBox extends Table {
      */
     public void addOption(String option) {
 
-        //初始化文字,载入字体
-        Label optionLabel = new Label(option, this.getSkin(), Settings.SYSTEM_FONT_LABEL);
-        //组装至列表
-        this.optionList.add(optionLabel);
+        /**
+         * 对应箭头
+         */
 
         //初始化箭头图片
         Image selectorLabel = new Image(this.getSkin(), Settings.UI_IMAGE_OPTION_ARROW);
@@ -76,11 +75,9 @@ public class OptionBox extends Table {
         selectorLabel.setScale(Settings.SCALE / 1.5F);
         //组装至列表
         this.arrowList.add(selectorLabel);
-
         //重新计算箭头是否可见
         restArrowVisible();
-
-        //将箭头、文字组装至窗口
+        //将箭头组装至窗口
         this.uiContainer.add(selectorLabel)
                 //拉伸
                 .expand()
@@ -88,6 +85,16 @@ public class OptionBox extends Table {
                 .align(Align.left)
                 //周围组件间距
                 .space(Settings.TILE_SIZE / 2F);
+
+        /**
+         * 对应文字
+         */
+
+        //初始化文字,载入字体
+        Label optionLabel = new Label(option, this.getSkin(), Settings.SYSTEM_FONT_LABEL);
+        //组装至列表
+        this.optionList.add(optionLabel);
+        //将文字组装至窗口
         this.uiContainer.add(optionLabel)
                 //拉伸
                 .expand()
@@ -95,6 +102,11 @@ public class OptionBox extends Table {
                 .align(Align.right)
                 //周围组件间距
                 .space(Settings.TILE_SIZE / 2F);
+
+        /**
+         * 换行
+         */
+
         //换行
         this.uiContainer.row();
 

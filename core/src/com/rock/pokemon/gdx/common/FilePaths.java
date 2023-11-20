@@ -27,7 +27,10 @@ public class FilePaths {
     //ui
     public static final String TEXTURES_ATLAS_UI = "assets/packed/image/ui/textures.atlas";
 
-    //人物-通用路径
+    //人物资源-通用路径
+    public static final String TEXTURES_ALTA_PEOPLE = "assets/packed/image/people/";
+
+    //人物动作资源-通用路径
     public static final String TEXTURES_ALTA_PEOPLE_STAND = "assets/packed/image/people/%s/stand/textures.atlas";
     public static final String TEXTURES_ALTA_PEOPLE_WALK = "assets/packed/image/people/%s/walk/textures.atlas";
     public static final String TEXTURES_ALTA_PEOPLE_RUN = "assets/packed/image/people/%s/run/textures.atlas";

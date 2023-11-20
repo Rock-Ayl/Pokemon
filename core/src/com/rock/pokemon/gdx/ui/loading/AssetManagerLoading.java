@@ -34,7 +34,7 @@ public class AssetManagerLoading {
          */
 
         //收集人物资源列表
-        List<String> peopleTextureAtlasList = FileExtraUtils.collectFile("assets/packed/image/people", "textures.atlas");
+        List<String> peopleTextureAtlasList = FileExtraUtils.collectFile(FilePaths.TEXTURES_ALTA_PEOPLE, "textures.atlas");
         //循环
         for (String peopleTextureAtlasPath : peopleTextureAtlasList) {
             //载入对应人物资源

@@ -25,6 +25,9 @@ public class WorldMapConfig {
     //事物节点列表
     private List<WorldMapNode> worldObjectNodeList;
 
+    //npc节点列表
+    private List<WorldMapNode> npcNodeList;
+
     /**
      * 以下为 get set
      *
@@ -69,6 +72,14 @@ public class WorldMapConfig {
 
     public void setWorldObjectNodeList(List<WorldMapNode> worldObjectNodeList) {
         this.worldObjectNodeList = worldObjectNodeList;
+    }
+
+    public List<WorldMapNode> getNpcNodeList() {
+        return npcNodeList;
+    }
+
+    public void setNpcNodeList(List<WorldMapNode> npcNodeList) {
+        this.npcNodeList = npcNodeList;
     }
 
 }

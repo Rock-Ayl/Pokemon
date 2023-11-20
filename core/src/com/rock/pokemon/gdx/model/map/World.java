@@ -1,8 +1,8 @@
 package com.rock.pokemon.gdx.model.map;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.GridPoint2;
+import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.*;
 import com.rock.pokemon.gdx.model.people.Person;
@@ -31,23 +31,23 @@ public class World {
     /**
      * 初始化世界
      *
-     * @param assetManager  资源管理器
+     * @param game          游戏对象
      * @param mapConfigPath 世界配置路径
      */
-    public World(AssetManager assetManager, String mapConfigPath) {
+    public World(Pokemon game, String mapConfigPath) {
 
         /**
          * 读取各种配置
          */
 
         //读取世界配置
-        WorldMapConfig worldMapConfig = assetManager.get(mapConfigPath, WorldMapConfig.class);
+        WorldMapConfig worldMapConfig = game.getAssetManager().get(mapConfigPath, WorldMapConfig.class);
 
         //读取事物配置
-        WorldObjectMapConfig worldObjectMapConfig = assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
+        WorldObjectMapConfig worldObjectMapConfig = game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
 
         //读取npc配置
-        NpcMapConfig npcMapConfig = assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
+        NpcMapConfig npcMapConfig = game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
 
         /**
          * 初始化地图网格
@@ -76,7 +76,7 @@ public class World {
                                 x,
                                 y,
                                 //对应图片资源
-                                assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
+                                game.getAssetManager().get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
                         );
                     }
                 }
@@ -89,7 +89,7 @@ public class World {
                             location.getX(),
                             location.getY(),
                             //获取对应图片资源
-                            assetManager.get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
+                            game.getAssetManager().get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
                     );
                 }
             }
@@ -108,15 +108,28 @@ public class World {
             //循环坐标列表
             for (WorldMapNode.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
-                WorldObject worldObject = new WorldObject(assetManager, worldObjectNodeConfig, location.getX(), location.getY());
+                WorldObject worldObject = new WorldObject(game.getAssetManager(), worldObjectNodeConfig, location.getX(), location.getY());
                 //加入到世界
                 this.addWorldObject(worldObject);
             }
         }
 
         /**
-         * todo 载入NPC资源
+         * 载入NPC资源
          */
+
+        //循环世界事务节点
+        for (WorldMapNode npcNode : worldMapConfig.getNpcNodeList()) {
+            //获取npc名称
+            String npcName = npcNode.getNpcName();
+            //读取对应npc配置
+            NpcMapNode npcMapNode = npcMapConfig.getNpcMap().get(npcName);
+            //循环坐标列表
+            for (WorldMapNode.Location location : npcNode.getLocationList()) {
+                //初始化话一个npc,并加入到该世界
+                new Person(npcMapNode, this, location.getX(), location.getY(), game);
+            }
+        }
 
     }
 

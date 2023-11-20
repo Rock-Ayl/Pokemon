@@ -22,6 +22,9 @@ public class WorldMapNode {
     //事物名称
     private String worldObjectName;
 
+    //npc名称
+    private String npcName;
+
     //坐标列表
     private List<Location> locationList;
 
@@ -98,6 +101,14 @@ public class WorldMapNode {
 
     public void setWorldObjectName(String worldObjectName) {
         this.worldObjectName = worldObjectName;
+    }
+
+    public String getNpcName() {
+        return npcName;
+    }
+
+    public void setNpcName(String npcName) {
+        this.npcName = npcName;
     }
 
 }

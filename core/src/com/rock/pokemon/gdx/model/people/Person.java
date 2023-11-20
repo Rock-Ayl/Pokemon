@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
-import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
@@ -13,6 +12,7 @@ import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.TileMap;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
 
 import java.util.Optional;
 
@@ -30,9 +30,6 @@ public class Person implements YSortable {
 
     //游戏对象
     private final Pokemon game;
-
-    //人物枚举
-    private PersonEnum personEnum;
 
     //当前人物在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的),这个在人类实体里仅用来判定移动时和地图块之间的关系
     private int x;
@@ -87,13 +84,13 @@ public class Person implements YSortable {
     /**
      * 使用人物枚举初始化
      *
-     * @param personEnum 人物枚举
+     * @param npcMapNode npc配置
      * @param world      该人物所处的世界
      * @param x          人物初始坐标x
      * @param y          人物初始坐标y
      * @param game       游戏对象
      */
-    public Person(PersonEnum personEnum, World world, int x, int y, Pokemon game) {
+    public Person(NpcMapNode npcMapNode, World world, int x, int y, Pokemon game) {
 
         /**
          * 基本信息
@@ -101,8 +98,6 @@ public class Person implements YSortable {
 
         //游戏对象
         this.game = game;
-        //人物枚举
-        this.personEnum = personEnum;
 
         //设置当前任务所在坐标
         this.x = x;
@@ -118,7 +113,7 @@ public class Person implements YSortable {
         this.facingState = DirectionEnum.SOUTH;
 
         //初始化人物动画集合
-        this.animationSet = new PersonAnimationSet(this.game.getAssetManager(), this.personEnum);
+        this.animationSet = new PersonAnimationSet(this.game.getAssetManager(), npcMapNode);
 
         /**
          * 与世界关联

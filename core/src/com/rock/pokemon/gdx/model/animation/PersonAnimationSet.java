@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
-import com.rock.pokemon.gdx.enums.PersonEnum;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.HashMap;
@@ -41,14 +41,14 @@ public class PersonAnimationSet {
      * 根据人物枚举初始化动画集合
      *
      * @param assetManager 资源管理器
-     * @param personEnum   人物枚举
+     * @param npcMapNode   npc配置
      */
-    public PersonAnimationSet(AssetManager assetManager, PersonEnum personEnum) {
+    public PersonAnimationSet(AssetManager assetManager, NpcMapNode npcMapNode) {
 
         //获取动画资源,没有也无所谓,毕竟不是所有人都有主角那么多的动作
-        TextureAtlas walkTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_WALK, personEnum.getName()), TextureAtlas.class, false);
-        TextureAtlas standTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_STAND, personEnum.getName()), TextureAtlas.class, false);
-        TextureAtlas runTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_RUN, personEnum.getName()), TextureAtlas.class, false);
+        TextureAtlas walkTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_WALK, npcMapNode.getRegionName()), TextureAtlas.class, false);
+        TextureAtlas standTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_STAND, npcMapNode.getRegionName()), TextureAtlas.class, false);
+        TextureAtlas runTextureAtlas = assetManager.get(String.format(FilePaths.TEXTURES_ALTA_PEOPLE_RUN, npcMapNode.getRegionName()), TextureAtlas.class, false);
 
         //初始化走路map
         this.walkingMap = new HashMap<>();

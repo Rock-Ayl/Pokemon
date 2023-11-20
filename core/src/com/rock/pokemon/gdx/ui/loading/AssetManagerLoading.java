@@ -7,9 +7,12 @@ import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
+import com.rock.pokemon.gdx.util.FileExtraUtils;
 import com.rock.pokemon.gdx.worldloader.NpcMapConfigLoader;
 import com.rock.pokemon.gdx.worldloader.WorldMapConfigLoader;
 import com.rock.pokemon.gdx.worldloader.WorldObjectMapConfigLoader;
+
+import java.util.List;
 
 /**
  * 资源管理器载入
@@ -30,14 +33,13 @@ public class AssetManagerLoading {
          * 载入 已打包的各种资源
          */
 
-        //人物-路比
-        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_RUBY_STAND, TextureAtlas.class);
-        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_RUBY_WALK, TextureAtlas.class);
-        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_RUBY_RUN, TextureAtlas.class);
-
-        //人物-小田卷
-        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_PROF_BIRCH_STAND, TextureAtlas.class);
-        assetManager.load(FilePaths.TEXTURES_ALTA_PEOPLE_PROF_BIRCH_WALK, TextureAtlas.class);
+        //收集人物资源列表
+        List<String> peopleTextureAtlasList = FileExtraUtils.collectFile("assets/packed/image/people", "textures.atlas");
+        //循环
+        for (String peopleTextureAtlasPath : peopleTextureAtlasList) {
+            //载入对应人物资源
+            assetManager.load(peopleTextureAtlasPath, TextureAtlas.class);
+        }
 
         //地图相关
         assetManager.load(FilePaths.TEXTURES_ALTA_MAP_OBJECT, TextureAtlas.class);

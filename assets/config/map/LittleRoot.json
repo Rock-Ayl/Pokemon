@@ -885,5 +885,17 @@
         }
       ]
     }
+  ],
+  "npcNodeList": [
+    {
+      "remark": "小田卷博士-未白镇",
+      "npcName": "prof_birch_1",
+      "locationList": [
+        {
+          "x": 14,
+          "y": 17
+        }
+      ]
+    }
   ]
 }

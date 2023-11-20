@@ -16,8 +16,8 @@ import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.OptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
-import com.rock.pokemon.gdx.enums.PersonEnum;
 import com.rock.pokemon.gdx.model.map.World;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.ui.box.DialogueBox;
@@ -110,20 +110,19 @@ public class LittleRoot implements Screen {
          */
 
         //初始化世界-未白镇
-        this.world = new World(this.game.getAssetManager(), FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT);
+        this.world = new World(this.game, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT);
 
         //初始化世界渲染器
         this.worldRenderer = new WorldRenderer(this.world);
-
-        //一个普通NPC加入到该世界
-        new Person(PersonEnum.PROF_BIRCH, this.world, 14, 18, this.game);
 
         /**
          * 主角相关
          */
 
+        //读取主角配置
+        NpcMapConfig adventurerNpcMapConfig = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
         //初始化主角
-        this.adventurer = new Person(PersonEnum.RUBE, this.world, 19, 18, this.game);
+        this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get("ruby_1"), this.world, 19, 18, this.game);
 
         /**
          * UI

@@ -10,17 +10,13 @@
     },
     "sapphire_1": {
       "remark": "沙菲亚(女主)-1",
-      "regionName": "sapphire",
-      "standFilePath": "",
-      "walkFilePath": "",
-      "runFilePath": ""
+      "regionName": "sapphire"
     },
     "prof_birch_1": {
       "remark": "小田卷博士-1",
       "regionName": "prof_birch",
       "standFilePath": "assets/packed/image/people/prof_birch/stand/textures.atlas",
-      "walkFilePath": "assets/packed/image/people/prof_birch/walk/textures.atlas",
-      "runFilePath": ""
+      "walkFilePath": "assets/packed/image/people/prof_birch/walk/textures.atlas"
     }
   }
 }

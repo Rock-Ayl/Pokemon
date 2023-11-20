@@ -10,6 +10,7 @@ import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 一个人物动画集合
@@ -44,10 +45,21 @@ public class PersonAnimationSet {
      */
     public PersonAnimationSet(AssetManager assetManager, NpcMapNode npcMapNode) {
 
+        //获取动画资源文件
+        String walkFilePath = Optional.ofNullable(npcMapNode)
+                .map(NpcMapNode::getWalkFilePath)
+                .orElse("");
+        String standFilePath = Optional.ofNullable(npcMapNode)
+                .map(NpcMapNode::getStandFilePath)
+                .orElse("");
+        String runFilePath = Optional.ofNullable(npcMapNode)
+                .map(NpcMapNode::getRunFilePath)
+                .orElse("");
+
         //获取动画资源,没有也无所谓,毕竟不是所有人都有主角那么多的动作
-        TextureAtlas walkTextureAtlas = assetManager.get(npcMapNode.getWalkFilePath(), TextureAtlas.class, false);
-        TextureAtlas standTextureAtlas = assetManager.get(npcMapNode.getStandFilePath(), TextureAtlas.class, false);
-        TextureAtlas runTextureAtlas = assetManager.get(npcMapNode.getRunFilePath(), TextureAtlas.class, false);
+        TextureAtlas walkTextureAtlas = assetManager.get(walkFilePath, TextureAtlas.class, false);
+        TextureAtlas standTextureAtlas = assetManager.get(standFilePath, TextureAtlas.class, false);
+        TextureAtlas runTextureAtlas = assetManager.get(runFilePath, TextureAtlas.class, false);
 
         //初始化走路map
         this.walkingMap = new HashMap<>();

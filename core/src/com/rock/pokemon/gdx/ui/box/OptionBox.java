@@ -43,7 +43,7 @@ public class OptionBox extends Table {
      */
     public OptionBox(Pokemon game) {
 
-        //初始化父级
+        //初始化父类
         super(game.getSkin());
 
         //记录游戏对象

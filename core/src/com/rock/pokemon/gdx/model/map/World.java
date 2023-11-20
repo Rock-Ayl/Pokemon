@@ -4,10 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.common.FilePaths;
-import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
-import com.rock.pokemon.gdx.model.mapConfig.WorldMapNode;
-import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
-import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapNode;
+import com.rock.pokemon.gdx.model.mapConfig.*;
 import com.rock.pokemon.gdx.model.people.Person;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -39,17 +36,28 @@ public class World {
      */
     public World(AssetManager assetManager, String mapConfigPath) {
 
+        /**
+         * 读取各种配置
+         */
+
         //读取世界配置
         WorldMapConfig worldMapConfig = assetManager.get(mapConfigPath, WorldMapConfig.class);
 
         //读取事物配置
         WorldObjectMapConfig worldObjectMapConfig = assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
 
+        //读取npc配置
+        NpcMapConfig npcMapConfig = assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
+
+        /**
+         * 初始化地图网格
+         */
+
         //初始化地图网格
         this.tileMap = new TileMap(worldMapConfig.getWidth(), worldMapConfig.getHeight());
 
         /**
-         * 载入地图
+         * 载入地图资源
          */
 
         //循环地图节点
@@ -88,7 +96,7 @@ public class World {
         }
 
         /**
-         * 载入事物
+         * 载入事物资源
          */
 
         //循环世界事务节点
@@ -105,6 +113,10 @@ public class World {
                 this.addWorldObject(worldObject);
             }
         }
+
+        /**
+         * todo 载入NPC资源
+         */
 
     }
 

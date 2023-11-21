@@ -28,11 +28,11 @@ public class PersonController extends InputAdapter {
      * 输入-按键状态
      */
 
-    //输入状态,状态可以全部存在,比如按上的同时也可以按下,但是怎么处理就我们说的算了(目前30够用了)
-    private boolean[] buttonPressArr = new boolean[60];
+    //输入状态,状态可以全部存在,比如按上的同时也可以按下,但是怎么处理就我们说的算了(目前300够用了)
+    private boolean[] buttonPressArr = new boolean[300];
 
-    //输入状态的持续时间(目前30够用了)
-    private float[] buttonTimeArr = new float[60];
+    //输入状态的持续时间(目前300够用了)
+    private float[] buttonTimeArr = new float[300];
 
     /**
      * 输入-方向相关
@@ -74,20 +74,10 @@ public class PersonController extends InputAdapter {
      */
     @Override
     public boolean keyDown(int keycode) {
-        //如果按下方向键
-        if (DIR_INPUT_KEY_LINKED_SET.contains(keycode)) {
-            //覆盖键位状态
-            this.buttonPressArr[keycode] = true;
-            //覆盖按下时间,从0开始计算
-            this.buttonTimeArr[keycode] = 0;
-        }
-        //如果是跑步
-        if (keycode == RUN_INPUT_KEY) {
-            //覆盖键位状态
-            this.buttonPressArr[keycode] = true;
-            //覆盖按下时间,从0开始计算
-            this.buttonTimeArr[keycode] = 0;
-        }
+        //覆盖键位状态
+        this.buttonPressArr[keycode] = true;
+        //覆盖按下时间,从0开始计算
+        this.buttonTimeArr[keycode] = 0;
         //默认返回
         return false;
     }
@@ -100,20 +90,10 @@ public class PersonController extends InputAdapter {
      */
     @Override
     public boolean keyUp(int keycode) {
-        //如果释放方向键
-        if (DIR_INPUT_KEY_LINKED_SET.contains(keycode)) {
-            //关闭按键状态
-            this.buttonPressArr[keycode] = false;
-            //重置持续时间
-            this.buttonTimeArr[keycode] = 0;
-        }
-        //如果是跑步
-        if (keycode == RUN_INPUT_KEY) {
-            //关闭按键状态
-            this.buttonPressArr[keycode] = false;
-            //重置持续时间
-            this.buttonTimeArr[keycode] = 0;
-        }
+        //关闭按键状态
+        this.buttonPressArr[keycode] = false;
+        //重置持续时间
+        this.buttonTimeArr[keycode] = 0;
         //默认返回
         return false;
     }

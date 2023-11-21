@@ -39,7 +39,7 @@ public class SkinLoading {
          */
 
         //获取对话框
-        NinePatch buttonSquareBlue = new NinePatch(uiAtlas.findRegion("dialogue_box"), 10, 10, 5, 5);
+        NinePatch buttonSquareBlue = new NinePatch(uiAtlas.findRegion(Settings.UI_IMAGE_DIALOGUE_BOX), 10, 10, 5, 5);
         //设置该图片的宽高比
         buttonSquareBlue.scale(Settings.SCALE, Settings.SCALE);
         //组装至皮肤
@@ -50,14 +50,14 @@ public class SkinLoading {
          */
 
         //获取可选项框
-        NinePatch option = new NinePatch(uiAtlas.findRegion("option_box"), 5, 5, 5, 5);
+        NinePatch option = new NinePatch(uiAtlas.findRegion(Settings.UI_IMAGE_OPTION_BOX), 5, 5, 5, 5);
         //设置该图片的宽高比
         option.scale(Settings.SCALE, Settings.SCALE);
         //组装至皮肤
         skin.add(Settings.UI_IMAGE_OPTION_BOX, option);
 
         //获取可选项箭头
-        TextureAtlas.AtlasRegion arrow = uiAtlas.findRegion("arrow");
+        TextureAtlas.AtlasRegion arrow = uiAtlas.findRegion(Settings.UI_IMAGE_OPTION_ARROW);
         //组装至皮肤
         skin.add(Settings.UI_IMAGE_OPTION_ARROW, arrow, TextureRegion.class);
 

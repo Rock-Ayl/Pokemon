@@ -52,10 +52,10 @@ public class Settings {
      */
 
     //对话框-皮肤-key
-    public final static String UI_IMAGE_DIALOGUE_BOX = "dialogueBox";
+    public final static String UI_IMAGE_DIALOGUE_BOX = "dialogue_box";
 
     //可选项框-皮肤-key
-    public final static String UI_IMAGE_OPTION_BOX = "optionBox";
+    public final static String UI_IMAGE_OPTION_BOX = "option_box";
     //可选项框-箭头-key
     public final static String UI_IMAGE_OPTION_ARROW = "arrow";
 

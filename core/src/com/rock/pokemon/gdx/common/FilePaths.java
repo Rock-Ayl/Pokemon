@@ -21,6 +21,13 @@ public class FilePaths {
     public static final String SYSTEM_TEXT_FONT_IMAGE = "assets/font/black/黑体.png";
 
     /**
+     * 文件名
+     */
+
+    //资源文件名
+    public static final String TEXTURES_ATLAS_FILE_NAME = "textures.atlas";
+
+    /**
      * 图片资源
      */
 

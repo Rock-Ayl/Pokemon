@@ -33,16 +33,16 @@ public class AssetManagerLoading {
          * 载入 已打包的各种资源
          */
 
-        //收集人物资源列表
-        List<String> peopleTextureAtlasList = FileExtraUtils.collectFile(FilePaths.TEXTURES_ALTA_PEOPLE, "textures.atlas");
+        //收集 人物 资源列表
+        List<String> peopleTextureAtlasList = FileExtraUtils.collectFile(FilePaths.TEXTURES_ALTA_PEOPLE, FilePaths.TEXTURES_ATLAS_FILE_NAME);
         //循环
         for (String peopleTextureAtlasPath : peopleTextureAtlasList) {
             //载入对应人物资源
             assetManager.load(peopleTextureAtlasPath, TextureAtlas.class);
         }
 
-        //收集地图资源列表
-        List<String> mapTextureAtlasList = FileExtraUtils.collectFile(FilePaths.TEXTURES_ALTA_MAP, "textures.atlas");
+        //收集 地图(地图块、事物等) 资源列表
+        List<String> mapTextureAtlasList = FileExtraUtils.collectFile(FilePaths.TEXTURES_ALTA_MAP, FilePaths.TEXTURES_ATLAS_FILE_NAME);
         //循环
         for (String mapTextureAtlasPath : mapTextureAtlasList) {
             //载入对应人物资源

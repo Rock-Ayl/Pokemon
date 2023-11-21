@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.controller.DialogueBoxController;
 import com.rock.pokemon.gdx.controller.OptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.model.map.World;
@@ -68,6 +69,9 @@ public class LittleRoot implements Screen {
 
     //可选项框 控制器
     private OptionBoxController optionBoxController;
+
+    //对话框 控制器
+    private DialogueBoxController dialogueBoxController;
 
     /**
      * 世界
@@ -135,16 +139,16 @@ public class LittleRoot implements Screen {
         this.uiStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
         //初始化主表格
-        rootTable = new Table();
+        this.rootTable = new Table();
         //该设置仅用于主表格
-        rootTable.setFillParent(true);
+        this.rootTable.setFillParent(true);
         //开启debug,默认不开启
-        rootTable.setDebug(false);
+        this.rootTable.setDebug(false);
         //是否显示本UI
-        rootTable.setVisible(true);
+        this.rootTable.setVisible(true);
 
         //舞台加入主表格
-        uiStage.addActor(rootTable);
+        this.uiStage.addActor(this.rootTable);
 
         /**
          * 创建一个可选项框
@@ -202,12 +206,15 @@ public class LittleRoot implements Screen {
         this.inputMultiplexer = new InputMultiplexer();
         //初始化可选项框控制器
         this.optionBoxController = new OptionBoxController(this.optionBox);
+        //初始化对话框控制器
+        this.dialogueBoxController = new DialogueBoxController(this.dialogueBox);
         //初始化输入监听,控制主角的行动
         this.personController = new PersonController(this.adventurer);
 
         //组装至所有控制器
-        this.inputMultiplexer.addProcessor(personController);
-        this.inputMultiplexer.addProcessor(optionBoxController);
+        this.inputMultiplexer.addProcessor(this.personController);
+        this.inputMultiplexer.addProcessor(this.optionBoxController);
+        this.inputMultiplexer.addProcessor(this.dialogueBoxController);
 
     }
 
@@ -216,7 +223,7 @@ public class LittleRoot implements Screen {
         //当显示画面时,立即播放音乐
         this.music.play();
         //当显示画面时,开始监控键盘控制
-        Gdx.input.setInputProcessor(inputMultiplexer);
+        Gdx.input.setInputProcessor(this.inputMultiplexer);
     }
 
     /**
@@ -244,16 +251,6 @@ public class LittleRoot implements Screen {
         this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //渲染时使用相机
         this.game.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
-
-        /**
-         * 对话框操作
-         */
-
-        //如果按回车 and 对话完毕
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER) && this.dialogueBox.isFinished()) {
-            //对话框不可见
-            this.dialogueBox.setVisible(false);
-        }
 
         /**
          * 渲染世界及更新

@@ -29,17 +29,6 @@ public class OptionBoxController extends InputAdapter {
      */
     @Override
     public boolean keyDown(int keycode) {
-        return false;
-    }
-
-    /**
-     * 按键被释放时调用
-     *
-     * @param keycode 输入
-     * @return
-     */
-    @Override
-    public boolean keyUp(int keycode) {
         //根据按键判断
         switch (keycode) {
             //上
@@ -71,6 +60,18 @@ public class OptionBoxController extends InputAdapter {
                 //过
                 return false;
         }
+    }
+
+    /**
+     * 按键被释放时调用
+     *
+     * @param keycode 输入
+     * @return
+     */
+    @Override
+    public boolean keyUp(int keycode) {
+        //过
+        return false;
     }
 
 }

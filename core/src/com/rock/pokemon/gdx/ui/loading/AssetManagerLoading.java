@@ -41,9 +41,13 @@ public class AssetManagerLoading {
             assetManager.load(peopleTextureAtlasPath, TextureAtlas.class);
         }
 
-        //地图相关
-        assetManager.load(FilePaths.TEXTURES_ALTA_MAP_OBJECT, TextureAtlas.class);
-        assetManager.load(FilePaths.TEXTURES_ALTA_MAP_HOUSE, TextureAtlas.class);
+        //收集地图资源列表
+        List<String> mapTextureAtlasList = FileExtraUtils.collectFile(FilePaths.TEXTURES_ALTA_MAP, "textures.atlas");
+        //循环
+        for (String mapTextureAtlasPath : mapTextureAtlasList) {
+            //载入对应人物资源
+            assetManager.load(mapTextureAtlasPath, TextureAtlas.class);
+        }
 
         //ui相关
         assetManager.load(FilePaths.TEXTURES_ATLAS_UI, TextureAtlas.class);

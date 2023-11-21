@@ -30,9 +30,8 @@ public class FilePaths {
     //人物资源-通用路径
     public static final String TEXTURES_ALTA_PEOPLE = "assets/packed/image/people/";
 
-    //地图相关
-    public static final String TEXTURES_ALTA_MAP_OBJECT = "assets/packed/image/map/object/textures.atlas";
-    public static final String TEXTURES_ALTA_MAP_HOUSE = "assets/packed/image/map/house/textures.atlas";
+    //地图资源-通用路径
+    public static final String TEXTURES_ALTA_MAP = "assets/packed/image/map/";
 
     /**
      * 世界配置

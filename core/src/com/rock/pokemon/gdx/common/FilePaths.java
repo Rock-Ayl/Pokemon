@@ -31,14 +31,14 @@ public class FilePaths {
      * 图片资源
      */
 
-    //ui
-    public static final String TEXTURES_ATLAS_UI = "assets/packed/image/ui/textures.atlas";
-
     //人物资源-通用路径
     public static final String TEXTURES_ALTA_PEOPLE = "assets/packed/image/people/";
 
     //地图资源-通用路径
     public static final String TEXTURES_ALTA_MAP = "assets/packed/image/map/";
+
+    //ui资源-通用路径
+    public static final String TEXTURES_ALTA_UI = "assets/packed/image/ui/";
 
     /**
      * 世界配置

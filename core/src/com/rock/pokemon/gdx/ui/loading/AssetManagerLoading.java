@@ -12,6 +12,7 @@ import com.rock.pokemon.gdx.worldloader.NpcMapConfigLoader;
 import com.rock.pokemon.gdx.worldloader.WorldMapConfigLoader;
 import com.rock.pokemon.gdx.worldloader.WorldObjectMapConfigLoader;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,27 +31,25 @@ public class AssetManagerLoading {
         AssetManager assetManager = new AssetManager();
 
         /**
-         * 载入 已打包的各种资源
+         * 载入已打包的各种图片资源
          */
 
-        //收集 人物 资源列表
-        List<String> peopleTextureAtlasList = FileExtraUtils.collectFile(FilePaths.TEXTURES_ALTA_PEOPLE, FilePaths.TEXTURES_ATLAS_FILE_NAME);
+        //所有资源路径,包含 地图块、事物、人物、UI
+        List<String> textureAtlasPathList = Arrays.asList(
+                FilePaths.TEXTURES_ALTA_MAP,
+                FilePaths.TEXTURES_ALTA_PEOPLE,
+                FilePaths.TEXTURES_ALTA_UI
+        );
         //循环
-        for (String peopleTextureAtlasPath : peopleTextureAtlasList) {
-            //载入对应人物资源
-            assetManager.load(peopleTextureAtlasPath, TextureAtlas.class);
+        for (String dirPath : textureAtlasPathList) {
+            //收集里面的资源列表
+            List<String> textureAtlasList = FileExtraUtils.collectFile(dirPath, FilePaths.TEXTURES_ATLAS_FILE_NAME);
+            //循环
+            for (String filePath : textureAtlasList) {
+                //载入对应资源
+                assetManager.load(filePath, TextureAtlas.class);
+            }
         }
-
-        //收集 地图(地图块、事物等) 资源列表
-        List<String> mapTextureAtlasList = FileExtraUtils.collectFile(FilePaths.TEXTURES_ALTA_MAP, FilePaths.TEXTURES_ATLAS_FILE_NAME);
-        //循环
-        for (String mapTextureAtlasPath : mapTextureAtlasList) {
-            //载入对应人物资源
-            assetManager.load(mapTextureAtlasPath, TextureAtlas.class);
-        }
-
-        //ui相关
-        assetManager.load(FilePaths.TEXTURES_ATLAS_UI, TextureAtlas.class);
 
         /**
          * 载入 各种解析器

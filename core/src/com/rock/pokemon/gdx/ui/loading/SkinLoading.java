@@ -32,7 +32,7 @@ public class SkinLoading {
          */
 
         //获取ui资源
-        TextureAtlas uiAtlas = assetManager.get(FilePaths.TEXTURES_ATLAS_UI);
+        TextureAtlas uiAtlas = assetManager.get(FilePaths.TEXTURES_ALTA_UI + FilePaths.TEXTURES_ATLAS_FILE_NAME);
 
         /**
          * ui 对话框

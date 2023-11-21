@@ -58,11 +58,26 @@ public class OptionBox extends Table {
     }
 
     /**
+     * 设置所有选项
+     *
+     * @param optionList 可选项文字列表
+     */
+    public void setOption(List<String> optionList) {
+        //清理当前box
+        clearBox();
+        //循环
+        for (String option : optionList) {
+            //加入一行可选项
+            addOption(option);
+        }
+    }
+
+    /**
      * 加入一行可选项
      *
      * @param option 可选项文字
      */
-    public void addOption(String option) {
+    private void addOption(String option) {
 
         /**
          * 对应箭头
@@ -212,10 +227,10 @@ public class OptionBox extends Table {
     }
 
     /**
-     * 清理所有可选项
+     * 清空盒子
      */
-    public void clearChoices() {
-        this.uiContainer.clearChildren();
+    private void clearBox() {
+        this.uiContainer.clear();
         this.optionList.clear();
         this.arrowList.clear();
         this.selectorIndex = 0;

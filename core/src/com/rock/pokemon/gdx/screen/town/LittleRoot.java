@@ -23,6 +23,8 @@ import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.ui.box.DialogueBox;
 import com.rock.pokemon.gdx.ui.box.OptionBox;
 
+import java.util.Arrays;
+
 /**
  * 未白镇(开局城镇)
  *
@@ -151,16 +153,9 @@ public class LittleRoot implements Screen {
 
         //初始化
         this.optionBox = new OptionBox(this.game);
-        //设置可选项
-        this.optionBox.addOption("图鉴");
-        this.optionBox.addOption("精灵");
-        this.optionBox.addOption("背包");
-        //this.optionBox.addOption("领航员");
-        //this.optionBox.addOption("主角");
-        this.optionBox.addOption("保存");
-        this.optionBox.addOption("设置");
-        this.optionBox.addOption("退出");
-        this.optionBox.setVisible(true);
+        //初始化可选项
+        this.optionBox.setOption(Arrays.asList("图鉴", "精灵", "背包", "保存", "设置", "退出"));
+        //将菜单放入桌面右边
         this.rootTable.add(this.optionBox)
                 .expand()
                 .align(Align.right)

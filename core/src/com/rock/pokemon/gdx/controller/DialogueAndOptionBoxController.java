@@ -51,6 +51,11 @@ public class DialogueAndOptionBoxController extends InputAdapter {
                 return true;
             //回车
             case Input.Keys.ENTER:
+                //如果 对话框 对话完毕
+                if (this.dialogueAndOptionBox.getDialogueBox().isFinished()) {
+                    //对话框不可见
+                    this.dialogueAndOptionBox.getDialogueBox().setVisible(false);
+                }
                 //开/关
                 this.dialogueAndOptionBox.getOptionBox().change();
                 //是

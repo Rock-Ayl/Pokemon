@@ -15,11 +15,11 @@ public class DialogueBox extends Table {
      * 基础
      */
 
-    //游戏对象
-    private final Pokemon game;
+    //文本标签
+    private Label textLabel;
 
     /**
-     * 动画元素
+     * 动画元素-变动
      */
 
     //当前动画目标总文字
@@ -31,11 +31,15 @@ public class DialogueBox extends Table {
     //对话框当前动画总时长(会按照字数计算)
     private float animationTotalTime = 0F;
 
-    //一个char的动画时长
-    private static final float TIME_PER_CHARACTER = 0.05F;
-
     //当前对话框状态,默认空闲
     private STATE state = STATE.IDLE;
+
+    /**
+     * 动画元素-固定
+     */
+
+    //一个char的动画时长
+    private static final float TIME_PER_CHARACTER = 0.05F;
 
     //对话框状态枚举
     private enum STATE {
@@ -50,13 +54,6 @@ public class DialogueBox extends Table {
     }
 
     /**
-     * 基础
-     */
-
-    //文本
-    private Label textLabel;
-
-    /**
      * 初始化对话框
      *
      * @param game 游戏对象
@@ -66,13 +63,10 @@ public class DialogueBox extends Table {
         //初始化父级
         super(game.getSkin());
 
-        //记录游戏
-        this.game = game;
-
         //设置整体背景贴图
         this.setBackground(Settings.UI_IMAGE_DIALOGUE_BOX);
         //初始化字体,载入字体
-        this.textLabel = new Label("\n", this.game.getSkin(), Settings.SYSTEM_FONT_LABEL);
+        this.textLabel = new Label("\n", game.getSkin(), Settings.SYSTEM_FONT_LABEL);
         //将文本组装至文本框中
         this.add(this.textLabel)
                 //均匀分布该label
@@ -91,12 +85,12 @@ public class DialogueBox extends Table {
     public void animateText(String text) {
         //记录目标文本
         this.targetText = text;
+        //初始化当前动画时长
+        this.animTimer = 0F;
         //计算并初始化本次动画总时长
         this.animationTotalTime = text.length() * TIME_PER_CHARACTER;
         //更改对话框状态
         this.state = STATE.ANIMATING;
-        //初始化当前动画时长
-        this.animTimer = 0F;
     }
 
     /**

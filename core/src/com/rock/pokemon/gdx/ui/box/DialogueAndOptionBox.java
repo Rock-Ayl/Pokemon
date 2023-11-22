@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.ui.box;
 
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBox;
 
 /**
  * 对话框 + 可选项框 实体
@@ -55,12 +56,37 @@ public class DialogueAndOptionBox {
         this.optionBox = new OptionBox(this.game);
 
         //默认不显示
-        //this.dialogueBox.setVisible(false);
-        //this.optionBox.setVisible(false);
+        this.dialogueBox.setVisible(false);
+        this.optionBox.setVisible(false);
 
         //todo 测试box
         this.optionBox.setOption(boxMapNode.getBoxList().get(2).getOptionList());
-        this.dialogueBox.animateText(this.game.getTextMap().get(boxMapNode.getBoxList().get(0).getTextNumber()));
+
+    }
+
+    /**
+     * 下一个
+     */
+    public void next() {
+
+        //如果当前的结束了
+        if (this.dialogueBox.isFinished()) {
+            //如果没结束
+            if (this.nodeIndex < this.boxMapNode.getBoxList().size()) {
+                //获取下一个节点配置
+                BoxMapNodeBox boxMapNodeBox = this.boxMapNode.getBoxList().get(nodeIndex++);
+                //如果有
+                if (boxMapNodeBox.getTextNumber() != null) {
+                    //新的文本
+                    this.dialogueBox.animateText(this.game.getTextMap().get(boxMapNodeBox.getTextNumber()));
+                    //可见
+                    this.dialogueBox.setVisible(true);
+                }
+            } else {
+                //不可见
+                this.dialogueBox.setVisible(false);
+            }
+        }
 
     }
 

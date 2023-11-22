@@ -5,27 +5,35 @@
       "remark": "对话-测试-1",
       "boxList": [
         {
+          "type": "DialogueBox",
+          "textNumber": 100
+        },
+        {
+          "type": "DialogueBox",
+          "textNumber": 101
+        },
+        {
           "type": "OptionBox",
           "optionList": [
-            "图鉴",
-            "精灵",
-            "背包",
-            "保存",
-            "设置",
-            "退出"
+            "是",
+            "否"
           ]
         },
         {
           "type": "DialogueBox",
-          "textNumber": 4
+          "textNumber": 102
         },
         {
           "type": "DialogueBox",
-          "textNumber": 5
+          "textNumber": 103
         },
         {
           "type": "DialogueBox",
-          "textNumber": 6
+          "textNumber": 104
+        },
+        {
+          "type": "DialogueBox",
+          "textNumber": 105
         }
       ]
     }

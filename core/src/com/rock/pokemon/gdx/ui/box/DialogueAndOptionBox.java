@@ -59,8 +59,8 @@ public class DialogueAndOptionBox {
         //this.optionBox.setVisible(false);
 
         //todo 测试box
-        this.optionBox.setOption(boxMapNode.getBoxList().get(0).getOptionList());
-        this.dialogueBox.animateText(this.game.getTextMap().get(boxMapNode.getBoxList().get(1).getTextNumber()));
+        this.optionBox.setOption(boxMapNode.getBoxList().get(2).getOptionList());
+        this.dialogueBox.animateText(this.game.getTextMap().get(boxMapNode.getBoxList().get(0).getTextNumber()));
 
     }
 

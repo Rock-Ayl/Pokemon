@@ -127,7 +127,6 @@ public class LittleRoot implements Screen {
 
         //读取UI测试配置
         BoxMapNode talkTestNode = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class).getBoxMap().get("talk_test_1");
-
         //初始化对应ui配置
         this.dialogueAndOptionBox = new DialogueAndOptionBox(this.game, talkTestNode);
 

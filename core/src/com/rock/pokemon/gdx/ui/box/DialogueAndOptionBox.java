@@ -1,9 +1,7 @@
 package com.rock.pokemon.gdx.ui.box;
 
 import com.rock.pokemon.gdx.Pokemon;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 
 /**
  * 对话框 + 可选项框 实体
@@ -33,22 +31,24 @@ public class DialogueAndOptionBox {
     //索引
     private int nodeIndex;
 
-    //todo
-    private List nodeList;
+    //Box节点 配置类实体
+    private BoxMapNode boxMapNode;
 
     /**
      * 初始化
      *
-     * @param game 游戏对象
+     * @param game       游戏对象
+     * @param boxMapNode 盒子配置节点
      */
-    public DialogueAndOptionBox(Pokemon game) {
+    public DialogueAndOptionBox(Pokemon game, BoxMapNode boxMapNode) {
 
         //记录游戏对象
         this.game = game;
+        //记录盒子配置节点
+        this.boxMapNode = boxMapNode;
 
         //初始化基本参数
         this.nodeIndex = 0;
-        this.nodeList = new ArrayList();
 
         //初始化对话框、可选项框
         this.dialogueBox = new DialogueBox(this.game);
@@ -58,6 +58,18 @@ public class DialogueAndOptionBox {
         this.dialogueBox.setVisible(false);
         this.optionBox.setVisible(false);
 
+    }
+
+    /**
+     * 以下是 get set 方法
+     */
+
+    public DialogueBox getDialogueBox() {
+        return this.dialogueBox;
+    }
+
+    public OptionBox getOptionBox() {
+        return this.optionBox;
     }
 
 }

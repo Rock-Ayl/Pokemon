@@ -3,56 +3,37 @@ package com.rock.pokemon.gdx.model.mapConfig;
 import java.util.List;
 
 /**
- * Box 节点配置类实体
+ * Box节点 配置类实体
  *
  * @Author ayl
  * @Date 2023-11-22
  */
 public class BoxMapNode {
 
-    //盒子节点类型
-    private String type;
+    //备注
+    private String remark;
 
-    /**
-     * OptionBox 独有参数
-     */
-
-    //可选项列表
-    private List<String> optionList;
-
-    /**
-     * DialogueBox 独有参数
-     */
-
-    //文本编号
-    private Integer textNumber;
+    //盒子列表
+    private List<BoxMapNodeBox> boxList;
 
     /**
      * 以下为 get set 方法
      */
 
-    public String getType() {
-        return type;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
-    public List<String> getOptionList() {
-        return optionList;
+    public List<BoxMapNodeBox> getBoxList() {
+        return boxList;
     }
 
-    public void setOptionList(List<String> optionList) {
-        this.optionList = optionList;
-    }
-
-    public Integer getTextNumber() {
-        return textNumber;
-    }
-
-    public void setTextNumber(Integer textNumber) {
-        this.textNumber = textNumber;
+    public void setBoxList(List<BoxMapNodeBox> boxList) {
+        this.boxList = boxList;
     }
 
 }

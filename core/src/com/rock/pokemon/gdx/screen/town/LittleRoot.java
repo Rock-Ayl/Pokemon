@@ -14,17 +14,14 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.controller.OptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
-import com.rock.pokemon.gdx.ui.box.DialogueBox;
-import com.rock.pokemon.gdx.ui.box.OptionBox;
-
-import java.util.Arrays;
+import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 
 /**
  * 未白镇(开局城镇)
@@ -53,11 +50,8 @@ public class LittleRoot implements Screen {
     //主表格
     private Table rootTable;
 
-    //对话框
-    private DialogueBox dialogueBox;
-
-    //可选项框
-    private OptionBox optionBox;
+    //对话框+可选项盒子
+    private DialogueAndOptionBox dialogueAndOptionBox;
 
     /**
      * 控制器
@@ -68,9 +62,6 @@ public class LittleRoot implements Screen {
 
     //人物 控制器
     private PersonController personController;
-
-    //可选项框 控制器
-    private OptionBoxController optionBoxController;
 
     /**
      * 世界
@@ -130,8 +121,11 @@ public class LittleRoot implements Screen {
          * UI
          */
 
-        //todo 读取UI配置
-        BoxMapConfig boxMapConfig = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
+        //读取UI测试配置
+        BoxMapNode talkTestNode = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class).getBoxMap().get("talk_test_1");
+
+        //初始化对应ui配置
+        this.dialogueAndOptionBox = new DialogueAndOptionBox(this.game, talkTestNode);
 
         //初始化[FitViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
         this.viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -152,15 +146,11 @@ public class LittleRoot implements Screen {
         this.uiStage.addActor(this.rootTable);
 
         /**
-         * 创建一个可选项框
+         * 组装一个可选项框
          */
 
-        //初始化
-        this.optionBox = new OptionBox(this.game);
-        //初始化可选项
-        this.optionBox.setOption(Arrays.asList("图鉴", "精灵", "背包", "保存", "设置", "退出"));
         //将菜单放入桌面右边
-        this.rootTable.add(this.optionBox)
+        this.rootTable.add(this.dialogueAndOptionBox.getOptionBox())
                 .expand()
                 .align(Align.right)
                 //和边界的间隙
@@ -169,15 +159,11 @@ public class LittleRoot implements Screen {
                 .row();
 
         /**
-         * 创建一个对话框
+         * 组装一个对话框
          */
 
-        //初始化一个对话框
-        this.dialogueBox = new DialogueBox(this.game);
-        //随便根据编号弄一个文本,组装到对话框播放动画
-        this.dialogueBox.animateText(this.game.getTextMap().get(4));
         //将对话框放在主表格的下方
-        this.rootTable.add(this.dialogueBox)
+        this.rootTable.add(this.dialogueAndOptionBox.getDialogueBox())
                 .expand()
                 //横坐标成长到最大(拉伸)
                 .growX()
@@ -197,14 +183,11 @@ public class LittleRoot implements Screen {
         //初始化所有控制器
         this.inputMultiplexer = new InputMultiplexer();
 
-        //初始化可选项框控制器
-        this.optionBoxController = new OptionBoxController(this.optionBox);
         //初始化输入监听,控制主角的行动
         this.personController = new PersonController(this.adventurer);
 
         //组装至所有控制器
         this.inputMultiplexer.addProcessor(this.personController);
-        this.inputMultiplexer.addProcessor(this.optionBoxController);
 
     }
 
@@ -241,16 +224,6 @@ public class LittleRoot implements Screen {
         this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //渲染时使用相机
         this.game.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
-
-        /**
-         * 对话框操作
-         */
-
-        //如果按回车 and 对话完毕
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER) && this.dialogueBox.isFinished()) {
-            //对话框不可见
-            this.dialogueBox.setVisible(false);
-        }
 
         /**
          * 渲染世界及更新

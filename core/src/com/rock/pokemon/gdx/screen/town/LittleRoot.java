@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
@@ -62,6 +63,9 @@ public class LittleRoot implements Screen {
 
     //人物 控制器
     private PersonController personController;
+
+    //对话框 + 可选项框 输入控制器
+    private DialogueAndOptionBoxController dialogueAndOptionBoxController;
 
     /**
      * 世界
@@ -185,9 +189,12 @@ public class LittleRoot implements Screen {
 
         //初始化输入监听,控制主角的行动
         this.personController = new PersonController(this.adventurer);
+        //初始化对话框 + 可选项框 输入控制器,控制UI
+        this.dialogueAndOptionBoxController = new DialogueAndOptionBoxController(this.dialogueAndOptionBox);
 
         //组装至所有控制器
         this.inputMultiplexer.addProcessor(this.personController);
+        this.inputMultiplexer.addProcessor(this.dialogueAndOptionBoxController);
 
     }
 

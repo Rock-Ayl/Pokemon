@@ -2,23 +2,23 @@ package com.rock.pokemon.gdx.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.rock.pokemon.gdx.ui.box.OptionBox;
+import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 
 /**
- * 可选项框 输入控制器
+ * 对话框 + 可选项框 输入控制器
  */
-public class OptionBoxController extends InputAdapter {
+public class DialogueAndOptionBoxController extends InputAdapter {
 
-    //可选项框实体
-    private OptionBox optionBox;
+    //对话框 + 可选项框 实体
+    private DialogueAndOptionBox dialogueAndOptionBox;
 
     /**
-     * 初始化 可选项框
+     * 初始化
      *
-     * @param optionBox 传入可选项
+     * @param dialogueAndOptionBox 传入实体
      */
-    public OptionBoxController(OptionBox optionBox) {
-        this.optionBox = optionBox;
+    public DialogueAndOptionBoxController(DialogueAndOptionBox dialogueAndOptionBox) {
+        this.dialogueAndOptionBox = dialogueAndOptionBox;
     }
 
     /**
@@ -34,25 +34,25 @@ public class OptionBoxController extends InputAdapter {
             //上
             case Input.Keys.UP:
                 //移动
-                this.optionBox.moveUp();
+                this.dialogueAndOptionBox.getOptionBox().moveUp();
                 //是
                 return true;
             //下
             case Input.Keys.DOWN:
                 //移动
-                this.optionBox.moveDown();
+                this.dialogueAndOptionBox.getOptionBox().moveDown();
                 //是
                 return true;
             //默认X为取消
             case Input.Keys.X:
                 //处理取消
-                this.optionBox.change(false);
+                this.dialogueAndOptionBox.getOptionBox().change(false);
                 //是
                 return true;
             //回车
             case Input.Keys.ENTER:
                 //开/关
-                this.optionBox.change();
+                this.dialogueAndOptionBox.getOptionBox().change();
                 //是
                 return true;
             //默认

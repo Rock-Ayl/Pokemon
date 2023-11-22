@@ -4,10 +4,12 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.rock.pokemon.gdx.common.FilePaths;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
 import com.rock.pokemon.gdx.util.FileExtraUtils;
+import com.rock.pokemon.gdx.worldloader.BoxMapConfigLoader;
 import com.rock.pokemon.gdx.worldloader.NpcMapConfigLoader;
 import com.rock.pokemon.gdx.worldloader.WorldMapConfigLoader;
 import com.rock.pokemon.gdx.worldloader.WorldObjectMapConfigLoader;
@@ -61,6 +63,8 @@ public class AssetManagerLoading {
         assetManager.setLoader(WorldMapConfig.class, new WorldMapConfigLoader(new InternalFileHandleResolver()));
         //载入npc配置解析器
         assetManager.setLoader(NpcMapConfig.class, new NpcMapConfigLoader(new InternalFileHandleResolver()));
+        //载入box配置解析器
+        assetManager.setLoader(BoxMapConfig.class, new BoxMapConfigLoader(new InternalFileHandleResolver()));
 
         /**
          * 载入 配置

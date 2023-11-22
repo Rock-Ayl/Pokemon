@@ -1,0 +1,38 @@
+{
+  "name": "所有盒子的配置",
+  "boxMap": {
+    "adventurer_menu": {
+      "remark": "主角-菜单栏",
+      "nodeList": [
+        {
+          "type": "OptionBox",
+          "optionList": [
+            "图鉴",
+            "精灵",
+            "背包",
+            "保存",
+            "设置",
+            "退出"
+          ]
+        }
+      ]
+    },
+    "talk_test_1": {
+      "remark": "对话-测试-1",
+      "nodeList": [
+        {
+          "type": "DialogueBox",
+          "textNumber": 4
+        },
+        {
+          "type": "DialogueBox",
+          "textNumber": 5
+        },
+        {
+          "type": "DialogueBox",
+          "textNumber": 6
+        }
+      ]
+    }
+  }
+}

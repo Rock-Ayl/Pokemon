@@ -17,6 +17,7 @@ import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.OptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.model.map.World;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
@@ -128,6 +129,9 @@ public class LittleRoot implements Screen {
         /**
          * UI
          */
+
+        //todo 读取UI配置
+        BoxMapConfig boxMapConfig = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
 
         //初始化[FitViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
         this.viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

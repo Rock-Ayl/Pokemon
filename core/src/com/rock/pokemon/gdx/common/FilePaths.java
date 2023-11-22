@@ -50,6 +50,8 @@ public class FilePaths {
     public static final String MAP_CONFIG_PATH_OF_WORLD_OBJECT = "assets/config/map/WorldObject.json";
     //配置文件路径-npc
     public static final String MAP_CONFIG_PATH_OF_NPC = "assets/config/map/Npc.json";
+    //配置文件路径-box
+    public static final String MAP_CONFIG_PATH_OF_BOX = "assets/config/map/Box.json";
 
     /**
      * 音乐

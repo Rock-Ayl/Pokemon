@@ -76,6 +76,8 @@ public class AssetManagerLoading {
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, WorldMapConfig.class);
         //载入npc
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
+        //载入box
+        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
 
         //加载资源完成
         assetManager.finishLoading();

@@ -235,6 +235,15 @@ public class OptionBox extends Table {
     }
 
     /**
+     * 获取当前选中的可选项
+     *
+     * @return
+     */
+    public BoxMapNodeBoxOption getSelectorBoxMapNodeBoxOption() {
+        return this.boxMapNodeBoxOptionList.get(this.selectorIndex);
+    }
+
+    /**
      * 清空盒子
      */
     private void clearBox() {

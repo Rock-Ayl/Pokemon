@@ -3,6 +3,11 @@ package com.rock.pokemon.gdx.ui.box;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBox;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBoxOption;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * 对话框 + 可选项框 实体
@@ -88,7 +93,22 @@ public class DialogueAndOptionBox {
         //如果选项可见
         if (this.optionBox.isVisible()) {
 
-            //todo 处理选择的选项
+            /**
+             * 处理选择的选项
+             */
+
+            //获取当前选中的可选项
+            BoxMapNodeBoxOption boxMapNodeBoxOption = this.optionBox.getSelectorBoxMapNodeBoxOption();
+            //获取这些可选项中的盒子列表
+            List<BoxMapNodeBox> boxList = Optional.ofNullable(boxMapNodeBoxOption)
+                    .map(BoxMapNodeBoxOption::getBoxList)
+                    .orElse(new ArrayList<>());
+            //加入到后续的盒子列表
+            this.boxMapNode.getBoxList().addAll(boxList);
+
+            /**
+             * 继续执行
+             */
 
             //统一设置为不可见
             setVisible(false);

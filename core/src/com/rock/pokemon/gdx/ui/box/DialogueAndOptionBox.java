@@ -77,9 +77,14 @@ public class DialogueAndOptionBox {
     public void nextNode() {
 
         /**
-         * 如果越界了
+         * 判断不处理逻辑ø
          */
 
+        //如果对话未完成
+        if (this.dialogueBox.isFinished() == false) {
+            //结束
+            return;
+        }
         //如果索引越界了
         if (this.nodeIndex >= this.boxMapNode.getBoxList().size()) {
             //统一设置为不可见

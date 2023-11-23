@@ -16,7 +16,7 @@
           "type": "OptionBox",
           "optionList": [
             {
-              "value": "是",
+              "valueTextNumber": 9000000,
               "boxList": [
                 {
                   "type": "DialogueBox",
@@ -33,7 +33,7 @@
               ]
             },
             {
-              "value": "否",
+              "valueTextNumber": 9000001,
               "boxList": [
                 {
                   "type": "DialogueBox",

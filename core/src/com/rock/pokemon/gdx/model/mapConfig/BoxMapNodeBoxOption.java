@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class BoxMapNodeBoxOption {
 
-    //选项值
-    private String value;
+    //选项值编号
+    private Integer valueTextNumber;
 
     //盒子列表
     private List<BoxMapNodeBox> boxList;
@@ -20,12 +20,12 @@ public class BoxMapNodeBoxOption {
      * 以下为 get set 方法
      */
 
-    public String getValue() {
-        return value;
+    public Integer getValueTextNumber() {
+        return valueTextNumber;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setValueTextNumber(Integer valueTextNumber) {
+        this.valueTextNumber = valueTextNumber;
     }
 
     public List<BoxMapNodeBox> getBoxList() {
@@ -35,5 +35,5 @@ public class BoxMapNodeBoxOption {
     public void setBoxList(List<BoxMapNodeBox> boxList) {
         this.boxList = boxList;
     }
-    
+
 }

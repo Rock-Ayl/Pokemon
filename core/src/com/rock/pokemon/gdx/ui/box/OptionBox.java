@@ -114,7 +114,7 @@ public class OptionBox extends Table {
          */
 
         //初始化对应文字,载入字体
-        Label optionLabel = new Label(boxMapNodeBoxOption.getValue(), this.getSkin(), Settings.SYSTEM_FONT_LABEL);
+        Label optionLabel = new Label(this.game.getTextMap().get(boxMapNodeBoxOption.getValueTextNumber()), this.getSkin(), Settings.SYSTEM_FONT_LABEL);
         //组装至列表
         this.optionList.add(optionLabel);
         //将文字组装至窗口

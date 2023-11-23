@@ -68,7 +68,7 @@ public class DialogueAndOptionBox {
         this.nodeIndex = 0;
 
         //初始化对话框、可选项框
-        this.dialogueBox = new DialogueBox(this.game);
+        this.dialogueBox = new DialogueBox(this.game, this);
         this.optionBox = new OptionBox(this.game);
 
         //默认不显示
@@ -153,6 +153,29 @@ public class DialogueAndOptionBox {
                 break;
         }
 
+    }
+
+    /**
+     * 当 对话框 动画完成时,回调
+     */
+    public void dialogueBoxFinish() {
+        //如果 索引越界
+        if (this.nodeIndex >= this.boxMapNode.getBoxList().size()) {
+            //过
+            return;
+        }
+        //获取当前节点配置
+        BoxMapNodeBox boxMapNodeBox = this.boxMapNode.getBoxList().get(this.nodeIndex);
+        //获取盒子配置类型
+        String type = boxMapNodeBox.getType();
+        //根据类型处理
+        switch (type) {
+            //可选框
+            case "OptionBox":
+                //开启可选项
+                nextNode();
+                break;
+        }
     }
 
     /**

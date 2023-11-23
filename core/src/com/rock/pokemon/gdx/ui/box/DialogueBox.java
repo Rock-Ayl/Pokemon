@@ -18,6 +18,9 @@ public class DialogueBox extends Table {
     //文本标签
     private Label textLabel;
 
+    //对应父级 对话框+可选项实体
+    private DialogueAndOptionBox dialogueAndOptionBox;
+
     /**
      * 动画元素-变动
      */
@@ -56,12 +59,16 @@ public class DialogueBox extends Table {
     /**
      * 初始化对话框
      *
-     * @param game 游戏对象
+     * @param game                 游戏对象
+     * @param dialogueAndOptionBox 对应 对话框+可选项实体
      */
-    public DialogueBox(Pokemon game) {
+    public DialogueBox(Pokemon game, DialogueAndOptionBox dialogueAndOptionBox) {
 
         //初始化父级
         super(game.getSkin());
+
+        //记录
+        this.dialogueAndOptionBox = dialogueAndOptionBox;
 
         //设置整体背景贴图
         this.setBackground(Settings.UI_IMAGE_DIALOGUE_BOX);
@@ -126,6 +133,11 @@ public class DialogueBox extends Table {
         switch (this.state) {
             //动画中
             case ANIMATING:
+
+                /**
+                 * 自身的处理
+                 */
+
                 //叠加动画总市场
                 this.animTimer += delta;
                 //如果动画时长过了总时间了
@@ -141,6 +153,17 @@ public class DialogueBox extends Table {
                 String actuallyDisplayedText = this.targetText.substring(0, charactersToDisplay);
                 //设置实际对话文本
                 setText(actuallyDisplayedText);
+
+                /**
+                 * 完成后的回调
+                 */
+
+                //到这里,如果状态是空闲
+                if (this.state == STATE.IDLE) {
+                    //回调父级
+                    this.dialogueAndOptionBox.dialogueBoxFinish();
+                }
+
                 //结束
                 break;
             //空闲/其他

@@ -122,16 +122,9 @@ public class DialogueAndOptionBox {
      * @param visible 是否可见
      */
     public void setVisible(boolean visible) {
-        //判空
-        if (this.dialogueBox != null) {
-            //设置
-            this.dialogueBox.setVisible(visible);
-        }
-        //判空
-        if (this.optionBox != null) {
-            //设置
-            this.optionBox.setVisible(visible);
-        }
+        //统一设置
+        this.dialogueBox.setVisible(visible);
+        this.optionBox.setVisible(visible);
     }
 
     /**

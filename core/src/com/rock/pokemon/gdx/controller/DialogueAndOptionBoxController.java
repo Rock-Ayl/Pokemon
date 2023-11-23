@@ -52,7 +52,7 @@ public class DialogueAndOptionBoxController extends InputAdapter {
             //回车
             case Input.Keys.ENTER:
                 //如果 对话框 对话完毕
-                this.dialogueAndOptionBox.next();
+                this.dialogueAndOptionBox.nextNode();
                 //开/关
                 this.dialogueAndOptionBox.getOptionBox().change();
                 //是

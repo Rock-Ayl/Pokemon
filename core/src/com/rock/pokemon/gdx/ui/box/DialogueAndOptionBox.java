@@ -69,46 +69,69 @@ public class DialogueAndOptionBox {
         this.dialogueBox.setVisible(false);
         this.optionBox.setVisible(false);
 
-        //todo 测试box
-        this.optionBox.setOption(boxMapNode.getBoxList().get(2).getOptionList());
-
     }
 
     /**
-     * todo 下一个
+     * 下一个节点
      */
-    public void next() {
+    public void nextNode() {
 
-        //如果当前的结束了
-        if (this.dialogueBox.isFinished()) {
-            //如果没结束
-            if (this.nodeIndex < this.boxMapNode.getBoxList().size()) {
-                //获取下一个节点配置
-                BoxMapNodeBox boxMapNodeBox = this.boxMapNode.getBoxList().get(nodeIndex++);
-                //如果有
-                if (boxMapNodeBox.getTextNumber() != null) {
-                    //新的文本
-                    this.dialogueBox.animateText(this.game.getTextMap().get(boxMapNodeBox.getTextNumber()));
-                    //可见
-                    this.dialogueBox.setVisible(true);
-                }
-            } else {
-                //不可见
-                this.dialogueBox.setVisible(false);
-            }
+        /**
+         * 如果越界了
+         */
+
+        //如果索引越界了
+        if (this.nodeIndex >= this.boxMapNode.getBoxList().size()) {
+            //统一设置为不可见
+            setVisible(false);
+            //结束
+            return;
+        }
+
+        /**
+         * 统一处理
+         */
+
+        //获取下一个节点配置
+        BoxMapNodeBox boxMapNodeBox = this.boxMapNode.getBoxList().get(nodeIndex++);
+        //获取盒子配置类型
+        String type = boxMapNodeBox.getType();
+        //根据类型处理
+        switch (type) {
+            //可选框
+            case "OptionBox":
+                //新的对话框
+                this.optionBox.setOption(boxMapNodeBox.getOptionList());
+                //盒子可见
+                this.optionBox.setVisible(true);
+                break;
+            //对话框
+            case "DialogueBox":
+                //新的文本
+                this.dialogueBox.animateText(this.game.getTextMap().get(boxMapNodeBox.getTextNumber()));
+                //盒子可见
+                this.dialogueBox.setVisible(true);
+                break;
         }
 
     }
 
     /**
-     * 设置是否可见
+     * 统一设置是否可见
      *
      * @param visible 是否可见
      */
     public void setVisible(boolean visible) {
-        //设置
-        this.dialogueBox.setVisible(visible);
-        this.optionBox.setVisible(visible);
+        //判空
+        if (this.dialogueBox != null) {
+            //设置
+            this.dialogueBox.setVisible(visible);
+        }
+        //判空
+        if (this.optionBox != null) {
+            //设置
+            this.optionBox.setVisible(visible);
+        }
     }
 
     /**

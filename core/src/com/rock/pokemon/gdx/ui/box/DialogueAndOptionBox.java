@@ -177,7 +177,7 @@ public class DialogueAndOptionBox {
         switch (type) {
             //可选框
             case "OptionBox":
-                //开启可选项
+                //自动开启对话配对的可选项
                 nextNode();
                 break;
         }

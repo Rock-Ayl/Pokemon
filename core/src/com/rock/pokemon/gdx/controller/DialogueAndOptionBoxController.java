@@ -43,18 +43,15 @@ public class DialogueAndOptionBoxController extends InputAdapter {
                 this.dialogueAndOptionBox.getOptionBox().moveDown();
                 //是
                 return true;
-            //默认X为取消
+            //取消
             case Input.Keys.X:
-                //处理取消
-                this.dialogueAndOptionBox.getOptionBox().change(false);
-                //是
-                return true;
-            //回车
+                //过
+                return false;
+            //确认
+            case Input.Keys.Z:
             case Input.Keys.ENTER:
                 //如果 对话框 对话完毕
                 this.dialogueAndOptionBox.nextNode();
-                //开/关
-                this.dialogueAndOptionBox.getOptionBox().change();
                 //是
                 return true;
             //默认

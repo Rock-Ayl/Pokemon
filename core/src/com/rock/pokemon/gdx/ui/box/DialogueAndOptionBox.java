@@ -77,7 +77,7 @@ public class DialogueAndOptionBox {
     public void nextNode() {
 
         /**
-         * 判断不处理逻辑ø
+         * 判断不处理逻辑
          */
 
         //如果对话未完成

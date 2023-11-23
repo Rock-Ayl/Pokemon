@@ -42,9 +42,19 @@ public class DialogueAndOptionBox {
      * @param boxMapNode 盒子配置节点
      */
     public DialogueAndOptionBox(Pokemon game, BoxMapNode boxMapNode) {
-
         //记录游戏对象
         this.game = game;
+        //重置配置
+        reset(boxMapNode);
+    }
+
+    /**
+     * 重置配置
+     *
+     * @param boxMapNode 盒子配置节点
+     */
+    public void reset(BoxMapNode boxMapNode) {
+
         //记录盒子配置节点
         this.boxMapNode = boxMapNode;
 
@@ -65,7 +75,7 @@ public class DialogueAndOptionBox {
     }
 
     /**
-     * 下一个
+     * todo 下一个
      */
     public void next() {
 

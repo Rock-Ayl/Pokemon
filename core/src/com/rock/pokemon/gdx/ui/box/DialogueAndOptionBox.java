@@ -4,6 +4,7 @@ import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBox;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBoxOption;
+import com.rock.pokemon.gdx.util.JsonExtraUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +61,8 @@ public class DialogueAndOptionBox {
      */
     public void reset(BoxMapNode boxMapNode) {
 
-        //记录盒子配置节点
-        this.boxMapNode = boxMapNode;
+        //深克隆(因为该配置后续会存在改变的情况),并记录盒子配置节点
+        this.boxMapNode = JsonExtraUtils.deepClone(boxMapNode, BoxMapNode.class);
 
         //初始化基本参数
         this.nodeIndex = 0;

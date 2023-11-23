@@ -101,6 +101,17 @@ public class DialogueAndOptionBox {
     }
 
     /**
+     * 设置是否可见
+     *
+     * @param visible 是否可见
+     */
+    public void setVisible(boolean visible) {
+        //设置
+        this.dialogueBox.setVisible(visible);
+        this.optionBox.setVisible(visible);
+    }
+
+    /**
      * 以下是 get set 方法
      */
 

@@ -72,7 +72,7 @@ public class DialogueAndOptionBox {
     }
 
     /**
-     * 下一个节点
+     * 处理确认逻辑
      */
     public void nextNode() {
 
@@ -82,6 +82,16 @@ public class DialogueAndOptionBox {
 
         //如果对话未完成
         if (this.dialogueBox.isFinished() == false) {
+            //结束
+            return;
+        }
+        //如果选项可见
+        if (this.optionBox.isVisible()) {
+
+            //todo 处理选择的选项
+
+            //统一设置为不可见
+            setVisible(false);
             //结束
             return;
         }

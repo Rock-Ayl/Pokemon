@@ -50,7 +50,7 @@ public class DialogueAndOptionBoxController extends InputAdapter {
             //确认
             case Input.Keys.Z:
             case Input.Keys.ENTER:
-                //如果 对话框 对话完毕
+                //处理确认
                 this.dialogueAndOptionBox.nextNode();
                 //是
                 return true;

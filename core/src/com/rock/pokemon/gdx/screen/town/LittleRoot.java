@@ -48,8 +48,8 @@ public class LittleRoot implements Screen {
     //舞台
     private Stage uiStage;
 
-    //主表格
-    private Table rootTable;
+    //谈话table
+    private Table talkTable;
 
     //对话框+可选项盒子
     private DialogueAndOptionBox dialogueAndOptionBox;
@@ -136,24 +136,24 @@ public class LittleRoot implements Screen {
         //初始化舞台
         this.uiStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
-        //初始化主表格
-        this.rootTable = new Table();
-        //该设置仅用于主表格
-        this.rootTable.setFillParent(true);
+        //初始化谈话table
+        this.talkTable = new Table();
+        //该设置仅用于谈话table
+        this.talkTable.setFillParent(true);
         //开启debug,默认不开启
-        this.rootTable.setDebug(false);
+        this.talkTable.setDebug(false);
         //是否显示本UI
-        this.rootTable.setVisible(true);
+        this.talkTable.setVisible(true);
 
-        //舞台加入主表格
-        this.uiStage.addActor(this.rootTable);
+        //谈话table加入舞台
+        this.uiStage.addActor(this.talkTable);
 
         /**
          * 组装一个可选项框
          */
 
         //将菜单放入桌面右边
-        this.rootTable.add(this.dialogueAndOptionBox.getOptionBox())
+        this.talkTable.add(this.dialogueAndOptionBox.getOptionBox())
                 .expand()
                 .align(Align.right)
                 //和边界的间隙
@@ -165,8 +165,8 @@ public class LittleRoot implements Screen {
          * 组装一个对话框
          */
 
-        //将对话框放在主表格的下方
-        this.rootTable.add(this.dialogueAndOptionBox.getDialogueBox())
+        //将对话框放在谈话table的下方
+        this.talkTable.add(this.dialogueAndOptionBox.getDialogueBox())
                 .expand()
                 //横坐标成长到最大(拉伸)
                 .growX()

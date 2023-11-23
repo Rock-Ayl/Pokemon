@@ -90,11 +90,16 @@ public class DialogueAndOptionBox {
             //结束
             return;
         }
+
+        /**
+         * 这里判断 可选项 确认操作
+         */
+
         //如果选项可见
         if (this.optionBox.isVisible()) {
 
             /**
-             * 处理选择的选项
+             * 加入选择该选项后的内容
              */
 
             //获取当前选中的可选项
@@ -113,12 +118,17 @@ public class DialogueAndOptionBox {
             //统一设置为不可见
             setVisible(false);
 
-            //继续执行
+            //继续执行(展开下一个[对话/可选项/隐藏]等等)
             nextNode();
 
             //结束
             return;
         }
+
+        /**
+         * 统一处理下一个节点
+         */
+
         //如果索引越界了
         if (this.nodeIndex >= this.boxMapNode.getBoxList().size()) {
             //统一设置为不可见
@@ -126,11 +136,6 @@ public class DialogueAndOptionBox {
             //结束
             return;
         }
-
-        /**
-         * 统一处理
-         */
-
         //获取下一个节点配置
         BoxMapNodeBox boxMapNodeBox = this.boxMapNode.getBoxList().get(nodeIndex++);
         //获取盒子配置类型

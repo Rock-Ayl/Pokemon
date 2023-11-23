@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBoxOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +28,18 @@ public class OptionBox extends Table {
      * 可选项内容
      */
 
+    //存储着箭头和文本的小盒子
+    private Table uiContainer;
+
     //可选项指针索引
     private int selectorIndex = 0;
-    //可选项列表
+
+    //可选项文字列表
     private List<Label> optionList = new ArrayList<>();
     //箭头列表
     private List<Image> arrowList = new ArrayList<>();
-    //存储着箭头和文本的小盒子
-    private Table uiContainer;
+    //可选项节点配置列表
+    private List<BoxMapNodeBoxOption> boxMapNodeBoxOptionList = new ArrayList<>();
 
     /**
      * 初始化 可选项框
@@ -60,24 +65,27 @@ public class OptionBox extends Table {
     /**
      * 设置所有选项
      *
-     * @param optionList 可选项文字列表
+     * @param boxMapNodeBoxOptionList 可选项节点列表
      */
-    public void setOption(List<String> optionList) {
+    public void setOption(List<BoxMapNodeBoxOption> boxMapNodeBoxOptionList) {
         //清理当前box
         clearBox();
         //循环
-        for (String option : optionList) {
+        for (BoxMapNodeBoxOption boxMapNodeBoxOption : boxMapNodeBoxOptionList) {
             //加入一行可选项
-            addOption(option);
+            addOption(boxMapNodeBoxOption);
         }
     }
 
     /**
      * 加入一行可选项
      *
-     * @param option 可选项文字
+     * @param boxMapNodeBoxOption 可选项节点
      */
-    private void addOption(String option) {
+    private void addOption(BoxMapNodeBoxOption boxMapNodeBoxOption) {
+
+        //加入可选项
+        this.boxMapNodeBoxOptionList.add(boxMapNodeBoxOption);
 
         /**
          * 对应箭头
@@ -105,8 +113,8 @@ public class OptionBox extends Table {
          * 对应文字
          */
 
-        //初始化文字,载入字体
-        Label optionLabel = new Label(option, this.getSkin(), Settings.SYSTEM_FONT_LABEL);
+        //初始化对应文字,载入字体
+        Label optionLabel = new Label(boxMapNodeBoxOption.getValue(), this.getSkin(), Settings.SYSTEM_FONT_LABEL);
         //组装至列表
         this.optionList.add(optionLabel);
         //将文字组装至窗口
@@ -233,6 +241,7 @@ public class OptionBox extends Table {
         this.uiContainer.clear();
         this.optionList.clear();
         this.arrowList.clear();
+        this.boxMapNodeBoxOptionList.clear();
         this.selectorIndex = 0;
     }
 

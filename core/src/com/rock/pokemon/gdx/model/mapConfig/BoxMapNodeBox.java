@@ -17,8 +17,8 @@ public class BoxMapNodeBox {
      * OptionBox 独有参数
      */
 
-    //可选项列表
-    private List<String> optionList;
+    //可选项对象列表
+    private List<BoxMapNodeBoxOption> optionList;
 
     /**
      * DialogueBox 独有参数
@@ -39,11 +39,11 @@ public class BoxMapNodeBox {
         this.type = type;
     }
 
-    public List<String> getOptionList() {
+    public List<BoxMapNodeBoxOption> getOptionList() {
         return optionList;
     }
 
-    public void setOptionList(List<String> optionList) {
+    public void setOptionList(List<BoxMapNodeBoxOption> optionList) {
         this.optionList = optionList;
     }
 

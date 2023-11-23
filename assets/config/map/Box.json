@@ -15,25 +15,33 @@
         {
           "type": "OptionBox",
           "optionList": [
-            "是",
-            "否"
+            {
+              "value": "是",
+              "boxList": [
+                {
+                  "type": "DialogueBox",
+                  "textNumber": 102
+                },
+                {
+                  "type": "DialogueBox",
+                  "textNumber": 103
+                },
+                {
+                  "type": "DialogueBox",
+                  "textNumber": 104
+                }
+              ]
+            },
+            {
+              "value": "否",
+              "boxList": [
+                {
+                  "type": "DialogueBox",
+                  "textNumber": 105
+                }
+              ]
+            }
           ]
-        },
-        {
-          "type": "DialogueBox",
-          "textNumber": 102
-        },
-        {
-          "type": "DialogueBox",
-          "textNumber": 103
-        },
-        {
-          "type": "DialogueBox",
-          "textNumber": 104
-        },
-        {
-          "type": "DialogueBox",
-          "textNumber": 105
         }
       ]
     }

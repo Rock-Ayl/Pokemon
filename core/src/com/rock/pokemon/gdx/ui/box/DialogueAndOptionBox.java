@@ -3,6 +3,10 @@ package com.rock.pokemon.gdx.ui.box;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBox;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBoxOption;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 对话框 + 可选项框 实体
@@ -119,8 +123,14 @@ public class DialogueAndOptionBox {
         switch (type) {
             //可选框
             case "OptionBox":
+                //解析所有选项
+                List<String> optionList = boxMapNodeBox
+                        .getOptionList()
+                        .stream()
+                        .map(BoxMapNodeBoxOption::getValue)
+                        .collect(Collectors.toList());
                 //新的对话框
-                this.optionBox.setOption(boxMapNodeBox.getOptionList());
+                this.optionBox.setOption(optionList);
                 //盒子可见
                 this.optionBox.setVisible(true);
                 break;

@@ -72,8 +72,7 @@ public class DialogueAndOptionBox {
         this.optionBox = new OptionBox(this.game);
 
         //默认不显示
-        this.dialogueBox.setVisible(false);
-        this.optionBox.setVisible(false);
+        setVisible(false);
 
     }
 

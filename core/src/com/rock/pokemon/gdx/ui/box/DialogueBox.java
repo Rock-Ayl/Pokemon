@@ -158,8 +158,8 @@ public class DialogueBox extends Table {
                  * 完成后的回调
                  */
 
-                //到这里,如果状态是空闲
-                if (this.state == STATE.IDLE) {
+                //如果动画结束
+                if (isFinished()) {
                     //回调父级
                     this.dialogueAndOptionBox.dialogueBoxFinish();
                 }

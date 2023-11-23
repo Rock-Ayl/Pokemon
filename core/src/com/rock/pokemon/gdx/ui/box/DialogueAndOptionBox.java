@@ -92,6 +92,10 @@ public class DialogueAndOptionBox {
 
             //统一设置为不可见
             setVisible(false);
+
+            //继续执行
+            nextNode();
+
             //结束
             return;
         }

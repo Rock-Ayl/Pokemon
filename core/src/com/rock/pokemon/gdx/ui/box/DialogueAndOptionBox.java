@@ -129,8 +129,8 @@ public class DialogueAndOptionBox {
          * 统一处理下一个节点
          */
 
-        //如果索引越界了
-        if (this.nodeIndex >= this.boxMapNode.getBoxList().size()) {
+        //如果已完成
+        if (isFinished()) {
             //统一设置为不可见
             setVisible(false);
             //结束
@@ -164,8 +164,8 @@ public class DialogueAndOptionBox {
      * 当 对话框 动画完成时,回调
      */
     public void dialogueBoxFinish() {
-        //如果 索引越界
-        if (this.nodeIndex >= this.boxMapNode.getBoxList().size()) {
+        //如果已完成
+        if (isFinished()) {
             //过
             return;
         }
@@ -181,6 +181,16 @@ public class DialogueAndOptionBox {
                 nextNode();
                 break;
         }
+    }
+
+    /**
+     * 判断是否已完成(当没有节点时视为完成)
+     *
+     * @return
+     */
+    public boolean isFinished() {
+        //判断
+        return this.nodeIndex >= this.boxMapNode.getBoxList().size();
     }
 
     /**

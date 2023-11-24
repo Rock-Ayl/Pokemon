@@ -1,6 +1,40 @@
 {
   "name": "所有盒子的配置",
   "boxMap": {
+    "adventurer_menu": {
+      "remark": "特殊-主角菜单",
+      "boxList": [
+        {
+          "type": "OptionBox",
+          "optionList": [
+            {
+              "valueTextNumber": 9001001
+            },
+            {
+              "valueTextNumber": 9001002
+            },
+            {
+              "valueTextNumber": 9001003
+            },
+            {
+              "valueTextNumber": 9001004
+            },
+            {
+              "valueTextNumber": 9001005
+            },
+            {
+              "valueTextNumber": 9001006
+            },
+            {
+              "valueTextNumber": 9001007
+            },
+            {
+              "valueTextNumber": 9001008
+            }
+          ]
+        }
+      ]
+    },
     "talk_test_1": {
       "remark": "对话-测试-1",
       "boxList": [

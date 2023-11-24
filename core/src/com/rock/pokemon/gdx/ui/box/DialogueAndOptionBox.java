@@ -108,8 +108,8 @@ public class DialogueAndOptionBox {
             List<BoxMapNodeBox> boxList = Optional.ofNullable(boxMapNodeBoxOption)
                     .map(BoxMapNodeBoxOption::getBoxList)
                     .orElse(new ArrayList<>());
-            //加入到后续的盒子列表
-            this.boxMapNode.getBoxList().addAll(boxList);
+            //插入到该可选项盒子列表后面
+            this.boxMapNode.getBoxList().addAll(this.nodeIndex, boxList);
 
             /**
              * 继续执行

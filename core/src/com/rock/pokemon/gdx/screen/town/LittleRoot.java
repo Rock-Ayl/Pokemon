@@ -129,6 +129,8 @@ public class LittleRoot implements Screen {
         BoxMapNode talkTestNode = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class).getBoxMap().get("talk_test_1");
         //初始化对应ui配置
         this.dialogueAndOptionBox = new DialogueAndOptionBox(this.game, talkTestNode);
+        //默认开启一下测试用
+        this.dialogueAndOptionBox.nextNode();
 
         //初始化[FitViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
         this.viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

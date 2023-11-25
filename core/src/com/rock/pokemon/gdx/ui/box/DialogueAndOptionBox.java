@@ -158,6 +158,8 @@ public class DialogueAndOptionBox {
                 this.dialogueBox.animateText(this.game.getTextMap().get(boxMapNodeBox.getTextNumber()));
                 //盒子可见
                 this.dialogueBox.setVisible(true);
+                //播放音效
+                this.game.getSoundManager().playMenuClose();
                 break;
         }
 

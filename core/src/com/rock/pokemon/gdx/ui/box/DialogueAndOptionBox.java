@@ -111,6 +111,9 @@ public class DialogueAndOptionBox {
             //插入到该可选项盒子列表后面
             this.boxMapNode.getBoxList().addAll(this.nodeIndex, boxList);
 
+            //播放音效
+            this.game.getSoundManager().playMenuClose();
+
             /**
              * 继续执行
              */

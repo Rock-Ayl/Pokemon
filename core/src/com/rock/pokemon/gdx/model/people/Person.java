@@ -182,14 +182,18 @@ public class Person implements YSortable {
 
         //todo 事务事件、地图块事件等等
 
-        //获取指定位置事件
-        NpcMapNodeEvent event = Optional.ofNullable(this.world)
+        //获取人物
+        Person person = Optional.ofNullable(this.world)
                 //获取地图块矩阵
                 .map(World::getTileMap)
                 //获取对应目的地
                 .map(p -> p.getTile(x, y))
                 //获取人物
                 .map(Tile::getPerson)
+                .orElse(null);
+
+        //获取人物对应事件
+        NpcMapNodeEvent event = Optional.ofNullable(person)
                 //获取人物上的事件列表
                 .map(Person::getEventList)
                 //默认
@@ -207,6 +211,26 @@ public class Person implements YSortable {
         /**
          * 实现
          */
+
+        //根据当前人物,让对应事件人物转头
+        switch (this.facingState) {
+            case SOUTH:
+                //怼脸
+                person.changeFacingDir(DirectionEnum.NORTH);
+                break;
+            case NORTH:
+                //怼脸
+                person.changeFacingDir(DirectionEnum.SOUTH);
+                break;
+            case WEST:
+                //怼脸
+                person.changeFacingDir(DirectionEnum.EAST);
+                break;
+            case EAST:
+                //怼脸
+                person.changeFacingDir(DirectionEnum.WEST);
+                break;
+        }
 
         //读取事件配置
         BoxMapNode talkTestNode = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class).getBoxMap().get(event.getBoxName());

@@ -15,6 +15,7 @@ import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNodeEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -142,6 +143,54 @@ public class Person implements YSortable {
      * 检查/对话
      */
     public void checkAndTalk() {
+
+        /**
+         * 判断是否满足事件条件
+         */
+
+        //如果行动不是站立
+        if (this.actionState != ActionEnum.STAND) {
+            //不执行
+            return;
+        }
+        //当前人物坐标,和脸的方向,计算目标位置
+        int x = this.x + this.facingState.getDx();
+        int y = this.y + this.facingState.getDy();
+        //如果越界
+        if (x < 0 || y < 0 || x >= this.world.getTileMap().getWidth() || y >= this.world.getTileMap().getHeight()) {
+            //过
+            return;
+        }
+
+        /**
+         * 获取各种事件,但只触发一个
+         */
+
+        //获取指定位置事件
+        NpcMapNodeEvent event = Optional.ofNullable(this.world)
+                //获取地图块矩阵
+                .map(World::getTileMap)
+                //获取对应目的地
+                .map(p -> p.getTile(x, y))
+                //获取人物
+                .map(Tile::getPerson)
+                //获取人物上的事件列表
+                .map(Person::getEventList)
+                //默认
+                .orElse(new ArrayList<>())
+                .stream()
+                //todo 以后可以做事件的开关、以及优先级
+                .findFirst()
+                .orElse(null);
+        //判空
+        if (event == null) {
+            //过
+            return;
+        }
+
+        /**
+         * todo 实现
+         */
 
     }
 
@@ -456,6 +505,10 @@ public class Person implements YSortable {
 
     public int getY() {
         return y;
+    }
+
+    public List<NpcMapNodeEvent> getEventList() {
+        return eventList;
     }
 
 }

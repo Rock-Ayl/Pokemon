@@ -6,6 +6,7 @@ import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.*;
 import com.rock.pokemon.gdx.model.people.Person;
+import com.rock.pokemon.gdx.screen.town.LittleRoot;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ import java.util.List;
  * @Date 2022-10-21
  */
 public class World {
+
+    //todo 世界上一层的城镇,目前先写死这个吧
+    private LittleRoot town;
 
     //地图网格本身
     private TileMap tileMap;
@@ -32,9 +36,17 @@ public class World {
      * 初始化世界
      *
      * @param game          游戏对象
+     * @param town          城镇对象
      * @param mapConfigPath 世界配置路径
      */
-    public World(Pokemon game, String mapConfigPath) {
+    public World(Pokemon game, LittleRoot town, String mapConfigPath) {
+
+        /**
+         * 记录
+         */
+
+        //记录城镇
+        this.town = town;
 
         /**
          * 读取各种配置
@@ -194,6 +206,10 @@ public class World {
 
     public List<WorldObject> getWorldObjectList() {
         return this.worldObjectList;
+    }
+
+    public LittleRoot getTown() {
+        return town;
     }
 
 }

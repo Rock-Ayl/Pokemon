@@ -108,7 +108,7 @@ public class LittleRoot implements Screen {
          */
 
         //初始化世界-未白镇
-        this.world = new World(this.game, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT);
+        this.world = new World(this.game, this, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT);
         //初始化世界渲染器
         this.worldRenderer = new WorldRenderer(this.world);
 

@@ -14,6 +14,7 @@ import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNodeEvent;
+import com.rock.pokemon.gdx.screen.town.LittleRoot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -191,6 +192,9 @@ public class Person implements YSortable {
         /**
          * todo 实现
          */
+
+        //获取世界上层的城镇
+        LittleRoot town = this.world.getTown();
 
     }
 

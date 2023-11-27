@@ -292,4 +292,12 @@ public class LittleRoot implements Screen {
 
     }
 
+    /**
+     * 以下是 get set 方法
+     */
+
+    public DialogueAndOptionBoxController getDialogueAndOptionBoxController() {
+        return dialogueAndOptionBoxController;
+    }
+
 }

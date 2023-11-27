@@ -73,4 +73,14 @@ public class DialogueAndOptionBoxController extends InputAdapter {
         return false;
     }
 
+    /**
+     * 判断是否完成
+     *
+     * @return
+     */
+    public boolean isFinished() {
+        //判断
+        return this.dialogueAndOptionBox.isFinished();
+    }
+
 }

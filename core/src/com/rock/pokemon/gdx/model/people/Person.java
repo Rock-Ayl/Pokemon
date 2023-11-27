@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.people;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
@@ -162,10 +163,21 @@ public class Person implements YSortable {
             //过
             return;
         }
+        //获取世界上层的城镇
+        LittleRoot town = this.world.getTown();
+        //获取对应对话控制器
+        DialogueAndOptionBoxController dialogueAndOptionBoxController = town.getDialogueAndOptionBoxController();
+        //如果没有结束
+        if (dialogueAndOptionBoxController.isFinished() == false) {
+            //过
+            return;
+        }
 
         /**
          * 获取各种事件,但只触发一个
          */
+
+        //todo 事务事件、地图块事件等等
 
         //获取指定位置事件
         NpcMapNodeEvent event = Optional.ofNullable(this.world)
@@ -183,18 +195,15 @@ public class Person implements YSortable {
                 //todo 以后可以做事件的开关、以及优先级
                 .findFirst()
                 .orElse(null);
-        //判空
+        //如果没有任何事件
         if (event == null) {
             //过
             return;
         }
 
         /**
-         * todo 实现
+         * 实现
          */
-
-        //获取世界上层的城镇
-        LittleRoot town = this.world.getTown();
 
     }
 

@@ -3,7 +3,7 @@ package com.rock.pokemon.gdx.model.people;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.Pokemon;
-import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
+import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
@@ -13,9 +13,12 @@ import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.TileMap;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNodeEvent;
 import com.rock.pokemon.gdx.screen.town.LittleRoot;
+import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,10 +168,10 @@ public class Person implements YSortable {
         }
         //获取世界上层的城镇
         LittleRoot town = this.world.getTown();
-        //获取对应对话控制器
-        DialogueAndOptionBoxController dialogueAndOptionBoxController = town.getDialogueAndOptionBoxController();
+        //获取对应对话盒子
+        DialogueAndOptionBox dialogueAndOptionBox = town.getDialogueAndOptionBox();
         //如果没有结束
-        if (dialogueAndOptionBoxController.isFinished() == false) {
+        if (dialogueAndOptionBox.getBoxMapNode() != null && dialogueAndOptionBox.isFinished() == false) {
             //过
             return;
         }
@@ -204,6 +207,13 @@ public class Person implements YSortable {
         /**
          * 实现
          */
+
+        //读取事件配置
+        BoxMapNode talkTestNode = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class).getBoxMap().get(event.getBoxName());
+        //这里直接用事件
+        dialogueAndOptionBox.reset(talkTestNode);
+        //开启
+        dialogueAndOptionBox.nextNode();
 
     }
 

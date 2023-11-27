@@ -29,6 +29,11 @@ public class DialogueAndOptionBoxController extends InputAdapter {
      */
     @Override
     public boolean keyDown(int keycode) {
+        //判空
+        if (this.dialogueAndOptionBox.getBoxMapNode() == null) {
+            //过
+            return false;
+        }
         //根据按键判断
         switch (keycode) {
             //上
@@ -71,16 +76,6 @@ public class DialogueAndOptionBoxController extends InputAdapter {
     public boolean keyUp(int keycode) {
         //过
         return false;
-    }
-
-    /**
-     * 判断是否完成
-     *
-     * @return
-     */
-    public boolean isFinished() {
-        //判断
-        return this.dialogueAndOptionBox.isFinished();
     }
 
 }

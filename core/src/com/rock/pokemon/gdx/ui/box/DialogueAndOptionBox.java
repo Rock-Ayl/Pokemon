@@ -1,6 +1,9 @@
 package com.rock.pokemon.gdx.ui.box;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBox;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBoxOption;
@@ -25,6 +28,9 @@ public class DialogueAndOptionBox {
     //游戏对象
     private final Pokemon game;
 
+    //对应桌面
+    private Table table;
+
     //对话框
     private DialogueBox dialogueBox;
 
@@ -44,14 +50,13 @@ public class DialogueAndOptionBox {
     /**
      * 初始化
      *
-     * @param game       游戏对象
-     * @param boxMapNode 盒子配置节点
+     * @param game 游戏对象
      */
-    public DialogueAndOptionBox(Pokemon game, BoxMapNode boxMapNode) {
+    public DialogueAndOptionBox(Pokemon game, Table table) {
         //记录游戏对象
         this.game = game;
-        //重置配置
-        reset(boxMapNode);
+        //记录桌面
+        this.table = table;
     }
 
     /**
@@ -74,6 +79,34 @@ public class DialogueAndOptionBox {
         //默认不显示
         setVisible(false);
 
+        /**
+         * 加入到桌面
+         */
+
+        //清除原有
+        this.table.clear();
+        //将菜单放入桌面右边
+        this.table.add(this.optionBox)
+                .expand()
+                .align(Align.right)
+                //和边界的间隙
+                .padRight(Settings.SCALE)
+                //换行
+                .row();
+        //将对话框放在谈话table的下方
+        this.table.add(this.dialogueBox)
+                .expand()
+                //横坐标成长到最大(拉伸)
+                .growX()
+                //高大概是两格
+                .height(Settings.SCALE_TILE_SIZE * 2.5F)
+                //向下对齐
+                .align(Align.bottom)
+                //和边界的间隙,左右小点,下面大点
+                .padLeft(Settings.SCALE)
+                .padRight(Settings.SCALE)
+                .padBottom(Settings.SCALE * 3);
+
     }
 
     /**
@@ -85,6 +118,11 @@ public class DialogueAndOptionBox {
          * 判断不处理逻辑
          */
 
+        //如果没有加载
+        if (this.boxMapNode == null) {
+            //过
+            return;
+        }
         //如果对话未完成
         if (this.dialogueBox.isFinished() == false) {
             //结束
@@ -219,6 +257,10 @@ public class DialogueAndOptionBox {
 
     public OptionBox getOptionBox() {
         return this.optionBox;
+    }
+
+    public BoxMapNode getBoxMapNode() {
+        return boxMapNode;
     }
 
 }

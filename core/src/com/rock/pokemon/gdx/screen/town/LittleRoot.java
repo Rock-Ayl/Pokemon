@@ -8,7 +8,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.Pokemon;
@@ -17,8 +16,6 @@ import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.model.map.World;
-import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
-import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
@@ -125,13 +122,6 @@ public class LittleRoot implements Screen {
          * UI
          */
 
-        //读取UI测试配置
-        BoxMapNode talkTestNode = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class).getBoxMap().get("talk_test_1");
-        //初始化对应ui配置
-        this.dialogueAndOptionBox = new DialogueAndOptionBox(this.game, talkTestNode);
-        //默认开启一下测试用
-        this.dialogueAndOptionBox.nextNode();
-
         //初始化[FitViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
         this.viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -150,36 +140,8 @@ public class LittleRoot implements Screen {
         //谈话table加入舞台
         this.uiStage.addActor(this.talkTable);
 
-        /**
-         * 组装一个可选项框
-         */
-
-        //将菜单放入桌面右边
-        this.talkTable.add(this.dialogueAndOptionBox.getOptionBox())
-                .expand()
-                .align(Align.right)
-                //和边界的间隙
-                .padRight(Settings.SCALE)
-                //换行
-                .row();
-
-        /**
-         * 组装一个对话框
-         */
-
-        //将对话框放在谈话table的下方
-        this.talkTable.add(this.dialogueAndOptionBox.getDialogueBox())
-                .expand()
-                //横坐标成长到最大(拉伸)
-                .growX()
-                //高大概是两格
-                .height(Settings.SCALE_TILE_SIZE * 2.5F)
-                //向下对齐
-                .align(Align.bottom)
-                //和边界的间隙,左右小点,下面大点
-                .padLeft(Settings.SCALE)
-                .padRight(Settings.SCALE)
-                .padBottom(Settings.SCALE * 3);
+        //初始化对应ui盒子
+        this.dialogueAndOptionBox = new DialogueAndOptionBox(this.game, this.talkTable);
 
         /**
          * 控制器
@@ -296,8 +258,12 @@ public class LittleRoot implements Screen {
      * 以下是 get set 方法
      */
 
-    public DialogueAndOptionBoxController getDialogueAndOptionBoxController() {
-        return dialogueAndOptionBoxController;
+    public DialogueAndOptionBox getDialogueAndOptionBox() {
+        return dialogueAndOptionBox;
+    }
+
+    public Table getTalkTable() {
+        return talkTable;
     }
 
 }

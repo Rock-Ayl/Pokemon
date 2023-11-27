@@ -1,5 +1,7 @@
 package com.rock.pokemon.gdx.model.mapConfig;
 
+import java.util.List;
+
 /**
  * Npc 节点配置类实体
  *
@@ -22,6 +24,9 @@ public class NpcMapNode {
 
     //跑步
     private String runFilePath;
+
+    //事件列表
+    private List<NpcMapNodeEvent> eventList;
 
     /**
      * 以下为 get set 方法
@@ -65,6 +70,14 @@ public class NpcMapNode {
 
     public void setRunFilePath(String runFilePath) {
         this.runFilePath = runFilePath;
+    }
+
+    public List<NpcMapNodeEvent> getEventList() {
+        return eventList;
+    }
+
+    public void setEventList(List<NpcMapNodeEvent> eventList) {
+        this.eventList = eventList;
     }
 
 }

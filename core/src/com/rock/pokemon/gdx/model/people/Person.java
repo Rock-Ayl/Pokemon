@@ -139,6 +139,13 @@ public class Person implements YSortable {
     }
 
     /**
+     * 检查/对话
+     */
+    public void checkAndTalk() {
+
+    }
+
+    /**
      * 处理移动中时的动画(可以理解为补帧)
      *
      * @param delta 每帧的时间

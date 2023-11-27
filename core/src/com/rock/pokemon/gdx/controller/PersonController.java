@@ -56,6 +56,9 @@ public class PersonController extends InputAdapter {
     //跑步
     private static final Integer RUN_INPUT_KEY = Input.Keys.X;
 
+    //检查/聊天
+    private static final Integer CHECK_INPUT_KEY = Input.Keys.Z;
+
     /**
      * 初始化,指定要监听的人物
      *
@@ -78,6 +81,17 @@ public class PersonController extends InputAdapter {
         this.buttonPressArr[keycode] = true;
         //覆盖按下时间,从0开始计算
         this.buttonTimeArr[keycode] = 0;
+
+        /**
+         * 触发事件判定
+         */
+
+        //如果是检查/聊天
+        if (CHECK_INPUT_KEY == keycode) {
+            //尝试检查/聊天
+            this.person.checkAndTalk();
+        }
+
         //默认返回
         return false;
     }

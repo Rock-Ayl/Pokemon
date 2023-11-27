@@ -13,7 +13,9 @@ import com.rock.pokemon.gdx.model.map.TileMap;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapNodeEvent;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -82,6 +84,13 @@ public class Person implements YSortable {
     private boolean moveRequestThisFrame;
 
     /**
+     * 事件
+     */
+
+    //事件列表
+    private List<NpcMapNodeEvent> eventList;
+
+    /**
      * 使用人物枚举初始化
      *
      * @param npcMapNode npc配置
@@ -114,6 +123,9 @@ public class Person implements YSortable {
 
         //初始化人物动画集合
         this.animationSet = new PersonAnimationSet(this.game.getAssetManager(), npcMapNode);
+
+        //记录事件列表
+        this.eventList = npcMapNode.getEventList();
 
         /**
          * 与世界关联

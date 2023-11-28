@@ -80,11 +80,12 @@ public class DialogueAndOptionBox {
         setVisible(false);
 
         /**
-         * 加入到桌面
+         * 盒子与桌面的绑定
          */
 
-        //清除原有
+        //清除原有盒子
         this.table.clear();
+
         //将菜单放入桌面右边
         this.table.add(this.optionBox)
                 .expand()

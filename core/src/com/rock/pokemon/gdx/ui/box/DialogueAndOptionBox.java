@@ -207,6 +207,11 @@ public class DialogueAndOptionBox {
      * 当 对话框 动画完成时,回调
      */
     public void dialogueBoxFinish() {
+        //如果没有加载
+        if (this.boxMapNode == null) {
+            //过
+            return;
+        }
         //如果已完成
         if (isFinished()) {
             //过
@@ -232,6 +237,11 @@ public class DialogueAndOptionBox {
      * @return
      */
     public boolean isFinished() {
+        //如果没有加载
+        if (this.boxMapNode == null) {
+            //过
+            return true;
+        }
         //判断
         return this.nodeIndex >= this.boxMapNode.getBoxList().size();
     }
@@ -242,25 +252,38 @@ public class DialogueAndOptionBox {
      * @param visible 是否可见
      */
     public void setVisible(boolean visible) {
-        //统一设置
-        this.dialogueBox.setVisible(visible);
-        this.optionBox.setVisible(visible);
+        //判空
+        if (this.optionBox != null) {
+            //设置
+            this.optionBox.setVisible(visible);
+        }
+        //判空
+        if (this.dialogueBox != null) {
+            //设置
+            this.dialogueBox.setVisible(visible);
+        }
     }
 
     /**
-     * 以下是 get set 方法
+     * 箭头向上移动
      */
-
-    public DialogueBox getDialogueBox() {
-        return this.dialogueBox;
+    public void moveUp() {
+        //判空
+        if (this.optionBox != null) {
+            //执行
+            this.optionBox.moveUp();
+        }
     }
 
-    public OptionBox getOptionBox() {
-        return this.optionBox;
-    }
-
-    public BoxMapNode getBoxMapNode() {
-        return boxMapNode;
+    /**
+     * 箭头向下移动
+     */
+    public void moveDown() {
+        //判空
+        if (this.optionBox != null) {
+            //执行
+            this.optionBox.moveDown();
+        }
     }
 
 }

@@ -168,7 +168,7 @@ public class Person implements YSortable {
         //获取世界上层的城镇中,事件的盒子
         DialogueAndOptionBox dialogueAndOptionBox = this.world.getTown().getDialogueAndOptionBox();
         //如果没有结束
-        if (dialogueAndOptionBox.getBoxMapNode() != null && dialogueAndOptionBox.isFinished() == false) {
+        if (dialogueAndOptionBox.isFinished() == false) {
             //过
             return;
         }

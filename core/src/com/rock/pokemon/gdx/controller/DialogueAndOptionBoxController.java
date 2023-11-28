@@ -29,23 +29,18 @@ public class DialogueAndOptionBoxController extends InputAdapter {
      */
     @Override
     public boolean keyDown(int keycode) {
-        //判空
-        if (this.dialogueAndOptionBox.getBoxMapNode() == null) {
-            //过
-            return false;
-        }
         //根据按键判断
         switch (keycode) {
             //上
             case Input.Keys.UP:
                 //移动
-                this.dialogueAndOptionBox.getOptionBox().moveUp();
+                this.dialogueAndOptionBox.moveUp();
                 //是
                 return true;
             //下
             case Input.Keys.DOWN:
                 //移动
-                this.dialogueAndOptionBox.getOptionBox().moveDown();
+                this.dialogueAndOptionBox.moveDown();
                 //是
                 return true;
             //取消

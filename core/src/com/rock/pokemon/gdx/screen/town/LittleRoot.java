@@ -262,8 +262,4 @@ public class LittleRoot implements Screen {
         return dialogueAndOptionBox;
     }
 
-    public Table getTalkTable() {
-        return talkTable;
-    }
-
 }

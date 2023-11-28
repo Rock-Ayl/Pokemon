@@ -17,7 +17,6 @@ import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNodeEvent;
-import com.rock.pokemon.gdx.screen.town.LittleRoot;
 import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 
 import java.util.ArrayList;
@@ -166,10 +165,8 @@ public class Person implements YSortable {
             //过
             return;
         }
-        //获取世界上层的城镇
-        LittleRoot town = this.world.getTown();
-        //获取对应对话盒子
-        DialogueAndOptionBox dialogueAndOptionBox = town.getDialogueAndOptionBox();
+        //获取世界上层的城镇中,事件的盒子
+        DialogueAndOptionBox dialogueAndOptionBox = this.world.getTown().getDialogueAndOptionBox();
         //如果没有结束
         if (dialogueAndOptionBox.getBoxMapNode() != null && dialogueAndOptionBox.isFinished() == false) {
             //过

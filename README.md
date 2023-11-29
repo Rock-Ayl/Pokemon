@@ -8,6 +8,8 @@
 
 这个工程将会一直开发下去,直到我放弃使用Java开发游戏或其他原因.
 
+暂时应该只支持Mac环境下开发吧(因为盘符),以后再适配吧.
+
 素材基底基于绿宝石.
 
 学习和灵感来自 : [https://www.youtube.com/playlist?list=PLVOwyy-CHLyrFO9A60_z0Q_x8RfpvgrbM]

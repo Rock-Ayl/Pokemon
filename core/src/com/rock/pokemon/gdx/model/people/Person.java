@@ -327,7 +327,7 @@ public class Person implements YSortable {
     private void walkStart(DirectionEnum directionEnum, WalkEnum walkEnum) {
 
         /**
-         * 计算出本次移动的ø目的地
+         * 计算出本次移动的目的地
          */
 
         //计算出移动完的目标坐标

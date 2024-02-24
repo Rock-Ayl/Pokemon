@@ -47,14 +47,19 @@
             <td>跨平台Java游戏开发框架,支持[Windows][Linux][macOS][Android][浏览器][iOS]</td>
         </tr>
         <tr>
-            <td>apache.commons</td>
+            <td>apache commons</td>
             <td>-</td>
             <td>apache常用工具类</td>
         </tr>
         <tr>
-            <td>com.alibaba.fastjson</td>
+            <td>fastjson</td>
             <td>1.2.83</td>
             <td>阿里fastjson,用来序列化、反序列化,毕竟一个小小demo,怎么快怎么来😁</td>
+        </tr>
+        <tr>
+            <td>lombok</td>
+            <td>1.18.30</td>
+            <td>注解代码模版,简化开发过程</td>
         </tr>
     </tbody>
 </table>

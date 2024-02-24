@@ -37,7 +37,7 @@
             <td>开发语言</td>
         </tr>
         <tr>
-            <td>Gradle</td>
+            <td>gradle</td>
             <td>6.9.2</td>
             <td>依赖管理</td>
         </tr>
@@ -49,12 +49,12 @@
         <tr>
             <td>apache.commons</td>
             <td>-</td>
-            <td>常用工具类</td>
+            <td>apache常用工具类</td>
         </tr>
         <tr>
-            <td>fastjson</td>
+            <td>com.alibaba.fastjson</td>
             <td>1.2.83</td>
-            <td>用来序列化、反序列化,毕竟一个小小demo,怎么快怎么来😁</td>
+            <td>阿里fastjson,用来序列化、反序列化,毕竟一个小小demo,怎么快怎么来😁</td>
         </tr>
     </tbody>
 </table>

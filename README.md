@@ -8,11 +8,11 @@
 
 这个工程将会一直开发下去,直到我放弃使用Java开发游戏或其他原因.
 
-暂时应该只支持Mac环境下开发吧(因为盘符),以后再适配吧.
+虽然[LibGdx]是跨平台的,但是目前这个项目只支持Mac环境下开发(因为盘符),以后等有一定内容了再适配吧.
 
 素材基底基于绿宝石.
 
-学习和灵感来自 : [https://www.youtube.com/playlist?list=PLVOwyy-CHLyrFO9A60_z0Q_x8RfpvgrbM]
+学习和灵感来自: [https://www.youtube.com/playlist?list=PLVOwyy-CHLyrFO9A60_z0Q_x8RfpvgrbM]
 
 ![image of the program](https://raw.githubusercontent.com/Rock-Ayl/Rock-Ayl-File.github.io/main/theme.png)
 
@@ -22,22 +22,43 @@
 
 # 环境及依赖
 
-Java 11
+<table>
+    <thead>
+        <tr>
+            <th>名称</th>
+            <th>版本号</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Java</td>
+            <td>11</td>
+            <td>开发语言</td>
+        </tr>
+        <tr>
+            <td>Gradle</td>
+            <td>6.9.2</td>
+            <td>依赖管理</td>
+        </tr>
+        <tr>
+            <td>libGDX</td>
+            <td>1.11.0</td>
+            <td>跨平台Java游戏开发框架,支持[Windows][Linux][macOS][Android][浏览器][iOS]</td>
+        </tr>
+        <tr>
+            <td>Apache工具包</td>
+            <td>-</td>
+            <td>常用工具类</td>
+        </tr>
+        <tr>
+            <td>fastjson</td>
+            <td>1.2.83</td>
+            <td>用来序列化、反序列化,毕竟一个小小demo,怎么快怎么来😁</td>
+        </tr>
+    </tbody>
+</table>
 
-
-Gradle 6.9.2
-
-
-LibGdx for PC 1.11.0
-
-
-Apache工具包
-
-
-阿里FastJson(怎么快怎么来,一个小小demo)
-
-
-尽量不用入侵性比较强的东西,比如Lombok之类东西.
 
 # 启动方式
 

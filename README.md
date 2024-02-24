@@ -69,6 +69,8 @@
 
 use IDE import build.gradle
 
+enable annotation processing
+
 run class DesktopLauncher
 
 # 操控方式

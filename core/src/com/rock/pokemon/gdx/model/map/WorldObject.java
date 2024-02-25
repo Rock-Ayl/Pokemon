@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapNode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.List;
  * @Author ayl
  * @Date 2022-10-21
  */
+@Getter
+@Setter
 public class WorldObject implements YSortable {
 
     /**
@@ -137,18 +141,6 @@ public class WorldObject implements YSortable {
         return null;
     }
 
-    /**
-     * 以下是 get set 方法
-     */
-
-    public int getX() {
-        return this.x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
     public float getWorldX() {
         return this.x;
     }
@@ -163,18 +155,6 @@ public class WorldObject implements YSortable {
 
     public float getHeight() {
         return this.height;
-    }
-
-    public boolean isWalkable() {
-        return this.walkable;
-    }
-
-    public List<GridPoint2> getGridPointList() {
-        return this.gridPointList;
-    }
-
-    public void setGridPointList(List<GridPoint2> gridPointList) {
-        this.gridPointList = gridPointList;
     }
 
 }

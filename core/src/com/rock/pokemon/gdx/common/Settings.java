@@ -31,7 +31,7 @@ public class Settings {
     public static final int FPS_200 = 200;
 
     //速度倍率(加速),1为默认速度
-    public static final float SYSTEM_SPEED_MULTIPLIER = 10F;
+    public static final float SYSTEM_SPEED_MULTIPLIER = 3F;
 
     /**
      * 屏幕、地图、贴图

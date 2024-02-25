@@ -7,6 +7,8 @@ import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.*;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.town.LittleRoot;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ import java.util.List;
  * @Author ayl
  * @Date 2022-10-21
  */
+@Getter
+@Setter
 public class World {
 
     //todo 世界上一层的城镇,目前先写死这个吧
@@ -188,28 +192,6 @@ public class World {
             //更新事物
             worldObject.update(delta);
         }
-    }
-
-    /**
-     * 以下是 get set 方法
-     *
-     * @return
-     */
-
-    public TileMap getTileMap() {
-        return this.tileMap;
-    }
-
-    public List<Person> getPersonList() {
-        return this.personList;
-    }
-
-    public List<WorldObject> getWorldObjectList() {
-        return this.worldObjectList;
-    }
-
-    public LittleRoot getTown() {
-        return town;
     }
 
 }

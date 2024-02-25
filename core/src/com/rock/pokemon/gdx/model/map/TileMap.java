@@ -1,6 +1,8 @@
 package com.rock.pokemon.gdx.model.map;
 
 import com.rock.pokemon.gdx.model.people.Person;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 地图网格
@@ -8,6 +10,8 @@ import com.rock.pokemon.gdx.model.people.Person;
  * @Author ayl
  * @Date 2022-10-16
  */
+@Getter
+@Setter
 public class TileMap {
 
     //地图网格宽高
@@ -66,24 +70,6 @@ public class TileMap {
         }
         //删除人物
         getTile(x, y).removePerson(person);
-    }
-
-    /**
-     * 以下为 get set 方法
-     *
-     * @return
-     */
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public int getHeight() {
-        return this.height;
-    }
-
-    public Tile[][] getTileMap() {
-        return this.map;
     }
 
     public Tile getTile(int x, int y) {

@@ -83,7 +83,7 @@ public class World {
                     //循环2
                     for (int y = 0; y < worldMapConfig.getHeight(); y++) {
                         //填充对应坐标
-                        this.tileMap.getTileMap()[x][y] = new Tile(
+                        this.tileMap.getMap()[x][y] = new Tile(
                                 //坐标
                                 x,
                                 y,
@@ -96,7 +96,7 @@ public class World {
                 //循环
                 for (WorldMapNode.Location location : locationList) {
                     //填充对应坐标
-                    this.tileMap.getTileMap()[location.getX()][location.getY()] = new Tile(
+                    this.tileMap.getMap()[location.getX()][location.getY()] = new Tile(
                             //坐标
                             location.getX(),
                             location.getY(),

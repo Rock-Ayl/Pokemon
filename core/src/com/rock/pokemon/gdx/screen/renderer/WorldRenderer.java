@@ -53,7 +53,7 @@ public class WorldRenderer {
             //循环2
             for (int y = 0; y < this.world.getTileMap().getHeight(); y++) {
                 //当前地图块对象
-                Tile tile = this.world.getTileMap().getTileMap()[x][y];
+                Tile tile = this.world.getTileMap().getMap()[x][y];
                 //渲染
                 draw(pokemon, tile);
             }

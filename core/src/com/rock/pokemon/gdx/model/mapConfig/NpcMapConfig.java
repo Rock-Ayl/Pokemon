@@ -1,5 +1,8 @@
 package com.rock.pokemon.gdx.model.mapConfig;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Map;
 
 /**
@@ -8,6 +11,8 @@ import java.util.Map;
  * @Author ayl
  * @Date 2023-11-20
  */
+@Getter
+@Setter
 public class NpcMapConfig {
 
     //配置名称
@@ -15,25 +20,5 @@ public class NpcMapConfig {
 
     //npcMap
     private Map<String, NpcMapNode> npcMap;
-
-    /**
-     * 以下为 get set
-     */
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Map<String, NpcMapNode> getNpcMap() {
-        return npcMap;
-    }
-
-    public void setNpcMap(Map<String, NpcMapNode> npcMap) {
-        this.npcMap = npcMap;
-    }
 
 }

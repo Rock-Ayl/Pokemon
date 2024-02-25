@@ -8,7 +8,7 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
-import com.rock.pokemon.gdx.util.JsonExtraUtils;
+import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 
 /**
  * 加载npc配置对象
@@ -25,7 +25,7 @@ public class NpcMapConfigLoader extends AsynchronousAssetLoader<NpcMapConfig, As
     @Override
     public void loadAsync(AssetManager assetManager, String filename, FileHandle file, AssetLoaderParameters<NpcMapConfig> parameter) {
         //读取配置文件、解析为对应配置实体、初始化
-        this.npcMapConfig = JsonExtraUtils.deepClone(file.readString(), NpcMapConfig.class);
+        this.npcMapConfig = FastJsonExtraUtils.deepClone(file.readString(), NpcMapConfig.class);
     }
 
     @Override

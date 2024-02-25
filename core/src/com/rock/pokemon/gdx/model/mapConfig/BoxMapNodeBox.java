@@ -1,5 +1,8 @@
 package com.rock.pokemon.gdx.model.mapConfig;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 /**
@@ -8,6 +11,8 @@ import java.util.List;
  * @Author ayl
  * @Date 2023-11-22
  */
+@Getter
+@Setter
 public class BoxMapNodeBox {
 
     //盒子节点类型
@@ -26,33 +31,5 @@ public class BoxMapNodeBox {
 
     //文本编号
     private Integer textNumber;
-
-    /**
-     * 以下为 get set 方法
-     */
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public List<BoxMapNodeBoxOption> getOptionList() {
-        return optionList;
-    }
-
-    public void setOptionList(List<BoxMapNodeBoxOption> optionList) {
-        this.optionList = optionList;
-    }
-
-    public Integer getTextNumber() {
-        return textNumber;
-    }
-
-    public void setTextNumber(Integer textNumber) {
-        this.textNumber = textNumber;
-    }
 
 }

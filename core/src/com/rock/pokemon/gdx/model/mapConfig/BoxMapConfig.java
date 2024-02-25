@@ -1,5 +1,8 @@
 package com.rock.pokemon.gdx.model.mapConfig;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Map;
 
 /**
@@ -8,6 +11,8 @@ import java.util.Map;
  * @Author ayl
  * @Date 2023-11-22
  */
+@Getter
+@Setter
 public class BoxMapConfig {
 
     //配置名称
@@ -15,25 +20,5 @@ public class BoxMapConfig {
 
     //BoxMap
     private Map<String, BoxMapNode> boxMap;
-
-    /**
-     * 以下为 get set
-     */
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Map<String, BoxMapNode> getBoxMap() {
-        return boxMap;
-    }
-
-    public void setBoxMap(Map<String, BoxMapNode> boxMap) {
-        this.boxMap = boxMap;
-    }
 
 }

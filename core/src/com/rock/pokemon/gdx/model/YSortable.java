@@ -14,6 +14,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public interface YSortable {
 
     /**
+     * 获取图片
+     *
+     * @return
+     */
+    TextureRegion getSprite();
+
+    /**
      * 真实世界坐标x
      *
      * @return
@@ -26,13 +33,6 @@ public interface YSortable {
      * @return
      */
     float getWorldY();
-
-    /**
-     * 获取图片
-     *
-     * @return
-     */
-    TextureRegion getSprite();
 
     /**
      * 宽度

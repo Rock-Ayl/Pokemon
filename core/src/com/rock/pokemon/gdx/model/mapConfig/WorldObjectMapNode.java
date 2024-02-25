@@ -1,5 +1,8 @@
 package com.rock.pokemon.gdx.model.mapConfig;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 /**
@@ -8,6 +11,8 @@ import java.util.List;
  * @Author ayl
  * @Date 2023-09-15
  */
+@Getter
+@Setter
 public class WorldObjectMapNode {
 
     //节点备注
@@ -35,100 +40,14 @@ public class WorldObjectMapNode {
     /**
      * 坐标对象
      */
+    @Getter
+    @Setter
     public static class Location {
 
         //资源坐标
         private Integer x;
         private Integer y;
 
-        /**
-         * 以下为 get set
-         */
-
-        public Integer getX() {
-            return x;
-        }
-
-        public void setX(Integer x) {
-            this.x = x;
-        }
-
-        public Integer getY() {
-            return y;
-        }
-
-        public void setY(Integer y) {
-            this.y = y;
-        }
-
-    }
-
-    /**
-     * 以下为 get set
-     */
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public String getRegionName() {
-        return regionName;
-    }
-
-    public void setRegionName(String regionName) {
-        this.regionName = regionName;
-    }
-
-    public Float getWidth() {
-        return width;
-    }
-
-    public void setWidth(Float width) {
-        this.width = width;
-    }
-
-    public Float getHeight() {
-        return height;
-    }
-
-    public void setHeight(Float height) {
-        this.height = height;
-    }
-
-    public Boolean getWalkable() {
-        return walkable;
-    }
-
-    public void setWalkable(Boolean walkable) {
-        this.walkable = walkable;
-    }
-
-    public List<Location> getTileList() {
-        return tileList;
-    }
-
-    public void setTileList(List<Location> tileList) {
-        this.tileList = tileList;
-    }
-
-    public Float getFrameDuration() {
-        return frameDuration;
-    }
-
-    public void setFrameDuration(Float frameDuration) {
-        this.frameDuration = frameDuration;
     }
 
 }

@@ -18,6 +18,8 @@ import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapNodeEvent;
 import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,8 @@ import java.util.Optional;
  * @Author ayl
  * @Date 2022-10-13
  */
+@Getter
+@Setter
 public class Person implements YSortable {
 
     /**
@@ -521,12 +525,6 @@ public class Person implements YSortable {
         }
     }
 
-    /**
-     * 以下是 get set 方法
-     *
-     * @return
-     */
-
     public float getWorldX() {
         return worldX;
     }
@@ -541,18 +539,6 @@ public class Person implements YSortable {
 
     public float getHeight() {
         return height;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public List<NpcMapNodeEvent> getEventList() {
-        return eventList;
     }
 
 }

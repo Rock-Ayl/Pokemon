@@ -3,6 +3,8 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.people.Person;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 单个地图块
@@ -10,6 +12,8 @@ import com.rock.pokemon.gdx.model.people.Person;
  * @Author ayl
  * @Date 2022-10-16
  */
+@Getter
+@Setter
 public class Tile implements YSortable {
 
     //当前地图块图片
@@ -65,20 +69,6 @@ public class Tile implements YSortable {
         }
     }
 
-    /**
-     * Get Set 方法
-     *
-     * @return
-     */
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
     public float getWorldX() {
         return x;
     }
@@ -93,22 +83,6 @@ public class Tile implements YSortable {
 
     public float getHeight() {
         return height;
-    }
-
-    public WorldObject getWorldObject() {
-        return worldObject;
-    }
-
-    public void setWorldObject(WorldObject worldObject) {
-        this.worldObject = worldObject;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
 }

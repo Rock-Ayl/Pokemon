@@ -11,7 +11,7 @@ import java.util.List;
  * @Author ayl
  * @Date 2023-11-23
  */
-public class JsonExtraUtils {
+public class FastJsonExtraUtils {
 
     /**
      * 深克隆单个对象,也可以将一个对象转化为另一个对象(当然,结构得基本一致或继承关系)
@@ -27,7 +27,7 @@ public class JsonExtraUtils {
             return null;
         }
         //先转为string再转为对应实体,如果转为json对象再转实体某些特殊情况会报错
-        return JSON.parseObject(JSON.toJSONString(object), toJavaObject);
+        return JSON.parseObject(toJSONString(object), toJavaObject);
     }
 
     /**
@@ -44,7 +44,28 @@ public class JsonExtraUtils {
             return new ArrayList<>();
         }
         //先转为string再转为对应实体,如果转为json对象再转实体某些特殊情况会报错
-        return JSON.parseArray(JSON.toJSONString(listOrArrObject), toJavaObject);
+        return JSON.parseArray(toJSONString(listOrArrObject), toJavaObject);
+    }
+
+    /**
+     * 对象转String {@link Object} -> {@link String}
+     *
+     * @param object 对象
+     * @return
+     */
+    public static String toJSONString(Object object) {
+        //判空
+        if (object == null) {
+            //过
+            return null;
+        }
+        //如果就是string
+        if (object instanceof String) {
+            //直接返回,无需再转
+            return object.toString();
+        }
+        //实现
+        return JSON.toJSONString(object);
     }
 
 }

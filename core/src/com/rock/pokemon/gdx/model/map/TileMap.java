@@ -72,6 +72,13 @@ public class TileMap {
         getTile(x, y).removePerson(person);
     }
 
+    /**
+     * 获取精确坐标地图块
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     public Tile getTile(int x, int y) {
         return this.map[x][y];
     }

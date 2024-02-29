@@ -7,7 +7,6 @@ import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
-import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapNode;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.town.LittleRoot;
 import lombok.Getter;
@@ -123,7 +122,7 @@ public class World {
             //获取事物名称
             String worldObjectName = worldObjectNode.getWorldObjectName();
             //读取对应事物配置
-            WorldObjectMapNode worldObjectNodeConfig = worldObjectMapConfig.getWorldObjectMap().get(worldObjectName);
+            WorldObjectMapConfig.WorldObjectMapNode worldObjectNodeConfig = worldObjectMapConfig.getWorldObjectMap().get(worldObjectName);
             //循环坐标列表
             for (WorldMapConfig.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物

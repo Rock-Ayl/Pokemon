@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.model.YSortable;
-import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapNode;
+import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -61,7 +61,7 @@ public class WorldObject implements YSortable {
      * @param x            坐标x
      * @param y            坐标y
      */
-    public WorldObject(AssetManager assetManager, WorldObjectMapNode mapNode, int x, int y) {
+    public WorldObject(AssetManager assetManager, WorldObjectMapConfig.WorldObjectMapNode mapNode, int x, int y) {
 
         //坐标
         this.x = x;
@@ -77,7 +77,7 @@ public class WorldObject implements YSortable {
         //初始化
         this.gridPointList = new ArrayList<>();
         //循环碰撞体积
-        for (WorldObjectMapNode.Location location : mapNode.getTileList()) {
+        for (WorldObjectMapConfig.Location location : mapNode.getTileList()) {
             //组装占用的地图网格
             this.gridPointList.add(new GridPoint2(location.getX(), location.getY()));
         }

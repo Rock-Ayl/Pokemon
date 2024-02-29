@@ -1,8 +1,11 @@
 package com.rock.pokemon.gdx.enums;
 
+import lombok.Getter;
+
 /**
  * 语言枚举
  */
+@Getter
 public enum LanguageEnum {
 
     SIMPLIFIED_CHINESE("Simplified Chinese", "zh", "简体中文(默认)"),
@@ -21,16 +24,6 @@ public enum LanguageEnum {
         this.code = code;
         this.path = path;
         this.zh = zh;
-    }
-
-    /**
-     * 以下为 get set 方法
-     *
-     * @return
-     */
-
-    public String getPath() {
-        return path;
     }
 
 }

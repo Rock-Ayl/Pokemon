@@ -1,11 +1,14 @@
 package com.rock.pokemon.gdx.enums;
 
+import lombok.Getter;
+
 /**
  * 人物走路枚举
  *
  * @Author ayl
  * @Date 2022-10-15
  */
+@Getter
 public enum WalkEnum {
 
     STAND("stand", "站立"),
@@ -24,16 +27,6 @@ public enum WalkEnum {
     WalkEnum(String path, String zhName) {
         this.path = path;
         this.zhName = zhName;
-    }
-
-    /**
-     * get set 方法
-     *
-     * @return
-     */
-
-    public String getPath() {
-        return path;
     }
 
 }

@@ -1,10 +1,12 @@
 package com.rock.pokemon.gdx.enums;
 
 import com.badlogic.gdx.Input;
+import lombok.Getter;
 
 /**
  * 方向枚举
  */
+@Getter
 public enum DirectionEnum {
 
     NORTH(0, 1, Input.Keys.UP, "north", "北"),
@@ -51,24 +53,6 @@ public enum DirectionEnum {
         }
         //默认,南
         return SOUTH;
-    }
-
-    /**
-     * 以下是 get set 方法
-     *
-     * @return
-     */
-
-    public int getDx() {
-        return dx;
-    }
-
-    public int getDy() {
-        return dy;
-    }
-
-    public String getName() {
-        return name;
     }
 
 }

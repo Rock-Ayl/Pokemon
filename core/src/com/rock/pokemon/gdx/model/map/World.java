@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
-import com.rock.pokemon.gdx.model.mapConfig.*;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapNode;
 import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.town.LittleRoot;
 import lombok.Getter;
@@ -77,9 +80,9 @@ public class World {
          */
 
         //循环地图节点
-        for (WorldMapNode tileMapNode : worldMapConfig.getTileNodeList()) {
+        for (WorldMapConfig.WorldMapNode tileMapNode : worldMapConfig.getTileNodeList()) {
             //获取坐标列表
-            List<WorldMapNode.Location> locationList = tileMapNode.getLocationList();
+            List<WorldMapConfig.Location> locationList = tileMapNode.getLocationList();
             //如果没有则填充所有、有则按照指定的填充
             if (CollectionUtils.isEmpty(locationList)) {
                 //循环1
@@ -98,7 +101,7 @@ public class World {
                 }
             } else {
                 //循环
-                for (WorldMapNode.Location location : locationList) {
+                for (WorldMapConfig.Location location : locationList) {
                     //填充对应坐标
                     this.tileMap.getMap()[location.getX()][location.getY()] = new Tile(
                             //坐标
@@ -116,13 +119,13 @@ public class World {
          */
 
         //循环世界事务节点
-        for (WorldMapNode worldObjectNode : worldMapConfig.getWorldObjectNodeList()) {
+        for (WorldMapConfig.WorldMapNode worldObjectNode : worldMapConfig.getWorldObjectNodeList()) {
             //获取事物名称
             String worldObjectName = worldObjectNode.getWorldObjectName();
             //读取对应事物配置
             WorldObjectMapNode worldObjectNodeConfig = worldObjectMapConfig.getWorldObjectMap().get(worldObjectName);
             //循环坐标列表
-            for (WorldMapNode.Location location : worldObjectNode.getLocationList()) {
+            for (WorldMapConfig.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
                 WorldObject worldObject = new WorldObject(game.getAssetManager(), worldObjectNodeConfig, location.getX(), location.getY());
                 //加入到世界
@@ -135,13 +138,13 @@ public class World {
          */
 
         //循环世界事务节点
-        for (WorldMapNode npcNode : worldMapConfig.getNpcNodeList()) {
+        for (WorldMapConfig.WorldMapNode npcNode : worldMapConfig.getNpcNodeList()) {
             //获取npc名称
             String npcName = npcNode.getNpcName();
             //读取对应npc配置
             NpcMapConfig.NpcMapNode npcMapNode = npcMapConfig.getNpcMap().get(npcName);
             //循环坐标列表
-            for (WorldMapNode.Location location : npcNode.getLocationList()) {
+            for (WorldMapConfig.Location location : npcNode.getLocationList()) {
                 //初始化话一个npc,并加入到该世界
                 new Person(npcMapNode, this, location.getX(), location.getY(), game);
             }

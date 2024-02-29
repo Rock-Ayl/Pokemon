@@ -79,6 +79,10 @@ public class AssetManagerLoading {
         //载入box
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
 
+        /**
+         * 结束加载
+         */
+
         //加载资源完成
         assetManager.finishLoading();
         //返回管理器

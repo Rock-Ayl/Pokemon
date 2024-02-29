@@ -15,8 +15,7 @@ import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
-import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
-import com.rock.pokemon.gdx.model.mapConfig.NpcMapNodeEvent;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 import lombok.Setter;
@@ -97,7 +96,7 @@ public class Person implements YSortable {
      */
 
     //事件列表
-    private List<NpcMapNodeEvent> eventList;
+    private List<NpcMapConfig.NpcMapNodeEvent> eventList;
 
     /**
      * 使用人物枚举初始化
@@ -108,7 +107,7 @@ public class Person implements YSortable {
      * @param y          人物初始坐标y
      * @param game       游戏对象
      */
-    public Person(NpcMapNode npcMapNode, World world, int x, int y, Pokemon game) {
+    public Person(NpcMapConfig.NpcMapNode npcMapNode, World world, int x, int y, Pokemon game) {
 
         /**
          * 基本信息
@@ -194,7 +193,7 @@ public class Person implements YSortable {
                 .orElse(null);
 
         //获取人物对应事件
-        NpcMapNodeEvent event = Optional.ofNullable(person)
+        NpcMapConfig.NpcMapNodeEvent event = Optional.ofNullable(person)
                 //获取人物上的事件列表
                 .map(Person::getEventList)
                 //默认

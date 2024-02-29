@@ -139,7 +139,7 @@ public class World {
             //获取npc名称
             String npcName = npcNode.getNpcName();
             //读取对应npc配置
-            NpcMapNode npcMapNode = npcMapConfig.getNpcMap().get(npcName);
+            NpcMapConfig.NpcMapNode npcMapNode = npcMapConfig.getNpcMap().get(npcName);
             //循环坐标列表
             for (WorldMapNode.Location location : npcNode.getLocationList()) {
                 //初始化话一个npc,并加入到该世界

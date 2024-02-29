@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
-import com.rock.pokemon.gdx.model.mapConfig.NpcMapNode;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.people.Person;
 
 import java.util.HashMap;
@@ -43,17 +43,17 @@ public class PersonAnimationSet {
      * @param assetManager 资源管理器
      * @param npcMapNode   npc配置
      */
-    public PersonAnimationSet(AssetManager assetManager, NpcMapNode npcMapNode) {
+    public PersonAnimationSet(AssetManager assetManager, NpcMapConfig.NpcMapNode npcMapNode) {
 
         //获取动画资源文件
         String walkFilePath = Optional.ofNullable(npcMapNode)
-                .map(NpcMapNode::getWalkFilePath)
+                .map(NpcMapConfig.NpcMapNode::getWalkFilePath)
                 .orElse("");
         String standFilePath = Optional.ofNullable(npcMapNode)
-                .map(NpcMapNode::getStandFilePath)
+                .map(NpcMapConfig.NpcMapNode::getStandFilePath)
                 .orElse("");
         String runFilePath = Optional.ofNullable(npcMapNode)
-                .map(NpcMapNode::getRunFilePath)
+                .map(NpcMapConfig.NpcMapNode::getRunFilePath)
                 .orElse("");
 
         //获取动画资源,没有也无所谓,毕竟不是所有人都有主角那么多的动作

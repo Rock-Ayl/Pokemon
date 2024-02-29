@@ -8,7 +8,6 @@ import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
-import com.rock.pokemon.gdx.model.people.Person;
 import com.rock.pokemon.gdx.screen.town.LittleRoot;
 import lombok.Getter;
 import lombok.Setter;

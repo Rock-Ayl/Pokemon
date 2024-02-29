@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
-import com.rock.pokemon.gdx.model.people.Person;
+import com.rock.pokemon.gdx.model.map.Person;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;

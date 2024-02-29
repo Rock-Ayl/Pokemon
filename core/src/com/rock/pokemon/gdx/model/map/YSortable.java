@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.model;
+package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

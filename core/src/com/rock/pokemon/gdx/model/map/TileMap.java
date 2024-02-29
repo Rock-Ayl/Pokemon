@@ -1,6 +1,5 @@
 package com.rock.pokemon.gdx.model.map;
 
-import com.rock.pokemon.gdx.model.people.Person;
 import lombok.Getter;
 import lombok.Setter;
 

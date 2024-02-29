@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.model.people;
+package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
@@ -7,12 +7,7 @@ import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
-import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
-import com.rock.pokemon.gdx.model.map.Tile;
-import com.rock.pokemon.gdx.model.map.TileMap;
-import com.rock.pokemon.gdx.model.map.World;
-import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;

@@ -2,7 +2,7 @@ package com.rock.pokemon.gdx.screen.renderer;
 
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.model.YSortable;
+import com.rock.pokemon.gdx.model.map.YSortable;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;

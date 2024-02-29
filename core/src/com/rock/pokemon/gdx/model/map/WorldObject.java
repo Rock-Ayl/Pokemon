@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
-import com.rock.pokemon.gdx.model.YSortable;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
 import lombok.Getter;
 import lombok.Setter;

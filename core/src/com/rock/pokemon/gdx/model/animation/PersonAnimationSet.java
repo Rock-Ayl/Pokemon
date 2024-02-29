@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
-import com.rock.pokemon.gdx.model.people.Person;
+import com.rock.pokemon.gdx.model.map.Person;
 
 import java.util.HashMap;
 import java.util.Map;

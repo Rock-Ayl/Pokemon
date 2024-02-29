@@ -51,7 +51,7 @@ public class Tile implements YSortable {
      */
     @Override
     public TextureRegion getSprite() {
-        return image;
+        return this.image;
     }
 
     /**

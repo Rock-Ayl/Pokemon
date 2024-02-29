@@ -4,9 +4,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
-import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBox;
-import com.rock.pokemon.gdx.model.mapConfig.BoxMapNodeBoxOption;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNode;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNodeBox;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNodeBoxOption;
 import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 
 import java.util.ArrayList;

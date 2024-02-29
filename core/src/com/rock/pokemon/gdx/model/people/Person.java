@@ -14,7 +14,7 @@ import com.rock.pokemon.gdx.model.map.TileMap;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
-import com.rock.pokemon.gdx.model.mapConfig.BoxMapNode;
+import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 import lombok.Getter;

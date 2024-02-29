@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
 import com.rock.pokemon.gdx.model.people.Person;
@@ -141,7 +142,7 @@ public class World {
             //获取npc名称
             String npcName = npcNode.getNpcName();
             //读取对应npc配置
-            NpcMapConfig.NpcMapNode npcMapNode = npcMapConfig.getNpcMap().get(npcName);
+            NpcMapNode npcMapNode = npcMapConfig.getNpcMap().get(npcName);
             //循环坐标列表
             for (WorldMapConfig.Location location : npcNode.getLocationList()) {
                 //初始化话一个npc,并加入到该世界

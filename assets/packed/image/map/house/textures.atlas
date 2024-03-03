@@ -25,7 +25,7 @@ little_root_house_out_ruby_house
   orig: 80, 80
   offset: 0, 0
   index: -1
-sapphire_house
+little_root_house_out_sapphire_house
   rotate: false
   xy: 408, 148
   size: 80, 80

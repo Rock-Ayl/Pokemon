@@ -49,8 +49,10 @@ public class WorldMapConfig {
         //资源区域名
         private String regionName;
 
-        //事物宽高
+        //宽度
         private Float width;
+
+        //高度
         private Float height;
 
         //事物名称

@@ -46,6 +46,9 @@ public class FilePaths {
 
     //配置文件路径-未白镇地图
     public static final String MAP_CONFIG_PATH_OF_LITTLE_ROOT = "assets/config/map/LittleRoot.json";
+    //配置文件路径-未白镇-路比家
+    public static final String MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY = "assets/config/map/LittleRoot-House-Ruby.json";
+
     //配置文件路径-事物
     public static final String MAP_CONFIG_PATH_OF_WORLD_OBJECT = "assets/config/map/WorldObject.json";
     //配置文件路径-npc

@@ -2,10 +2,10 @@ package com.rock.pokemon.gdx.screen.renderer;
 
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.model.map.YSortable;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
+import com.rock.pokemon.gdx.model.map.YSortable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +107,11 @@ public class WorldRenderer {
      * @param ySortable 实现的class,可以是人物、事物、地图块
      */
     private void draw(Pokemon pokemon, YSortable ySortable) {
+        //如果没有图片帧
+        if (ySortable.getSprite() == null) {
+            //过
+            return;
+        }
         //根据世界起点,渲染
         pokemon.getBatch().draw(
                 //当前类的当前帧的图片

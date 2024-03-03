@@ -245,7 +245,7 @@
     "xiaoTianJuanDoctorHouse": {
       "remark": "小田卷博士的家",
       "filePath": "assets/packed/image/map/house/textures.atlas",
-      "regionName": "xiao_tian_juan_doctor_house",
+      "regionName": "little_root_house_out_xiao_tian_juan_doctor_house",
       "width": 7,
       "height": 5,
       "walkable": false,

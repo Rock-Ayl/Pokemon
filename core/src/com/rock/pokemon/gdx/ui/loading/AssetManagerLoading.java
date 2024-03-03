@@ -79,7 +79,8 @@ public class AssetManagerLoading {
 
         //载入未白镇地图配置
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, WorldMapConfig.class);
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY, WorldMapConfig.class);
+        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_FIRST, WorldMapConfig.class);
+        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_SECOND, WorldMapConfig.class);
 
         /**
          * 结束加载

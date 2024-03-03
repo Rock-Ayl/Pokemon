@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
@@ -88,16 +89,17 @@ public class World {
                 for (int x = 0; x < worldMapConfig.getWidth(); x++) {
                     //循环2
                     for (int y = 0; y < worldMapConfig.getHeight(); y++) {
-                        //填充对应坐标
-                        this.tileMap.getMap()[x][y] = new Tile(
-                                //坐标
-                                x,
-                                y,
-                                //对应图片资源
-                                game.getAssetManager()
-                                        .get(tileMapNode.getFilePath(), TextureAtlas.class)
-                                        .findRegion(tileMapNode.getRegionName())
-                        );
+                        //地图块图片,默认空
+                        TextureRegion image = null;
+                        //如果有图片地址
+                        if (tileMapNode.getFilePath() != null) {
+                            //获取图片对象
+                            image = game.getAssetManager()
+                                    .get(tileMapNode.getFilePath(), TextureAtlas.class)
+                                    .findRegion(tileMapNode.getRegionName());
+                        }
+                        //填充对应坐标,无图片
+                        this.tileMap.getMap()[x][y] = new Tile(x, y, image);
                     }
                 }
             } else {

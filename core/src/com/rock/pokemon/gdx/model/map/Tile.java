@@ -32,18 +32,11 @@ public class Tile implements YSortable {
     private Person person;
 
     /**
-     * 初始化地图块,没有任何图片
-     */
-    public Tile(int x, int y) {
-        //坐标
-        this.x = x;
-        this.y = y;
-    }
-
-    /**
      * 初始化地图块,有图片
      *
-     * @param image 图片
+     * @param x     坐标
+     * @param y     坐标
+     * @param image 图片,选填
      */
     public Tile(int x, int y, TextureRegion image) {
         //坐标

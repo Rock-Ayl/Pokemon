@@ -73,7 +73,7 @@
     "rubyHouse": {
       "remark": "路比的家",
       "filePath": "assets/packed/image/map/house/textures.atlas",
-      "regionName": "ruby_house",
+      "regionName": "little_root_house_out_ruby_house",
       "width": 5,
       "height": 5,
       "walkable": false,

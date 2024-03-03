@@ -18,7 +18,7 @@ little_root_house_in_ruby_second
   orig: 144, 128
   offset: 0, 0
   index: -1
-ruby_house
+little_root_house_out_ruby_house
   rotate: false
   xy: 326, 148
   size: 80, 80

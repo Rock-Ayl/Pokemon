@@ -16,6 +16,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 世界对象,代表一个世界(比如未白镇)
@@ -98,6 +99,18 @@ public class World {
             TextureRegion image = game.getAssetManager()
                     .get(tileMapNode.getFilePath(), TextureAtlas.class)
                     .findRegion(tileMapNode.getRegionName());
+            //如果没有图片
+            if (image == null) {
+                //本轮过
+                continue;
+            }
+            //获取地图块宽高
+            Float width = Optional.ofNullable(tileMapNode)
+                    .map(WorldMapConfig.WorldMapNode::getWidth)
+                    .orElse(null);
+            Float height = Optional.ofNullable(tileMapNode)
+                    .map(WorldMapConfig.WorldMapNode::getHeight)
+                    .orElse(null);
 
             /**
              * 填充地图块
@@ -116,8 +129,20 @@ public class World {
                 for (int x = 0; x < worldMapConfig.getWidth(); x++) {
                     //循环2
                     for (int y = 0; y < worldMapConfig.getHeight(); y++) {
+                        //设置地图块
+                        Tile tile = this.tileMap.getMap()[x][y];
                         //设置图片
-                        this.tileMap.getMap()[x][y].setImage(image);
+                        tile.setImage(image);
+                        //如果需要覆盖宽度
+                        if (width != null) {
+                            //覆盖
+                            tile.setWidth(width);
+                        }
+                        //如果需要覆盖高度
+                        if (height != null) {
+                            //覆盖
+                            tile.setHeight(height);
+                        }
                     }
                 }
 
@@ -130,7 +155,19 @@ public class World {
                 //循环
                 for (WorldMapConfig.Location location : locationList) {
                     //设置图片
-                    this.tileMap.getMap()[location.getX()][location.getY()].setImage(image);
+                    Tile tile = this.tileMap.getMap()[location.getX()][location.getY()];
+                    //设置图片
+                    tile.setImage(image);
+                    //如果需要覆盖宽度
+                    if (width != null) {
+                        //覆盖
+                        tile.setWidth(width);
+                    }
+                    //如果需要覆盖高度
+                    if (height != null) {
+                        //覆盖
+                        tile.setHeight(height);
+                    }
                 }
 
             }

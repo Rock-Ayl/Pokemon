@@ -11,6 +11,7 @@ import com.rock.pokemon.gdx.screen.menu.MainMenu;
 import com.rock.pokemon.gdx.ui.loading.AssetManagerLoading;
 import com.rock.pokemon.gdx.ui.loading.SkinLoading;
 import com.rock.pokemon.gdx.ui.loading.TextLoading;
+import lombok.Getter;
 
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import java.util.Map;
  * @Author ayl
  * @Date 2022-10-15
  */
+@Getter
 public class Pokemon extends Game {
 
     /**
@@ -97,59 +99,6 @@ public class Pokemon extends Game {
         this.batch.dispose();
         this.font.dispose();
         this.assetManager.dispose();
-    }
-
-    /**
-     * 以下是普通 get set 方法
-     */
-
-    public SpriteBatch getBatch() {
-        return this.batch;
-    }
-
-    /**
-     * 获取游戏默认font
-     *
-     * @return
-     */
-    public BitmapFont getFont() {
-        return this.font;
-    }
-
-    /**
-     * 获取资源管理器
-     *
-     * @return
-     */
-    public AssetManager getAssetManager() {
-        return this.assetManager;
-    }
-
-    /**
-     * 获取音效管理器
-     *
-     * @return
-     */
-    public SoundManager getSoundManager() {
-        return this.soundManager;
-    }
-
-    /**
-     * 获取皮肤
-     *
-     * @return
-     */
-    public Skin getSkin() {
-        return this.skin;
-    }
-
-    /**
-     * 获取文本map[编号,文本]
-     *
-     * @return
-     */
-    public Map<Integer, String> getTextMap() {
-        return this.textMap;
     }
 
 }

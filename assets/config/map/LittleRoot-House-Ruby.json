@@ -1,10 +1,10 @@
 {
   "name": "未白镇-路比家房子(左边的那个房子)-地图配置",
   "width": 11,
-  "height": 9,
+  "height": 22,
   "tileNodeList": [
     {
-      "remark": "直接一整个地图",
+      "remark": "下层",
       "filePath": "assets/packed/image/map/house/textures.atlas",
       "regionName": "little_root_house_in_ruby_first",
       "width": 11,
@@ -13,6 +13,19 @@
         {
           "x": 0,
           "y": 0
+        }
+      ]
+    },
+    {
+      "remark": "上层",
+      "filePath": "assets/packed/image/map/house/textures.atlas",
+      "regionName": "little_root_house_in_ruby_second",
+      "width": 9,
+      "height": 8,
+      "locationList": [
+        {
+          "x": 0,
+          "y": 11
         }
       ]
     }

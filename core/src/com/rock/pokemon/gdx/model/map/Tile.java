@@ -22,8 +22,8 @@ public class Tile implements YSortable {
     private int y;
 
     //地图块宽高,绿宝石中,所有都是1,之所以地图多0.001,是因为在极少数情况下,计算后的地图渲染会出现[地图裂缝]的问题,加0.001比例宽高,基本算是解决问题了
-    private static float width = 1.001F;
-    private static float height = 1.001F;
+    private final float width = 1.001F;
+    private final float height = 1.001F;
 
     //一个地图块上,最多有一个事物,但是多个地图上,可以有同一个事物(比如房子5*5,25个地图块上有同一个事物)
     private WorldObject worldObject;
@@ -32,18 +32,15 @@ public class Tile implements YSortable {
     private Person person;
 
     /**
-     * 初始化地图块,有图片
+     * 初始化地图块
      *
-     * @param x     坐标
-     * @param y     坐标
-     * @param image 图片,选填
+     * @param x 坐标
+     * @param y 坐标
      */
-    public Tile(int x, int y, TextureRegion image) {
+    public Tile(int x, int y) {
         //坐标
         this.x = x;
         this.y = y;
-        //图片
-        this.image = image;
     }
 
     /**
@@ -70,19 +67,19 @@ public class Tile implements YSortable {
     }
 
     public float getWorldX() {
-        return x;
+        return this.x;
     }
 
     public float getWorldY() {
-        return y;
+        return this.y;
     }
 
     public float getWidth() {
-        return width;
+        return this.width;
     }
 
     public float getHeight() {
-        return height;
+        return this.height;
     }
 
 }

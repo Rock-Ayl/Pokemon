@@ -69,11 +69,19 @@ public class World {
         NpcMapConfig npcMapConfig = game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
 
         /**
-         * 初始化地图网格
+         * 初始化 地图网格、地图块本身
          */
 
         //初始化地图网格
         this.tileMap = new TileMap(worldMapConfig.getWidth(), worldMapConfig.getHeight());
+        //循环1
+        for (int x = 0; x < worldMapConfig.getWidth(); x++) {
+            //循环2
+            for (int y = 0; y < worldMapConfig.getHeight(); y++) {
+                //填充对应坐标
+                this.tileMap.getMap()[x][y] = new Tile(x, y);
+            }
+        }
 
         /**
          * 载入地图资源
@@ -86,15 +94,10 @@ public class World {
              * 获取当前地图块图片
              */
 
-            //地图块图片,默认空
-            TextureRegion image = null;
-            //如果有图片地址
-            if (tileMapNode.getFilePath() != null) {
-                //获取图片对象
-                image = game.getAssetManager()
-                        .get(tileMapNode.getFilePath(), TextureAtlas.class)
-                        .findRegion(tileMapNode.getRegionName());
-            }
+            //获取图片对象
+            TextureRegion image = game.getAssetManager()
+                    .get(tileMapNode.getFilePath(), TextureAtlas.class)
+                    .findRegion(tileMapNode.getRegionName());
 
             /**
              * 填充地图块
@@ -113,10 +116,11 @@ public class World {
                 for (int x = 0; x < worldMapConfig.getWidth(); x++) {
                     //循环2
                     for (int y = 0; y < worldMapConfig.getHeight(); y++) {
-                        //填充对应坐标
-                        this.tileMap.getMap()[x][y] = new Tile(x, y, image);
+                        //设置图片
+                        this.tileMap.getMap()[x][y].setImage(image);
                     }
                 }
+
             } else {
 
                 /**
@@ -125,8 +129,8 @@ public class World {
 
                 //循环
                 for (WorldMapConfig.Location location : locationList) {
-                    //填充对应坐标
-                    this.tileMap.getMap()[location.getX()][location.getY()] = new Tile(location.getX(), location.getY(), image);
+                    //设置图片
+                    this.tileMap.getMap()[location.getX()][location.getY()].setImage(image);
                 }
 
             }

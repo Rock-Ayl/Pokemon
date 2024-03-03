@@ -45,16 +45,6 @@ public class Tile implements YSortable {
     }
 
     /**
-     * 获取动画图片
-     *
-     * @return
-     */
-    @Override
-    public TextureRegion getSprite() {
-        return this.image;
-    }
-
-    /**
      * 如果是同一个人,删除之
      *
      * @param person
@@ -65,6 +55,16 @@ public class Tile implements YSortable {
             //删除之
             this.person = null;
         }
+    }
+
+    /**
+     * 获取图片帧
+     *
+     * @return
+     */
+    @Override
+    public TextureRegion getSprite() {
+        return this.image;
     }
 
     public float getWorldX() {

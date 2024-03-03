@@ -15,11 +15,12 @@ import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
+import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
-import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
+import lombok.Getter;
 
 /**
  * 未白镇(开局城镇)
@@ -27,6 +28,7 @@ import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
  * @Author ayl
  * @Date 2022-10-15
  */
+@Getter
 public class LittleRoot implements Screen {
 
     //游戏对象
@@ -238,7 +240,6 @@ public class LittleRoot implements Screen {
         this.uiStage.dispose();
     }
 
-
     @Override
     public void pause() {
 
@@ -252,14 +253,6 @@ public class LittleRoot implements Screen {
     @Override
     public void hide() {
 
-    }
-
-    /**
-     * 以下是 get set 方法
-     */
-
-    public DialogueAndOptionBox getDialogueAndOptionBox() {
-        return dialogueAndOptionBox;
     }
 
 }

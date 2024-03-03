@@ -85,6 +85,11 @@ public class World {
             List<WorldMapConfig.Location> locationList = tileMapNode.getLocationList();
             //如果没有则填充所有、有则按照指定的填充
             if (CollectionUtils.isEmpty(locationList)) {
+
+                /**
+                 * 填充所有地图块
+                 */
+
                 //循环1
                 for (int x = 0; x < worldMapConfig.getWidth(); x++) {
                     //循环2
@@ -103,6 +108,11 @@ public class World {
                     }
                 }
             } else {
+
+                /**
+                 * 填充指定地图块
+                 */
+
                 //循环
                 for (WorldMapConfig.Location location : locationList) {
                     //填充对应坐标

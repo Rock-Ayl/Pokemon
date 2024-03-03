@@ -94,7 +94,9 @@ public class World {
                                 x,
                                 y,
                                 //对应图片资源
-                                game.getAssetManager().get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
+                                game.getAssetManager()
+                                        .get(tileMapNode.getFilePath(), TextureAtlas.class)
+                                        .findRegion(tileMapNode.getRegionName())
                         );
                     }
                 }
@@ -107,7 +109,9 @@ public class World {
                             location.getX(),
                             location.getY(),
                             //获取对应图片资源
-                            game.getAssetManager().get(tileMapNode.getFilePath(), TextureAtlas.class).findRegion(tileMapNode.getRegionName())
+                            game.getAssetManager()
+                                    .get(tileMapNode.getFilePath(), TextureAtlas.class)
+                                    .findRegion(tileMapNode.getRegionName())
                     );
                 }
             }

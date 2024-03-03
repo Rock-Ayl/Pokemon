@@ -4,20 +4,20 @@ size: 512, 256
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-little_root_house_in_ruby
+little_root_house_in_ruby_first
   rotate: false
   xy: 2, 84
   size: 176, 144
   orig: 176, 144
   offset: 0, 0
-  index: 1
-little_root_house_in_ruby
+  index: -1
+little_root_house_in_ruby_second
   rotate: false
   xy: 180, 100
   size: 144, 128
   orig: 144, 128
   offset: 0, 0
-  index: 2
+  index: -1
 ruby_house
   rotate: false
   xy: 326, 148

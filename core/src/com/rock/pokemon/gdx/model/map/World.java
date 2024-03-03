@@ -81,6 +81,25 @@ public class World {
 
         //循环地图节点
         for (WorldMapConfig.WorldMapNode tileMapNode : worldMapConfig.getTileNodeList()) {
+
+            /**
+             * 获取当前地图块图片
+             */
+
+            //地图块图片,默认空
+            TextureRegion image = null;
+            //如果有图片地址
+            if (tileMapNode.getFilePath() != null) {
+                //获取图片对象
+                image = game.getAssetManager()
+                        .get(tileMapNode.getFilePath(), TextureAtlas.class)
+                        .findRegion(tileMapNode.getRegionName());
+            }
+
+            /**
+             * 填充地图块
+             */
+
             //获取坐标列表
             List<WorldMapConfig.Location> locationList = tileMapNode.getLocationList();
             //如果没有则填充所有、有则按照指定的填充
@@ -94,16 +113,7 @@ public class World {
                 for (int x = 0; x < worldMapConfig.getWidth(); x++) {
                     //循环2
                     for (int y = 0; y < worldMapConfig.getHeight(); y++) {
-                        //地图块图片,默认空
-                        TextureRegion image = null;
-                        //如果有图片地址
-                        if (tileMapNode.getFilePath() != null) {
-                            //获取图片对象
-                            image = game.getAssetManager()
-                                    .get(tileMapNode.getFilePath(), TextureAtlas.class)
-                                    .findRegion(tileMapNode.getRegionName());
-                        }
-                        //填充对应坐标,无图片
+                        //填充对应坐标
                         this.tileMap.getMap()[x][y] = new Tile(x, y, image);
                     }
                 }
@@ -116,16 +126,9 @@ public class World {
                 //循环
                 for (WorldMapConfig.Location location : locationList) {
                     //填充对应坐标
-                    this.tileMap.getMap()[location.getX()][location.getY()] = new Tile(
-                            //坐标
-                            location.getX(),
-                            location.getY(),
-                            //获取对应图片资源
-                            game.getAssetManager()
-                                    .get(tileMapNode.getFilePath(), TextureAtlas.class)
-                                    .findRegion(tileMapNode.getRegionName())
-                    );
+                    this.tileMap.getMap()[location.getX()][location.getY()] = new Tile(location.getX(), location.getY(), image);
                 }
+
             }
         }
 

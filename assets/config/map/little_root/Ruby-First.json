@@ -17,6 +17,17 @@
       ]
     }
   ],
-  "worldObjectNodeList": [],
+  "worldObjectNodeList": [
+    {
+      "remark": "空气墙",
+      "worldObjectName": "none",
+      "locationList": [
+        {
+          "x": 10,
+          "y": 8
+        }
+      ]
+    }
+  ],
   "npcNodeList": []
 }

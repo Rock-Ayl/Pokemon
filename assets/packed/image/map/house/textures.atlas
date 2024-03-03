@@ -1,26 +1,40 @@
 
 textures.png
-size: 128, 256
+size: 512, 256
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-ruby_house
+little_root_house_in_ruby
   rotate: false
   xy: 2, 84
+  size: 176, 144
+  orig: 176, 144
+  offset: 0, 0
+  index: 1
+little_root_house_in_ruby
+  rotate: false
+  xy: 180, 100
+  size: 144, 128
+  orig: 144, 128
+  offset: 0, 0
+  index: 2
+ruby_house
+  rotate: false
+  xy: 326, 148
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 sapphire_house
   rotate: false
-  xy: 2, 2
+  xy: 408, 148
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 xiao_tian_juan_doctor_house
   rotate: false
-  xy: 2, 166
+  xy: 2, 2
   size: 112, 80
   orig: 112, 80
   offset: 0, 0

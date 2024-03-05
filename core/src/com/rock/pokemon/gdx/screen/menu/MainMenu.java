@@ -56,7 +56,7 @@ public class MainMenu implements Screen {
         //如果点击屏幕 或 按回车
         if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
             //进入未白镇
-            this.game.setScreen(new LittleRoot(this.game));
+            this.game.setScreen(new LittleRoot(this.game, 19, 18));
             //销毁当前资源
             this.dispose();
         }

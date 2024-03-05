@@ -82,9 +82,11 @@ public class LittleRoot implements Screen {
     /**
      * 初始化/进入未白镇
      *
-     * @param pokemon 游戏对象
+     * @param pokemon     游戏对象
+     * @param adventurerX 主角要进入本世界的初始坐标 x
+     * @param adventurerY 主角要进入本世界的初始坐标 y
      */
-    public LittleRoot(final Pokemon pokemon) {
+    public LittleRoot(final Pokemon pokemon, int adventurerX, int adventurerY) {
 
         /**
          * 基本
@@ -112,13 +114,13 @@ public class LittleRoot implements Screen {
         this.worldRenderer = new WorldRenderer(this.world);
 
         /**
-         * 主角加入世界
+         * 生成主角,并加入世界
          */
 
         //获取npc配置文件
         NpcMapConfig adventurerNpcMapConfig = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
         //初始化主角
-        this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get(this.game.getSaveManager().getAdventurerNpcMapConfigName()), this.world, 19, 18, this.game);
+        this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get(this.game.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.game);
 
         /**
          * UI

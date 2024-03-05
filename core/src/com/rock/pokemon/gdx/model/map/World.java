@@ -43,11 +43,11 @@ public class World {
     /**
      * 初始化世界
      *
-     * @param game          游戏对象
-     * @param town          城镇对象
-     * @param mapConfigPath 世界配置路径
+     * @param game               游戏对象
+     * @param town               城镇对象
+     * @param worldMapConfigPath 世界配置路径
      */
-    public World(Pokemon game, LittleRoot town, String mapConfigPath) {
+    public World(Pokemon game, LittleRoot town, String worldMapConfigPath) {
 
         /**
          * 记录
@@ -61,7 +61,7 @@ public class World {
          */
 
         //读取世界配置
-        WorldMapConfig worldMapConfig = game.getAssetManager().get(mapConfigPath, WorldMapConfig.class);
+        WorldMapConfig worldMapConfig = game.getAssetManager().get(worldMapConfigPath, WorldMapConfig.class);
 
         //读取事物配置
         WorldObjectMapConfig worldObjectMapConfig = game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);

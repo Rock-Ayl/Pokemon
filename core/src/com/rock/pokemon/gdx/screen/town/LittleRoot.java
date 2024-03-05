@@ -103,7 +103,7 @@ public class LittleRoot implements Screen {
         this.music.setLooping(true);
 
         /**
-         * 世界
+         * 生成世界
          */
 
         //初始化世界-未白镇
@@ -112,10 +112,10 @@ public class LittleRoot implements Screen {
         this.worldRenderer = new WorldRenderer(this.world);
 
         /**
-         * 主角相关
+         * 主角加入世界
          */
 
-        //读取主角配置
+        //获取npc配置文件
         NpcMapConfig adventurerNpcMapConfig = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
         //初始化主角
         this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get("ruby_1"), this.world, 19, 18, this.game);

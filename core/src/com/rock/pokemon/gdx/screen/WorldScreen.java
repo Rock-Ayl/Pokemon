@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.screen.town;
+package com.rock.pokemon.gdx.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -23,13 +23,13 @@ import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 
 /**
- * 通用世界屏幕
+ * 屏幕 通用世界
  *
  * @Author ayl
  * @Date 2022-10-15
  */
 @Getter
-public class LittleRoot implements Screen {
+public class WorldScreen implements Screen {
 
     //游戏对象
     private final Pokemon game;
@@ -87,7 +87,7 @@ public class LittleRoot implements Screen {
      * @param adventurerX        主角要进入本世界的初始坐标 x
      * @param adventurerY        主角要进入本世界的初始坐标 y
      */
-    public LittleRoot(final Pokemon pokemon, String worldMapConfigPath, int adventurerX, int adventurerY) {
+    public WorldScreen(final Pokemon pokemon, String worldMapConfigPath, int adventurerX, int adventurerY) {
 
         /**
          * 基本

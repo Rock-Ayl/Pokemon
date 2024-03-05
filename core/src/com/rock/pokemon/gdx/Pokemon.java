@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.manager.SaveManager;
 import com.rock.pokemon.gdx.model.manager.SoundManager;
-import com.rock.pokemon.gdx.screen.menu.MainMenu;
+import com.rock.pokemon.gdx.screen.MainMenuScreen;
 import com.rock.pokemon.gdx.ui.loading.AssetManagerLoading;
 import com.rock.pokemon.gdx.ui.loading.SkinLoading;
 import com.rock.pokemon.gdx.ui.loading.TextLoading;
@@ -87,7 +87,7 @@ public class Pokemon extends Game {
          */
 
         //进入主菜单
-        this.setScreen(new MainMenu(this));
+        this.setScreen(new MainMenuScreen(this));
 
     }
 

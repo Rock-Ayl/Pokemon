@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.screen.menu;
+package com.rock.pokemon.gdx.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -7,15 +7,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.FilePaths;
-import com.rock.pokemon.gdx.screen.town.LittleRoot;
 
 /**
- * 主菜单界面
+ * 屏幕 主菜单界面
  *
  * @Author ayl
  * @Date 2022-10-15
  */
-public class MainMenu implements Screen {
+public class MainMenuScreen implements Screen {
 
     //游戏对象
     private Pokemon game;
@@ -25,7 +24,7 @@ public class MainMenu implements Screen {
      *
      * @param pokemon 游戏对象
      */
-    public MainMenu(Pokemon pokemon) {
+    public MainMenuScreen(Pokemon pokemon) {
         //记录游戏对象
         this.game = pokemon;
     }
@@ -57,7 +56,7 @@ public class MainMenu implements Screen {
         //如果点击屏幕 或 按回车
         if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
             //进入 未白镇 指定位置
-            this.game.setScreen(new LittleRoot(this.game, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, 19, 18));
+            this.game.setScreen(new WorldScreen(this.game, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, 19, 18));
             //销毁当前资源
             this.dispose();
         }

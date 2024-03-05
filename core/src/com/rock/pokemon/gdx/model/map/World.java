@@ -9,7 +9,7 @@ import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
-import com.rock.pokemon.gdx.screen.town.LittleRoot;
+import com.rock.pokemon.gdx.screen.WorldScreen;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
@@ -29,7 +29,7 @@ import java.util.Optional;
 public class World {
 
     //todo 世界上一层的城镇,目前先写死这个吧
-    private LittleRoot town;
+    private WorldScreen town;
 
     //地图网格本身
     private TileMap tileMap;
@@ -47,7 +47,7 @@ public class World {
      * @param town               城镇对象
      * @param worldMapConfigPath 世界配置路径
      */
-    public World(Pokemon game, LittleRoot town, String worldMapConfigPath) {
+    public World(Pokemon game, WorldScreen town, String worldMapConfigPath) {
 
         /**
          * 记录

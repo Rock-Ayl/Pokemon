@@ -112,7 +112,7 @@ public class Person implements YSortable {
         //游戏对象
         this.game = game;
 
-        //设置当前任务所在坐标
+        //设置当前人物所在坐标
         this.x = x;
         this.y = y;
         this.worldX = x;

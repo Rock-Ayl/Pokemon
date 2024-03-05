@@ -28,8 +28,8 @@ import java.util.Optional;
 @Setter
 public class World {
 
-    //todo 世界上一层的城镇,目前先写死这个吧
-    private WorldScreen town;
+    //对应上层世界屏幕
+    private WorldScreen worldScreen;
 
     //地图网格本身
     private TileMap tileMap;
@@ -44,17 +44,17 @@ public class World {
      * 初始化世界
      *
      * @param game               游戏对象
-     * @param town               城镇对象
+     * @param worldScreen        世界对应屏幕
      * @param worldMapConfigPath 世界配置路径
      */
-    public World(Pokemon game, WorldScreen town, String worldMapConfigPath) {
+    public World(Pokemon game, WorldScreen worldScreen, String worldMapConfigPath) {
 
         /**
          * 记录
          */
 
-        //记录城镇
-        this.town = town;
+        //记录世界对应屏幕
+        this.worldScreen = worldScreen;
 
         /**
          * 读取各种配置

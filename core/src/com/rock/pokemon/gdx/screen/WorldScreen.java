@@ -18,7 +18,7 @@ import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
-import com.rock.pokemon.gdx.screen.renderer.WorldRenderer;
+import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 

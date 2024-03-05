@@ -1,6 +1,4 @@
-package com.rock.pokemon.gdx.screen.renderer;
-
-import com.rock.pokemon.gdx.model.map.YSortable;
+package com.rock.pokemon.gdx.model.map.renderer;
 
 import java.util.Comparator;
 

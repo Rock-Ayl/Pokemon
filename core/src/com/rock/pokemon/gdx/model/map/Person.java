@@ -8,6 +8,7 @@ import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
+import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;

@@ -1,11 +1,10 @@
-package com.rock.pokemon.gdx.screen.renderer;
+package com.rock.pokemon.gdx.model.map.renderer;
 
 import com.rock.pokemon.gdx.Pokemon;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
-import com.rock.pokemon.gdx.model.map.YSortable;
 
 import java.util.ArrayList;
 import java.util.List;

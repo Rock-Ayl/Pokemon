@@ -23,7 +23,7 @@ import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 
 /**
- * 未白镇(开局城镇)
+ * 通用世界屏幕
  *
  * @Author ayl
  * @Date 2022-10-15
@@ -70,23 +70,24 @@ public class LittleRoot implements Screen {
      * 世界
      */
 
-    //未白镇的世界实体
+    //世界实体
     private World world;
 
-    //未白镇的世界渲染器
+    //世界渲染器
     private WorldRenderer worldRenderer;
 
     //主角实体
     private Person adventurer;
 
     /**
-     * 初始化/进入未白镇
+     * 初始化世界、主角进入世界指定位置
      *
-     * @param pokemon     游戏对象
-     * @param adventurerX 主角要进入本世界的初始坐标 x
-     * @param adventurerY 主角要进入本世界的初始坐标 y
+     * @param pokemon            游戏对象
+     * @param worldMapConfigPath 世界配置路径
+     * @param adventurerX        主角要进入本世界的初始坐标 x
+     * @param adventurerY        主角要进入本世界的初始坐标 y
      */
-    public LittleRoot(final Pokemon pokemon, int adventurerX, int adventurerY) {
+    public LittleRoot(final Pokemon pokemon, String worldMapConfigPath, int adventurerX, int adventurerY) {
 
         /**
          * 基本
@@ -99,7 +100,7 @@ public class LittleRoot implements Screen {
          * 音乐
          */
 
-        //初始化未白镇背景音乐音乐
+        //固定背景音乐
         this.music = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
         //音乐循环播放
         this.music.setLooping(true);
@@ -108,8 +109,8 @@ public class LittleRoot implements Screen {
          * 生成世界
          */
 
-        //初始化世界-未白镇
-        this.world = new World(this.game, this, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT);
+        //初始化世界
+        this.world = new World(this.game, this, worldMapConfigPath);
         //初始化世界渲染器
         this.worldRenderer = new WorldRenderer(this.world);
 

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 世界对象,代表一个世界(比如未白镇)
+ * 世界对象,代表一个世界
  *
  * @Author ayl
  * @Date 2022-10-21

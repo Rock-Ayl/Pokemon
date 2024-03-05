@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.screen.town.LittleRoot;
 
 /**
@@ -55,8 +56,8 @@ public class MainMenu implements Screen {
 
         //如果点击屏幕 或 按回车
         if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-            //进入未白镇
-            this.game.setScreen(new LittleRoot(this.game, 19, 18));
+            //进入 未白镇 指定位置
+            this.game.setScreen(new LittleRoot(this.game, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, 19, 18));
             //销毁当前资源
             this.dispose();
         }

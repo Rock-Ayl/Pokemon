@@ -40,7 +40,7 @@ public class MyAssetManager {
     }
 
     /**
-     * 初始化一个资源管理器,并载入资源
+     * 初始化一个 原生资源管理器 ,并载入资源
      *
      * @return
      */

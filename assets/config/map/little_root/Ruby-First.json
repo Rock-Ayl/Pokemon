@@ -3,6 +3,7 @@
   "remark": "未白镇-路比家房子(左边的那个房子)-地图配置-1层",
   "width": 11,
   "height": 9,
+  "bgmPath": null,
   "tileNodeList": [
     {
       "remark": "下层",

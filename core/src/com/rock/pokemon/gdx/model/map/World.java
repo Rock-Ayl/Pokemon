@@ -3,7 +3,6 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.Pokemon;
-import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
@@ -60,7 +59,7 @@ public class World {
          */
 
         //读取事物配置
-        WorldObjectMapConfig worldObjectMapConfig = game.getMyAssetManager().getWorldObjectMapConfig(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT);
+        WorldObjectMapConfig worldObjectMapConfig = game.getMyAssetManager().getWorldObjectMapConfig();
 
         //读取npc配置
         NpcMapConfig npcMapConfig = game.getMyAssetManager().getNpcMapConfig();

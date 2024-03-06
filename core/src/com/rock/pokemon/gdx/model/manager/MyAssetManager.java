@@ -133,11 +133,10 @@ public class MyAssetManager {
     /**
      * 获取 事物 配置类实体
      *
-     * @param fileName
      * @return
      */
-    public WorldObjectMapConfig getWorldObjectMapConfig(String fileName) {
-        return this.assetManager.get(fileName, WorldObjectMapConfig.class);
+    public WorldObjectMapConfig getWorldObjectMapConfig() {
+        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
     }
 
     /**

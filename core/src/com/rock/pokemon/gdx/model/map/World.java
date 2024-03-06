@@ -114,18 +114,15 @@ public class World {
                     .orElse(null);
 
             /**
-             * 填充地图块
+             * 填充所有地图块
              */
 
-            //获取坐标列表
-            List<WorldMapConfig.Location> locationList = tileNode.getLocationList();
-            //如果没有则填充所有、有则按照指定的填充
-            if (CollectionUtils.isEmpty(locationList)) {
-
-                /**
-                 * 填充所有地图块
-                 */
-
+            //是否填充所有的地图,默认false
+            boolean fillAllMap = Optional.ofNullable(tileNode)
+                    .map(WorldMapConfig.TileNode::getFillAllMap)
+                    .orElse(false);
+            //如果要填充所有
+            if (fillAllMap == true) {
                 //循环1
                 for (int x = 0; x < worldMapConfig.getWidth(); x++) {
                     //循环2
@@ -146,13 +143,16 @@ public class World {
                         }
                     }
                 }
+            }
 
-            } else {
+            /**
+             * 填充指定地图块
+             */
 
-                /**
-                 * 填充指定地图块
-                 */
-
+            //获取坐标列表
+            List<WorldMapConfig.Location> locationList = tileNode.getLocationList();
+            //如果存在指定
+            if (CollectionUtils.isNotEmpty(locationList)) {
                 //循环
                 for (WorldMapConfig.Location location : locationList) {
                     //设置图片
@@ -170,8 +170,8 @@ public class World {
                         tile.setHeight(height);
                     }
                 }
-
             }
+
         }
 
         /**

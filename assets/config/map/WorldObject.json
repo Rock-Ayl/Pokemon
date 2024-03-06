@@ -3,6 +3,7 @@
   "worldObjectMap": {
     "none": {
       "remark": "空气墙",
+      "filePath": null,
       "width": 1,
       "height": 1,
       "walkable": false,

@@ -127,20 +127,8 @@ public class World {
                 for (int x = 0; x < worldMapConfig.getWidth(); x++) {
                     //循环2
                     for (int y = 0; y < worldMapConfig.getHeight(); y++) {
-                        //设置地图块
-                        Tile tile = this.tileMap.getMap()[x][y];
-                        //设置图片
-                        tile.setImage(image);
-                        //如果需要覆盖宽度
-                        if (width != null) {
-                            //覆盖
-                            tile.setWidth(width);
-                        }
-                        //如果需要覆盖高度
-                        if (height != null) {
-                            //覆盖
-                            tile.setHeight(height);
-                        }
+                        //设置图片,宽高
+                        this.tileMap.getMap()[x][y].setImage(image, width, height);
                     }
                 }
             }
@@ -155,20 +143,8 @@ public class World {
             if (CollectionUtils.isNotEmpty(locationList)) {
                 //循环
                 for (WorldMapConfig.Location location : locationList) {
-                    //设置图片
-                    Tile tile = this.tileMap.getMap()[location.getX()][location.getY()];
-                    //设置图片
-                    tile.setImage(image);
-                    //如果需要覆盖宽度
-                    if (width != null) {
-                        //覆盖
-                        tile.setWidth(width);
-                    }
-                    //如果需要覆盖高度
-                    if (height != null) {
-                        //覆盖
-                        tile.setHeight(height);
-                    }
+                    //设置图片,宽高
+                    this.tileMap.getMap()[location.getX()][location.getY()].setImage(image, width, height);
                 }
             }
 

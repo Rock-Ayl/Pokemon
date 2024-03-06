@@ -45,6 +45,28 @@ public class Tile implements YSortable {
     }
 
     /**
+     * 设置图片、以及图片宽高
+     *
+     * @param image  图片帧
+     * @param width  指定宽,选填
+     * @param height 指定高,选填
+     */
+    public void setImage(TextureRegion image, Float width, Float height) {
+        //覆盖/指定 图片
+        this.image = image;
+        //如果需要覆盖宽度
+        if (width != null) {
+            //覆盖
+            this.width = width;
+        }
+        //如果需要覆盖高度
+        if (height != null) {
+            //覆盖
+            this.height = height;
+        }
+    }
+
+    /**
      * 如果是同一个人,删除之
      *
      * @param person

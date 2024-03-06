@@ -1,11 +1,11 @@
 package com.rock.pokemon.gdx;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.manager.MySoundManager;
 import com.rock.pokemon.gdx.model.manager.SaveManager;
 import com.rock.pokemon.gdx.screen.MainMenuScreen;
@@ -33,7 +33,7 @@ public class Pokemon extends Game {
     private SpriteBatch batch;
 
     //资源管理器
-    private AssetManager assetManager;
+    private MyAssetManager myAssetManager;
 
     //音效管理器
     private MySoundManager mySoundManager;
@@ -63,7 +63,7 @@ public class Pokemon extends Game {
         this.batch = new SpriteBatch();
 
         //初始化资源管理器,并载入资源
-        this.assetManager = AssetManagerLoading.initAssetManager();
+        this.myAssetManager = new MyAssetManager(AssetManagerLoading.initAssetManager());
 
         //初始化通用音效
         this.mySoundManager = new MySoundManager();
@@ -72,7 +72,7 @@ public class Pokemon extends Game {
         this.saveManager = new SaveManager();
 
         //初始化皮肤,并载入资源
-        this.skin = SkinLoading.initSkin(this.getAssetManager());
+        this.skin = SkinLoading.initSkin(this.getMyAssetManager());
 
         //使用默认字体
         this.font = new BitmapFont();
@@ -105,7 +105,7 @@ public class Pokemon extends Game {
     public void dispose() {
         this.batch.dispose();
         this.font.dispose();
-        this.assetManager.dispose();
+        this.myAssetManager.dispose();
     }
 
 }

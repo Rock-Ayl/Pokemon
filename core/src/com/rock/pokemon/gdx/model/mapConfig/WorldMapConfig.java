@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * 世界配置类实体
+ * 世界 配置类实体
  *
  * @Author ayl
  * @Date 2023-09-13

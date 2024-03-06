@@ -1,10 +1,9 @@
 package com.rock.pokemon.gdx.model.map;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
+import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
 import lombok.Getter;
@@ -56,12 +55,12 @@ public class WorldObject implements YSortable {
     /**
      * 通过配置的初始化方式
      *
-     * @param assetManager 资源管理器
-     * @param mapNode      事物配置类
-     * @param x            坐标x
-     * @param y            坐标y
+     * @param myAssetManager 资源管理器
+     * @param mapNode        事物配置类
+     * @param x              坐标x
+     * @param y              坐标y
      */
-    public WorldObject(AssetManager assetManager, WorldObjectMapConfig.WorldObjectMapNode mapNode, int x, int y) {
+    public WorldObject(MyAssetManager myAssetManager, WorldObjectMapConfig.WorldObjectMapNode mapNode, int x, int y) {
 
         //坐标
         this.x = x;
@@ -98,11 +97,11 @@ public class WorldObject implements YSortable {
             //判断是动画还是静态
             if (mapNode.getFrameDuration() == null) {
                 //读取图片资源
-                this.texture = assetManager.get(filePath, TextureAtlas.class).findRegion(mapNode.getRegionName());
+                this.texture = myAssetManager.getTextureAtlas(filePath).findRegion(mapNode.getRegionName());
             } else {
                 //读取动画资源,暂时默认动画模式
                 this.animation = new Animation<>(mapNode.getFrameDuration(),
-                        assetManager.get(filePath, TextureAtlas.class).findRegions(mapNode.getRegionName()),
+                        myAssetManager.getTextureAtlas(filePath).findRegions(mapNode.getRegionName()),
                         Animation.PlayMode.LOOP_PINGPONG);
             }
         }

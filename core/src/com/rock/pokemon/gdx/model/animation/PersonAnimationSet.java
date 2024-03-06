@@ -1,12 +1,12 @@
 package com.rock.pokemon.gdx.model.animation;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
-import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
+import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.map.Person;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,10 +40,10 @@ public class PersonAnimationSet {
     /**
      * 根据人物枚举初始化动画集合
      *
-     * @param assetManager 资源管理器
-     * @param npcMapNode   npc配置
+     * @param myAssetManager 资源管理器
+     * @param npcMapNode     npc配置
      */
-    public PersonAnimationSet(AssetManager assetManager, NpcMapNode npcMapNode) {
+    public PersonAnimationSet(MyAssetManager myAssetManager, NpcMapNode npcMapNode) {
 
         //获取动画资源文件
         String walkFilePath = Optional.ofNullable(npcMapNode)
@@ -57,9 +57,9 @@ public class PersonAnimationSet {
                 .orElse("");
 
         //获取动画资源,没有也无所谓,毕竟不是所有人都有主角那么多的动作
-        TextureAtlas walkTextureAtlas = assetManager.get(walkFilePath, TextureAtlas.class, false);
-        TextureAtlas standTextureAtlas = assetManager.get(standFilePath, TextureAtlas.class, false);
-        TextureAtlas runTextureAtlas = assetManager.get(runFilePath, TextureAtlas.class, false);
+        TextureAtlas walkTextureAtlas = myAssetManager.getTextureAtlas(walkFilePath, false);
+        TextureAtlas standTextureAtlas = myAssetManager.getTextureAtlas(standFilePath, false);
+        TextureAtlas runTextureAtlas = myAssetManager.getTextureAtlas(runFilePath, false);
 
         //初始化走路map
         this.walkingMap = new HashMap<>();

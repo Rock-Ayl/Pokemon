@@ -1,7 +1,6 @@
 package com.rock.pokemon.gdx.ui.loading;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -10,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 
 /**
  * 皮肤载入
@@ -19,10 +19,10 @@ public class SkinLoading {
     /**
      * 初始化一个皮肤,并载入资源
      *
-     * @param assetManager 资源管理器
+     * @param myAssetManager 资源管理器
      * @return
      */
-    public static Skin initSkin(AssetManager assetManager) {
+    public static Skin initSkin(MyAssetManager myAssetManager) {
 
         //初始化皮肤
         Skin skin = new Skin();
@@ -32,7 +32,7 @@ public class SkinLoading {
          */
 
         //获取ui资源
-        TextureAtlas uiAtlas = assetManager.get(FilePaths.TEXTURES_ALTA_UI + FilePaths.TEXTURES_ATLAS_FILE_NAME);
+        TextureAtlas uiAtlas = myAssetManager.getTextureAtlas(FilePaths.TEXTURES_ALTA_UI + FilePaths.TEXTURES_ATLAS_FILE_NAME);
 
         /**
          * ui 对话框

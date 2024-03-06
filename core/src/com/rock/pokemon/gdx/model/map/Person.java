@@ -9,7 +9,6 @@ import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
-import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNodeEvent;
@@ -127,7 +126,7 @@ public class Person implements YSortable {
         this.facingState = DirectionEnum.SOUTH;
 
         //初始化人物动画集合
-        this.animationSet = new PersonAnimationSet(this.game.getAssetManager(), npcMapNode);
+        this.animationSet = new PersonAnimationSet(this.game.getMyAssetManager(), npcMapNode);
 
         //记录事件列表
         this.eventList = npcMapNode.getEventList();
@@ -230,7 +229,7 @@ public class Person implements YSortable {
         }
 
         //读取事件配置
-        BoxMapNode talkTestNode = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class).getBoxMap().get(event.getBoxName());
+        BoxMapNode talkTestNode = this.game.getMyAssetManager().getBoxMapConfig(FilePaths.MAP_CONFIG_PATH_OF_BOX).getBoxMap().get(event.getBoxName());
         //这里直接用事件
         dialogueAndOptionBox.reset(talkTestNode);
         //开启

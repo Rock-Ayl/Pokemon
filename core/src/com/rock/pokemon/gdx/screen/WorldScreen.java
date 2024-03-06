@@ -102,7 +102,7 @@ public class WorldScreen implements Screen {
          */
 
         //读取世界配置
-        WorldMapConfig worldMapConfig = game.getAssetManager().get(worldMapConfigPath, WorldMapConfig.class);
+        WorldMapConfig worldMapConfig = game.getMyAssetManager().getWorldMapConfig(worldMapConfigPath);
         //初始化世界
         this.world = new World(this.game, this, worldMapConfig);
         //初始化世界渲染器
@@ -113,7 +113,7 @@ public class WorldScreen implements Screen {
          */
 
         //获取npc配置文件
-        NpcMapConfig adventurerNpcMapConfig = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
+        NpcMapConfig adventurerNpcMapConfig = this.game.getMyAssetManager().getNpcMapConfig(FilePaths.MAP_CONFIG_PATH_OF_NPC);
         //初始化主角
         this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get(this.game.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.game);
 

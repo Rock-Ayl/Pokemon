@@ -1,6 +1,5 @@
 package com.rock.pokemon.gdx.model.map;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.Pokemon;
@@ -61,10 +60,10 @@ public class World {
          */
 
         //读取事物配置
-        WorldObjectMapConfig worldObjectMapConfig = game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
+        WorldObjectMapConfig worldObjectMapConfig = game.getMyAssetManager().getWorldObjectMapConfig(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT);
 
         //读取npc配置
-        NpcMapConfig npcMapConfig = game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
+        NpcMapConfig npcMapConfig = game.getMyAssetManager().getNpcMapConfig(FilePaths.MAP_CONFIG_PATH_OF_NPC);
 
         /**
          * 初始化 地图网格、地图块本身
@@ -94,8 +93,8 @@ public class World {
 
             //获取图片对象
             TextureRegion image = game
-                    .getAssetManager()
-                    .get(tileNode.getFilePath(), TextureAtlas.class)
+                    .getMyAssetManager()
+                    .getTextureAtlas(tileNode.getFilePath())
                     .findRegion(tileNode.getRegionName());
             //如果没有图片
             if (image == null) {
@@ -160,7 +159,7 @@ public class World {
             //循环坐标列表
             for (WorldMapConfig.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
-                WorldObject worldObject = new WorldObject(game.getAssetManager(), worldObjectNodeConfig, location.getX(), location.getY());
+                WorldObject worldObject = new WorldObject(game.getMyAssetManager(), worldObjectNodeConfig, location.getX(), location.getY());
                 //加入到世界
                 this.addWorldObject(worldObject);
             }

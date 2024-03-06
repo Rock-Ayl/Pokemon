@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 事物配置类实体
+ * 事物 配置类实体
  *
  * @Author ayl
  * @Date 2023-09-15

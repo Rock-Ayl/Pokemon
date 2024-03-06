@@ -198,7 +198,7 @@ public class World {
          */
 
         //循环世界事务节点
-        for (WorldMapConfig.WorldMapNode npcNode : worldMapConfig.getNpcNodeList()) {
+        for (WorldMapConfig.NpcNode npcNode : worldMapConfig.getNpcNodeList()) {
             //获取npc名称
             String npcName = npcNode.getNpcName();
             //读取对应npc配置

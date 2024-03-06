@@ -34,7 +34,7 @@ public class WorldMapConfig {
     private List<WorldMapNode> worldObjectNodeList;
 
     //npc节点列表
-    private List<WorldMapNode> npcNodeList;
+    private List<NpcNode> npcNodeList;
 
     /**
      * 地图块节点实体
@@ -87,6 +87,24 @@ public class WorldMapConfig {
 
         //事物名称
         private String worldObjectName;
+
+        //npc名称
+        private String npcName;
+
+        //坐标列表
+        private List<Location> locationList;
+
+    }
+
+    /**
+     * npc节点实体
+     */
+    @Getter
+    @Setter
+    public static class NpcNode {
+
+        //节点备注
+        private String remark;
 
         //npc名称
         private String npcName;

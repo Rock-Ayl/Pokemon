@@ -17,8 +17,9 @@ import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.World;
-import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
+import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
+import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 
@@ -97,20 +98,13 @@ public class WorldScreen implements Screen {
         this.game = pokemon;
 
         /**
-         * 音乐
-         */
-
-        //固定背景音乐
-        this.music = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
-        //音乐循环播放
-        this.music.setLooping(true);
-
-        /**
          * 生成世界
          */
 
+        //读取世界配置
+        WorldMapConfig worldMapConfig = game.getAssetManager().get(worldMapConfigPath, WorldMapConfig.class);
         //初始化世界
-        this.world = new World(this.game, this, worldMapConfigPath);
+        this.world = new World(this.game, this, worldMapConfig);
         //初始化世界渲染器
         this.worldRenderer = new WorldRenderer(this.world);
 
@@ -122,6 +116,15 @@ public class WorldScreen implements Screen {
         NpcMapConfig adventurerNpcMapConfig = this.game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
         //初始化主角
         this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get(this.game.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.game);
+
+        /**
+         * 世界音乐
+         */
+
+        //固定背景音乐
+        this.music = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
+        //音乐循环播放
+        this.music.setLooping(true);
 
         /**
          * UI

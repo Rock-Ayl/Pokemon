@@ -43,11 +43,11 @@ public class World {
     /**
      * 初始化世界
      *
-     * @param game               游戏对象
-     * @param worldScreen        世界对应屏幕
-     * @param worldMapConfigPath 世界配置路径
+     * @param game           游戏对象
+     * @param worldScreen    世界对应屏幕
+     * @param worldMapConfig 世界配置
      */
-    public World(Pokemon game, WorldScreen worldScreen, String worldMapConfigPath) {
+    public World(Pokemon game, WorldScreen worldScreen, WorldMapConfig worldMapConfig) {
 
         /**
          * 记录
@@ -59,9 +59,6 @@ public class World {
         /**
          * 读取各种配置
          */
-
-        //读取世界配置
-        WorldMapConfig worldMapConfig = game.getAssetManager().get(worldMapConfigPath, WorldMapConfig.class);
 
         //读取事物配置
         WorldObjectMapConfig worldObjectMapConfig = game.getAssetManager().get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);

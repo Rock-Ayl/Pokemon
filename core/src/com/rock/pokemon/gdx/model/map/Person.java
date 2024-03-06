@@ -3,7 +3,6 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.Pokemon;
-import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
@@ -229,7 +228,7 @@ public class Person implements YSortable {
         }
 
         //读取事件配置
-        BoxMapNode talkTestNode = this.game.getMyAssetManager().getBoxMapConfig(FilePaths.MAP_CONFIG_PATH_OF_BOX).getBoxMap().get(event.getBoxName());
+        BoxMapNode talkTestNode = this.game.getMyAssetManager().getBoxMapConfig().getBoxMap().get(event.getBoxName());
         //这里直接用事件
         dialogueAndOptionBox.reset(talkTestNode);
         //开启

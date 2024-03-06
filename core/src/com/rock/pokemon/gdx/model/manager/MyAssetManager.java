@@ -143,21 +143,19 @@ public class MyAssetManager {
     /**
      * 获取 Npc 配置类实体
      *
-     * @param fileName
      * @return
      */
-    public NpcMapConfig getNpcMapConfig(String fileName) {
-        return this.assetManager.get(fileName, NpcMapConfig.class);
+    public NpcMapConfig getNpcMapConfig() {
+        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
     }
 
     /**
      * 获取 Box 配置类实体
      *
-     * @param fileName
      * @return
      */
-    public BoxMapConfig getBoxMapConfig(String fileName) {
-        return this.assetManager.get(fileName, BoxMapConfig.class);
+    public BoxMapConfig getBoxMapConfig() {
+        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
     }
 
     /**

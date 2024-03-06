@@ -63,7 +63,7 @@ public class World {
         WorldObjectMapConfig worldObjectMapConfig = game.getMyAssetManager().getWorldObjectMapConfig(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT);
 
         //读取npc配置
-        NpcMapConfig npcMapConfig = game.getMyAssetManager().getNpcMapConfig(FilePaths.MAP_CONFIG_PATH_OF_NPC);
+        NpcMapConfig npcMapConfig = game.getMyAssetManager().getNpcMapConfig();
 
         /**
          * 初始化 地图网格、地图块本身

@@ -113,7 +113,7 @@ public class WorldScreen implements Screen {
          */
 
         //获取npc配置文件
-        NpcMapConfig adventurerNpcMapConfig = this.game.getMyAssetManager().getNpcMapConfig(FilePaths.MAP_CONFIG_PATH_OF_NPC);
+        NpcMapConfig adventurerNpcMapConfig = this.game.getMyAssetManager().getNpcMapConfig();
         //初始化主角
         this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get(this.game.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.game);
 

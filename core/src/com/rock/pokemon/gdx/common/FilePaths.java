@@ -41,7 +41,7 @@ public class FilePaths {
     public static final String TEXTURES_ALTA_UI = "assets/packed/image/ui/";
 
     /**
-     * 世界配置
+     * 非通用 世界配置
      */
 
     //配置文件路径-未白镇地图
@@ -49,6 +49,10 @@ public class FilePaths {
     //配置文件路径-未白镇-路比家
     public static final String MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_FIRST = "assets/config/map/little_root/Ruby-First.json";
     public static final String MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_SECOND = "assets/config/map/little_root/Ruby-SECOND.json";
+
+    /**
+     * 通用 世界配置
+     */
 
     //配置文件路径-事物
     public static final String MAP_CONFIG_PATH_OF_WORLD_OBJECT = "assets/config/map/WorldObject.json";

@@ -27,6 +27,9 @@ public class WorldMapConfig {
     //世界高
     private Integer height;
 
+    //bgm地址
+    private String bgmPath;
+
     //地图块节点列表
     private List<TileNode> tileNodeList;
 

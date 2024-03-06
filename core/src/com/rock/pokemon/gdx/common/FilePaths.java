@@ -58,13 +58,6 @@ public class FilePaths {
     public static final String MAP_CONFIG_PATH_OF_BOX = "assets/config/map/Box.json";
 
     /**
-     * 音乐
-     */
-
-    //未白镇Bgm
-    public static final String LITTLE_ROOT_BGM = "audio/music/LittleRoot.mp3";
-
-    /**
      * 音效
      */
 

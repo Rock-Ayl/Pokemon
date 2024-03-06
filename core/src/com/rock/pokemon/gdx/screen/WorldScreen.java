@@ -121,10 +121,13 @@ public class WorldScreen implements Screen {
          * 世界音乐
          */
 
-        //固定背景音乐
-        this.music = Gdx.audio.newMusic(Gdx.files.internal(FilePaths.LITTLE_ROOT_BGM));
-        //音乐循环播放
-        this.music.setLooping(true);
+        //如果有背景音乐
+        if (worldMapConfig.getBgmPath() != null) {
+            //初始化背景音乐
+            this.music = Gdx.audio.newMusic(Gdx.files.internal(worldMapConfig.getBgmPath()));
+            //循环播放
+            this.music.setLooping(true);
+        }
 
         /**
          * UI
@@ -169,11 +172,17 @@ public class WorldScreen implements Screen {
 
     }
 
+    /**
+     * 当画面显示时
+     */
     @Override
     public void show() {
-        //当显示画面时,立即播放音乐
-        this.music.play();
-        //当显示画面时,开始监控键盘控制
+        //如果有背景音乐
+        if (this.music != null) {
+            //播放
+            this.music.play();
+        }
+        //开始监控键盘控制
         Gdx.input.setInputProcessor(this.inputMultiplexer);
     }
 
@@ -242,7 +251,12 @@ public class WorldScreen implements Screen {
 
     @Override
     public void dispose() {
-        this.music.dispose();
+        //如果有背景音乐
+        if (this.music != null) {
+            //销毁
+            this.music.dispose();
+        }
+        //销毁ui
         this.uiStage.dispose();
     }
 

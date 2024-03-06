@@ -9,7 +9,6 @@ import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.manager.MySoundManager;
 import com.rock.pokemon.gdx.model.manager.SaveManager;
 import com.rock.pokemon.gdx.screen.MainMenuScreen;
-import com.rock.pokemon.gdx.ui.loading.AssetManagerLoading;
 import com.rock.pokemon.gdx.ui.loading.SkinLoading;
 import com.rock.pokemon.gdx.ui.loading.TextLoading;
 import lombok.Getter;
@@ -63,7 +62,7 @@ public class Pokemon extends Game {
         this.batch = new SpriteBatch();
 
         //初始化资源管理器,并载入资源
-        this.myAssetManager = new MyAssetManager(AssetManagerLoading.initAssetManager());
+        this.myAssetManager = new MyAssetManager();
 
         //初始化通用音效
         this.mySoundManager = new MySoundManager();

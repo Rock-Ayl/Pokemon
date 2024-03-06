@@ -522,19 +522,19 @@ public class Person implements YSortable {
     }
 
     public float getWorldX() {
-        return worldX;
+        return this.worldX;
     }
 
     public float getWorldY() {
-        return worldY;
+        return this.worldY;
     }
 
     public float getWidth() {
-        return width;
+        return this.width;
     }
 
     public float getHeight() {
-        return height;
+        return this.height;
     }
 
 }

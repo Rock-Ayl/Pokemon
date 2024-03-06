@@ -8,6 +8,7 @@
       "remark": "下层",
       "filePath": "assets/packed/image/map/house/textures.atlas",
       "regionName": "little_root_house_in_ruby_first",
+      "fillAllMap": false,
       "width": 11,
       "height": 9,
       "locationList": [

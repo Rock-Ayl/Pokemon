@@ -21,6 +21,9 @@ public class WorldMapConfig {
     //世界备注
     private String remark;
 
+    //是否填充所有的地图,默认false
+    private Boolean fillAllMap;
+
     //世界宽
     private Integer width;
 

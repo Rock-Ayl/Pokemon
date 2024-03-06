@@ -89,27 +89,28 @@ public class World {
          */
 
         //循环地图节点
-        for (WorldMapConfig.WorldMapNode tileMapNode : worldMapConfig.getTileNodeList()) {
+        for (WorldMapConfig.TileNode tileNode : worldMapConfig.getTileNodeList()) {
 
             /**
              * 获取当前地图块图片
              */
 
             //获取图片对象
-            TextureRegion image = game.getAssetManager()
-                    .get(tileMapNode.getFilePath(), TextureAtlas.class)
-                    .findRegion(tileMapNode.getRegionName());
+            TextureRegion image = game
+                    .getAssetManager()
+                    .get(tileNode.getFilePath(), TextureAtlas.class)
+                    .findRegion(tileNode.getRegionName());
             //如果没有图片
             if (image == null) {
                 //本轮过
                 continue;
             }
             //获取地图块宽高
-            Float width = Optional.ofNullable(tileMapNode)
-                    .map(WorldMapConfig.WorldMapNode::getWidth)
+            Float width = Optional.ofNullable(tileNode)
+                    .map(WorldMapConfig.TileNode::getWidth)
                     .orElse(null);
-            Float height = Optional.ofNullable(tileMapNode)
-                    .map(WorldMapConfig.WorldMapNode::getHeight)
+            Float height = Optional.ofNullable(tileNode)
+                    .map(WorldMapConfig.TileNode::getHeight)
                     .orElse(null);
 
             /**
@@ -117,7 +118,7 @@ public class World {
              */
 
             //获取坐标列表
-            List<WorldMapConfig.Location> locationList = tileMapNode.getLocationList();
+            List<WorldMapConfig.Location> locationList = tileNode.getLocationList();
             //如果没有则填充所有、有则按照指定的填充
             if (CollectionUtils.isEmpty(locationList)) {
 

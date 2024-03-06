@@ -28,13 +28,40 @@ public class WorldMapConfig {
     private Integer height;
 
     //地图块节点列表
-    private List<WorldMapNode> tileNodeList;
+    private List<TileNode> tileNodeList;
 
     //事物节点列表
     private List<WorldMapNode> worldObjectNodeList;
 
     //npc节点列表
     private List<WorldMapNode> npcNodeList;
+
+    /**
+     * 地图块节点实体
+     */
+    @Getter
+    @Setter
+    public static class TileNode {
+
+        //节点备注
+        private String remark;
+
+        //资源路径
+        private String filePath;
+
+        //资源区域名
+        private String regionName;
+
+        //宽度
+        private Float width;
+
+        //高度
+        private Float height;
+
+        //坐标列表
+        private List<Location> locationList;
+
+    }
 
     /**
      * 世界节点配置类实体

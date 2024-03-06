@@ -18,6 +18,9 @@ public class WorldMapConfig {
     //世界名称
     private String name;
 
+    //世界备注
+    private String remark;
+
     //世界宽
     private Integer width;
 

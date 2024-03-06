@@ -186,6 +186,11 @@ public class Person implements YSortable {
                 //获取人物
                 .map(Tile::getPerson)
                 .orElse(null);
+        //判空
+        if (person == null) {
+            //过
+            return;
+        }
 
         //获取人物对应事件
         NpcMapNodeEvent event = Optional.ofNullable(person)

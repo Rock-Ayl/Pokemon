@@ -31,7 +31,7 @@ public class WorldMapConfig {
     private List<TileNode> tileNodeList;
 
     //事物节点列表
-    private List<WorldMapNode> worldObjectNodeList;
+    private List<WorldObjectNode> worldObjectNodeList;
 
     //npc节点列表
     private List<NpcNode> npcNodeList;
@@ -64,32 +64,17 @@ public class WorldMapConfig {
     }
 
     /**
-     * 世界节点配置类实体
+     * 事物节点实体
      */
     @Getter
     @Setter
-    public static class WorldMapNode {
+    public static class WorldObjectNode {
 
         //节点备注
         private String remark;
 
-        //资源路径
-        private String filePath;
-
-        //资源区域名
-        private String regionName;
-
-        //宽度
-        private Float width;
-
-        //高度
-        private Float height;
-
         //事物名称
         private String worldObjectName;
-
-        //npc名称
-        private String npcName;
 
         //坐标列表
         private List<Location> locationList;

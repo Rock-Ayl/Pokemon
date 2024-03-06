@@ -179,7 +179,7 @@ public class World {
          */
 
         //循环世界事务节点
-        for (WorldMapConfig.WorldMapNode worldObjectNode : worldMapConfig.getWorldObjectNodeList()) {
+        for (WorldMapConfig.WorldObjectNode worldObjectNode : worldMapConfig.getWorldObjectNodeList()) {
             //获取事物名称
             String worldObjectName = worldObjectNode.getWorldObjectName();
             //读取对应事物配置

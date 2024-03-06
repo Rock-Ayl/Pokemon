@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.model.manager.MySoundManager;
 import com.rock.pokemon.gdx.model.manager.SaveManager;
-import com.rock.pokemon.gdx.model.manager.SoundManager;
 import com.rock.pokemon.gdx.screen.MainMenuScreen;
 import com.rock.pokemon.gdx.ui.loading.AssetManagerLoading;
 import com.rock.pokemon.gdx.ui.loading.SkinLoading;
@@ -36,7 +36,7 @@ public class Pokemon extends Game {
     private AssetManager assetManager;
 
     //音效管理器
-    private SoundManager soundManager;
+    private MySoundManager mySoundManager;
 
     //存档管理器
     private SaveManager saveManager;
@@ -66,7 +66,7 @@ public class Pokemon extends Game {
         this.assetManager = AssetManagerLoading.initAssetManager();
 
         //初始化通用音效
-        this.soundManager = new SoundManager();
+        this.mySoundManager = new MySoundManager();
 
         //todo 初始化存档,目前写死,之后要读取存档
         this.saveManager = new SaveManager();

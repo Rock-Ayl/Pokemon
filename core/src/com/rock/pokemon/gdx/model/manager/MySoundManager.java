@@ -10,7 +10,7 @@ import com.rock.pokemon.gdx.common.FilePaths;
  * @Author ayl
  * @Date 2022-10-19
  */
-public class SoundManager {
+public class MySoundManager {
 
     /**
      * 撞墙音效
@@ -39,7 +39,7 @@ public class SoundManager {
      */
 
     //初始化音效管理器
-    public SoundManager() {
+    public MySoundManager() {
         //初始化各种音乐
         this.NO_WALK = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
         this.MENU_OPEN = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_MENU_OPEN));

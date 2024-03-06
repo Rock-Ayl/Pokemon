@@ -378,7 +378,7 @@ public class Person implements YSortable {
             //强制变为走路
             walkEnum = WalkEnum.WALK;
             //尝试发出撞墙的音效
-            this.game.getSoundManager().playNoWalk();
+            this.game.getMySoundManager().playNoWalk();
         }
 
         /**

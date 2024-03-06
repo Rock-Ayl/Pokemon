@@ -151,7 +151,7 @@ public class DialogueAndOptionBox {
             this.boxMapNode.getBoxList().addAll(this.nodeIndex, boxList);
 
             //播放音效
-            this.game.getSoundManager().playMenuClose();
+            this.game.getMySoundManager().playMenuClose();
 
             /**
              * 继续执行
@@ -198,7 +198,7 @@ public class DialogueAndOptionBox {
                 //盒子可见
                 this.dialogueBox.setVisible(true);
                 //播放音效
-                this.game.getSoundManager().playMenuClose();
+                this.game.getMySoundManager().playMenuClose();
                 break;
         }
 

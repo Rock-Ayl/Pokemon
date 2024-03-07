@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
-import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNodeBoxOption;
 
@@ -22,7 +22,7 @@ public class OptionBox extends Table {
      */
 
     //游戏对象
-    private final Pokemon game;
+    private final PokemonGame pokemonGame;
 
     /**
      * 可选项内容
@@ -44,15 +44,15 @@ public class OptionBox extends Table {
     /**
      * 初始化 可选项框
      *
-     * @param game 游戏对象
+     * @param pokemonGame 游戏对象
      */
-    public OptionBox(Pokemon game) {
+    public OptionBox(PokemonGame pokemonGame) {
 
         //初始化父类
-        super(game.getSkin());
+        super(pokemonGame.getSkin());
 
         //记录游戏对象
-        this.game = game;
+        this.pokemonGame = pokemonGame;
 
         //设置整体背景贴图
         this.setBackground(Settings.UI_IMAGE_OPTION_BOX);
@@ -114,7 +114,7 @@ public class OptionBox extends Table {
          */
 
         //初始化对应文字,载入字体
-        Label optionLabel = new Label(this.game.getTextMap().get(boxMapNodeBoxOption.getValueTextNumber()), this.getSkin(), Settings.SYSTEM_FONT_LABEL);
+        Label optionLabel = new Label(this.pokemonGame.getTextMap().get(boxMapNodeBoxOption.getValueTextNumber()), this.getSkin(), Settings.SYSTEM_FONT_LABEL);
         //组装至列表
         this.optionList.add(optionLabel);
         //将文字组装至窗口
@@ -154,7 +154,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.game.getMySoundManager().playMenuClose();
+        this.pokemonGame.getMySoundManager().playMenuClose();
     }
 
     /**
@@ -176,7 +176,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.game.getMySoundManager().playMenuClose();
+        this.pokemonGame.getMySoundManager().playMenuClose();
     }
 
     /**
@@ -220,7 +220,7 @@ public class OptionBox extends Table {
             //设置为可见
             this.setVisible(true);
             //菜单打开音效
-            this.game.getMySoundManager().playMenuOpen();
+            this.pokemonGame.getMySoundManager().playMenuOpen();
         } else {
             //如果已经关闭了
             if (this.isVisible() == false) {
@@ -230,7 +230,7 @@ public class OptionBox extends Table {
             //设置为不可见
             this.setVisible(false);
             //菜单关闭音效
-            this.game.getMySoundManager().playMenuClose();
+            this.pokemonGame.getMySoundManager().playMenuClose();
         }
     }
 

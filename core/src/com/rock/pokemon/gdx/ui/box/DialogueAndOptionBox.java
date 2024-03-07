@@ -2,7 +2,7 @@ package com.rock.pokemon.gdx.ui.box;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
-import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNodeBox;
@@ -26,7 +26,7 @@ public class DialogueAndOptionBox {
      */
 
     //游戏对象
-    private final Pokemon game;
+    private final PokemonGame pokemonGame;
 
     //对应桌面
     private Table table;
@@ -50,11 +50,11 @@ public class DialogueAndOptionBox {
     /**
      * 初始化
      *
-     * @param game 游戏对象
+     * @param pokemonGame 游戏对象
      */
-    public DialogueAndOptionBox(Pokemon game, Table table) {
+    public DialogueAndOptionBox(PokemonGame pokemonGame, Table table) {
         //记录游戏对象
-        this.game = game;
+        this.pokemonGame = pokemonGame;
         //记录桌面
         this.table = table;
     }
@@ -73,8 +73,8 @@ public class DialogueAndOptionBox {
         this.nodeIndex = 0;
 
         //初始化对话框、可选项框
-        this.dialogueBox = new DialogueBox(this.game, this);
-        this.optionBox = new OptionBox(this.game);
+        this.dialogueBox = new DialogueBox(this.pokemonGame, this);
+        this.optionBox = new OptionBox(this.pokemonGame);
 
         //默认不显示
         setVisible(false);
@@ -151,7 +151,7 @@ public class DialogueAndOptionBox {
             this.boxMapNode.getBoxList().addAll(this.nodeIndex, boxList);
 
             //播放音效
-            this.game.getMySoundManager().playMenuClose();
+            this.pokemonGame.getMySoundManager().playMenuClose();
 
             /**
              * 继续执行
@@ -194,11 +194,11 @@ public class DialogueAndOptionBox {
             //对话框
             case "DialogueBox":
                 //新的文本
-                this.dialogueBox.animateText(this.game.getTextMap().get(boxMapNodeBox.getTextNumber()));
+                this.dialogueBox.animateText(this.pokemonGame.getTextMap().get(boxMapNodeBox.getTextNumber()));
                 //盒子可见
                 this.dialogueBox.setVisible(true);
                 //播放音效
-                this.game.getMySoundManager().playMenuClose();
+                this.pokemonGame.getMySoundManager().playMenuClose();
                 break;
         }
 

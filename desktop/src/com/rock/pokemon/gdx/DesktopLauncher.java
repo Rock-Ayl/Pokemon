@@ -28,7 +28,7 @@ public class DesktopLauncher {
         //设置屏幕尺寸最大最小值,-1为不限制
         config.setWindowSizeLimits(Settings.WIDTH, Settings.HEIGHT, -1, -1);
         //初始化
-        new Lwjgl3Application(new Pokemon(), config);
+        new Lwjgl3Application(new PokemonGame(), config);
     }
 
 }

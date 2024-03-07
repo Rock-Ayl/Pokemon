@@ -1,6 +1,6 @@
 package com.rock.pokemon.gdx.model.map.renderer;
 
-import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
@@ -36,9 +36,9 @@ public class WorldRenderer {
     /**
      * 使用渲染器和相机,计算世界坐标,然后计算人物、地图块、事物的图层,最后渲染
      *
-     * @param pokemon 游戏对象
+     * @param pokemonGame 游戏对象
      */
-    public void render(Pokemon pokemon) {
+    public void render(PokemonGame pokemonGame) {
 
         //开始时清理
         this.sortList.clear();
@@ -54,7 +54,7 @@ public class WorldRenderer {
                 //当前地图块对象
                 Tile tile = this.world.getTileMap().getMap()[x][y];
                 //渲染
-                draw(pokemon, tile);
+                draw(pokemonGame, tile);
             }
         }
 
@@ -67,7 +67,7 @@ public class WorldRenderer {
             //如果可以行走,优先级仅仅比地图块高一级
             if (worldObject.isWalkable()) {
                 //渲染
-                draw(pokemon, worldObject);
+                draw(pokemonGame, worldObject);
                 //本轮过
                 continue;
             }
@@ -91,7 +91,7 @@ public class WorldRenderer {
         //统一渲染人物、事物
         for (YSortable ySortable : this.sortList) {
             //渲染
-            draw(pokemon, ySortable);
+            draw(pokemonGame, ySortable);
         }
 
         //结束时清理
@@ -102,17 +102,17 @@ public class WorldRenderer {
     /**
      * 根据实现了 {@link YSortable} 的类,统一渲染世界的每一个图片
      *
-     * @param pokemon   游戏对象
-     * @param ySortable 实现的class,可以是人物、事物、地图块
+     * @param pokemonGame 游戏对象
+     * @param ySortable   实现的class,可以是人物、事物、地图块
      */
-    private void draw(Pokemon pokemon, YSortable ySortable) {
+    private void draw(PokemonGame pokemonGame, YSortable ySortable) {
         //如果没有图片帧
         if (ySortable.getSprite() == null) {
             //过
             return;
         }
         //根据世界起点,渲染
-        pokemon.getBatch().draw(
+        pokemonGame.getBatch().draw(
                 //当前类的当前帧的图片
                 ySortable.getSprite(),
                 //当前坐标 * 当前网格倍率

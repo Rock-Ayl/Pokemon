@@ -2,7 +2,7 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
-import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
@@ -34,7 +34,7 @@ public class Person implements YSortable {
      */
 
     //游戏对象
-    private final Pokemon game;
+    private final PokemonGame pokemonGame;
 
     //当前人物在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的),这个在人类实体里仅用来判定移动时和地图块之间的关系
     private int x;
@@ -96,20 +96,20 @@ public class Person implements YSortable {
     /**
      * 使用人物枚举初始化
      *
-     * @param npcMapNode npc配置
-     * @param world      该人物所处的世界
-     * @param x          人物初始坐标x
-     * @param y          人物初始坐标y
-     * @param game       游戏对象
+     * @param npcMapNode  npc配置
+     * @param world       该人物所处的世界
+     * @param x           人物初始坐标x
+     * @param y           人物初始坐标y
+     * @param pokemonGame 游戏对象
      */
-    public Person(NpcMapNode npcMapNode, World world, int x, int y, Pokemon game) {
+    public Person(NpcMapNode npcMapNode, World world, int x, int y, PokemonGame pokemonGame) {
 
         /**
          * 基本信息
          */
 
         //游戏对象
-        this.game = game;
+        this.pokemonGame = pokemonGame;
 
         //设置当前人物所在坐标
         this.x = x;
@@ -125,7 +125,7 @@ public class Person implements YSortable {
         this.facingState = DirectionEnum.SOUTH;
 
         //初始化人物动画集合
-        this.animationSet = new PersonAnimationSet(this.game.getMyAssetManager(), npcMapNode);
+        this.animationSet = new PersonAnimationSet(this.pokemonGame.getMyAssetManager(), npcMapNode);
 
         //记录事件列表
         this.eventList = npcMapNode.getEventList();
@@ -233,7 +233,7 @@ public class Person implements YSortable {
         }
 
         //读取事件配置
-        BoxMapNode talkTestNode = this.game.getMyAssetManager().getBoxMapConfig().getBoxMap().get(event.getBoxName());
+        BoxMapNode talkTestNode = this.pokemonGame.getMyAssetManager().getBoxMapConfig().getBoxMap().get(event.getBoxName());
         //这里直接用事件
         dialogueAndOptionBox.reset(talkTestNode);
         //开启
@@ -381,7 +381,7 @@ public class Person implements YSortable {
             //强制变为走路
             walkEnum = WalkEnum.WALK;
             //尝试发出撞墙的音效
-            this.game.getMySoundManager().playNoWalk();
+            this.pokemonGame.getMySoundManager().playNoWalk();
         }
 
         /**

@@ -10,8 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.rock.pokemon.gdx.Pokemon;
-import com.rock.pokemon.gdx.common.FilePaths;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
@@ -33,7 +32,7 @@ import lombok.Getter;
 public class WorldScreen implements Screen {
 
     //游戏对象
-    private final Pokemon game;
+    private final PokemonGame pokemonGame;
 
     //背景音乐
     private Music music;
@@ -83,28 +82,28 @@ public class WorldScreen implements Screen {
     /**
      * 初始化世界、主角进入世界指定位置
      *
-     * @param pokemon            游戏对象
+     * @param pokemonGame        游戏对象
      * @param worldMapConfigPath 世界配置路径
      * @param adventurerX        主角要进入本世界的初始坐标 x
      * @param adventurerY        主角要进入本世界的初始坐标 y
      */
-    public WorldScreen(final Pokemon pokemon, String worldMapConfigPath, int adventurerX, int adventurerY) {
+    public WorldScreen(final PokemonGame pokemonGame, String worldMapConfigPath, int adventurerX, int adventurerY) {
 
         /**
          * 基本
          */
 
         //记录游戏对象
-        this.game = pokemon;
+        this.pokemonGame = pokemonGame;
 
         /**
          * 生成世界
          */
 
         //读取世界配置
-        WorldMapConfig worldMapConfig = game.getMyAssetManager().getWorldMapConfig(worldMapConfigPath);
+        WorldMapConfig worldMapConfig = this.pokemonGame.getMyAssetManager().getWorldMapConfig(worldMapConfigPath);
         //初始化世界
-        this.world = new World(this.game, this, worldMapConfig);
+        this.world = new World(this.pokemonGame, this, worldMapConfig);
         //初始化世界渲染器
         this.worldRenderer = new WorldRenderer(this.world);
 
@@ -113,9 +112,9 @@ public class WorldScreen implements Screen {
          */
 
         //获取npc配置文件
-        NpcMapConfig adventurerNpcMapConfig = this.game.getMyAssetManager().getNpcMapConfig();
+        NpcMapConfig adventurerNpcMapConfig = this.pokemonGame.getMyAssetManager().getNpcMapConfig();
         //初始化主角
-        this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get(this.game.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.game);
+        this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get(this.pokemonGame.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.pokemonGame);
 
         /**
          * 世界音乐
@@ -152,7 +151,7 @@ public class WorldScreen implements Screen {
         this.uiStage.addActor(this.talkTable);
 
         //初始化对应ui盒子
-        this.dialogueAndOptionBox = new DialogueAndOptionBox(this.game, this.talkTable);
+        this.dialogueAndOptionBox = new DialogueAndOptionBox(this.pokemonGame, this.talkTable);
 
         /**
          * 控制器
@@ -210,7 +209,7 @@ public class WorldScreen implements Screen {
         //更新当前屏幕的宽高,如果不这么做,当拖拽窗口时,将会拉伸屏幕,破坏屏幕比例,顺道更新相机了
         this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //渲染时使用相机
-        this.game.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
+        this.pokemonGame.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
 
         /**
          * 渲染世界及更新
@@ -224,11 +223,11 @@ public class WorldScreen implements Screen {
         //每帧更新世界
         this.world.update(delta);
         //开始渲染 地图、人物
-        this.game.getBatch().begin();
+        this.pokemonGame.getBatch().begin();
         //渲染整个世界
-        this.worldRenderer.render(this.game);
+        this.worldRenderer.render(this.pokemonGame);
         //结束渲染
-        this.game.getBatch().end();
+        this.pokemonGame.getBatch().end();
 
         /**
          * 渲染UI

@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.FilePaths;
 
 /**
@@ -17,16 +17,16 @@ import com.rock.pokemon.gdx.common.FilePaths;
 public class MainMenuScreen implements Screen {
 
     //游戏对象
-    private Pokemon game;
+    private PokemonGame pokemonGame;
 
     /**
      * 初始化/进入
      *
-     * @param pokemon 游戏对象
+     * @param pokemonGame 游戏对象
      */
-    public MainMenuScreen(Pokemon pokemon) {
+    public MainMenuScreen(PokemonGame pokemonGame) {
         //记录游戏对象
-        this.game = pokemon;
+        this.pokemonGame = pokemonGame;
     }
 
     /**
@@ -45,9 +45,9 @@ public class MainMenuScreen implements Screen {
         ScreenUtils.clear(Color.BLACK);
 
         //超级简单的主菜单
-        this.game.getBatch().begin();
-        this.game.getFont().draw(this.game.getBatch(), "New Game \nSetting", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        this.game.getBatch().end();
+        this.pokemonGame.getBatch().begin();
+        this.pokemonGame.getFont().draw(this.pokemonGame.getBatch(), "New Game \nSetting", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        this.pokemonGame.getBatch().end();
 
         /**
          * 控制逻辑
@@ -56,7 +56,7 @@ public class MainMenuScreen implements Screen {
         //如果点击屏幕 或 按回车
         if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
             //进入 未白镇 指定位置
-            this.game.setScreen(new WorldScreen(this.game, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, 19, 18));
+            this.pokemonGame.setScreen(new WorldScreen(this.pokemonGame, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, 19, 18));
             //销毁当前资源
             this.dispose();
         }

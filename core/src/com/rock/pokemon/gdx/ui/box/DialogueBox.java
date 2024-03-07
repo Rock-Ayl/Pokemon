@@ -3,7 +3,7 @@ package com.rock.pokemon.gdx.ui.box;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
-import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 
 /**
@@ -59,13 +59,13 @@ public class DialogueBox extends Table {
     /**
      * 初始化对话框
      *
-     * @param game                 游戏对象
+     * @param pokemonGame          游戏对象
      * @param dialogueAndOptionBox 对应 对话框+可选项实体
      */
-    public DialogueBox(Pokemon game, DialogueAndOptionBox dialogueAndOptionBox) {
+    public DialogueBox(PokemonGame pokemonGame, DialogueAndOptionBox dialogueAndOptionBox) {
 
         //初始化父级
-        super(game.getSkin());
+        super(pokemonGame.getSkin());
 
         //记录
         this.dialogueAndOptionBox = dialogueAndOptionBox;
@@ -73,7 +73,7 @@ public class DialogueBox extends Table {
         //设置整体背景贴图
         this.setBackground(Settings.UI_IMAGE_DIALOGUE_BOX);
         //初始化字体,载入字体
-        this.textLabel = new Label("\n", game.getSkin(), Settings.SYSTEM_FONT_LABEL);
+        this.textLabel = new Label("\n", pokemonGame.getSkin(), Settings.SYSTEM_FONT_LABEL);
         //将文本组装至文本框中
         this.add(this.textLabel)
                 //均匀分布该label

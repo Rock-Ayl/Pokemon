@@ -2,7 +2,7 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
-import com.rock.pokemon.gdx.Pokemon;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
@@ -41,11 +41,11 @@ public class World {
     /**
      * 初始化世界
      *
-     * @param game           游戏对象
+     * @param pokemonGame    游戏对象
      * @param worldScreen    世界对应屏幕
      * @param worldMapConfig 世界配置
      */
-    public World(Pokemon game, WorldScreen worldScreen, WorldMapConfig worldMapConfig) {
+    public World(PokemonGame pokemonGame, WorldScreen worldScreen, WorldMapConfig worldMapConfig) {
 
         /**
          * 记录
@@ -59,10 +59,10 @@ public class World {
          */
 
         //读取事物配置
-        WorldObjectMapConfig worldObjectMapConfig = game.getMyAssetManager().getWorldObjectMapConfig();
+        WorldObjectMapConfig worldObjectMapConfig = pokemonGame.getMyAssetManager().getWorldObjectMapConfig();
 
         //读取npc配置
-        NpcMapConfig npcMapConfig = game.getMyAssetManager().getNpcMapConfig();
+        NpcMapConfig npcMapConfig = pokemonGame.getMyAssetManager().getNpcMapConfig();
 
         /**
          * 初始化 地图网格、地图块本身
@@ -91,7 +91,7 @@ public class World {
              */
 
             //获取图片对象
-            TextureRegion image = game
+            TextureRegion image = pokemonGame
                     .getMyAssetManager()
                     .getTextureAtlas(tileNode.getFilePath())
                     .findRegion(tileNode.getRegionName());
@@ -158,7 +158,7 @@ public class World {
             //循环坐标列表
             for (WorldMapConfig.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
-                WorldObject worldObject = new WorldObject(game.getMyAssetManager(), worldObjectNodeConfig, location.getX(), location.getY());
+                WorldObject worldObject = new WorldObject(pokemonGame.getMyAssetManager(), worldObjectNodeConfig, location.getX(), location.getY());
                 //加入到世界
                 this.addWorldObject(worldObject);
             }
@@ -177,7 +177,7 @@ public class World {
             //循环坐标列表
             for (WorldMapConfig.Location location : npcNode.getLocationList()) {
                 //初始化话一个npc,并加入到该世界
-                new Person(npcMapNode, this, location.getX(), location.getY(), game);
+                new Person(npcMapNode, this, location.getX(), location.getY(), pokemonGame);
             }
         }
 

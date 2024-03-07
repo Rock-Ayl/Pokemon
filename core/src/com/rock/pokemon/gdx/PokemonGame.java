@@ -22,7 +22,7 @@ import java.util.Map;
  * @Date 2022-10-15
  */
 @Getter
-public class Pokemon extends Game {
+public class PokemonGame extends Game {
 
     /**
      * 游戏基础实体,无论到哪里都用得上的东西

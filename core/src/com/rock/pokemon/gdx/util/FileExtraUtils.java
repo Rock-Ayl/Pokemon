@@ -15,6 +15,17 @@ import java.util.List;
 public class FileExtraUtils {
 
     /**
+     * 收集该路径下所有文件
+     *
+     * @param dirPath 文件夹目录
+     * @return
+     */
+    public static List<String> collectFile(String dirPath) {
+        //实现
+        return collectFile(dirPath, null);
+    }
+
+    /**
      * 收集该路径下所有文件指定文件名的文件
      *
      * @param dirPath  文件夹目录

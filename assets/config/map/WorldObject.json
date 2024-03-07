@@ -14,6 +14,25 @@
         }
       ]
     },
+    "woodenDoor1": {
+      "remark": "一个木门1",
+      "filePath": "assets/packed/image/map/object/textures.atlas",
+      "regionName": "wooden_door1",
+      "width": 1,
+      "height": 1.5,
+      "frameDuration": 0.9,
+      "walkable": true,
+      "tileList": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "y": 1
+        }
+      ]
+    },
     "flower1": {
       "remark": "一个普通的花(动)",
       "filePath": "assets/packed/image/map/object/textures.atlas",

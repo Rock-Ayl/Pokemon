@@ -6,64 +6,92 @@ filter: Nearest, Nearest
 repeat: none
 big_tree
   rotate: false
-  xy: 2, 20
+  xy: 2, 22
   size: 32, 40
   orig: 32, 40
   offset: 0, 0
   index: -1
 flower1
   rotate: false
-  xy: 2, 2
+  xy: 2, 4
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 0
 flower1
   rotate: false
-  xy: 36, 44
+  xy: 108, 46
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
 flower1
   rotate: false
-  xy: 36, 26
+  xy: 36, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
 grass1
   rotate: false
-  xy: 54, 44
+  xy: 54, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 grass2
   rotate: false
-  xy: 54, 26
+  xy: 20, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 grass3
   rotate: false
-  xy: 72, 44
+  xy: 38, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 grass_dirt_patch
   rotate: false
-  xy: 72, 26
+  xy: 56, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 sign
   rotate: false
-  xy: 90, 44
+  xy: 72, 20
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+wooden_door1
+  rotate: false
+  xy: 36, 38
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 0
+wooden_door1
+  rotate: false
+  xy: 54, 38
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 1
+wooden_door1
+  rotate: false
+  xy: 72, 38
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 2
+wooden_door1
+  rotate: false
+  xy: 90, 38
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: 3

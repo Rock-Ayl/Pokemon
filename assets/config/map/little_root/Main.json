@@ -51,6 +51,16 @@
       ]
     },
     {
+      "remark": "木门",
+      "worldObjectName": "woodenDoor1",
+      "locationList": [
+        {
+          "x": 13,
+          "y": 19
+        }
+      ]
+    },
+    {
       "remark": "一个花(会动)",
       "worldObjectName": "flower1",
       "locationList": [

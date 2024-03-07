@@ -26,15 +26,15 @@ public class FileExtraUtils {
     }
 
     /**
-     * 收集该路径下所有文件指定文件名的文件
+     * 收集该路径下所有文件,指定包含文件名的文件
      *
      * @param dirPath  文件夹目录
-     * @param fileName 指定文件名
+     * @param fileName 包含指定文件名,选填
      * @return
      */
     public static List<String> collectFile(String dirPath, String fileName) {
         //判空
-        if (StringUtils.isBlank(dirPath) || StringUtils.isBlank(fileName)) {
+        if (StringUtils.isBlank(dirPath)) {
             //过
             return new ArrayList<>();
         }
@@ -63,8 +63,13 @@ public class FileExtraUtils {
                 //本轮过
                 continue;
             }
-            //如果是目标文件
-            if (file.isFile() && fileName.equals(file.getName())) {
+            //如果不是文件
+            if (file.isFile() == false) {
+                //本轮过
+                continue;
+            }
+            //如果 不指定文件名 or 是目标文件
+            if (fileName == null || fileName.equals(file.getName())) {
                 //加入结果
                 fileList.add(file.getPath());
             }

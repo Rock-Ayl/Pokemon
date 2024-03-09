@@ -9,10 +9,10 @@ import com.rock.pokemon.gdx.model.mapConfig.NpcMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldMapConfig;
 import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
 import com.rock.pokemon.gdx.util.FileExtraUtils;
-import com.rock.pokemon.gdx.worldloader.BoxMapConfigLoader;
-import com.rock.pokemon.gdx.worldloader.NpcMapConfigLoader;
-import com.rock.pokemon.gdx.worldloader.WorldMapConfigLoader;
-import com.rock.pokemon.gdx.worldloader.WorldObjectMapConfigLoader;
+import com.rock.pokemon.gdx.loader.BoxMapConfigLoader;
+import com.rock.pokemon.gdx.loader.NpcMapConfigLoader;
+import com.rock.pokemon.gdx.loader.WorldMapConfigLoader;
+import com.rock.pokemon.gdx.loader.WorldObjectMapConfigLoader;
 import lombok.Getter;
 
 import java.util.Arrays;

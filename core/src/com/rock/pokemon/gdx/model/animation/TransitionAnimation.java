@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.enums.TransitionEnum;
 
 /**
  * todo 渐变效果
@@ -23,50 +24,59 @@ public class TransitionAnimation extends ApplicationAdapter {
     private ShaderProgram shader;
 
     /**
-     * 图片
-     */
-
-    //测试背景
-    private Texture backImage;
-    //渐变基底图片
-    private Texture img;
-
-    /**
      * 动画参数
      */
 
-    //时间
-    private float time = 0.0f;
+    //帧时间
+    private float delta = 0F;
     //速度倍率
     private static final float SPEED = 0.5F;
 
-    public TransitionAnimation() {
+    //渐变基底枚举
+    private TransitionEnum transitionEnum;
+    //渐变基底图片
+    private Texture img;
 
+    //todo delete 测试背景图片
+    private Texture backImage;
+
+    /**
+     * 初始化方法
+     *
+     * @param transitionEnum 渐变枚举(指定动画)
+     */
+    public TransitionAnimation(TransitionEnum transitionEnum) {
+        this.transitionEnum = transitionEnum;
     }
 
     @Override
     public void create() {
+
+        //渲染器
         this.batch = new SpriteBatch();
-        this.img = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, 3));
-        this.backImage = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, 11));
-        ShaderProgram.pedantic = false;
+        //初始化着色器
         this.shader = new ShaderProgram(
                 Gdx.files.internal(FilePaths.TRANSITION_GLSL_VERTEX),
                 Gdx.files.internal(FilePaths.TRANSITION_GLSL_FRAGMENT)
         );
-        if (!this.shader.isCompiled()) {
-            System.err.println("Shader compilation failed: " + this.shader.getLog());
-        }
+
+        //指定渐变基底图片
+        this.img = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, transitionEnum.getNumber()));
+        //todo delete 背景图片,随意用一张图
+        this.backImage = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, 11));
+
     }
 
+    /**
+     * 过程
+     */
     @Override
     public void render() {
 
         //清除屏幕
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         //计算速度倍率,叠加时间
-        this.time += Gdx.graphics.getDeltaTime() * SPEED;
+        this.delta += Gdx.graphics.getDeltaTime() * SPEED;
 
         /**
          * 测试背景
@@ -85,7 +95,7 @@ public class TransitionAnimation extends ApplicationAdapter {
 
         this.shader.bind();
         //循环动画的时间参数，使动画连续播放,假设动画循环周期为1秒
-        this.shader.setUniformf("u_time", (this.time % 1));
+        this.shader.setUniformf("u_time", (this.delta % 1F));
 
         //使用shader
         this.batch.setShader(this.shader);

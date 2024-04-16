@@ -26,11 +26,13 @@ public class GradientAnimation extends ApplicationAdapter {
     private ShaderProgram shader;
     //时间
     private float time = 0.0f;
+    //速度倍率
+    private float speed = 0.5F;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        img = new Texture("assets/config/gradient/transition_3.png");
+        img = new Texture("assets/config/gradient/transition_2.png");
         this.backImage = new Texture("assets/config/gradient/transition_11.png");
         ShaderProgram.pedantic = false;
         shader = new ShaderProgram(
@@ -47,8 +49,8 @@ public class GradientAnimation extends ApplicationAdapter {
         //清除屏幕
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //叠加时间
-        time += Gdx.graphics.getDeltaTime();
+        //计算速度倍率,叠加时间
+        time += Gdx.graphics.getDeltaTime() * speed;
 
         /**
          * 测试背景

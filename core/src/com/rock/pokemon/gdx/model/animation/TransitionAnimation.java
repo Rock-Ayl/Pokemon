@@ -29,10 +29,14 @@ public class TransitionAnimation {
 
     //动画持续时间
     private float animTime = 0F;
+    //动画结束时间
+    private float animTimeFinish = 1F;
     //动画速度倍率
     private static final float SPEED = 0.5F;
     //渐变基底图片
     private Texture img;
+    //动画状态
+    private StatusEnum status;
 
     /**
      * 状态枚举
@@ -41,7 +45,7 @@ public class TransitionAnimation {
     public enum StatusEnum {
 
         //等待
-        waiting,
+        WAITING,
         //动画进行中
         DOING,
 
@@ -66,7 +70,23 @@ public class TransitionAnimation {
         );
         //指定渐变基底图片
         this.img = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, transitionEnum.getNumber()));
+        //默认状态,等待
+        this.status = StatusEnum.WAITING;
 
+    }
+
+    /**
+     * 开始动画
+     */
+    public void start() {
+        //如果不是等待状态
+        if (status != StatusEnum.WAITING) {
+            //过
+            return;
+        }
+        //开启状态
+        this.status = StatusEnum.DOING;
+        this.animTime = 0F;
     }
 
     /**
@@ -78,6 +98,16 @@ public class TransitionAnimation {
     public void update(float delta, Camera camera) {
 
         /**
+         * 判定
+         */
+
+        //如果不是进行中
+        if (status != StatusEnum.DOING) {
+            //过
+            return;
+        }
+
+        /**
          * 渐变
          */
 
@@ -85,8 +115,8 @@ public class TransitionAnimation {
         this.shader.bind();
         //计算速度倍率,并叠加动画时间
         this.animTime += delta * SPEED;
-        //循环动画的时间参数，使动画连续播放,假设动画循环周期为1秒
-        this.shader.setUniformf("u_time", (this.animTime % 1F));
+        //循环动画的时间参数,使动画连续播放,假设动画循环周期为1秒
+        this.shader.setUniformf("u_time", this.animTime % 1F);
 
         //使用shader
         this.pokemonGame.getBatch().setShader(this.shader);
@@ -105,6 +135,17 @@ public class TransitionAnimation {
 
         //删除shader
         this.pokemonGame.getBatch().setShader(null);
+
+        /**
+         * 更新状态
+         */
+
+        //如果动画结束了
+        if (this.animTime > this.animTimeFinish) {
+            //重置状态
+            this.status = StatusEnum.WAITING;
+            this.animTime = 0;
+        }
 
     }
 

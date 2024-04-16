@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.screen;
+package com.rock.pokemon.gdx.model.animation;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -27,7 +27,7 @@ public class GradientAnimation extends ApplicationAdapter {
     //时间
     private float time = 0.0f;
     //速度倍率
-    private float speed = 0.5F;
+    private static final float speed = 0.5F;
 
     @Override
     public void create() {

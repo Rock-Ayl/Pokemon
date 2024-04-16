@@ -21,6 +21,7 @@ void main() {
     //如果像素变得可见,将颜色设置为纯黑色(而不是图片的颜色,因为图片仅用来控制渐变范围)
     vec3 finalColor = alpha > 0.0 ? vec3(0.0) : texColor.rgb;
 
+    //设置最终颜色
     gl_FragColor = vec4(finalColor, texColor.a * alpha);
 
 }

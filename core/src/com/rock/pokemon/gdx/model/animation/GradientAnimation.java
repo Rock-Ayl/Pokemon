@@ -32,7 +32,7 @@ public class GradientAnimation extends ApplicationAdapter {
     @Override
     public void create() {
         this.batch = new SpriteBatch();
-        this.img = new Texture("assets/config/gradient/transition_2.png");
+        this.img = new Texture("assets/config/gradient/transition_3.png");
         this.backImage = new Texture("assets/config/gradient/transition_11.png");
         ShaderProgram.pedantic = false;
         this.shader = new ShaderProgram(

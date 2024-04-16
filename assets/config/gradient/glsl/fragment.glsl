@@ -18,6 +18,9 @@ void main() {
     //这样在u_time小于任何亮度值之前，所有像素都将不可见,确保亮度低于u_time的像素被显示
     float alpha = step(brightness, u_time);
 
-    gl_FragColor = vec4(texColor.rgb, texColor.a * alpha);
+    //如果像素变得可见,将颜色设置为纯黑色(而不是图片的颜色,因为图片仅用来控制渐变范围)
+    vec3 finalColor = alpha > 0.0 ? vec3(0.0) : texColor.rgb;
+
+    gl_FragColor = vec4(finalColor, texColor.a * alpha);
 
 }

@@ -2,6 +2,8 @@ package com.rock.pokemon.gdx.enums;
 
 import lombok.Getter;
 
+import java.util.Random;
+
 /**
  * 渐变枚举
  */
@@ -32,6 +34,18 @@ public enum TransitionEnum {
     TransitionEnum(int number, String remark) {
         this.number = number;
         this.remark = remark;
+    }
+
+    /**
+     * 随机一个枚举
+     *
+     * @return
+     */
+    public static TransitionEnum randomOne() {
+        //枚举数组
+        TransitionEnum[] values = TransitionEnum.values();
+        //随机一个
+        return values[new Random().nextInt(values.length)];
     }
 
 }

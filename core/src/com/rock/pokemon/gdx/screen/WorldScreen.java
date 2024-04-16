@@ -217,8 +217,8 @@ public class WorldScreen implements Screen {
 
         //如果按回车
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-            //todo 测试渐变动画
-            this.transitionAnimation.start(TransitionEnum.THREE);
+            //todo 随机一个测试渐变动画
+            this.transitionAnimation.start(TransitionEnum.randomOne());
         }
 
         /**

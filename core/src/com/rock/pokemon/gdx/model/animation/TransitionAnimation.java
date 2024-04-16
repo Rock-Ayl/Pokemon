@@ -15,30 +15,44 @@ import com.rock.pokemon.gdx.common.Settings;
  * @Author ayl
  * @Date 2024-4-16
  */
-public class GradientAnimation extends ApplicationAdapter {
+public class TransitionAnimation extends ApplicationAdapter {
 
     //渲染器
     private SpriteBatch batch;
+    //着色器
+    private ShaderProgram shader;
+
+    /**
+     * 图片
+     */
+
     //测试背景
     private Texture backImage;
     //渐变基底图片
     private Texture img;
-    //着色器
-    private ShaderProgram shader;
+
+    /**
+     * 动画参数
+     */
+
     //时间
     private float time = 0.0f;
     //速度倍率
     private static final float SPEED = 0.5F;
 
+    public TransitionAnimation() {
+
+    }
+
     @Override
     public void create() {
         this.batch = new SpriteBatch();
-        this.img = new Texture(String.format(FilePaths.GRADIENT_ANIMATION_IMAGE_PATH, 3));
-        this.backImage = new Texture(String.format(FilePaths.GRADIENT_ANIMATION_IMAGE_PATH, 11));
+        this.img = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, 3));
+        this.backImage = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, 11));
         ShaderProgram.pedantic = false;
         this.shader = new ShaderProgram(
-                Gdx.files.internal(FilePaths.GRADIENT_GLSL_VERTEX),
-                Gdx.files.internal(FilePaths.GRADIENT_GLSL_FRAGMENT)
+                Gdx.files.internal(FilePaths.TRANSITION_GLSL_VERTEX),
+                Gdx.files.internal(FilePaths.TRANSITION_GLSL_FRAGMENT)
         );
         if (!this.shader.isCompiled()) {
             System.err.println("Shader compilation failed: " + this.shader.getLog());
@@ -81,6 +95,9 @@ public class GradientAnimation extends ApplicationAdapter {
 
     }
 
+    /**
+     * 销毁实现
+     */
     @Override
     public void dispose() {
         this.batch.dispose();

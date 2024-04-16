@@ -78,10 +78,10 @@ public class FilePaths {
      */
 
     //顶点着色器
-    public static final String GRADIENT_GLSL_VERTEX = "assets/config/gradient/glsl/vertex.glsl";
+    public static final String TRANSITION_GLSL_VERTEX = "assets/config/transition/glsl/vertex.glsl";
     //片元着色器
-    public static final String GRADIENT_GLSL_FRAGMENT = "assets/config/gradient/glsl/fragment.glsl";
+    public static final String TRANSITION_GLSL_FRAGMENT = "assets/config/transition/glsl/fragment.glsl";
     //渐变动画图片路径
-    public static final String GRADIENT_ANIMATION_IMAGE_PATH = "assets/config/gradient/transition_%s.png";
+    public static final String TRANSITION_ANIMATION_IMAGE_PATH = "assets/config/transition/transition_%s.png";
 
 }

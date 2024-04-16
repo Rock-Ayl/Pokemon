@@ -14,6 +14,8 @@ import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
+import com.rock.pokemon.gdx.enums.TransitionEnum;
+import com.rock.pokemon.gdx.model.animation.TransitionAnimation;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
@@ -78,6 +80,13 @@ public class WorldScreen implements Screen {
 
     //主角实体
     private Person adventurer;
+
+    /**
+     * 渐变
+     */
+
+    //渐变对象
+    private TransitionAnimation transitionAnimation;
 
     /**
      * 初始化世界、主角进入世界指定位置
@@ -169,6 +178,13 @@ public class WorldScreen implements Screen {
         this.inputMultiplexer.addProcessor(this.personController);
         this.inputMultiplexer.addProcessor(this.dialogueAndOptionBoxController);
 
+        /**
+         * 渐变
+         */
+
+        //todo ,初始化渐变,先写死渐变
+        this.transitionAnimation = new TransitionAnimation(this.pokemonGame, TransitionEnum.THREE);
+
     }
 
     /**
@@ -238,6 +254,13 @@ public class WorldScreen implements Screen {
         //渲染整个舞台
         this.uiStage.draw();
 
+        /**
+         * 渲染渐变
+         */
+
+        //更新渐变
+        this.transitionAnimation.update(delta, this.viewport.getCamera().position.x - this.viewport.getCamera().viewportWidth / 2, this.viewport.getCamera().position.y - this.viewport.getCamera().viewportHeight / 2);
+
     }
 
     @Override
@@ -257,6 +280,8 @@ public class WorldScreen implements Screen {
         }
         //销毁ui
         this.uiStage.dispose();
+        //销毁渐变
+        this.transitionAnimation.dispose();
     }
 
     @Override

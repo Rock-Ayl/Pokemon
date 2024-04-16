@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.rock.pokemon.gdx.common.Settings;
 
 /**
  * todo 渐变效果
@@ -17,6 +18,8 @@ public class GradientAnimation extends ApplicationAdapter {
 
     //渲染器
     private SpriteBatch batch;
+    //测试背景
+    private Texture backImage;
     //渐变基底图片
     private Texture img;
     //着色器
@@ -28,6 +31,7 @@ public class GradientAnimation extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
         img = new Texture("assets/config/gradient/transition_3.png");
+        this.backImage = new Texture("assets/config/gradient/transition_11.png");
         ShaderProgram.pedantic = false;
         shader = new ShaderProgram(
                 Gdx.files.internal("assets/config/gradient/glsl/vertex.glsl"),
@@ -35,7 +39,6 @@ public class GradientAnimation extends ApplicationAdapter {
         if (!shader.isCompiled()) {
             System.err.println("Shader compilation failed: " + shader.getLog());
         }
-        batch.setShader(shader);
     }
 
     @Override
@@ -47,13 +50,30 @@ public class GradientAnimation extends ApplicationAdapter {
         //叠加时间
         time += Gdx.graphics.getDeltaTime();
 
+        /**
+         * 测试背景
+         */
+
+        //先不使用shader
+        batch.setShader(null);
+        batch.begin();
+        //测试背景
+        batch.draw(backImage, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+        batch.end();
+
+        /**
+         * 渐变
+         */
+
         shader.begin();
         //循环动画的时间参数，使动画连续播放,假设动画循环周期为1秒
         shader.setUniformf("u_time", (time % 1));
         shader.end();
 
+        //使用shader
+        batch.setShader(shader);
         batch.begin();
-        batch.draw(img, 0, 0);
+        batch.draw(img, 0, 0, Settings.WIDTH, Settings.HEIGHT);
         batch.end();
     }
 
@@ -61,6 +81,7 @@ public class GradientAnimation extends ApplicationAdapter {
     public void dispose() {
         batch.dispose();
         img.dispose();
+        backImage.dispose();
         shader.dispose();
     }
 

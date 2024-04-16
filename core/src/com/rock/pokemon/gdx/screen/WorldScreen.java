@@ -258,8 +258,8 @@ public class WorldScreen implements Screen {
          * 渲染渐变
          */
 
-        //更新渐变
-        this.transitionAnimation.update(delta, this.viewport.getCamera().position.x - this.viewport.getCamera().viewportWidth / 2, this.viewport.getCamera().position.y - this.viewport.getCamera().viewportHeight / 2);
+        //更新渐变动画
+        this.transitionAnimation.update(delta, this.viewport.getCamera());
 
     }
 

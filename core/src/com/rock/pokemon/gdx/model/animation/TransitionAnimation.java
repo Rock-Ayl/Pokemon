@@ -1,12 +1,14 @@
 package com.rock.pokemon.gdx.model.animation;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.TransitionEnum;
+import lombok.Getter;
 
 /**
  * todo 渐变效果
@@ -33,6 +35,21 @@ public class TransitionAnimation {
     private Texture img;
 
     /**
+     * 状态枚举
+     */
+    @Getter
+    public enum StatusEnum {
+
+        //等待
+        waiting,
+        //动画进行中
+        DOING,
+
+        ;
+
+    }
+
+    /**
      * 初始化方法
      *
      * @param pokemonGame    游戏对象
@@ -55,11 +72,10 @@ public class TransitionAnimation {
     /**
      * 过程实现
      *
-     * @param delta 帧时间
-     * @param x     坐标
-     * @param y     坐标
+     * @param delta  帧时间
+     * @param camera 相机
      */
-    public void update(float delta, float x, float y) {
+    public void update(float delta, Camera camera) {
 
         /**
          * 渐变
@@ -77,7 +93,14 @@ public class TransitionAnimation {
 
         //渲染渐变
         this.pokemonGame.getBatch().begin();
-        this.pokemonGame.getBatch().draw(this.img, x, y, Settings.WIDTH, Settings.HEIGHT);
+        this.pokemonGame.getBatch().draw(
+                this.img,
+                //计算动画位置
+                camera.position.x - camera.viewportWidth / 2,
+                camera.position.y - camera.viewportHeight / 2,
+                Settings.WIDTH,
+                Settings.HEIGHT
+        );
         this.pokemonGame.getBatch().end();
 
         //删除shader

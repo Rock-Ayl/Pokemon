@@ -27,19 +27,19 @@ public class GradientAnimation extends ApplicationAdapter {
     //时间
     private float time = 0.0f;
     //速度倍率
-    private static final float speed = 0.5F;
+    private static final float SPEED = 0.5F;
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        img = new Texture("assets/config/gradient/transition_2.png");
+        this.batch = new SpriteBatch();
+        this.img = new Texture("assets/config/gradient/transition_2.png");
         this.backImage = new Texture("assets/config/gradient/transition_11.png");
         ShaderProgram.pedantic = false;
-        shader = new ShaderProgram(
+        this.shader = new ShaderProgram(
                 Gdx.files.internal("assets/config/gradient/glsl/vertex.glsl"),
                 Gdx.files.internal("assets/config/gradient/glsl/fragment.glsl"));
-        if (!shader.isCompiled()) {
-            System.err.println("Shader compilation failed: " + shader.getLog());
+        if (!this.shader.isCompiled()) {
+            System.err.println("Shader compilation failed: " + this.shader.getLog());
         }
     }
 
@@ -50,41 +50,41 @@ public class GradientAnimation extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //计算速度倍率,叠加时间
-        time += Gdx.graphics.getDeltaTime() * speed;
+        this.time += Gdx.graphics.getDeltaTime() * SPEED;
 
         /**
          * 测试背景
          */
 
         //先不使用shader
-        batch.setShader(null);
-        batch.begin();
+        this.batch.setShader(null);
+        this.batch.begin();
         //测试背景
-        batch.draw(backImage, 0, 0, Settings.WIDTH, Settings.HEIGHT);
-        batch.end();
+        this.batch.draw(this.backImage, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+        this.batch.end();
 
         /**
          * 渐变
          */
 
-        shader.begin();
+        this.shader.bind();
         //循环动画的时间参数，使动画连续播放,假设动画循环周期为1秒
-        shader.setUniformf("u_time", (time % 1));
-        shader.end();
+        this.shader.setUniformf("u_time", (this.time % 1));
 
         //使用shader
-        batch.setShader(shader);
-        batch.begin();
-        batch.draw(img, 0, 0, Settings.WIDTH, Settings.HEIGHT);
-        batch.end();
+        this.batch.setShader(this.shader);
+        this.batch.begin();
+        this.batch.draw(this.img, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+        this.batch.end();
+
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
-        img.dispose();
-        backImage.dispose();
-        shader.dispose();
+        this.batch.dispose();
+        this.img.dispose();
+        this.backImage.dispose();
+        this.shader.dispose();
     }
 
 }

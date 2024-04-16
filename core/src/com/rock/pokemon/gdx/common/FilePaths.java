@@ -73,4 +73,15 @@ public class FilePaths {
     //菜单关闭音效
     public static final String SOUND_MENU_CLOSE = "audio/sound/emerald_0005_menu_close.wav";
 
+    /**
+     * 渐变配置
+     */
+
+    //顶点着色器
+    public static final String GRADIENT_GLSL_VERTEX = "assets/config/gradient/glsl/vertex.glsl";
+    //片元着色器
+    public static final String GRADIENT_GLSL_FRAGMENT = "assets/config/gradient/glsl/fragment.glsl";
+    //渐变动画图片路径
+    public static final String GRADIENT_ANIMATION_IMAGE_PATH = "assets/config/gradient/transition_%s.png";
+
 }

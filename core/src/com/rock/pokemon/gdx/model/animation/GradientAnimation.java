@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 
 /**
@@ -32,12 +33,13 @@ public class GradientAnimation extends ApplicationAdapter {
     @Override
     public void create() {
         this.batch = new SpriteBatch();
-        this.img = new Texture("assets/config/gradient/transition_3.png");
-        this.backImage = new Texture("assets/config/gradient/transition_11.png");
+        this.img = new Texture(String.format(FilePaths.GRADIENT_ANIMATION_IMAGE_PATH, 3));
+        this.backImage = new Texture(String.format(FilePaths.GRADIENT_ANIMATION_IMAGE_PATH, 11));
         ShaderProgram.pedantic = false;
         this.shader = new ShaderProgram(
-                Gdx.files.internal("assets/config/gradient/glsl/vertex.glsl"),
-                Gdx.files.internal("assets/config/gradient/glsl/fragment.glsl"));
+                Gdx.files.internal(FilePaths.GRADIENT_GLSL_VERTEX),
+                Gdx.files.internal(FilePaths.GRADIENT_GLSL_FRAGMENT)
+        );
         if (!this.shader.isCompiled()) {
             System.err.println("Shader compilation failed: " + this.shader.getLog());
         }

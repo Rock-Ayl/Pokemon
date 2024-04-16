@@ -56,10 +56,9 @@ public class TransitionAnimation {
     /**
      * 初始化方法
      *
-     * @param pokemonGame    游戏对象
-     * @param transitionEnum 渐变枚举(指定动画)
+     * @param pokemonGame 游戏对象
      */
-    public TransitionAnimation(PokemonGame pokemonGame, TransitionEnum transitionEnum) {
+    public TransitionAnimation(PokemonGame pokemonGame) {
 
         //游戏对象
         this.pokemonGame = pokemonGame;
@@ -68,8 +67,6 @@ public class TransitionAnimation {
                 Gdx.files.internal(FilePaths.TRANSITION_GLSL_VERTEX),
                 Gdx.files.internal(FilePaths.TRANSITION_GLSL_FRAGMENT)
         );
-        //指定渐变基底图片
-        this.img = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, transitionEnum.getNumber()));
         //默认状态,等待
         this.status = StatusEnum.WAITING;
 
@@ -77,8 +74,10 @@ public class TransitionAnimation {
 
     /**
      * 开始动画
+     *
+     * @param transitionEnum 渐变枚举(指定动画)
      */
-    public void start() {
+    public void start(TransitionEnum transitionEnum) {
         //如果不是等待状态
         if (status != StatusEnum.WAITING) {
             //过
@@ -87,6 +86,8 @@ public class TransitionAnimation {
         //开启状态
         this.status = StatusEnum.DOING;
         this.animTime = 0F;
+        //指定渐变基底图片
+        this.img = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, transitionEnum.getNumber()));
     }
 
     /**

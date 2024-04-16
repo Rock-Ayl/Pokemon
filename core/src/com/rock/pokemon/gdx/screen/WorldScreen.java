@@ -183,7 +183,7 @@ public class WorldScreen implements Screen {
          */
 
         //todo ,初始化渐变,先写死渐变
-        this.transitionAnimation = new TransitionAnimation(this.pokemonGame, TransitionEnum.THREE);
+        this.transitionAnimation = new TransitionAnimation(this.pokemonGame);
 
     }
 
@@ -217,8 +217,8 @@ public class WorldScreen implements Screen {
 
         //如果按回车
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-            //测试渐变动画
-            this.transitionAnimation.start();
+            //todo 测试渐变动画
+            this.transitionAnimation.start(TransitionEnum.THREE);
         }
 
         /**

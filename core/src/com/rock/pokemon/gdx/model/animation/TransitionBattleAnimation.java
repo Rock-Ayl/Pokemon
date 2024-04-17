@@ -79,7 +79,7 @@ public class TransitionBattleAnimation {
      */
     public void start(TransitionEnum transitionEnum) {
         //如果不是等待状态
-        if (status != StatusEnum.WAITING) {
+        if (this.status != StatusEnum.WAITING) {
             //过
             return;
         }
@@ -103,7 +103,7 @@ public class TransitionBattleAnimation {
          */
 
         //如果不是进行中
-        if (status != StatusEnum.DOING) {
+        if (this.status != StatusEnum.DOING) {
             //过
             return;
         }

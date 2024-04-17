@@ -67,11 +67,11 @@ public class TransitionSwitchAnimation {
             //渐渐变暗
             case DOING_DARK:
                 //叠加时间
-                animTime += delta;
+                this.animTime += delta;
                 //计算透明度,最大为1
-                alpha = Math.min(animTime / DURATION, 1F);
+                this.alpha = Math.min(this.animTime / DURATION, 1F);
                 //如果透明度达到极限
-                if (alpha == 1F) {
+                if (this.alpha == 1F) {
                     //修改状态
                     this.status = StatusEnum.IN_DARK;
                 }
@@ -79,18 +79,18 @@ public class TransitionSwitchAnimation {
             //渐渐变亮
             case DOING_LIGHT:
                 //反向叠加时间
-                animTime -= delta;
+                this.animTime -= delta;
                 //计算透明度,最小为0
-                alpha = Math.max(animTime / DURATION, 0F);
+                this.alpha = Math.max(this.animTime / DURATION, 0F);
                 //如果透明度达到极限
-                if (alpha == 0F) {
+                if (this.alpha == 0F) {
                     //修改状态
                     this.status = StatusEnum.WAITING;
                 }
                 break;
             //黑暗中
             case IN_DARK:
-                //不需要跳过update,需要继续渲染
+                //不需要跳过update,但是需要继续渲染,否则黑暗透明度会为0
                 break;
             //默认
             default:
@@ -104,7 +104,8 @@ public class TransitionSwitchAnimation {
 
         Gdx.gl.glEnable(Gdx.gl.GL_BLEND);
         shapeRenderer.begin(ShapeType.Filled);
-        shapeRenderer.setColor(new Color(0, 0, 0, alpha));
+        //根据透明度渲染
+        shapeRenderer.setColor(new Color(0, 0, 0, this.alpha));
         shapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         shapeRenderer.end();
         Gdx.gl.glDisable(Gdx.gl.GL_BLEND);

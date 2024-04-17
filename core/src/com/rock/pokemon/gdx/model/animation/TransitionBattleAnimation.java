@@ -11,12 +11,12 @@ import com.rock.pokemon.gdx.enums.TransitionEnum;
 import lombok.Getter;
 
 /**
- * todo 渐变效果
+ * 战斗 渐变效果
  *
  * @Author ayl
  * @Date 2024-4-16
  */
-public class TransitionAnimation {
+public class TransitionBattleAnimation {
 
     //游戏对象
     private PokemonGame pokemonGame;
@@ -58,7 +58,7 @@ public class TransitionAnimation {
      *
      * @param pokemonGame 游戏对象
      */
-    public TransitionAnimation(PokemonGame pokemonGame) {
+    public TransitionBattleAnimation(PokemonGame pokemonGame) {
 
         //游戏对象
         this.pokemonGame = pokemonGame;

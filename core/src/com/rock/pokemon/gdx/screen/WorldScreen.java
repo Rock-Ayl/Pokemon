@@ -15,7 +15,7 @@ import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.enums.TransitionEnum;
-import com.rock.pokemon.gdx.model.animation.TransitionAnimation;
+import com.rock.pokemon.gdx.model.animation.TransitionBattleAnimation;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
@@ -86,7 +86,7 @@ public class WorldScreen implements Screen {
      */
 
     //渐变对象
-    private TransitionAnimation transitionAnimation;
+    private TransitionBattleAnimation TransitionBattleAnimation;
 
     /**
      * 初始化世界、主角进入世界指定位置
@@ -182,8 +182,8 @@ public class WorldScreen implements Screen {
          * 渐变
          */
 
-        //todo ,初始化渐变,先写死渐变
-        this.transitionAnimation = new TransitionAnimation(this.pokemonGame);
+        //初始化战斗渐变
+        this.TransitionBattleAnimation = new TransitionBattleAnimation(this.pokemonGame);
 
     }
 
@@ -217,8 +217,8 @@ public class WorldScreen implements Screen {
 
         //如果按回车
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-            //todo 随机一个测试渐变动画
-            this.transitionAnimation.start(TransitionEnum.randomOne());
+            //todo 随机一个测试战斗渐变动画
+            this.TransitionBattleAnimation.start(TransitionEnum.randomOne());
         }
 
         /**
@@ -265,7 +265,7 @@ public class WorldScreen implements Screen {
          */
 
         //更新渐变动画
-        this.transitionAnimation.update(delta, this.viewport.getCamera());
+        this.TransitionBattleAnimation.update(delta, this.viewport.getCamera());
 
     }
 
@@ -287,7 +287,7 @@ public class WorldScreen implements Screen {
         //销毁ui
         this.uiStage.dispose();
         //销毁渐变
-        this.transitionAnimation.dispose();
+        this.TransitionBattleAnimation.dispose();
     }
 
     @Override

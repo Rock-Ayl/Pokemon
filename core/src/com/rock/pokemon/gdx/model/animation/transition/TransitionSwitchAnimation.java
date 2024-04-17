@@ -14,8 +14,8 @@ public class TransitionSwitchAnimation {
     //渲染器
     private ShapeRenderer shapeRenderer;
 
-    //整个淡入淡出过程的持续时间(秒)
-    private static final float DURATION = 2F;
+    //单个淡入、淡出过程的动画持续时间(秒)
+    private static final float DURATION = 0.5F;
 
     //动画当前持续时间
     private float animTime;

@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.model.animation;
+package com.rock.pokemon.gdx.model.animation.transition;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;

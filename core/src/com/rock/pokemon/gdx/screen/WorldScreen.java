@@ -16,6 +16,7 @@ import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
 import com.rock.pokemon.gdx.controller.PersonController;
 import com.rock.pokemon.gdx.enums.TransitionEnum;
 import com.rock.pokemon.gdx.model.animation.TransitionBattleAnimation;
+import com.rock.pokemon.gdx.model.animation.TransitionSwitchAnimation;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
@@ -85,8 +86,11 @@ public class WorldScreen implements Screen {
      * 渐变
      */
 
-    //渐变对象
-    private TransitionBattleAnimation TransitionBattleAnimation;
+    //战斗-渐变对象
+    private TransitionBattleAnimation transitionBattleAnimation;
+
+    //场景切换-渐变对象
+    private TransitionSwitchAnimation transitionSwitchAnimation;
 
     /**
      * 初始化世界、主角进入世界指定位置
@@ -182,8 +186,10 @@ public class WorldScreen implements Screen {
          * 渐变
          */
 
-        //初始化战斗渐变
-        this.TransitionBattleAnimation = new TransitionBattleAnimation(this.pokemonGame);
+        //初始化-渐变-战斗
+        this.transitionBattleAnimation = new TransitionBattleAnimation(this.pokemonGame);
+        //初始化-渐变-场景切换
+        this.transitionSwitchAnimation = new TransitionSwitchAnimation();
 
     }
 
@@ -209,16 +215,31 @@ public class WorldScreen implements Screen {
     @Override
     public void render(float delta) {
 
+        /**
+         * todo 一些 临时测试功能 的 按键检测
+         */
+
         //如果按空格
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             //优先计算加速
             delta = delta * Settings.SYSTEM_SPEED_MULTIPLIER;
         }
 
+        //如果按F7
+        if (Gdx.input.isKeyPressed(Input.Keys.F7)) {
+            //切换场景变暗
+            this.transitionSwitchAnimation.startFadingIn();
+        }
+        //如果按F8
+        if (Gdx.input.isKeyPressed(Input.Keys.F8)) {
+            //切换场景变亮
+            this.transitionSwitchAnimation.startFadingOut();
+        }
+
         //如果按F9
         if (Gdx.input.isKeyPressed(Input.Keys.F9)) {
-            //todo 随机一个测试战斗渐变动画
-            this.TransitionBattleAnimation.start(TransitionEnum.randomOne());
+            //随机一个测试战斗渐变动画
+            this.transitionBattleAnimation.start(TransitionEnum.randomOne());
         }
 
         /**
@@ -265,7 +286,8 @@ public class WorldScreen implements Screen {
          */
 
         //更新渐变动画
-        this.TransitionBattleAnimation.update(delta, this.viewport.getCamera());
+        this.transitionBattleAnimation.update(delta, this.viewport.getCamera());
+        this.transitionSwitchAnimation.update(delta);
 
     }
 
@@ -287,7 +309,8 @@ public class WorldScreen implements Screen {
         //销毁ui
         this.uiStage.dispose();
         //销毁渐变
-        this.TransitionBattleAnimation.dispose();
+        this.transitionBattleAnimation.dispose();
+        this.transitionSwitchAnimation.dispose();
     }
 
     @Override

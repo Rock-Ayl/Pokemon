@@ -56,6 +56,11 @@ public class TransitionSwitchAnimation {
         this.status = StatusEnum.WAITING;
     }
 
+    /**
+     * 过程实现
+     *
+     * @param delta 帧时间
+     */
     public void update(float delta) {
 
         /**

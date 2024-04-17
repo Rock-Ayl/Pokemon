@@ -47,7 +47,7 @@
             <td>跨平台Java游戏开发框架,支持[Windows][Linux][macOS][Android][浏览器][iOS]</td>
         </tr>
         <tr>
-            <td>apache commons</td>
+            <td>apache.commons</td>
             <td>-</td>
             <td>apache常用工具类</td>
         </tr>

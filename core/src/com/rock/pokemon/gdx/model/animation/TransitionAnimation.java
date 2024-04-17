@@ -30,7 +30,7 @@ public class TransitionAnimation {
     //动画持续时间
     private float animTime = 0F;
     //动画结束时间
-    private float animTimeFinish = 1F;
+    private static final float ANIM_TIME_FINISH = 1F;
     //动画速度倍率
     private static final float SPEED = 0.5F;
     //渐变基底图片
@@ -42,7 +42,7 @@ public class TransitionAnimation {
      * 状态枚举
      */
     @Getter
-    public enum StatusEnum {
+    private enum StatusEnum {
 
         //等待
         WAITING,
@@ -142,7 +142,7 @@ public class TransitionAnimation {
          */
 
         //如果动画结束了
-        if (this.animTime > this.animTimeFinish) {
+        if (this.animTime > ANIM_TIME_FINISH) {
             //重置状态
             this.status = StatusEnum.WAITING;
             this.animTime = 0;

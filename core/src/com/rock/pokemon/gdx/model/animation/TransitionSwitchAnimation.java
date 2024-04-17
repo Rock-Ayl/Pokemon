@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import lombok.Getter;
 
 /**
- * todo 场景切换 渐变效果
+ * 场景切换 渐变效果
  */
 public class TransitionSwitchAnimation {
 

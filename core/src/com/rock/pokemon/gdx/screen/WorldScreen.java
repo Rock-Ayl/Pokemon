@@ -215,8 +215,8 @@ public class WorldScreen implements Screen {
             delta = delta * Settings.SYSTEM_SPEED_MULTIPLIER;
         }
 
-        //如果按回车
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+        //如果按F9
+        if (Gdx.input.isKeyPressed(Input.Keys.F9)) {
             //todo 随机一个测试战斗渐变动画
             this.TransitionBattleAnimation.start(TransitionEnum.randomOne());
         }

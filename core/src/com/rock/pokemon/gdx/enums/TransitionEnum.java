@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.Random;
 
 /**
- * 渐变枚举
+ * 战斗渐变枚举
  */
 @Getter
 public enum TransitionEnum {

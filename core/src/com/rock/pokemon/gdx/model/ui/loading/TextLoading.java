@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.ui.loading;
+package com.rock.pokemon.gdx.model.ui.loading;
 
 import com.badlogic.gdx.Gdx;
 import com.rock.pokemon.gdx.common.FilePaths;

@@ -8,9 +8,9 @@ import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.manager.MySoundManager;
 import com.rock.pokemon.gdx.model.manager.SaveManager;
-import com.rock.pokemon.gdx.screen.MainMenuScreen;
-import com.rock.pokemon.gdx.ui.loading.SkinLoading;
-import com.rock.pokemon.gdx.ui.loading.TextLoading;
+import com.rock.pokemon.gdx.model.screen.MainMenuScreen;
+import com.rock.pokemon.gdx.model.ui.loading.SkinLoading;
+import com.rock.pokemon.gdx.model.ui.loading.TextLoading;
 import lombok.Getter;
 
 import java.util.Map;

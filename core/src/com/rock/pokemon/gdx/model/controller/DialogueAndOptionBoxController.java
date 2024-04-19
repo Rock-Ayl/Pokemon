@@ -1,8 +1,8 @@
-package com.rock.pokemon.gdx.controller;
+package com.rock.pokemon.gdx.model.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
+import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 
 /**
  * 对话框 + 可选项框 输入控制器

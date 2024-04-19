@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.screen;
+package com.rock.pokemon.gdx.model.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

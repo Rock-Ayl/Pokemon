@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.screen;
+package com.rock.pokemon.gdx.model.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -12,8 +12,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.controller.DialogueAndOptionBoxController;
-import com.rock.pokemon.gdx.controller.PersonController;
+import com.rock.pokemon.gdx.model.controller.DialogueAndOptionBoxController;
+import com.rock.pokemon.gdx.model.controller.PersonController;
 import com.rock.pokemon.gdx.enums.TransitionEnum;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionBattleAnimation;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionSwitchAnimation;
@@ -22,7 +22,7 @@ import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
 import com.rock.pokemon.gdx.model.map.config.WorldMapConfig;
-import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
+import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 
 /**

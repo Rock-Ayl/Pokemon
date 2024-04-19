@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.loader;
+package com.rock.pokemon.gdx.model.loader;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetLoaderParameters;

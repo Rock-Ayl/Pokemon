@@ -7,7 +7,7 @@ import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.map.config.WorldMapConfig;
 import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
-import com.rock.pokemon.gdx.screen.WorldScreen;
+import com.rock.pokemon.gdx.model.screen.WorldScreen;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;

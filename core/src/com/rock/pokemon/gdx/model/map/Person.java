@@ -11,7 +11,7 @@ import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import com.rock.pokemon.gdx.model.map.config.BoxMapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNodeEvent;
-import com.rock.pokemon.gdx.ui.box.DialogueAndOptionBox;
+import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.controller;
+package com.rock.pokemon.gdx.model.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;

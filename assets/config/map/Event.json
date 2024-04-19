@@ -5,13 +5,16 @@
       "remark": "未白镇-移动-todo",
       "eventNodeList": [
         {
+          "remark": "主角移动一步",
           "type": "move_adventurer"
         },
         {
+          "remark": "进门音效",
           "type": "music_sound"
         },
         {
-          "type": "animation_transition"
+          "remark": "淡入",
+          "type": "animation_transition_switch_start_in"
         },
         {
           "type": "主角移动至",
@@ -20,9 +23,11 @@
           "targetY": 18
         },
         {
-          "type": "淡出"
+          "remark": "淡出",
+          "type": "animation_transition_switch_start_out"
         },
         {
+          "remark": "主角移动一步",
           "type": "主角移动"
         }
       ]

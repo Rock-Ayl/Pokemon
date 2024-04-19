@@ -108,11 +108,11 @@ public class TransitionSwitchAnimation {
          */
 
         Gdx.gl.glEnable(Gdx.gl.GL_BLEND);
-        shapeRenderer.begin(ShapeType.Filled);
+        this.shapeRenderer.begin(ShapeType.Filled);
         //根据透明度渲染
-        shapeRenderer.setColor(new Color(0, 0, 0, this.alpha));
-        shapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        shapeRenderer.end();
+        this.shapeRenderer.setColor(new Color(0, 0, 0, this.alpha));
+        this.shapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        this.shapeRenderer.end();
         Gdx.gl.glDisable(Gdx.gl.GL_BLEND);
 
     }

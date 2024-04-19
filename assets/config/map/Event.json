@@ -1,0 +1,31 @@
+{
+  "name": "所有事件-谈话、菜单、剧情、道具、等等都算",
+  "eventMap": {
+    "little_root_move_one": {
+      "remark": "未白镇-移动-todo",
+      "eventNodeList": [
+        {
+          "type": "move_adventurer"
+        },
+        {
+          "type": "music_sound"
+        },
+        {
+          "type": "animation_transition"
+        },
+        {
+          "type": "主角移动至",
+          "targetWorldMapConfigPath": "assets/config/map/little_root/Ruby-First.json",
+          "targetX": 19,
+          "targetY": 18
+        },
+        {
+          "type": "淡出"
+        },
+        {
+          "type": "主角移动"
+        }
+      ]
+    }
+  }
+}

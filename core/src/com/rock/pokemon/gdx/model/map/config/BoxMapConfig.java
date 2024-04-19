@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.model.mapConfig;
+package com.rock.pokemon.gdx.model.map.config;
 
 import lombok.Getter;
 import lombok.Setter;

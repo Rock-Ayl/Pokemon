@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.model.mapConfig.BoxMapConfig.BoxMapNodeBoxOption;
+import com.rock.pokemon.gdx.model.map.config.BoxMapConfig.BoxMapNodeBoxOption;
 
 import java.util.ArrayList;
 import java.util.List;

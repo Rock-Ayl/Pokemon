@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
-import com.rock.pokemon.gdx.model.mapConfig.WorldObjectMapConfig;
+import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
 import lombok.Getter;
 import lombok.Setter;
 

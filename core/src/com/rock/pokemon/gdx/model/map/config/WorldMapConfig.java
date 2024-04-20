@@ -94,6 +94,9 @@ public class WorldMapConfig {
     @Setter
     public static class NpcNode {
 
+        //npcId
+        private Integer npcId;
+
         //节点备注
         private String remark;
 

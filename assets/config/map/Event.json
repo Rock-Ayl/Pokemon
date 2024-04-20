@@ -6,14 +6,14 @@
       "eventNodeList": [
         {
           "remark": "进门音效",
-          "type": "music_sound"
+          "type": "music_sound_play"
         },
         {
-          "remark": "门开",
-          "type": "door_open"
+          "remark": "开门动画",
+          "type": "play_world_object_animation"
         },
         {
-          "remark": "主角移动一步",
+          "remark": "主角移动",
           "type": "move_adventurer"
         },
         {
@@ -21,7 +21,8 @@
           "type": "animation_transition_switch_start_in"
         },
         {
-          "type": "主角移动至",
+          "remark": "主角场景切换",
+          "type": "scene_change",
           "targetWorldMapConfigPath": "assets/config/map/little_root/Ruby-First.json",
           "targetX": 19,
           "targetY": 18
@@ -31,8 +32,8 @@
           "type": "animation_transition_switch_start_out"
         },
         {
-          "remark": "主角移动一步",
-          "type": "主角移动"
+          "remark": "主角移动",
+          "type": "move_adventurer"
         }
       ]
     }

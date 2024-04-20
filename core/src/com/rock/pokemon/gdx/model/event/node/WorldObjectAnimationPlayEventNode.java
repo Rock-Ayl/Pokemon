@@ -13,7 +13,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class PlayWorldObjectAnimationEventNode implements EventNodeTemplate {
+public class WorldObjectAnimationPlayEventNode implements EventNodeTemplate {
 
     //对应事物Id
     private Integer worldObjectId;
@@ -21,7 +21,7 @@ public class PlayWorldObjectAnimationEventNode implements EventNodeTemplate {
     @Override
     public EventNodeTypeEnum getType() {
         //对应枚举类型
-        return EventNodeTypeEnum.PLAY_WORLD_OBJECT_ANIMATION;
+        return EventNodeTypeEnum.WORLD_OBJECT_ANIMATION_PLAY;
     }
 
 }

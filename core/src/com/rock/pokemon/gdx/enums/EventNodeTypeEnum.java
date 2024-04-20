@@ -29,7 +29,7 @@ public enum EventNodeTypeEnum {
 
     WAITING("waiting", "等待"),
 
-    PLAY_WORLD_OBJECT_ANIMATION("play_world_object_animation", "播放事物动画"),
+    WORLD_OBJECT_ANIMATION_PLAY("world_object_animation_play", "播放事物动画"),
 
     /**
      * 移动

@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum EventNodeTypeEnum {
 
-    none("none", "位置"),
+    NONE("none", "位置"),
 
     /**
      * 音乐、音效
@@ -20,7 +20,11 @@ public enum EventNodeTypeEnum {
     NPC_HIDE("npc_hide", "人物隐藏"),
     NPC_SHOW("npc_show", "人物显示"),
 
+    WORLD_OBJECT_HIDE("world_object_hide", "事物隐藏"),
+    WORLD_OBJECT_SHOW("world_object_show", "事物显示"),
+
     WAITING("waiting", "等待"),
+
     PLAY_WORLD_OBJECT_ANIMATION("play_world_object_animation", "播放事物动画"),
 
     /**

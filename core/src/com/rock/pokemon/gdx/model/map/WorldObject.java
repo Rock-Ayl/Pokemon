@@ -41,9 +41,6 @@ public class WorldObject implements YSortable {
     //是否可以行走(草可以走过去,树不行)
     private boolean walkable;
 
-    //是否连续播放(eg:花花草草会一直动=true,门只有事件控制动=false)
-    private boolean layContinuously;
-
     /**
      * 图片 or 动画
      */
@@ -55,6 +52,9 @@ public class WorldObject implements YSortable {
     private Animation<TextureRegion> animation;
     //该事物的动画帧
     private float animationTimer;
+
+    //是否连续播放(eg:花花草草会一直动=true,门只有事件控制动=false)
+    private boolean layContinuously;
 
     /**
      * 通过配置的初始化方式

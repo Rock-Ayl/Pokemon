@@ -59,6 +59,9 @@ public class WorldObject implements YSortable {
     //是否连续播放(eg:花花草草会一直动=true,门只有事件控制动=false)
     private boolean layContinuously;
 
+    //强制播放动画次数,一些不连续播放的事物,通过事件播放的开关
+    private int forceAnimationTimes;
+
     /**
      * 通过配置的初始化方式
      *
@@ -101,6 +104,7 @@ public class WorldObject implements YSortable {
 
         //默认
         this.animationTimer = 0F;
+        this.forceAnimationTimes = 0;
         this.animation = null;
         this.texture = null;
         this.frameDuration = mapNode.getFrameDuration();
@@ -129,12 +133,26 @@ public class WorldObject implements YSortable {
      * @param delta 每帧时间
      */
     public void update(float delta) {
-        //如果存在动画
-        if (this.animation != null) {
-            //如果是连续播放
-            if (this.layContinuously == true) {
-                //才会叠加帧时间
-                this.animationTimer += delta;
+        //如果不存在动画
+        if (this.animation == null) {
+            //过
+            return;
+        }
+        //如果不是连续播放 and 没有强制播放
+        if (this.layContinuously == false && this.forceAnimationTimes < 1) {
+            //过
+            return;
+        }
+        //叠加动画帧时间
+        this.animationTimer += delta;
+        //如果当前动画刚好走过了一轮
+        if (this.animationTimer >= this.frameDuration) {
+            //重置动画时间
+            this.animationTimer = 0F;
+            //如果有强制播放次数
+            if (this.forceAnimationTimes > 0) {
+                //删除一次
+                this.forceAnimationTimes--;
             }
         }
     }

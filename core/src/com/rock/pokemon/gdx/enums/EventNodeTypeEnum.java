@@ -17,6 +17,10 @@ public enum EventNodeTypeEnum {
      * 动画
      */
 
+    NPC_HIDE("npc_hide", "人物隐藏"),
+    NPC_SHOW("npc_show", "人物显示"),
+
+    WAITING("waiting", "等待"),
     PLAY_WORLD_OBJECT_ANIMATION("play_world_object_animation", "播放事物动画"),
 
     /**

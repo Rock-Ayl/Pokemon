@@ -6,14 +6,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 播放音效 事件节点
+ * 音效播放 事件节点
  *
  * @Author ayl
  * @Date 2024-04-20
  */
 @Getter
 @Setter
-public class MusicSoundPlayEventNode implements EventNodeTemplate {
+public class SoundPlayEventNode implements EventNodeTemplate {
 
     //音乐编号
     private Integer soundId;
@@ -21,7 +21,7 @@ public class MusicSoundPlayEventNode implements EventNodeTemplate {
     @Override
     public EventNodeTypeEnum getType() {
         //对应枚举类型
-        return EventNodeTypeEnum.MUSIC_SOUND_PLAY;
+        return EventNodeTypeEnum.SOUND_PLAY;
     }
 
 }

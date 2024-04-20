@@ -6,7 +6,7 @@
       "eventNodeList": [
         {
           "remark": "进门音效",
-          "type": "music_sound_play",
+          "type": "sound_play",
           "soundId": -1
         },
         {

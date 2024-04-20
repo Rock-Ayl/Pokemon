@@ -15,7 +15,7 @@ public enum EventNodeTypeEnum {
      * 音乐、音效
      */
 
-    MUSIC_SOUND_PLAY("music_sound_play", "播放音效"),
+    SOUND_PLAY("sound_play", "音效播放"),
 
     /**
      * 动画

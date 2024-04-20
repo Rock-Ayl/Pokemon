@@ -87,8 +87,10 @@ public class MyAssetManager {
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
         //载入npc
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
-        //载入box
+        //载入盒子
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
+        //载入盒子
+        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_EVENT, EventMapConfig.class);
 
         //载入未白镇地图配置
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, WorldMapConfig.class);

@@ -26,6 +26,7 @@ public class EventMapConfigLoader extends AsynchronousAssetLoader<EventMapConfig
     public void loadAsync(AssetManager assetManager, String filename, FileHandle file, AssetLoaderParameters<EventMapConfig> parameter) {
         //读取配置文件、解析为对应配置实体、初始化
         this.eventMapConfig = FastJsonExtraUtils.deepClone(file.readString(), EventMapConfig.class);
+        //todo
     }
 
     @Override

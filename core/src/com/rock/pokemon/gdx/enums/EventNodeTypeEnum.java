@@ -2,6 +2,10 @@ package com.rock.pokemon.gdx.enums;
 
 import lombok.Getter;
 
+/**
+ * 所有事件的枚举
+ * 事件包括:剧情、精灵球道具、交互、各种功能
+ */
 @Getter
 public enum EventNodeTypeEnum {
 

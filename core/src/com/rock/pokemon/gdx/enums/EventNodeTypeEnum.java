@@ -39,8 +39,8 @@ public enum EventNodeTypeEnum {
 
     SCENE_CHANGE("scene_change", "场景切换"),
 
-    ANIMATION_TRANSITION_SWITCH_START_IN("animation_transition_switch_start_in", "场景切换-淡入"),
-    ANIMATION_TRANSITION_SWITCH_START_OUT("animation_transition_switch_start_out", "场景切换-淡出"),
+    TRANSITION_SWITCH_ANIMATION_START_IN("transition_switch_animation_start_in", "场景切换-淡入"),
+    TRANSITION_SWITCH_ANIMATION_START_OUT("transition_switch_animation_start_out", "场景切换-淡出"),
 
     ;
 

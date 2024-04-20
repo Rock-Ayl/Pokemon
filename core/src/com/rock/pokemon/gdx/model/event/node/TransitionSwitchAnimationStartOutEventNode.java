@@ -13,12 +13,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class AnimationTransitionSwitchStartOutEventNode implements EventNodeTemplate {
+public class TransitionSwitchAnimationStartOutEventNode implements EventNodeTemplate {
 
     @Override
     public EventNodeTypeEnum getType() {
         //对应枚举类型
-        return EventNodeTypeEnum.ANIMATION_TRANSITION_SWITCH_START_OUT;
+        return EventNodeTypeEnum.TRANSITION_SWITCH_ANIMATION_START_OUT;
     }
 
 }

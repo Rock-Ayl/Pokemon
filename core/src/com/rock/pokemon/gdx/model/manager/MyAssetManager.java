@@ -4,15 +4,9 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.rock.pokemon.gdx.common.FilePaths;
-import com.rock.pokemon.gdx.model.map.config.BoxMapConfig;
-import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
-import com.rock.pokemon.gdx.model.map.config.WorldMapConfig;
-import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
+import com.rock.pokemon.gdx.model.loader.*;
+import com.rock.pokemon.gdx.model.map.config.*;
 import com.rock.pokemon.gdx.util.FileExtraUtils;
-import com.rock.pokemon.gdx.model.loader.BoxMapConfigLoader;
-import com.rock.pokemon.gdx.model.loader.NpcMapConfigLoader;
-import com.rock.pokemon.gdx.model.loader.WorldMapConfigLoader;
-import com.rock.pokemon.gdx.model.loader.WorldObjectMapConfigLoader;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -78,10 +72,12 @@ public class MyAssetManager {
         assetManager.setLoader(WorldObjectMapConfig.class, new WorldObjectMapConfigLoader(new InternalFileHandleResolver()));
         //载入世界配置解析器
         assetManager.setLoader(WorldMapConfig.class, new WorldMapConfigLoader(new InternalFileHandleResolver()));
-        //载入npc配置解析器
+        //载入NPC配置解析器
         assetManager.setLoader(NpcMapConfig.class, new NpcMapConfigLoader(new InternalFileHandleResolver()));
-        //载入box配置解析器
+        //载入盒子配置解析器
         assetManager.setLoader(BoxMapConfig.class, new BoxMapConfigLoader(new InternalFileHandleResolver()));
+        //载入事件配置解析器
+        assetManager.setLoader(EventMapConfig.class, new EventMapConfigLoader(new InternalFileHandleResolver()));
 
         /**
          * 载入 配置

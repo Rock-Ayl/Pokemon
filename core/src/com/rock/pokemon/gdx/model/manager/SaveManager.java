@@ -13,6 +13,9 @@ import lombok.Setter;
 @Setter
 public class SaveManager {
 
+    //todo 主角 npcId ,目前固定写死
+    private Integer NPC_ID = 1;
+
     //todo 主角 npc 配置名称,目前固定写死
     private String adventurerNpcMapConfigName = "ruby_1";
 

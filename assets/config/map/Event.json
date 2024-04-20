@@ -14,7 +14,7 @@
         },
         {
           "remark": "主角移动",
-          "type": "move_adventurer"
+          "type": "npc_move"
         },
         {
           "remark": "淡入",
@@ -33,7 +33,7 @@
         },
         {
           "remark": "主角移动",
-          "type": "move_adventurer"
+          "type": "npc_move"
         }
       ]
     }

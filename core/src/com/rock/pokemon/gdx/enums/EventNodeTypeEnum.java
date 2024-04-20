@@ -27,7 +27,7 @@ public enum EventNodeTypeEnum {
      * 移动
      */
 
-    MOVE_ADVENTURER("move_adventurer", "主角移动"),
+    NPC_MOVE("npc_move", "人物移动"),
 
     SCENE_CHANGE("scene_change", "场景切换"),
 

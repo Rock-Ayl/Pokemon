@@ -127,8 +127,11 @@ public class WorldObject implements YSortable {
     public void update(float delta) {
         //如果存在动画
         if (this.animation != null) {
-            //叠加帧时间
-            this.animationTimer += delta;
+            //如果是连续播放
+            if (this.layContinuously == true) {
+                //才会叠加帧时间
+                this.animationTimer += delta;
+            }
         }
     }
 
@@ -145,7 +148,7 @@ public class WorldObject implements YSortable {
         }
         //如果动画存在
         if (this.animation != null) {
-            //返回动画帧图片
+            //返回当前动画帧图片
             return this.animation.getKeyFrame(this.animationTimer);
         }
         //默认

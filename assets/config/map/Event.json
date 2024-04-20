@@ -21,6 +21,11 @@
           ]
         },
         {
+          "remark": "主角隐藏",
+          "type": "npc_hide",
+          "npcId": 1
+        },
+        {
           "remark": "淡入",
           "type": "animation_transition_switch_start_in"
         },

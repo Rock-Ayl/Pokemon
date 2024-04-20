@@ -30,7 +30,7 @@ public class TransitionBattleAnimation {
     //动画持续时间
     private float animTime = 0F;
     //动画结束时间
-    private static final float ANIM_TIME_FINISH = 1F;
+    private static final float ANIMATION_DURATION = 1F;
     //动画速度倍率
     private static final float SPEED = 0.5F;
     //渐变基底图片
@@ -142,7 +142,7 @@ public class TransitionBattleAnimation {
          */
 
         //如果动画结束了
-        if (this.animTime > ANIM_TIME_FINISH) {
+        if (this.animTime > ANIMATION_DURATION) {
             //重置状态
             this.status = StatusEnum.WAITING;
             this.animTime = 0;

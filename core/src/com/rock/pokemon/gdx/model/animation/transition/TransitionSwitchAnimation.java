@@ -15,7 +15,7 @@ public class TransitionSwitchAnimation {
     private ShapeRenderer shapeRenderer;
 
     //单个淡入、淡出过程的动画持续时间(秒)
-    private static final float DURATION = 0.5F;
+    private static final float ANIMATION_DURATION = 0.5F;
 
     //动画当前持续时间
     private float animTime;
@@ -74,7 +74,7 @@ public class TransitionSwitchAnimation {
                 //叠加时间
                 this.animTime += delta;
                 //计算透明度,最大为1
-                this.alpha = Math.min(this.animTime / DURATION, 1F);
+                this.alpha = Math.min(this.animTime / ANIMATION_DURATION, 1F);
                 //如果透明度达到极限
                 if (this.alpha == 1F) {
                     //修改状态
@@ -86,7 +86,7 @@ public class TransitionSwitchAnimation {
                 //反向叠加时间
                 this.animTime -= delta;
                 //计算透明度,最小为0
-                this.alpha = Math.max(this.animTime / DURATION, 0F);
+                this.alpha = Math.max(this.animTime / ANIMATION_DURATION, 0F);
                 //如果透明度达到极限
                 if (this.alpha == 0F) {
                     //修改状态

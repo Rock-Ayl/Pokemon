@@ -51,13 +51,19 @@
       ]
     },
     {
-      "remark": "木门(男主、女主家门)",
+      "remark": "木门(男主)",
       "worldObjectName": "woodenDoor1",
       "locationList": [
         {
           "x": 13,
           "y": 19
-        },
+        }
+      ]
+    },
+    {
+      "remark": "木门(女主家门)",
+      "worldObjectName": "woodenDoor1",
+      "locationList": [
         {
           "x": 22,
           "y": 19

@@ -10,7 +10,8 @@
         },
         {
           "remark": "开门动画",
-          "type": "play_world_object_animation"
+          "type": "play_world_object_animation",
+          "worldObjectId": 1
         },
         {
           "remark": "npc移动",

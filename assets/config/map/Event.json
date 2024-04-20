@@ -13,8 +13,12 @@
           "type": "play_world_object_animation"
         },
         {
-          "remark": "主角移动",
-          "type": "npc_move"
+          "remark": "npc移动",
+          "type": "npc_move",
+          "npcId": 1,
+          "moveDirectionEnumOrdinalList": [
+            0
+          ]
         },
         {
           "remark": "淡入",
@@ -32,8 +36,12 @@
           "type": "animation_transition_switch_start_out"
         },
         {
-          "remark": "主角移动",
-          "type": "npc_move"
+          "remark": "npc移动",
+          "type": "npc_move",
+          "npcId": 1,
+          "moveDirectionEnumOrdinalList": [
+            0
+          ]
         }
       ]
     }

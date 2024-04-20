@@ -55,10 +55,4 @@ public enum DirectionEnum {
         return SOUTH;
     }
 
-    public static void main(String[] args) {
-        DirectionEnum[] values = DirectionEnum.values();
-        DirectionEnum value = values[DirectionEnum.SOUTH.ordinal()];
-        System.out.println();
-    }
-
 }

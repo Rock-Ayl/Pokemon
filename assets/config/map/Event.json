@@ -3,7 +3,7 @@
   "eventMap": {
     "little_root_move_one": {
       "remark": "未白镇-移动-todo",
-      "eventNodeList": [
+      "eventNodeJsonList": [
         {
           "remark": "进门音效",
           "type": "sound_play",

@@ -11,11 +11,11 @@ import com.rock.pokemon.gdx.model.map.config.BoxMapConfig;
 import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 
 /**
- * 加载box配置对象
+ * 加载 Box 配置对象
  */
 public class BoxMapConfigLoader extends AsynchronousAssetLoader<BoxMapConfig, AssetLoaderParameters<BoxMapConfig>> {
 
-    //加载npc配置
+    //加载配置
     private BoxMapConfig boxMapConfig;
 
     public BoxMapConfigLoader(FileHandleResolver resolver) {

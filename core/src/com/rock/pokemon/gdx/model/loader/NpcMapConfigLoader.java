@@ -11,11 +11,11 @@ import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
 import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 
 /**
- * 加载npc配置对象
+ * 加载 Npc 配置对象
  */
 public class NpcMapConfigLoader extends AsynchronousAssetLoader<NpcMapConfig, AssetLoaderParameters<NpcMapConfig>> {
 
-    //加载npc配置
+    //加载配置
     private NpcMapConfig npcMapConfig;
 
     public NpcMapConfigLoader(FileHandleResolver resolver) {

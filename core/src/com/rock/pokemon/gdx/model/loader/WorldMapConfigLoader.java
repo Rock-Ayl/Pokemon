@@ -11,11 +11,11 @@ import com.rock.pokemon.gdx.model.map.config.WorldMapConfig;
 import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 
 /**
- * 加载世界配置对象
+ * 加载 世界 配置对象
  */
 public class WorldMapConfigLoader extends AsynchronousAssetLoader<WorldMapConfig, AssetLoaderParameters<WorldMapConfig>> {
 
-    //加载世界配置
+    //加载配置
     private WorldMapConfig worldMapConfig;
 
     public WorldMapConfigLoader(FileHandleResolver resolver) {

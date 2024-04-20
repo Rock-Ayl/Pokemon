@@ -12,7 +12,7 @@
         {
           "remark": "开门动画",
           "type": "world_object_animation_play",
-          "worldObjectId": -1
+          "worldObjectId": "map-little-root-main-door-1"
         },
         {
           "remark": "npc移动",

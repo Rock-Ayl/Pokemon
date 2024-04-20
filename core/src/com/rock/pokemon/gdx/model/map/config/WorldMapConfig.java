@@ -79,6 +79,9 @@ public class WorldMapConfig {
         //节点备注
         private String remark;
 
+        //事物id
+        private String worldObjectId;
+
         //事物名称
         private String worldObjectName;
 

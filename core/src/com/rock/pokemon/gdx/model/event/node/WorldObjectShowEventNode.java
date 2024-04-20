@@ -16,7 +16,7 @@ import lombok.Setter;
 public class WorldObjectShowEventNode implements EventNodeTemplate {
 
     //对应事物Id
-    private Integer worldObjectId;
+    private String worldObjectId;
 
     @Override
     public EventNodeTypeEnum getType() {

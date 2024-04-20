@@ -48,6 +48,9 @@ public class WorldObjectMapConfig {
         //事物是否可以行走
         private Boolean walkable;
 
+        //是否连续播放(eg:花花草草会一直动=true,门只有事件控制动=false)
+        private Boolean layContinuously;
+
         //指定 可以 行走的坐标列表
         private List<Location> tileList;
 

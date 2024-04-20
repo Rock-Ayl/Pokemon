@@ -22,6 +22,7 @@
       "height": 1.5,
       "frameDuration": 0.9,
       "walkable": true,
+      "layContinuously": false,
       "tileList": [
         {
           "x": 0,

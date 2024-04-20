@@ -4,13 +4,14 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
-import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
+import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 事物实体 可以是一个树、一朵花、一个牌子等等,在地图网格上面,可动可静,可以是图片也可以是动画
@@ -39,6 +40,9 @@ public class WorldObject implements YSortable {
 
     //是否可以行走(草可以走过去,树不行)
     private boolean walkable;
+
+    //是否连续播放(eg:花花草草会一直动=true,门只有事件控制动=false)
+    private boolean layContinuously;
 
     /**
      * 图片 or 动画
@@ -70,8 +74,15 @@ public class WorldObject implements YSortable {
         this.width = mapNode.getWidth();
         this.height = mapNode.getHeight();
 
-        //是否可以行走
-        this.walkable = mapNode.getWalkable();
+        //是否可以行走,默认可以行走
+        this.walkable = Optional.ofNullable(mapNode)
+                .map(WorldObjectMapConfig.WorldObjectMapNode::getWalkable)
+                .orElse(true);
+
+        //是否连续播放,事物默认都是连续播放
+        this.layContinuously = Optional.ofNullable(mapNode)
+                .map(WorldObjectMapConfig.WorldObjectMapNode::getLayContinuously)
+                .orElse(true);
 
         //初始化
         this.gridPointList = new ArrayList<>();

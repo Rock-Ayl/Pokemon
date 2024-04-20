@@ -33,8 +33,10 @@ public class EventMapConfigLoader extends AsynchronousAssetLoader<EventMapConfig
         for (EventMapConfig.Event event : this.eventMapConfig.getEventMap().values()) {
             //解析不同类型的事件节点
             event.setEventNodeList(event
+                    //获取json数据
                     .getEventNodeJsonList()
                     .stream()
+                    //解析为对应实体
                     .map(EventNodeParser::parse)
                     .collect(Collectors.toList()));
         }

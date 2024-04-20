@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public enum EventNodeTypeEnum {
 
-    NONE("none", "位置"),
+    NONE("none", "未知"),
 
     /**
      * 音乐、音效
@@ -52,6 +52,19 @@ public enum EventNodeTypeEnum {
     EventNodeTypeEnum(String code, String name) {
         this.code = code;
         this.name = name;
+    }
+
+    public static EventNodeTypeEnum parse(String code) {
+        //循环所有美剧
+        for (EventNodeTypeEnum typeEnum : EventNodeTypeEnum.values()) {
+            //如果相同
+            if (typeEnum.getCode().equals(code)) {
+                //返回
+                return typeEnum;
+            }
+        }
+        //默认
+        return NONE;
     }
 
 }

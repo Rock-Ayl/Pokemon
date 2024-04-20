@@ -38,7 +38,7 @@ public class EventMapConfig {
         private List<JSONObject> eventNodeJsonList;
 
         //事件节点实体列表
-        private List<EventNodeTemplate> eventNodeList;
+        private List<? extends EventNodeTemplate> eventNodeList;
 
     }
 

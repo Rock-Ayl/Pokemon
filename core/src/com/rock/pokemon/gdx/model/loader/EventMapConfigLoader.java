@@ -7,8 +7,11 @@ import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
+import com.rock.pokemon.gdx.model.event.EventNodeParser;
 import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
+
+import java.util.stream.Collectors;
 
 /**
  * 加载 Event 配置对象
@@ -26,7 +29,15 @@ public class EventMapConfigLoader extends AsynchronousAssetLoader<EventMapConfig
     public void loadAsync(AssetManager assetManager, String filename, FileHandle file, AssetLoaderParameters<EventMapConfig> parameter) {
         //读取配置文件、解析为对应配置实体、初始化
         this.eventMapConfig = FastJsonExtraUtils.deepClone(file.readString(), EventMapConfig.class);
-        //todo
+        //循环事件实体
+        for (EventMapConfig.Event event : this.eventMapConfig.getEventMap().values()) {
+            //解析不同类型的事件节点
+            event.setEventNodeList(event
+                    .getEventNodeJsonList()
+                    .stream()
+                    .map(EventNodeParser::parse)
+                    .collect(Collectors.toList()));
+        }
     }
 
     @Override

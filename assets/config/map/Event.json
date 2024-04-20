@@ -11,7 +11,7 @@
         },
         {
           "remark": "开门动画",
-          "type": "play_world_object_animation",
+          "type": "world_object_animation_play",
           "worldObjectId": -1
         },
         {
@@ -29,7 +29,7 @@
         },
         {
           "remark": "淡入",
-          "type": "animation_transition_switch_start_in"
+          "type": "transition_switch_animation_start_in"
         },
         {
           "remark": "主角场景切换",
@@ -40,7 +40,7 @@
         },
         {
           "remark": "淡出",
-          "type": "animation_transition_switch_start_out"
+          "type": "transition_switch_animation_start_out"
         },
         {
           "remark": "npc移动",

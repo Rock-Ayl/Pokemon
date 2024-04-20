@@ -53,6 +53,9 @@ public class WorldObject implements YSortable {
     //该事物的动画帧
     private float animationTimer;
 
+    //动画帧持续时间(如果有,则视为动画,否则视为静态图片)
+    private Float frameDuration;
+
     //是否连续播放(eg:花花草草会一直动=true,门只有事件控制动=false)
     private boolean layContinuously;
 
@@ -100,6 +103,7 @@ public class WorldObject implements YSortable {
         this.animationTimer = 0F;
         this.animation = null;
         this.texture = null;
+        this.frameDuration = mapNode.getFrameDuration();
 
         //获取资源路径
         String filePath = mapNode.getFilePath();

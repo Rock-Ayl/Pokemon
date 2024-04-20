@@ -6,17 +6,18 @@
       "eventNodeList": [
         {
           "remark": "进门音效",
-          "type": "music_sound_play"
+          "type": "music_sound_play",
+          "soundId": -1
         },
         {
           "remark": "开门动画",
           "type": "play_world_object_animation",
-          "worldObjectId": 1
+          "worldObjectId": -1
         },
         {
           "remark": "npc移动",
           "type": "npc_move",
-          "npcId": 1,
+          "npcId": -1,
           "moveDirectionEnumOrdinalList": [
             0
           ]
@@ -24,7 +25,7 @@
         {
           "remark": "主角隐藏",
           "type": "npc_hide",
-          "npcId": 1
+          "npcId": -1
         },
         {
           "remark": "淡入",
@@ -44,7 +45,7 @@
         {
           "remark": "npc移动",
           "type": "npc_move",
-          "npcId": 1,
+          "npcId": -1,
           "moveDirectionEnumOrdinalList": [
             0
           ]

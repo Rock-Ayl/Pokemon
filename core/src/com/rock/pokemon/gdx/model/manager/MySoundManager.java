@@ -1,8 +1,10 @@
 package com.rock.pokemon.gdx.model.manager;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
-import com.rock.pokemon.gdx.common.FilePaths;
+import com.rock.pokemon.gdx.model.map.config.SoundMapConfig;
+import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
+
+import java.util.Map;
 
 /**
  * 通用音效管理器
@@ -12,71 +14,55 @@ import com.rock.pokemon.gdx.common.FilePaths;
  */
 public class MySoundManager {
 
-    /**
-     * 撞墙音效
-     */
-
-    //音效-撞墙
-    private Sound NO_WALK;
-
-    //音效-撞墙-上次发出音效的时间(时间戳)
-    private long NO_WALK_LAST_SOUND_TIME;
-
-    //音效-撞墙-音效之间的间隔 毫秒
-    private static final long NO_WALK_SOUND_TIME_INTERVAL = 500L;
+    //音效配置对象
+    private SoundMapConfig soundMapConfig;
 
     /**
-     * 菜单音效
+     * 初始化音效管理器
+     *
+     * @param soundMapConfig 音效配置
      */
-
-    //音效-菜单开启
-    private Sound MENU_OPEN;
-    //音效-菜单关闭
-    private Sound MENU_CLOSE;
-
-    /**
-     * 初始化
-     */
-
-    //初始化音效管理器
-    public MySoundManager() {
-        //初始化各种音乐
-        this.NO_WALK = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_NO_WALK));
-        this.MENU_OPEN = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_MENU_OPEN));
-        this.MENU_CLOSE = Gdx.audio.newSound(Gdx.files.internal(FilePaths.SOUND_MENU_CLOSE));
-    }
-
-    /**
-     * 人物发出撞墙的音效
-     */
-    public void playNoWalk() {
-        //当前时间戳
-        long thisTime = System.currentTimeMillis();
-        //如果距离上次发出音效时间没有过间隔期
-        if (thisTime - NO_WALK_SOUND_TIME_INTERVAL < NO_WALK_LAST_SOUND_TIME) {
-            //不发出音效
-            return;
+    public MySoundManager(SoundMapConfig soundMapConfig) {
+        //克隆一下
+        this.soundMapConfig = FastJsonExtraUtils.deepClone(soundMapConfig, SoundMapConfig.class);
+        //循环配置
+        for (Map.Entry<String, SoundMapConfig.MySound> entry : this.soundMapConfig.getSoundMap().entrySet()) {
+            //获取soundId
+            String soundId = entry.getKey();
+            //获取配置
+            SoundMapConfig.MySound mySound = entry.getValue();
+            //初始化音效
+            mySound.setSound(Gdx.audio.newSound(Gdx.files.internal(mySound.getSoundPath())));
+            //覆盖id
+            mySound.setSoundId(soundId);
         }
-        //发出撞墙音效
-        this.NO_WALK.play();
-        //记录发出音效的时间
-        NO_WALK_LAST_SOUND_TIME = thisTime;
     }
 
     /**
-     * 打开菜单音效
+     * 根据 音效id 播放音效
+     *
+     * @param soundId 音效id
      */
-    public void playMenuOpen() {
-        //菜单开启音效
-        this.MENU_OPEN.play();
-    }
-
-    /**
-     * 关闭/移动菜单音效
-     */
-    public void playMenuClose() {
-        //菜单关闭音效
-        this.MENU_CLOSE.play();
+    public void play(String soundId) {
+        //获取对应音效对象
+        SoundMapConfig.MySound mySound = soundMapConfig.getSoundMap().get(soundId);
+        //如果有间隔时间
+        if (mySound.getSoundTimeInterval() > 0L) {
+            //当前时间戳
+            long thisTime = System.currentTimeMillis();
+            //如果距离上次发出音效时间没有过间隔期
+            if (mySound.getLastPlayTime() != null && thisTime - mySound.getSoundTimeInterval() < mySound.getLastPlayTime()) {
+                //不发出音效
+                return;
+            }
+            //播放
+            mySound.getSound().play();
+            //记录发出音效的时间
+            mySound.setLastPlayTime(thisTime);
+        } else {
+            //直接播放
+            mySound.getSound().play();
+        }
     }
 
 }

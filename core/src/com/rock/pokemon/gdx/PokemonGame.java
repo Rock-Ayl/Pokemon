@@ -65,7 +65,7 @@ public class PokemonGame extends Game {
         this.myAssetManager = new MyAssetManager();
 
         //初始化通用音效
-        this.mySoundManager = new MySoundManager();
+        this.mySoundManager = new MySoundManager(this.myAssetManager.getSoundMapConfig());
 
         //todo 初始化存档,目前写死,之后要读取存档
         this.saveManager = new SaveManager();

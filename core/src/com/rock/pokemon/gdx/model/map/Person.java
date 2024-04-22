@@ -7,10 +7,10 @@ import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
-import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import com.rock.pokemon.gdx.model.map.config.BoxMapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNodeEvent;
+import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 import lombok.Setter;
@@ -381,7 +381,7 @@ public class Person implements YSortable {
             //强制变为走路
             walkEnum = WalkEnum.WALK;
             //尝试发出撞墙的音效
-            this.pokemonGame.getMySoundManager().playNoWalk();
+            this.pokemonGame.getMySoundManager().play("sound_emerald_0007_no_walk");
         }
 
         /**

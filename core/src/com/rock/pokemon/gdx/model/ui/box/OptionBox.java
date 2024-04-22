@@ -154,7 +154,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.pokemonGame.getMySoundManager().playMenuClose();
+        this.pokemonGame.getMySoundManager().play("sound_emerald_0005_menu_close");
     }
 
     /**
@@ -176,7 +176,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.pokemonGame.getMySoundManager().playMenuClose();
+        this.pokemonGame.getMySoundManager().play("sound_emerald_0005_menu_close");
     }
 
     /**
@@ -220,7 +220,7 @@ public class OptionBox extends Table {
             //设置为可见
             this.setVisible(true);
             //菜单打开音效
-            this.pokemonGame.getMySoundManager().playMenuOpen();
+            this.pokemonGame.getMySoundManager().play("sound_emerald_0006_menu_open");
         } else {
             //如果已经关闭了
             if (this.isVisible() == false) {
@@ -230,7 +230,7 @@ public class OptionBox extends Table {
             //设置为不可见
             this.setVisible(false);
             //菜单关闭音效
-            this.pokemonGame.getMySoundManager().playMenuClose();
+            this.pokemonGame.getMySoundManager().play("sound_emerald_0005_menu_close");
         }
     }
 

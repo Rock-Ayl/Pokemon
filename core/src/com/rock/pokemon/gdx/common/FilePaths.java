@@ -66,18 +66,6 @@ public class FilePaths {
     public static final String MAP_CONFIG_PATH_OF_SOUND = "assets/config/map/Sound.json";
 
     /**
-     * 音效
-     */
-
-    //撞墙音效
-    public static final String SOUND_NO_WALK = "audio/sound/emerald_0007_no_walk.wav";
-
-    //菜单开启音效
-    public static final String SOUND_MENU_OPEN = "audio/sound/emerald_0006_menu_open.wav";
-    //菜单关闭音效
-    public static final String SOUND_MENU_CLOSE = "audio/sound/emerald_0005_menu_close.wav";
-
-    /**
      * 渐变配置
      */
 

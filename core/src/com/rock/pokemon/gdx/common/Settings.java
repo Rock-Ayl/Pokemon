@@ -66,4 +66,16 @@ public class Settings {
     //通用字体样式-key
     public final static String SYSTEM_FONT_LABEL = "systemFontLabel";
 
+    /**
+     * 音效-id
+     */
+
+    //撞墙
+    public final static String SOUND_ID_NO_WALK = "sound_emerald_0007_no_walk";
+
+    //菜单开启
+    public final static String SOUND_ID_MENU_OPEN = "sound_emerald_0006_menu_open";
+    //菜单关闭
+    public final static String SOUND_ID_MENU_CLOSE = "sound_emerald_0005_menu_close";
+
 }

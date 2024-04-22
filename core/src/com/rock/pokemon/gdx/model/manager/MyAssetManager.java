@@ -89,7 +89,7 @@ public class MyAssetManager {
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
         //载入盒子
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
-        //载入盒子
+        //载入事件
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_EVENT, EventMapConfig.class);
 
         //载入未白镇地图配置
@@ -163,6 +163,15 @@ public class MyAssetManager {
      */
     public WorldMapConfig getWorldMapConfig(String fileName) {
         return this.assetManager.get(fileName, WorldMapConfig.class);
+    }
+
+    /**
+     * 获取 事件 配置类实体
+     *
+     * @return
+     */
+    public EventMapConfig getEventMapConfig() {
+        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_EVENT, EventMapConfig.class);
     }
 
     /**

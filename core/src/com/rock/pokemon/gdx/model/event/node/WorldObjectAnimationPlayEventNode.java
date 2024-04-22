@@ -18,6 +18,9 @@ public class WorldObjectAnimationPlayEventNode implements EventNodeTemplate {
     //对应事物Id
     private String worldObjectId;
 
+    //强制播放动画次数
+    private Integer forceAnimationTimes;
+
     @Override
     public EventNodeTypeEnum getType() {
         //对应枚举类型

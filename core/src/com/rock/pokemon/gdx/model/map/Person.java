@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.PokemonGame;
+import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
@@ -381,7 +382,7 @@ public class Person implements YSortable {
             //强制变为走路
             walkEnum = WalkEnum.WALK;
             //尝试发出撞墙的音效
-            this.pokemonGame.getMySoundManager().play("sound_emerald_0007_no_walk");
+            this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_NO_WALK);
         }
 
         /**

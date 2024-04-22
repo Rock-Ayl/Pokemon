@@ -40,7 +40,6 @@ public class EventMapConfigLoader extends AsynchronousAssetLoader<EventMapConfig
                     .map(EventNodeParser::parse)
                     .collect(Collectors.toList()));
         }
-        System.out.println();
     }
 
     @Override

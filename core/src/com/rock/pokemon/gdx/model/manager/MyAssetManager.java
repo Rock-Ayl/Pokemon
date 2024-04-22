@@ -78,6 +78,8 @@ public class MyAssetManager {
         assetManager.setLoader(BoxMapConfig.class, new BoxMapConfigLoader(new InternalFileHandleResolver()));
         //载入事件配置解析器
         assetManager.setLoader(EventMapConfig.class, new EventMapConfigLoader(new InternalFileHandleResolver()));
+        //载入音效配置解析器
+        assetManager.setLoader(SoundMapConfig.class, new SoundMapConfigLoader(new InternalFileHandleResolver()));
 
         /**
          * 载入 配置
@@ -91,6 +93,8 @@ public class MyAssetManager {
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
         //载入事件
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_EVENT, EventMapConfig.class);
+        //载入音效
+        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_SOUND, SoundMapConfig.class);
 
         //载入未白镇地图配置
         assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, WorldMapConfig.class);

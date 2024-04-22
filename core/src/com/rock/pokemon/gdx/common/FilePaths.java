@@ -62,6 +62,8 @@ public class FilePaths {
     public static final String MAP_CONFIG_PATH_OF_BOX = "assets/config/map/Box.json";
     //配置文件路径-事件
     public static final String MAP_CONFIG_PATH_OF_EVENT = "assets/config/map/Event.json";
+    //配置文件路径-音效
+    public static final String MAP_CONFIG_PATH_OF_SOUND = "assets/config/map/Sound.json";
 
     /**
      * 音效

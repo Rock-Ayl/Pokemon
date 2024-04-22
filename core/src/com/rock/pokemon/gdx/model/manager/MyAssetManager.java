@@ -179,6 +179,15 @@ public class MyAssetManager {
     }
 
     /**
+     * 获取 音效 配置类实体
+     *
+     * @return
+     */
+    public SoundMapConfig getSoundMapConfig() {
+        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_SOUND, SoundMapConfig.class);
+    }
+
+    /**
      * 销毁
      */
     public void dispose() {

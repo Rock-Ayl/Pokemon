@@ -1,0 +1,20 @@
+{
+  "name": "音效配置",
+  "soundMap": {
+    "sound_emerald_0007_no_walk": {
+      "remark": "撞墙音效",
+      "soundPath": "audio/sound/emerald_0007_no_walk.wav",
+      "soundTimeInterval": 500
+    },
+    "sound_emerald_0006_menu_open": {
+      "remark": "菜单开启音效",
+      "soundPath": "audio/sound/emerald_0006_menu_open.wav",
+      "soundTimeInterval": 0
+    },
+    "sound_emerald_0005_menu_close": {
+      "remark": "菜单关闭音效",
+      "soundPath": "audio/sound/emerald_0005_menu_close.wav",
+      "soundTimeInterval": 0
+    }
+  }
+}

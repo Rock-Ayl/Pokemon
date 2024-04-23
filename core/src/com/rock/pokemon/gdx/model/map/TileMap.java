@@ -45,13 +45,15 @@ public class TileMap {
      * @param person 要设置的人物
      */
     public void setPerson(int x, int y, Person person) {
-        //如果越界
-        if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
+        //获取地图块
+        Tile tile = getTile(x, y);
+        //判空
+        if (tile == null) {
             //过
             return;
         }
         //设置人物
-        getTile(x, y).setPerson(person);
+        tile.setPerson(person);
     }
 
     /**
@@ -62,23 +64,31 @@ public class TileMap {
      * @param person 要设置的人物
      */
     public void removePerson(int x, int y, Person person) {
-        //如果越界
-        if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
+        //获取地图块
+        Tile tile = getTile(x, y);
+        //判空
+        if (tile == null) {
             //过
             return;
         }
         //删除人物
-        getTile(x, y).removePerson(person);
+        tile.removePerson(person);
     }
 
     /**
-     * 获取精确坐标地图块
+     * 获取精确坐标地图块,越界也无所谓
      *
      * @param x
      * @param y
      * @return
      */
     public Tile getTile(int x, int y) {
+        //如果越界
+        if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
+            //过
+            return null;
+        }
+        //返回内容
         return this.map[x][y];
     }
 

@@ -7,7 +7,7 @@
         {
           "remark": "进门音效",
           "type": "sound_play",
-          "soundId": "-1"
+          "soundId": "sound_emerald_0008_open_door"
         },
         {
           "remark": "开门动画",
@@ -40,16 +40,13 @@
           "targetY": 18
         },
         {
-          "remark": "淡出",
-          "type": "transition_switch_animation_start_out"
+          "remark": "主角显示",
+          "type": "npc_show",
+          "npcId": -1
         },
         {
-          "remark": "npc移动",
-          "type": "npc_move",
-          "npcId": -1,
-          "moveDirectionEnumOrdinalList": [
-            0
-          ]
+          "remark": "淡出",
+          "type": "transition_switch_animation_start_out"
         }
       ]
     }

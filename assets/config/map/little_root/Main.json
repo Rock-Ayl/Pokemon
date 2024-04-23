@@ -59,7 +59,8 @@
           "x": 13,
           "y": 19
         }
-      ]
+      ],
+      "doorEventId": "little_root_move_one"
     },
     {
       "remark": "木门(女主家门)",

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
+import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import lombok.Getter;
@@ -58,6 +59,13 @@ public class WorldObject implements YSortable {
 
     //强制播放动画次数,一些不连续播放的事物,通过事件播放的开关
     private int forceAnimationTimes;
+
+    /**
+     * 事件
+     */
+
+    //门事件,一种事件类型,移动过程中即将碰到触发该事件
+    private EventMapConfig.Event doorEvent;
 
     /**
      * 通过配置的初始化方式

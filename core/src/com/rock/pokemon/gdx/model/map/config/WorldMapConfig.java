@@ -88,6 +88,9 @@ public class WorldMapConfig {
         //坐标列表
         private List<Location> locationList;
 
+        //门事件id
+        private String doorEventId;
+
     }
 
     /**

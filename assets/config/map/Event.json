@@ -7,7 +7,7 @@
         {
           "remark": "进门音效",
           "type": "sound_play",
-          "soundId": -1
+          "soundId": "-1"
         },
         {
           "remark": "开门动画",

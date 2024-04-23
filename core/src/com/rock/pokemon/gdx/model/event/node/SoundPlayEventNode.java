@@ -16,7 +16,7 @@ import lombok.Setter;
 public class SoundPlayEventNode implements EventNodeTemplate {
 
     //音乐编号
-    private Integer soundId;
+    private String soundId;
 
     @Override
     public EventNodeTypeEnum getType() {

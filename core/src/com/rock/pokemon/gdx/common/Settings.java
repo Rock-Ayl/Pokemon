@@ -75,7 +75,7 @@ public class Settings {
 
     //菜单开启
     public final static String SOUND_ID_MENU_OPEN = "sound_emerald_0006_menu_open";
-    //菜单关闭
-    public final static String SOUND_ID_MENU_CLOSE = "sound_emerald_0005_menu_close";
+    //菜单关闭/移动
+    public final static String SOUND_ID_MENU_CLOSE_AND_MOVE = "sound_emerald_0005_menu_close";
 
 }

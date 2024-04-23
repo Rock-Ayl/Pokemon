@@ -154,7 +154,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE);
+        this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
     }
 
     /**
@@ -176,7 +176,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE);
+        this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
     }
 
     /**
@@ -230,7 +230,7 @@ public class OptionBox extends Table {
             //设置为不可见
             this.setVisible(false);
             //菜单关闭音效
-            this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE);
+            this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
         }
     }
 

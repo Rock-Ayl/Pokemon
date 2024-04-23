@@ -7,6 +7,7 @@ import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
+import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -74,8 +75,20 @@ public class WorldObject implements YSortable {
      * @param mapNode        事物配置类
      * @param x              坐标x
      * @param y              坐标y
+     * @param doorEvent      门事件(选填)
      */
-    public WorldObject(MyAssetManager myAssetManager, WorldObjectMapConfig.WorldObjectMapNode mapNode, int x, int y) {
+    public WorldObject(MyAssetManager myAssetManager, WorldObjectMapConfig.WorldObjectMapNode mapNode, int x, int y, EventMapConfig.Event doorEvent) {
+
+        /**
+         * 事件
+         */
+
+        //克隆,记录门事件
+        this.doorEvent = FastJsonExtraUtils.deepClone(doorEvent, EventMapConfig.Event.class);
+
+        /**
+         * 网格计算
+         */
 
         //坐标
         this.x = x;

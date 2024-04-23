@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.PokemonGame;
+import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.map.config.WorldMapConfig;
@@ -14,6 +15,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -151,6 +153,27 @@ public class World {
 
         //循环世界事务节点
         for (WorldMapConfig.WorldObjectNode worldObjectNode : worldMapConfig.getWorldObjectNodeList()) {
+
+            /**
+             * 获取事务对应事件
+             */
+
+            //获取事件map
+            Map<String, EventMapConfig.Event> eventMap = pokemonGame.getMyAssetManager().getEventMapConfig().getEventMap();
+            //门事件,默认为0
+            EventMapConfig.Event doorEvent = null;
+            //获取门事件id
+            String doorEventId = worldObjectNode.getDoorEventId();
+            //如果存在对应门事件
+            if (doorEventId != null && eventMap.containsKey(doorEventId)) {
+                //获取对应门事件
+                doorEvent = eventMap.get(doorEventId);
+            }
+
+            /**
+             * 初始化对应的事物
+             */
+
             //获取事物名称
             String worldObjectName = worldObjectNode.getWorldObjectName();
             //读取对应事物配置
@@ -158,7 +181,7 @@ public class World {
             //循环坐标列表
             for (WorldMapConfig.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
-                WorldObject worldObject = new WorldObject(pokemonGame.getMyAssetManager(), worldObjectNodeConfig, location.getX(), location.getY());
+                WorldObject worldObject = new WorldObject(pokemonGame.getMyAssetManager(), worldObjectNodeConfig, location.getX(), location.getY(), doorEvent);
                 //加入到世界
                 this.addWorldObject(worldObject);
             }

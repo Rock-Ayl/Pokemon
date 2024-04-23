@@ -46,8 +46,18 @@ public class MySoundManager {
     public void play(String soundId) {
         //获取对应音效对象
         SoundMapConfig.MySound mySound = soundMapConfig.getSoundMap().get(soundId);
+
+        /**
+         * 播放音效目前有两种情况
+         */
+
         //如果有间隔时间
         if (mySound.getSoundTimeInterval() > 0L) {
+
+            /**
+             * 情况1 有间隔 比如撞墙
+             */
+
             //当前时间戳
             long thisTime = System.currentTimeMillis();
             //如果距离上次发出音效时间没有过间隔期
@@ -60,6 +70,11 @@ public class MySoundManager {
             //记录发出音效的时间
             mySound.setLastPlayTime(thisTime);
         } else {
+
+            /**
+             * 情况2 无间隔 比如菜单开启、关闭、移动
+             */
+
             //直接播放
             mySound.getSound().play();
         }

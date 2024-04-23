@@ -9,6 +9,7 @@ import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
 import com.rock.pokemon.gdx.model.map.config.BoxMapConfig.BoxMapNode;
+import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNodeEvent;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
@@ -339,8 +340,28 @@ public class Person implements YSortable {
         int destY = this.y + directionEnum.getDy();
 
         /**
-         * todo 检测事件(门事件),如果有事件,不移动,优先触发时间
+         * 检测事件(门事件),如果有事件,不移动,优先触发时间
          */
+
+        //获取前方的门事件
+        EventMapConfig.Event doorEvent = Optional.ofNullable(this.world)
+                //获取地图块矩阵
+                .map(World::getTileMap)
+                //获取对应目的地
+                .map(p -> p.getTile(destX, destY))
+                //获取对应事务
+                .map(Tile::getWorldObject)
+                //获取对应门事件
+                .map(WorldObject::getDoorEvent)
+                .orElse(null);
+        //如果有门事件
+        if (doorEvent != null) {
+
+            //todo 实现事件、而不是移动
+
+            //不移动
+            return;
+        }
 
         /**
          * 计算本次移动是否为原地踏步

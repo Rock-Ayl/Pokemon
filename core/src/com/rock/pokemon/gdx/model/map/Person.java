@@ -339,6 +339,10 @@ public class Person implements YSortable {
         int destY = this.y + directionEnum.getDy();
 
         /**
+         * todo 检测门事件
+         */
+
+        /**
          * 计算本次移动是否为原地踏步
          */
 

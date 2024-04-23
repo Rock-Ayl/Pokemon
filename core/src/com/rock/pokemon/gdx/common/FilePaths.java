@@ -66,7 +66,7 @@ public class FilePaths {
     public static final String MAP_CONFIG_PATH_OF_SOUND = "assets/config/map/Sound.json";
 
     /**
-     * 渐变配置
+     * 战斗渐变配置
      */
 
     //顶点着色器

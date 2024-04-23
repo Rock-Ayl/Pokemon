@@ -339,7 +339,7 @@ public class Person implements YSortable {
         int destY = this.y + directionEnum.getDy();
 
         /**
-         * todo 检测门事件
+         * todo 检测事件(门事件),如果有事件,不移动,优先触发时间
          */
 
         /**

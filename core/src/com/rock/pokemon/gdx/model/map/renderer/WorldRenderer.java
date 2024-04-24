@@ -76,7 +76,7 @@ public class WorldRenderer {
         }
 
         //sort列表加入所有的人物
-        this.sortList.addAll(this.world.getPersonList());
+        this.sortList.addAll(this.world.getPersonMap().values());
 
         /**
          * 按照Y轴排序

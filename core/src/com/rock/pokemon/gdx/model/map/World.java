@@ -13,10 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * 世界对象,代表一个世界
@@ -34,8 +31,8 @@ public class World {
     //地图网格本身
     private TileMap tileMap;
 
-    //该世界的人物列表
-    private List<Person> personList = new ArrayList<>();
+    //该世界的人物集合,有序的map,key是人物id
+    private LinkedHashMap<String, Person> personMap = new LinkedHashMap<>();
 
     //该世界的事物的列表(树木、草、牌子等等)
     private List<WorldObject> worldObjectList = new ArrayList<>();
@@ -215,8 +212,8 @@ public class World {
     public void addPerson(Person person) {
         //加入到地图块
         this.getTileMap().getTile(person.getX(), person.getY()).setPerson(person);
-        //加入到人物列表
-        this.personList.add(person);
+        //加入到人物集合
+        this.personMap.put(person.getNpcId(), person);
     }
 
     /**
@@ -241,7 +238,7 @@ public class World {
      */
     public void update(float delta) {
         //循环
-        for (Person person : this.personList) {
+        for (Person person : this.personMap.values()) {
             //更新人物
             person.update(delta);
         }

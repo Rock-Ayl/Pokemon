@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input;
 import lombok.Getter;
 
 /**
- * 方向枚举
+ * 人物方向 {@link com.rock.pokemon.gdx.model.map.Person} 枚举
  */
 @Getter
 public enum DirectionEnum {

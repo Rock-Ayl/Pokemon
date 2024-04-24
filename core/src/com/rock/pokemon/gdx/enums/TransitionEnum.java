@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.Random;
 
 /**
- * 战斗渐变枚举
+ * 战斗渐变 {@link com.rock.pokemon.gdx.model.animation.transition.TransitionBattleAnimation} 枚举
  */
 @Getter
 public enum TransitionEnum {

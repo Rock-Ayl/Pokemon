@@ -21,8 +21,8 @@ public class SaveManager {
     private String adventurerNpcMapConfigName = "ruby_1";
 
     /**
-     * 当前用户行动状态 枚举 {@link GameUserActionStatusEnum}
+     * 当前用户行动状态 枚举 {@link GameUserActionStatusEnum} ,默认 normal
      */
-    private GameUserActionStatusEnum gameUserActionStatusEnum;
+    private GameUserActionStatusEnum gameUserActionStatusEnum = GameUserActionStatusEnum.NORMAL;
 
 }

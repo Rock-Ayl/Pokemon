@@ -1,6 +1,6 @@
 package com.rock.pokemon.gdx.common;
 
-import com.rock.pokemon.gdx.enums.LanguageEnum;
+import lombok.Getter;
 
 /**
  * 配置类,所有通用配置都存在在这里
@@ -21,6 +21,29 @@ public class Settings {
 
     //当前语言(暂时固定为中文)
     public static final LanguageEnum LANG = LanguageEnum.SIMPLIFIED_CHINESE;
+
+    @Getter
+    public enum LanguageEnum {
+
+        SIMPLIFIED_CHINESE("simplified chinese", "zh", "简体中文(默认)"),
+        ENGLISH("english", "en", "英语"),
+
+        ;
+
+        //编码
+        private String code;
+        //路径
+        private String path;
+        //中文
+        private String zh;
+
+        LanguageEnum(String code, String path, String zh) {
+            this.code = code;
+            this.path = path;
+            this.zh = zh;
+        }
+
+    }
 
     //是否使用垂直同步
     public static final boolean USE_VERTICAL_SYNC = true;

@@ -14,10 +14,10 @@
         }
       ]
     },
-    "woodenDoor1": {
+    "woodenDoor1Open": {
       "remark": "一个木门1",
       "filePath": "assets/packed/image/map/object/textures.atlas",
-      "regionName": "wooden_door1",
+      "regionName": "wooden_door1_open",
       "width": 1,
       "height": 1.5,
       "frameDuration": 0.9,

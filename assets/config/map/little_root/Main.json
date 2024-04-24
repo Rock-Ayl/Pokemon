@@ -53,7 +53,7 @@
     {
       "remark": "木门(男主家门)",
       "worldObjectId": "map-little-root-main-door-1",
-      "worldObjectName": "woodenDoor1",
+      "worldObjectName": "woodenDoor1Open",
       "locationList": [
         {
           "x": 13,
@@ -64,7 +64,7 @@
     },
     {
       "remark": "木门(女主家门)",
-      "worldObjectName": "woodenDoor1",
+      "worldObjectName": "woodenDoor1Open",
       "locationList": [
         {
           "x": 22,

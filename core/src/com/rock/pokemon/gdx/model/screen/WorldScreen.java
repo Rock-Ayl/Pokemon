@@ -127,7 +127,13 @@ public class WorldScreen implements Screen {
         //获取npc配置文件
         NpcMapConfig adventurerNpcMapConfig = this.pokemonGame.getMyAssetManager().getNpcMapConfig();
         //初始化主角
-        this.adventurer = new Person(this.pokemonGame.getSaveManager().getAdventurerNpcId(), adventurerNpcMapConfig.getNpcMap().get(this.pokemonGame.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.pokemonGame);
+        this.adventurer = new Person(
+                this.pokemonGame.getSaveManager().getAdventurerNpcId(),
+                adventurerNpcMapConfig.getNpcMap().get(this.pokemonGame.getSaveManager().getAdventurerNpcMapConfigName()),
+                this.world,
+                adventurerX,
+                adventurerY,
+                this.pokemonGame);
 
         /**
          * 世界音乐

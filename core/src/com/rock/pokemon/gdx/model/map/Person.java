@@ -36,6 +36,9 @@ public class Person implements YSortable {
     //游戏对象
     private final PokemonGame pokemonGame;
 
+    //该npc对应的id
+    private String npcId;
+
     //当前人物在地图网格的坐标(放弃用Rectangle是因为Rectangle是float类型的),这个在人类实体里仅用来判定移动时和地图块之间的关系
     private int x;
     private int y;
@@ -119,13 +122,14 @@ public class Person implements YSortable {
     /**
      * 使用人物枚举初始化
      *
+     * @param npcId       指定npcId
      * @param npcMapNode  npc配置
      * @param world       该人物所处的世界
      * @param x           人物初始坐标x
      * @param y           人物初始坐标y
      * @param pokemonGame 游戏对象
      */
-    public Person(NpcMapNode npcMapNode, World world, int x, int y, PokemonGame pokemonGame) {
+    public Person(String npcId, NpcMapNode npcMapNode, World world, int x, int y, PokemonGame pokemonGame) {
 
         /**
          * 基本信息
@@ -133,6 +137,7 @@ public class Person implements YSortable {
 
         //游戏对象
         this.pokemonGame = pokemonGame;
+        this.npcId = npcId;
 
         //设置当前人物所在坐标
         this.x = x;

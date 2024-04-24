@@ -12,16 +12,16 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.model.controller.DialogueAndOptionBoxController;
-import com.rock.pokemon.gdx.model.controller.PersonController;
 import com.rock.pokemon.gdx.enums.TransitionEnum;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionBattleAnimation;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionSwitchAnimation;
+import com.rock.pokemon.gdx.model.controller.DialogueAndOptionBoxController;
+import com.rock.pokemon.gdx.model.controller.PersonController;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.World;
-import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
 import com.rock.pokemon.gdx.model.map.config.WorldMapConfig;
+import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 
@@ -127,7 +127,7 @@ public class WorldScreen implements Screen {
         //获取npc配置文件
         NpcMapConfig adventurerNpcMapConfig = this.pokemonGame.getMyAssetManager().getNpcMapConfig();
         //初始化主角
-        this.adventurer = new Person(adventurerNpcMapConfig.getNpcMap().get(this.pokemonGame.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.pokemonGame);
+        this.adventurer = new Person(this.pokemonGame.getSaveManager().getNPC_ID(), adventurerNpcMapConfig.getNpcMap().get(this.pokemonGame.getSaveManager().getAdventurerNpcMapConfigName()), this.world, adventurerX, adventurerY, this.pokemonGame);
 
         /**
          * 世界音乐

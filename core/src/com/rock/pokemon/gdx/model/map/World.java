@@ -202,7 +202,7 @@ public class World {
             //获取坐标
             WorldMapConfig.Location location = npcNode.getLocation();
             //初始化话一个npc,并加入到该世界
-            new Person(npcMapNode, this, location.getX(), location.getY(), pokemonGame);
+            new Person(npcId, npcMapNode, this, location.getX(), location.getY(), pokemonGame);
         }
 
     }

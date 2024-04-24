@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
@@ -94,6 +93,29 @@ public class Person implements YSortable {
 
     //事件列表
     private List<NpcMapNodeEvent> eventList;
+
+    /**
+     * 人物动作枚举
+     */
+    @Getter
+    private enum ActionEnum {
+
+        STAND("stand", "站立"),
+        WALK("walk", "走路"),
+
+        ;
+
+        //路径
+        private String path;
+        //中文名
+        private String zhName;
+
+        ActionEnum(String path, String zhName) {
+            this.path = path;
+            this.zhName = zhName;
+        }
+
+    }
 
     /**
      * 使用人物枚举初始化

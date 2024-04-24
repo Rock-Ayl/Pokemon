@@ -193,15 +193,16 @@ public class World {
 
         //循环世界事务节点
         for (WorldMapConfig.NpcNode npcNode : worldMapConfig.getNpcNodeList()) {
+            //获取npcId
+            String npcId = npcNode.getNpcId();
             //获取npc名称
             String npcName = npcNode.getNpcName();
             //读取对应npc配置
             NpcMapNode npcMapNode = npcMapConfig.getNpcMap().get(npcName);
-            //循环坐标列表
-            for (WorldMapConfig.Location location : npcNode.getLocationList()) {
-                //初始化话一个npc,并加入到该世界
-                new Person(npcMapNode, this, location.getX(), location.getY(), pokemonGame);
-            }
+            //获取坐标
+            WorldMapConfig.Location location = npcNode.getLocation();
+            //初始化话一个npc,并加入到该世界
+            new Person(npcMapNode, this, location.getX(), location.getY(), pokemonGame);
         }
 
     }

@@ -109,8 +109,8 @@ public class WorldMapConfig {
         //npc名称
         private String npcName;
 
-        //坐标列表
-        private List<Location> locationList;
+        //npc坐标
+        private Location location;
 
     }
 

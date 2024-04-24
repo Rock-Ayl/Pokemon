@@ -11,7 +11,8 @@ import lombok.Getter;
 @Getter
 public enum GameUserActionStatusEnum {
 
-    NORMAL("normal", "正常状态,可以"),
+    NORMAL("normal", "正常状态,可以[移动][打开菜单][对话]"),
+    EVENTING("eventing", "事件状态,无法控制角色"),
 
     ;
 

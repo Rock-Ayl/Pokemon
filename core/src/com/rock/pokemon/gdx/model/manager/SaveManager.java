@@ -1,5 +1,6 @@
 package com.rock.pokemon.gdx.model.manager;
 
+import com.rock.pokemon.gdx.enums.GameUserActionStatusEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +20,9 @@ public class SaveManager {
     //todo 主角 npc 配置名称,目前固定写死
     private String adventurerNpcMapConfigName = "ruby_1";
 
-    //todo 当前存档行动状态 枚举
-    private String actionStatus;
+    /**
+     * 当前用户行动状态 枚举 {@link GameUserActionStatusEnum}
+     */
+    private GameUserActionStatusEnum gameUserActionStatusEnum;
 
 }

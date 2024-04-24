@@ -44,6 +44,7 @@ public class MySoundManager {
      * @param soundId 音效id
      */
     public void play(String soundId) {
+
         //获取对应音效对象
         SoundMapConfig.MySound mySound = soundMapConfig.getSoundMap().get(soundId);
 
@@ -69,6 +70,7 @@ public class MySoundManager {
             mySound.getSound().play();
             //记录发出音效的时间
             mySound.setLastPlayTime(thisTime);
+
         } else {
 
             /**
@@ -77,6 +79,7 @@ public class MySoundManager {
 
             //直接播放
             mySound.getSound().play();
+
         }
     }
 

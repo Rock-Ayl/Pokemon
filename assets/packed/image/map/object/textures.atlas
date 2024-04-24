@@ -67,28 +67,28 @@ sign
   orig: 16, 16
   offset: 0, 0
   index: -1
-wooden_door1
+wooden_door1_open
   rotate: false
   xy: 36, 38
   size: 16, 24
   orig: 16, 24
   offset: 0, 0
   index: 0
-wooden_door1
+wooden_door1_open
   rotate: false
   xy: 54, 38
   size: 16, 24
   orig: 16, 24
   offset: 0, 0
   index: 1
-wooden_door1
+wooden_door1_open
   rotate: false
   xy: 72, 38
   size: 16, 24
   orig: 16, 24
   offset: 0, 0
   index: 2
-wooden_door1
+wooden_door1_open
   rotate: false
   xy: 90, 38
   size: 16, 24

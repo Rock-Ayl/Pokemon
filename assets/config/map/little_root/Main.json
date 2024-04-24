@@ -913,7 +913,7 @@
   ],
   "npcNodeList": [
     {
-      "npcId": 100,
+      "npcId": "npc_id_100",
       "remark": "小田卷博士-未白镇",
       "npcName": "prof_birch_1",
       "locationList": [

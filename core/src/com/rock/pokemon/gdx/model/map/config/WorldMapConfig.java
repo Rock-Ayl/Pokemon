@@ -101,7 +101,7 @@ public class WorldMapConfig {
     public static class NpcNode {
 
         //npcId
-        private Integer npcId;
+        private String npcId;
 
         //节点备注
         private String remark;

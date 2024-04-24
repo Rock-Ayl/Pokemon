@@ -31,7 +31,7 @@ public class BoxMapConfigLoader extends AsynchronousAssetLoader<BoxMapConfig, As
     @Override
     public BoxMapConfig loadSync(AssetManager arg0, String arg1, FileHandle arg2, AssetLoaderParameters<BoxMapConfig> arg3) {
         //返回
-        return boxMapConfig;
+        return this.boxMapConfig;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class NpcMapConfigLoader extends AsynchronousAssetLoader<NpcMapConfig, As
     @Override
     public NpcMapConfig loadSync(AssetManager arg0, String arg1, FileHandle arg2, AssetLoaderParameters<NpcMapConfig> arg3) {
         //返回
-        return npcMapConfig;
+        return this.npcMapConfig;
     }
 
     @Override

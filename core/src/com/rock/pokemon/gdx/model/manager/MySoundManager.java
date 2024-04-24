@@ -46,7 +46,7 @@ public class MySoundManager {
     public void play(String soundId) {
 
         //获取对应音效对象
-        SoundMapConfig.MySound mySound = soundMapConfig.getSoundMap().get(soundId);
+        SoundMapConfig.MySound mySound = this.soundMapConfig.getSoundMap().get(soundId);
 
         /**
          * 播放音效目前有两种情况

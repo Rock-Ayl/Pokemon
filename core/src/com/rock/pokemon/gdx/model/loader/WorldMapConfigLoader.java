@@ -31,7 +31,7 @@ public class WorldMapConfigLoader extends AsynchronousAssetLoader<WorldMapConfig
     @Override
     public WorldMapConfig loadSync(AssetManager arg0, String arg1, FileHandle arg2, AssetLoaderParameters<WorldMapConfig> arg3) {
         //返回
-        return worldMapConfig;
+        return this.worldMapConfig;
     }
 
     @Override

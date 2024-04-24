@@ -31,7 +31,7 @@ public class SoundMapConfigLoader extends AsynchronousAssetLoader<SoundMapConfig
     @Override
     public SoundMapConfig loadSync(AssetManager arg0, String arg1, FileHandle arg2, AssetLoaderParameters<SoundMapConfig> arg3) {
         //返回
-        return soundMapConfig;
+        return this.soundMapConfig;
     }
 
     @Override

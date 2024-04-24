@@ -45,7 +45,7 @@ public class EventMapConfigLoader extends AsynchronousAssetLoader<EventMapConfig
     @Override
     public EventMapConfig loadSync(AssetManager arg0, String arg1, FileHandle arg2, AssetLoaderParameters<EventMapConfig> arg3) {
         //返回
-        return eventMapConfig;
+        return this.eventMapConfig;
     }
 
     @Override

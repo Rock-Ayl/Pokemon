@@ -31,7 +31,7 @@ public class WorldObjectMapConfigLoader extends AsynchronousAssetLoader<WorldObj
     @Override
     public WorldObjectMapConfig loadSync(AssetManager arg0, String arg1, FileHandle arg2, AssetLoaderParameters<WorldObjectMapConfig> arg3) {
         //返回
-        return worldObjectMapConfig;
+        return this.worldObjectMapConfig;
     }
 
     @Override

@@ -91,6 +91,23 @@ public class PokemonGame extends Game {
     }
 
     /**
+     * 获取 通用世界对象
+     *
+     * @return
+     */
+    public WorldScreen getWorldScreen() {
+        //获取当前游戏的屏幕
+        Screen screen = this.getScreen();
+        //如果不是目标对象
+        if (screen instanceof WorldScreen == false) {
+            //过
+            return null;
+        }
+        //强转并返回
+        return (WorldScreen) screen;
+    }
+
+    /**
      * 帧渲染
      */
     public void render() {

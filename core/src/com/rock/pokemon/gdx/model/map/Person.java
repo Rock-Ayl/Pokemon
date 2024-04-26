@@ -7,15 +7,12 @@ import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
-import com.rock.pokemon.gdx.model.map.config.BoxMapConfig.BoxMapNode;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNodeEvent;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
-import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,7 +97,7 @@ public class Person implements YSortable {
      * 人物动作枚举
      */
     @Getter
-    private enum ActionEnum {
+    public enum ActionEnum {
 
         STAND("stand", "站立"),
         WALK("walk", "走路"),
@@ -166,106 +163,6 @@ public class Person implements YSortable {
         this.world = world;
         //人物加入世界
         this.world.addPerson(this);
-
-    }
-
-    /**
-     * 检查/对话
-     */
-    public void checkAndTalk() {
-
-        /**
-         * 判断是否满足事件条件
-         */
-
-        //如果行动不是站立
-        if (this.actionState != ActionEnum.STAND) {
-            //不执行
-            return;
-        }
-        //当前人物坐标,和脸的方向,计算目标位置
-        int x = this.x + this.facingState.getDx();
-        int y = this.y + this.facingState.getDy();
-        //如果越界
-        if (x < 0 || y < 0 || x >= this.world.getTileMap().getWidth() || y >= this.world.getTileMap().getHeight()) {
-            //过
-            return;
-        }
-        //获取世界上层的城镇中,事件的盒子
-        DialogueAndOptionBox dialogueAndOptionBox = this.world.getWorldScreen().getDialogueAndOptionBox();
-        //如果没有结束
-        if (dialogueAndOptionBox.isFinished() == false) {
-            //过
-            return;
-        }
-
-        /**
-         * 获取各种事件,但只触发一个
-         */
-
-        //todo 事务事件、地图块事件等等
-
-        //获取人物
-        Person person = Optional.ofNullable(this.world)
-                //获取地图块矩阵
-                .map(World::getTileMap)
-                //获取对应目的地
-                .map(p -> p.getTile(x, y))
-                //获取人物
-                .map(Tile::getPerson)
-                .orElse(null);
-        //判空
-        if (person == null) {
-            //过
-            return;
-        }
-
-        //获取人物对应事件
-        NpcMapNodeEvent event = Optional.ofNullable(person)
-                //获取人物上的事件列表
-                .map(Person::getEventList)
-                //默认
-                .orElse(new ArrayList<>())
-                .stream()
-                //todo 以后可以做事件的开关、以及优先级
-                .findFirst()
-                .orElse(null);
-        //如果没有任何事件
-        if (event == null) {
-            //过
-            return;
-        }
-
-        /**
-         * 实现
-         */
-
-        //根据当前人物,让对应事件人物转头
-        switch (this.facingState) {
-            case SOUTH:
-                //怼脸
-                person.changeFacingDir(DirectionEnum.NORTH);
-                break;
-            case NORTH:
-                //怼脸
-                person.changeFacingDir(DirectionEnum.SOUTH);
-                break;
-            case WEST:
-                //怼脸
-                person.changeFacingDir(DirectionEnum.EAST);
-                break;
-            case EAST:
-                //怼脸
-                person.changeFacingDir(DirectionEnum.WEST);
-                break;
-        }
-
-        //读取事件配置
-        BoxMapNode talkTestNode = this.pokemonGame.getMyAssetManager().getBoxMapConfig().getBoxMap().get(event.getBoxName());
-        //这里直接用事件
-        dialogueAndOptionBox.reset(talkTestNode);
-        //开启
-        dialogueAndOptionBox.nextNode();
 
     }
 

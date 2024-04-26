@@ -93,7 +93,7 @@ public class PokemonGame extends Game {
     }
 
     /**
-     * 获取 通用世界对象
+     * 获取当前 通用世界对象
      *
      * @return
      */

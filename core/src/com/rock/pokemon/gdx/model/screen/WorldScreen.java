@@ -22,6 +22,7 @@ import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
 import com.rock.pokemon.gdx.model.map.config.WorldMapConfig;
 import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
+import com.rock.pokemon.gdx.model.ui.box.BoxExecutor;
 import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
 
@@ -91,6 +92,13 @@ public class WorldScreen implements Screen {
 
     //场景切换-渐变对象
     private TransitionSwitchAnimation transitionSwitchAnimation;
+
+    /**
+     * 事件
+     */
+
+    //盒子事件执行者
+    private BoxExecutor boxExecutor;
 
     /**
      * 初始化世界、主角进入世界指定位置
@@ -180,7 +188,7 @@ public class WorldScreen implements Screen {
         this.inputMultiplexer = new InputMultiplexer();
 
         //初始化输入监听,控制主角的行动
-        this.personController = new PersonController(this.adventurer);
+        this.personController = new PersonController(this.pokemonGame, this.adventurer);
         //初始化对话框 + 可选项框 输入控制器,控制UI
         this.dialogueAndOptionBoxController = new DialogueAndOptionBoxController(this.dialogueAndOptionBox);
 
@@ -196,6 +204,13 @@ public class WorldScreen implements Screen {
         this.transitionBattleAnimation = new TransitionBattleAnimation(this.pokemonGame);
         //初始化-渐变-场景切换
         this.transitionSwitchAnimation = new TransitionSwitchAnimation();
+
+        /**
+         * 事件
+         */
+
+        //初始化 盒子事件执行者
+        this.boxExecutor = new BoxExecutor(this.pokemonGame);
 
     }
 

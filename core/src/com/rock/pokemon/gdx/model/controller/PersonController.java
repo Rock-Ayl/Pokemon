@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.model.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.map.Person;
@@ -20,6 +21,9 @@ public class PersonController extends InputAdapter {
     /**
      * 基础
      */
+
+    //游戏对象
+    private final PokemonGame pokemonGame;
 
     //控制器操控的人(一般情况下就是主角)
     private Person person;
@@ -62,10 +66,11 @@ public class PersonController extends InputAdapter {
     /**
      * 初始化,指定要监听的人物
      *
-     * @param person 人物
+     * @param pokemonGame 游戏对象
      */
-    public PersonController(Person person) {
-        //记录游戏对象及地图网格
+    public PersonController(PokemonGame pokemonGame, Person person) {
+        //记录游戏、人物
+        this.pokemonGame = pokemonGame;
         this.person = person;
     }
 
@@ -89,7 +94,7 @@ public class PersonController extends InputAdapter {
         //如果是检查/聊天
         if (CHECK_INPUT_KEY == keycode) {
             //尝试检查/聊天
-            this.person.checkAndTalk();
+            this.pokemonGame.getWorldScreen().getBoxExecutor().checkAndTalk();
         }
 
         //默认返回

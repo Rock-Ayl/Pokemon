@@ -35,30 +35,27 @@ public class DialogueAndOptionBoxController extends InputAdapter {
             case Input.Keys.UP:
                 //移动
                 this.dialogueAndOptionBox.moveUp();
-                //是
-                return true;
+                break;
             //下
             case Input.Keys.DOWN:
                 //移动
                 this.dialogueAndOptionBox.moveDown();
-                //是
-                return true;
+                break;
             //取消
             case Input.Keys.X:
-                //过
-                return false;
+                break;
             //确认
             case Input.Keys.Z:
             case Input.Keys.ENTER:
                 //处理确认
                 this.dialogueAndOptionBox.nextNode();
-                //是
-                return true;
+                break;
             //默认
             default:
-                //过
-                return false;
+                break;
         }
+        //过
+        return false;
     }
 
     /**

@@ -192,9 +192,9 @@ public class WorldScreen implements Screen {
         //初始化对话框 + 可选项框 输入控制器,控制UI
         this.dialogueAndOptionBoxController = new DialogueAndOptionBoxController(this.dialogueAndOptionBox);
 
-        //组装至所有控制器
-        this.inputMultiplexer.addProcessor(this.personController);
+        //按照优先级组装至控制器
         this.inputMultiplexer.addProcessor(this.dialogueAndOptionBoxController);
+        this.inputMultiplexer.addProcessor(this.personController);
 
         /**
          * 渐变

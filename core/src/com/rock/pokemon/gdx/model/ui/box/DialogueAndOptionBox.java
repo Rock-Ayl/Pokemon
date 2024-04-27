@@ -172,7 +172,7 @@ public class DialogueAndOptionBox {
          */
 
         //如果已完成
-        if (isFinished()) {
+        if (isFinished() == true) {
             //统一设置为不可见
             setVisible(false);
             //结束
@@ -214,7 +214,7 @@ public class DialogueAndOptionBox {
             return;
         }
         //如果已完成
-        if (isFinished()) {
+        if (isFinished() == true) {
             //过
             return;
         }

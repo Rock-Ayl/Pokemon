@@ -54,8 +54,8 @@ public class DialogueAndOptionBoxController extends InputAdapter {
             default:
                 break;
         }
-        //过
-        return false;
+        //如果动画没有结束,则后续按键不会被触发
+        return this.dialogueAndOptionBox.isFinished() == false;
     }
 
     /**

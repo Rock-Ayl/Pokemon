@@ -29,6 +29,9 @@ public class WorldObject implements YSortable {
      * 基本数据
      */
 
+    //备注
+    private String remark;
+
     //当前事物的坐标
     private int x;
     private int y;
@@ -78,6 +81,13 @@ public class WorldObject implements YSortable {
      * @param doorEvent      门事件(选填)
      */
     public WorldObject(MyAssetManager myAssetManager, WorldObjectMapConfig.WorldObjectMapNode mapNode, int x, int y, EventMapConfig.Event doorEvent) {
+
+        /**
+         * 基础
+         */
+
+        //备注
+        this.remark = mapNode.getRemark();
 
         /**
          * 事件
@@ -208,6 +218,16 @@ public class WorldObject implements YSortable {
 
     public float getHeight() {
         return this.height;
+    }
+
+    /**
+     * 仅用来调试展示
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return this.remark;
     }
 
 }

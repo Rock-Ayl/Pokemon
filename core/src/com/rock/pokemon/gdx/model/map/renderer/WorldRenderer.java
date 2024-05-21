@@ -7,6 +7,7 @@ import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -44,7 +45,7 @@ public class WorldRenderer {
         this.sortList.clear();
 
         /**
-         * 先渲染地图网格(图层最下,无可争议)
+         * step 1.先渲染地图网格(图层最下,无可争议)
          */
 
         //循环1
@@ -59,33 +60,42 @@ public class WorldRenderer {
         }
 
         /**
-         * 再渲染可以行走的事物,并收集不可行走的事物进入sort列表,人物也要进入排序列表
+         * step 2.再渲染可以行走的事物,并收集不可行走的事物进入sort列表,人物也要进入排序列表
          */
 
         //渲染事物列表
         for (WorldObject worldObject : this.world.getWorldObjectList()) {
             //如果可以行走,优先级仅仅比地图块高一级
-            if (worldObject.isWalkable()) {
+            if (worldObject.isWalkable() == true) {
                 //渲染
                 draw(pokemonGame, worldObject);
-                //本轮过
-                continue;
+            } else {
+                //不可行走的记录到列表
+                this.sortList.add(worldObject);
             }
-            //不可行走的记录到列表
-            this.sortList.add(worldObject);
         }
-
         //sort列表加入所有的人物
         this.sortList.addAll(this.world.getPersonMap().values());
 
         /**
-         * 按照Y轴排序
+         * step 3.按照Y轴排序
          */
 
-        this.sortList.sort(new YSortComparator());
+        //按照坐标排序
+        this.sortList.sort(new Comparator<YSortable>() {
+            @Override
+            public int compare(YSortable o1, YSortable o2) {
+                if (o1.getWorldY() < o2.getWorldY()) {
+                    return 1;
+                } else if (o1.getWorldY() > o2.getWorldY()) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
 
         /**
-         * 最后统一渲染人物、不可行走的事物
+         * step 4.统一渲染人物、不可行走的事物
          */
 
         //统一渲染人物、事物

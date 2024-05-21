@@ -7,7 +7,6 @@ import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -81,18 +80,8 @@ public class WorldRenderer {
          * step 3.按照Y轴排序
          */
 
-        //按照坐标排序
-        this.sortList.sort(new Comparator<YSortable>() {
-            @Override
-            public int compare(YSortable o1, YSortable o2) {
-                if (o1.getWorldY() < o2.getWorldY()) {
-                    return 1;
-                } else if (o1.getWorldY() > o2.getWorldY()) {
-                    return -1;
-                }
-                return 0;
-            }
-        });
+        //按照y轴排序
+        this.sortList.sort((o1, o2) -> Float.compare(o2.getWorldY(), o1.getWorldY()));
 
         /**
          * step 4.统一渲染人物、不可行走的事物

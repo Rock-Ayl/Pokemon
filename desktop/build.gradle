@@ -1,32 +1,59 @@
+//Java版本
 sourceCompatibility = 1.8
-sourceSets.main.java.srcDirs = [ "src/" ]
+//Java代码目录
+sourceSets.main.java.srcDirs = ["src/"]
+//指定资源目录
 sourceSets.main.resources.srcDirs = ["../assets"]
 
+/**
+ * 自定义字段
+ */
 project.ext.mainClassName = "com.rock.pokemon.gdx.DesktopLauncher"
 project.ext.assetsDir = new File("../assets")
 
 import org.gradle.internal.os.OperatingSystem
 
+/**
+ * 执行
+ */
 task run(dependsOn: classes, type: JavaExec) {
+
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
     workingDir = project.assetsDir
     ignoreExitValue = true
 
+    /**
+     * 如果系统是MAC
+     */
     if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
         // Required to run on macOS
         jvmArgs += "-XstartOnFirstThread"
     }
+
 }
 
+/**
+ * 调试
+ */
 task debug(dependsOn: classes, type: JavaExec) {
+
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
     workingDir = project.assetsDir
     ignoreExitValue = true
     debug = true
+
+    /**
+     * 如果系统是MAC
+     */
+    if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
+        // Required to run on macOS
+        jvmArgs += "-XstartOnFirstThread"
+    }
+
 }
 
 task dist(type: Jar) {

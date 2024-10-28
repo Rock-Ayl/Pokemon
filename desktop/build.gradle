@@ -7,9 +7,11 @@ sourceSets.main.resources.srcDirs = ["../assets"]
 
 /**
  * 自定义字段
+ * mainClassName: 启动类,一般不需要变
+ * workingDir: 工作空间,如果是idea启动,会帮你设置好,但是如果执行task,则需要自己指定到对应工作目录
  */
 project.ext.mainClassName = "com.rock.pokemon.gdx.DesktopLauncher"
-project.ext.assetsDir = new File("../assets")
+project.ext.workingDir = "/Users/ayl/work/Pokemon/"
 
 import org.gradle.internal.os.OperatingSystem
 
@@ -20,8 +22,8 @@ task run(dependsOn: classes, type: JavaExec) {
 
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
+    workingDir = project.workingDir
     standardInput = System.in
-    workingDir = project.assetsDir
     ignoreExitValue = true
 
     /**
@@ -41,8 +43,8 @@ task debug(dependsOn: classes, type: JavaExec) {
 
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
+    workingDir = project.workingDir
     standardInput = System.in
-    workingDir = project.assetsDir
     ignoreExitValue = true
     debug = true
 

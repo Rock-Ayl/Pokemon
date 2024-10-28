@@ -68,6 +68,7 @@ project(":desktop") {
 
         //lombok
         compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
+        annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
 
     }
 
@@ -100,6 +101,7 @@ project(":core") {
 
         //lombok
         compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
+        annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
 
     }
 

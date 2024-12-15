@@ -63,8 +63,8 @@ project(":desktop") {
         compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
         compile group: 'commons-io', name: 'commons-io', version: '2.5'
 
-        //阿里fastJson
-        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.83'
+        //阿里fastJson2,当然怎么快怎么来
+        implementation group: 'com.alibaba', name: 'fastjson', version: '2.0.53'
 
         //lombok
         compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
@@ -96,8 +96,8 @@ project(":core") {
         compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
         compile group: 'commons-io', name: 'commons-io', version: '2.5'
 
-        //阿里fastJson
-        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.83'
+        //阿里fastJson2,当然怎么快怎么来
+        implementation group: 'com.alibaba', name: 'fastjson', version: '2.0.53'
 
         //lombok
         compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'

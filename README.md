@@ -61,7 +61,7 @@
         </tr>
         <tr>
             <td>fastjson</td>
-            <td>1.2.83</td>
+            <td>2.0.53</td>
             <td>阿里fastjson,用来序列化、反序列化,毕竟一个小小demo,怎么快怎么来😁</td>
         </tr>
         <tr>

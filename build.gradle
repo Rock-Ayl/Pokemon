@@ -80,6 +80,14 @@ project(":core") {
 
     dependencies {
 
+        /**
+         * api：声明一个公共API，所有公共类和接口都将可用于依赖这个库的其他模块。
+         * compile：被废弃,等价于api
+         * implementation：只能在当前模块内部使用，依赖于此模块的其他模块无法访问这些依赖。
+         * compileOnly：在编译时可用，但在运行时不可用
+         * annotationProcessor：它在编译时处理注解。这个类型的依赖在运行时不需要。
+         */
+
         //gdx
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"

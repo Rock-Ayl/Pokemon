@@ -48,7 +48,7 @@ public class JavaCodePackageTools {
             //解析文件内容
             String fileContent = FileUtils.readFileToString(new File(javaFilePath), "UTF-8");
             //组装、换行
-            str.append(fileContent).append("\n");
+            str.append(fileContent).append("\n").append("\n");
         }
 
         /**

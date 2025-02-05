@@ -33,7 +33,7 @@ public class PersonController extends InputAdapter {
      */
 
     //输入状态,状态可以全部存在,比如按上的同时也可以按下,但是怎么处理就我们说的算了(目前300够用了)
-    private boolean[] buttonPressArr = new boolean[300];
+    private boolean[] buttonPressedArray = new boolean[300];
 
     //输入状态的持续时间(目前300够用了)
     private float[] buttonTimeArr = new float[300];
@@ -83,7 +83,7 @@ public class PersonController extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         //覆盖键位状态
-        this.buttonPressArr[keycode] = true;
+        this.buttonPressedArray[keycode] = true;
         //覆盖按下时间,从0开始计算
         this.buttonTimeArr[keycode] = 0;
 
@@ -110,7 +110,7 @@ public class PersonController extends InputAdapter {
     @Override
     public boolean keyUp(int keycode) {
         //关闭按键状态
-        this.buttonPressArr[keycode] = false;
+        this.buttonPressedArray[keycode] = false;
         //重置持续时间
         this.buttonTimeArr[keycode] = 0;
         //默认返回
@@ -138,7 +138,7 @@ public class PersonController extends InputAdapter {
              */
 
             //如果该方向按键没有被按着
-            if (this.buttonPressArr[dirInputKey] == false) {
+            if (this.buttonPressedArray[dirInputKey] == false) {
                 //本轮过
                 continue;
             }
@@ -165,7 +165,7 @@ public class PersonController extends InputAdapter {
              */
 
             //判断是 跑步 or 走路
-            WalkEnum walkEnum = this.buttonPressArr[RUN_INPUT_KEY] ? WalkEnum.RUN : WalkEnum.WALK;
+            WalkEnum walkEnum = this.buttonPressedArray[RUN_INPUT_KEY] ? WalkEnum.RUN : WalkEnum.WALK;
 
             /**
              * 移动

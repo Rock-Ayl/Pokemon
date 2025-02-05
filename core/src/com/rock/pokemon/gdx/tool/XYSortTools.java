@@ -4,7 +4,6 @@ import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -43,17 +42,14 @@ public class XYSortTools {
         //删除脏数据
         locationList.removeIf(p -> p == null || p.getX() == null || p.getY() == null);
         //排序
-        locationList.sort(new Comparator<Location>() {
-            @Override
-            public int compare(Location o1, Location o2) {
-                //如果x相同
-                if (o1.getX().equals(o2.getX())) {
-                    //对比y
-                    return o1.getY() - o2.getY();
-                } else {
-                    //对比x
-                    return o1.getX() - o2.getX();
-                }
+        locationList.sort((o1, o2) -> {
+            //如果x相同
+            if (o1.getX().equals(o2.getX())) {
+                //对比y
+                return o1.getY() - o2.getY();
+            } else {
+                //对比x
+                return o1.getX() - o2.getX();
             }
         });
         //输出

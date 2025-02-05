@@ -56,7 +56,8 @@ public class JavaCodePackageTools {
          */
 
         //写入文件
-        FileUtils.writeStringToFile(new File(OUT_FILE), str.toString());
+        FileUtils.writeStringToFile(new File(OUT_FILE), str.toString(), "UTF-8");
+
         System.out.println("===写入成功===");
 
     }

@@ -1,9 +1,12 @@
 package com.rock.pokemon.gdx.model.event;
 
 import com.alibaba.fastjson.JSONObject;
+import com.badlogic.gdx.Gdx;
 import com.rock.pokemon.gdx.enums.EventNodeTypeEnum;
 import com.rock.pokemon.gdx.model.event.node.*;
 import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
+
+import java.util.Optional;
 
 /**
  * 事件节点解析器,用来解析 {@link EventNodeTemplate}
@@ -20,15 +23,16 @@ public class EventNodeParser {
      * @return
      */
     public static EventNodeTemplate parse(JSONObject data) {
-        //判空
-        if (data == null) {
-            //过
-            return null;
-        }
         //要解析为的实体
         Class<? extends EventNodeTemplate> clazz = null;
         //获取类型解析为枚举
-        EventNodeTypeEnum eventNodeTypeEnum = EventNodeTypeEnum.parse(data.getString("type"));
+        EventNodeTypeEnum eventNodeTypeEnum = Optional.ofNullable(data)
+                //获取类型
+                .map(p -> p.getString("type"))
+                //解析枚举
+                .map(EventNodeTypeEnum::parse)
+                //默认
+                .orElse(EventNodeTypeEnum.NONE);
         //根据枚举
         switch (eventNodeTypeEnum) {
             case WAITING:
@@ -82,6 +86,8 @@ public class EventNodeParser {
         }
         //判空
         if (clazz == null) {
+            //日志
+            Gdx.app.error("EventNodeParserParseError", "未识别节点类型");
             //过
             return null;
         }

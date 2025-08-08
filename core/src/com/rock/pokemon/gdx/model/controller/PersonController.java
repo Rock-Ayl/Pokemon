@@ -2,7 +2,7 @@ package com.rock.pokemon.gdx.model.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.rock.pokemon.gdx.core.PokemonGame;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.map.Person;

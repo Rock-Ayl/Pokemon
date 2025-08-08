@@ -1,6 +1,6 @@
 package com.rock.pokemon.gdx.model.map.renderer;
 
-import com.rock.pokemon.gdx.core.PokemonGame;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;

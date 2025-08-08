@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.rock.pokemon.gdx.core.PokemonGame;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.FilePaths;
 
 /**

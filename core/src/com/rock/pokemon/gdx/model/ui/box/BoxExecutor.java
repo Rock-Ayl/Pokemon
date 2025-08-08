@@ -1,6 +1,6 @@
 package com.rock.pokemon.gdx.model.ui.box;
 
-import com.rock.pokemon.gdx.core.PokemonGame;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.Tile;

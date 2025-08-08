@@ -1,4 +1,4 @@
-package com.rock.pokemon.gdx.core;
+package com.rock.pokemon.gdx;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;

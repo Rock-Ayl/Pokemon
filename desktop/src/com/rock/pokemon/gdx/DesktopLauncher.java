@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.core.PokemonGame;
 
 /**
  * Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument

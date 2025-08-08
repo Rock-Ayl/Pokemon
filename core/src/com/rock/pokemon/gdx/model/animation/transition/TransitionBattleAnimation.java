@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.rock.pokemon.gdx.PokemonGame;
+import com.rock.pokemon.gdx.core.PokemonGame;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.TransitionEnum;

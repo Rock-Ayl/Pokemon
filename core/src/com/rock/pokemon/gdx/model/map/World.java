@@ -2,7 +2,7 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
-import com.rock.pokemon.gdx.PokemonGame;
+import com.rock.pokemon.gdx.core.PokemonGame;
 import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;

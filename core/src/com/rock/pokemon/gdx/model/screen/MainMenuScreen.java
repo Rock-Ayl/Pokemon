@@ -1,12 +1,12 @@
 package com.rock.pokemon.gdx.model.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.FilePaths;
+import com.rock.pokemon.gdx.common.Settings;
 
 /**
  * 屏幕 主菜单界面
@@ -53,8 +53,8 @@ public class MainMenuScreen implements Screen {
          * 控制逻辑
          */
 
-        //如果点击屏幕 或 按回车
-        if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+        //如果点击屏幕 或 确认
+        if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Settings.INPUT_KEY_CONFIRM)) {
             //进入 未白镇 指定位置
             this.pokemonGame.setScreen(new WorldScreen(this.pokemonGame, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, 19, 18));
             //销毁当前资源

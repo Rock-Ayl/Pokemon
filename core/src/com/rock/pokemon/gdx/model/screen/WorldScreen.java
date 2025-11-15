@@ -240,8 +240,8 @@ public class WorldScreen implements Screen {
          * todo 一些 临时测试功能 的 按键检测
          */
 
-        //如果按空格
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+        //如果加速
+        if (Gdx.input.isKeyPressed(Settings.INPUT_KEY_SPEED)) {
             //优先计算加速
             delta = delta * Settings.SYSTEM_SPEED_MULTIPLIER;
         }

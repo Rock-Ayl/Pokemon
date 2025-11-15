@@ -16,7 +16,7 @@ import com.rock.pokemon.gdx.enums.TransitionEnum;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionBattleAnimation;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionSwitchAnimation;
 import com.rock.pokemon.gdx.model.controller.DialogueAndOptionBoxController;
-import com.rock.pokemon.gdx.model.controller.PersonController;
+import com.rock.pokemon.gdx.model.controller.PlayerController;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
@@ -65,7 +65,7 @@ public class WorldScreen implements Screen {
     private InputMultiplexer inputMultiplexer;
 
     //人物 控制器
-    private PersonController personController;
+    private PlayerController playerController;
 
     //对话框 + 可选项框 输入控制器
     private DialogueAndOptionBoxController dialogueAndOptionBoxController;
@@ -188,13 +188,13 @@ public class WorldScreen implements Screen {
         this.inputMultiplexer = new InputMultiplexer();
 
         //初始化输入监听,控制主角的行动
-        this.personController = new PersonController(this.pokemonGame, this.adventurer);
+        this.playerController = new PlayerController(this.pokemonGame, this.adventurer);
         //初始化对话框 + 可选项框 输入控制器,控制UI
         this.dialogueAndOptionBoxController = new DialogueAndOptionBoxController(this.dialogueAndOptionBox);
 
         //按照优先级组装至控制器(顺序不要轻易改变)
         this.inputMultiplexer.addProcessor(this.dialogueAndOptionBoxController);
-        this.inputMultiplexer.addProcessor(this.personController);
+        this.inputMultiplexer.addProcessor(this.playerController);
 
         /**
          * 渐变
@@ -283,7 +283,7 @@ public class WorldScreen implements Screen {
         ScreenUtils.clear(Color.BLACK);
 
         //每帧更新输入控制器
-        this.personController.update(delta);
+        this.playerController.update(delta);
         //每帧更新世界
         this.world.update(delta);
         //开始渲染 地图、人物

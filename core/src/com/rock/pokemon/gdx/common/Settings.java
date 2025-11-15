@@ -1,5 +1,6 @@
 package com.rock.pokemon.gdx.common;
 
+import com.badlogic.gdx.Input;
 import lombok.Getter;
 
 /**
@@ -100,5 +101,12 @@ public class Settings {
     public final static String SOUND_ID_MENU_OPEN = "sound_emerald_0006_menu_open";
     //菜单关闭/移动
     public final static String SOUND_ID_MENU_CLOSE_AND_MOVE = "sound_emerald_0005_menu_close";
+
+    /**
+     * 控制
+     */
+
+    //确认/检查/聊天
+    public final static int INPUT_KEY_CONFIRM = Input.Keys.Z;
 
 }

@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.model.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 
 /**
@@ -45,7 +46,7 @@ public class DialogueAndOptionBoxController extends InputAdapter {
             case Input.Keys.X:
                 break;
             //确认
-            case Input.Keys.Z:
+            case Settings.INPUT_KEY_CONFIRM:
             case Input.Keys.ENTER:
                 //处理确认
                 this.dialogueAndOptionBox.nextNode();

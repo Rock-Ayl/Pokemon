@@ -5,9 +5,9 @@ package com.rock.pokemon.gdx.model.controller;
  * @Date 2025-11-15
  */
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.rock.pokemon.gdx.PokemonGame;
+import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.map.Person;
 
 /**
@@ -37,7 +37,7 @@ public class PlayerController extends InputAdapter {
         //先记录输入
         this.commandHandler.onKeyDown(keycode);
         //检查/聊天
-        if (keycode == Input.Keys.Z) {
+        if (keycode == Settings.INPUT_KEY_CONFIRM) {
             //检查/对话
             this.pokemonGame.getWorldScreen().getBoxExecutor().checkAndTalk();
         }

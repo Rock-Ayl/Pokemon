@@ -25,14 +25,13 @@ public class PlayerCommandHandler {
      * 这里只记录真正关心的 key，不再用 300 大数组
      */
 
-    //方向相关
-    private static final LinkedHashSet<Integer> DIR_INPUT_KEY_LINKED_SET =
-            new LinkedHashSet<>(Arrays.asList(
-                    Input.Keys.UP,
-                    Input.Keys.DOWN,
-                    Input.Keys.LEFT,
-                    Input.Keys.RIGHT
-            ));
+    //方向相关集合
+    private static final LinkedHashSet<Integer> DIR_INPUT_KEY_LINKED_SET = new LinkedHashSet<>(Arrays.asList(
+            Input.Keys.UP,
+            Input.Keys.DOWN,
+            Input.Keys.LEFT,
+            Input.Keys.RIGHT
+    ));
 
     // 跑步键
     private static final int RUN_INPUT_KEY = Input.Keys.X;
@@ -42,20 +41,15 @@ public class PlayerCommandHandler {
 
     // ---- 状态记录 ----
 
-    //方向键是否按下
-    private boolean upPressed;
-    private boolean downPressed;
-    private boolean leftPressed;
-    private boolean rightPressed;
+    /**
+     * 输入-按键状态
+     */
 
-    //各方向按下时间
-    private float upTime;
-    private float downTime;
-    private float leftTime;
-    private float rightTime;
+    //输入状态,状态可以全部存在,比如按上的同时也可以按下,但是怎么处理就我们说的算了(目前300够用了)
+    private boolean[] buttonPressedArray = new boolean[300];
 
-    // 跑步键状态
-    private boolean runPressed;
+    //输入状态的持续时间(目前300够用了)
+    private float[] buttonTimeArr = new float[300];
 
     /**
      * 初始化
@@ -67,101 +61,38 @@ public class PlayerCommandHandler {
     }
 
     /**
-     * InputAdapter.keyDown 转发到这里
-     */
-    public void onKeyDown(int keycode) {
-        switch (keycode) {
-            case Input.Keys.UP:
-                upPressed = true;
-                upTime = 0f;
-                break;
-            case Input.Keys.DOWN:
-                downPressed = true;
-                downTime = 0f;
-                break;
-            case Input.Keys.LEFT:
-                leftPressed = true;
-                leftTime = 0f;
-                break;
-            case Input.Keys.RIGHT:
-                rightPressed = true;
-                rightTime = 0f;
-                break;
-            case RUN_INPUT_KEY:
-                runPressed = true;
-                break;
-            default:
-                // 其他键不用管
-        }
-    }
-
-    /**
-     * InputAdapter.keyUp 转发到这里
-     */
-    public void onKeyUp(int keycode) {
-        switch (keycode) {
-            case Input.Keys.UP:
-                upPressed = false;
-                upTime = 0f;
-                break;
-            case Input.Keys.DOWN:
-                downPressed = false;
-                downTime = 0f;
-                break;
-            case Input.Keys.LEFT:
-                leftPressed = false;
-                leftTime = 0f;
-                break;
-            case Input.Keys.RIGHT:
-                rightPressed = false;
-                rightTime = 0f;
-                break;
-            case RUN_INPUT_KEY:
-                runPressed = false;
-                break;
-            default:
-                // ignore
-        }
-    }
-
-    /**
      * 每帧更新移动逻辑
      */
     public void update(float delta) {
+        //是否按下方向键
         boolean anyDirPressed = false;
-
-        // 按“绿宝石手感”优先级：上 > 下 > 左 > 右
+        //按“绿宝石手感”优先级：上 > 下 > 左 > 右
         for (Integer key : DIR_INPUT_KEY_LINKED_SET) {
-
+            //如果未按下
             if (isPressed(key) == false) {
+                //本轮过
                 continue;
             }
-
+            //记录其按下了
             anyDirPressed = true;
-
+            //获取方向
             DirectionEnum directionEnum = DirectionEnum.parseByKeycode(key);
-
-            // 无论如何先转向
+            //无论如何,人物先转向
             this.person.changeFacingDir(directionEnum);
-
-            // 叠加时间
+            //叠加按下时间
             addPressTime(key, delta);
-
-            // 按下时间还没到阈值：只转向不移动
+            //按下时间还没到阈值：只转向不移动
             if (getPressTime(key) <= NOT_MOVE_TIME) {
+                //本轮过
                 continue;
             }
-
-            // 计算走路 / 跑步
-            WalkEnum walkEnum = this.runPressed ? WalkEnum.RUN : WalkEnum.WALK;
-
-            // 真正尝试移动
+            //计算走路 / 跑步
+            WalkEnum walkEnum = this.buttonPressedArray[RUN_INPUT_KEY] ? WalkEnum.RUN : WalkEnum.WALK;
+            //人物真正尝试移动
             this.person.move(directionEnum, walkEnum);
-
-            // 本帧只允许一个方向，结束判定
+            //本帧只允许一个方向，结束判定
             break;
         }
-
         //没有任何方向键按着，则尝试停止走路
         if (anyDirPressed == false) {
             this.person.walkStop();
@@ -169,24 +100,30 @@ public class PlayerCommandHandler {
     }
 
     /**
-     * 小工具方法：根据 key 读写状态
+     * 按下
+     */
+    public void onKeyDown(int keycode) {
+        //输入
+        this.buttonPressedArray[keycode] = true;
+    }
+
+    /**
+     * 取消按下
+     */
+    public void onKeyUp(int keycode) {
+        //输出
+        this.buttonPressedArray[keycode] = false;
+    }
+
+    /**
+     * 获取 按下状态
      *
      * @param keycode
      * @return
      */
     private boolean isPressed(int keycode) {
-        switch (keycode) {
-            case Input.Keys.UP:
-                return this.upPressed;
-            case Input.Keys.DOWN:
-                return this.downPressed;
-            case Input.Keys.LEFT:
-                return this.leftPressed;
-            case Input.Keys.RIGHT:
-                return this.rightPressed;
-            default:
-                return false;
-        }
+        //返回
+        return this.buttonPressedArray[keycode];
     }
 
     /**
@@ -196,22 +133,8 @@ public class PlayerCommandHandler {
      * @return
      */
     private void addPressTime(int keycode, float delta) {
-        switch (keycode) {
-            case Input.Keys.UP:
-                this.upTime += delta;
-                break;
-            case Input.Keys.DOWN:
-                this.downTime += delta;
-                break;
-            case Input.Keys.LEFT:
-                this.leftTime += delta;
-                break;
-            case Input.Keys.RIGHT:
-                this.rightTime += delta;
-                break;
-            default:
-                // ignore
-        }
+        //叠加
+        this.buttonTimeArr[keycode] += delta;
     }
 
     /**
@@ -221,18 +144,8 @@ public class PlayerCommandHandler {
      * @return
      */
     private float getPressTime(int keycode) {
-        switch (keycode) {
-            case Input.Keys.UP:
-                return this.upTime;
-            case Input.Keys.DOWN:
-                return this.downTime;
-            case Input.Keys.LEFT:
-                return this.leftTime;
-            case Input.Keys.RIGHT:
-                return this.rightTime;
-            default:
-                return 0f;
-        }
+        //返回
+        return this.buttonTimeArr[keycode];
     }
 
 }

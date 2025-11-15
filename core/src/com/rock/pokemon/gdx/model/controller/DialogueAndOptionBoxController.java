@@ -1,6 +1,5 @@
 package com.rock.pokemon.gdx.model.controller;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
@@ -33,21 +32,20 @@ public class DialogueAndOptionBoxController extends InputAdapter {
         //根据按键判断
         switch (keycode) {
             //上
-            case Input.Keys.UP:
+            case Settings.INPUT_KEY_UP:
                 //移动
                 this.dialogueAndOptionBox.moveUp();
                 break;
             //下
-            case Input.Keys.DOWN:
+            case Settings.INPUT_KEY_DOWN:
                 //移动
                 this.dialogueAndOptionBox.moveDown();
                 break;
             //取消
-            case Input.Keys.X:
+            case Settings.INPUT_KEY_CANCEL:
                 break;
             //确认
             case Settings.INPUT_KEY_CONFIRM:
-            case Input.Keys.ENTER:
                 //处理确认
                 this.dialogueAndOptionBox.nextNode();
                 break;

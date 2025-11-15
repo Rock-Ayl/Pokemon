@@ -1,7 +1,6 @@
 package com.rock.pokemon.gdx.model.controller;
 
 
-import com.badlogic.gdx.Input;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
@@ -33,9 +32,6 @@ public class PlayerCommandHandler {
             Settings.INPUT_KEY_LEFT,
             Settings.INPUT_KEY_RIGHT
     ));
-
-    // 跑步键
-    private static final int RUN_INPUT_KEY = Input.Keys.X;
 
     // 按住不移动的阈值
     private static final float NOT_MOVE_TIME = 0.15F;
@@ -88,7 +84,7 @@ public class PlayerCommandHandler {
                 continue;
             }
             //计算走路 / 跑步
-            WalkEnum walkEnum = this.buttonPressedArray[RUN_INPUT_KEY] ? WalkEnum.RUN : WalkEnum.WALK;
+            WalkEnum walkEnum = this.buttonPressedArray[Settings.INPUT_KEY_CANCEL] ? WalkEnum.RUN : WalkEnum.WALK;
             //人物真正尝试移动
             this.person.move(directionEnum, walkEnum);
             //本帧只允许一个方向，结束判定

@@ -74,7 +74,7 @@ public class GameContext {
         this.font.getData().setScale(Settings.SCALE);
 
         //根据语言,载入文本
-        this.textMap = TextLoading.initText();
+        this.textMap = TextLoading.initText(Settings.LANG);
 
     }
 

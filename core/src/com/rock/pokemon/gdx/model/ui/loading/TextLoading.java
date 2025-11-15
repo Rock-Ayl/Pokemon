@@ -19,14 +19,15 @@ public class TextLoading {
     /**
      * 载入游戏全部文本
      *
+     * @param languageEnum 指定对应语言枚举
      * @return
      */
-    public static Map<Integer, String> initText() {
+    public static Map<Integer, String> initText(Settings.LanguageEnum languageEnum) {
         //初始化结果
         Map<Integer, String> result = new HashMap<>();
         try {
             //根据当前语言,获取对应语言文本
-            File file = new File(String.format(FilePaths.SYSTEM_CONFIG_TEXT_FILE_PATH, Settings.LANG.getPath()));
+            File file = new File(String.format(FilePaths.SYSTEM_CONFIG_TEXT_FILE_PATH, languageEnum.getPath()));
             //读取行列表
             List<String> stringList = FileUtils.readLines(file, "UTF-8");
             //循环

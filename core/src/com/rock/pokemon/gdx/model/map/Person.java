@@ -181,21 +181,7 @@ public class Person implements YSortable {
             //如果此时还在走
             case WALK:
                 //一次动画时间
-                float onceAnimTime;
-                //根据当前走路状态判定
-                switch (this.walkState) {
-                    //跑步
-                    case RUN:
-                        //使用跑步的
-                        onceAnimTime = RUN_ONCE_ANIM_TIME;
-                        break;
-                    //走路
-                    case WALK:
-                    default:
-                        //使用走路的
-                        onceAnimTime = WALK_ONCE_ANIM_TIME;
-                        break;
-                }
+                float onceAnimTime = getOnceAnimTime();
                 //叠加本次走路、动画的持续时间
                 this.animTime += delta;
                 this.continueWalkTime += delta;
@@ -223,6 +209,31 @@ public class Person implements YSortable {
         }
         //每次该方法判定,都要固定重置为false,否则该人物会一直按照这个方向前进,操控也会失灵
         this.moveRequestThisFrame = false;
+    }
+
+    /**
+     * 根据当前走路状态获取本次动画时间
+     *
+     * @return
+     */
+    private float getOnceAnimTime() {
+        //一次动画时间
+        float onceAnimTime;
+        //根据当前走路状态判定
+        switch (this.walkState) {
+            //跑步
+            case RUN:
+                //使用跑步的
+                onceAnimTime = RUN_ONCE_ANIM_TIME;
+                break;
+            //走路
+            case WALK:
+            default:
+                //使用走路的
+                onceAnimTime = WALK_ONCE_ANIM_TIME;
+                break;
+        }
+        return onceAnimTime;
     }
 
     /**
@@ -270,36 +281,7 @@ public class Person implements YSortable {
          * 计算本次移动是否为原地踏步
          */
 
-        //step 1 根据地图边界,判断原地踏步
-        boolean steppingState = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
-
-        //step 2 根据地图块事物,判断原地踏步
-        steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
-                //获取地图块矩阵
-                .map(World::getTileMap)
-                //获取对应目的地
-                .map(p -> p.getTile(destX, destY))
-                //获取事物
-                .map(Tile::getWorldObject)
-                //获取这个是否是否可以取走
-                .map(WorldObject::isWalkable)
-                //翻转
-                .map(p -> !p)
-                //默认
-                .orElse(false);
-
-        //step 3 根据地图块人物,判断原地踏步
-        steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
-                //获取地图块矩阵
-                .map(World::getTileMap)
-                //获取对应目的地
-                .map(p -> p.getTile(destX, destY))
-                //获取人
-                .map(Tile::getPerson)
-                //如果人是否存在
-                .map(obj -> true)
-                //默认
-                .orElse(false);
+        boolean steppingState = calculateSteppingState(destX, destY);
 
         /**
          * 根据是否原地踏步,开始处理逻辑
@@ -346,6 +328,49 @@ public class Person implements YSortable {
         //覆盖是否原地踏步的状态
         this.steppingState = steppingState;
 
+    }
+
+    /**
+     * 计算是否需要原地踏步
+     *
+     * @param destX
+     * @param destY
+     * @return
+     */
+    private boolean calculateSteppingState(int destX, int destY) {
+
+        //step 1 根据地图边界,判断原地踏步
+        boolean steppingState = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
+
+        //step 2 根据地图块事物,判断原地踏步
+        steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
+                //获取地图块矩阵
+                .map(World::getTileMap)
+                //获取对应目的地
+                .map(p -> p.getTile(destX, destY))
+                //获取事物
+                .map(Tile::getWorldObject)
+                //获取这个是否是否可以取走
+                .map(WorldObject::isWalkable)
+                //翻转
+                .map(p -> !p)
+                //默认
+                .orElse(false);
+
+        //step 3 根据地图块人物,判断原地踏步
+        steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
+                //获取地图块矩阵
+                .map(World::getTileMap)
+                //获取对应目的地
+                .map(p -> p.getTile(destX, destY))
+                //获取人
+                .map(Tile::getPerson)
+                //如果人是否存在
+                .map(obj -> true)
+                //默认
+                .orElse(false);
+
+        return steppingState;
     }
 
     /**

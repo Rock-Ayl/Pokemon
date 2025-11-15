@@ -1,7 +1,6 @@
 package com.rock.pokemon.gdx.model.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -240,25 +239,26 @@ public class WorldScreen implements Screen {
          * todo 一些 临时测试功能 的 按键检测
          */
 
-        //如果加速
+        //加速开关
         if (Gdx.input.isKeyPressed(Settings.INPUT_KEY_SPEED)) {
             //优先计算加速
             delta = delta * Settings.SYSTEM_SPEED_MULTIPLIER;
         }
 
-        //如果按F7
-        if (Gdx.input.isKeyPressed(Input.Keys.F7)) {
+        //淡入开关
+        if (Gdx.input.isKeyPressed(Settings.INPUT_KEY_TEST_START_FADING_IN)) {
             //切换场景变暗
             this.transitionSwitchAnimation.startFadingIn();
         }
-        //如果按F8
-        if (Gdx.input.isKeyPressed(Input.Keys.F8)) {
+
+        //淡出开关
+        if (Gdx.input.isKeyPressed(Settings.INPUT_KEY_TEST_START_FADING_OUT)) {
             //切换场景变亮
             this.transitionSwitchAnimation.startFadingOut();
         }
 
-        //如果按F9
-        if (Gdx.input.isKeyPressed(Input.Keys.F9)) {
+        //渐变动画
+        if (Gdx.input.isKeyPressed(Settings.INPUT_KEY_TEST_BATTLE_ANIMATION)) {
             //随机一个测试战斗渐变动画
             this.transitionBattleAnimation.start(TransitionEnum.randomOne());
         }

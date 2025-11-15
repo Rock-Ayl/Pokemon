@@ -120,4 +120,11 @@ public class Settings {
     public final static int INPUT_KEY_LEFT = Input.Keys.LEFT;
     public final static int INPUT_KEY_RIGHT = Input.Keys.RIGHT;
 
+    //测试-淡入
+    public final static int INPUT_KEY_TEST_START_FADING_IN = Input.Keys.F7;
+    //测试-淡出
+    public final static int INPUT_KEY_TEST_START_FADING_OUT = Input.Keys.F8;
+    //测试-战斗渐变动画
+    public final static int INPUT_KEY_TEST_BATTLE_ANIMATION = Input.Keys.F9;
+
 }

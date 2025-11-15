@@ -49,7 +49,7 @@ public class OptionBox extends Table {
     public OptionBox(PokemonGame pokemonGame) {
 
         //初始化父类
-        super(pokemonGame.getSkin());
+        super(pokemonGame.getGameContext().getSkin());
 
         //记录游戏对象
         this.pokemonGame = pokemonGame;
@@ -114,7 +114,7 @@ public class OptionBox extends Table {
          */
 
         //初始化对应文字,载入字体
-        Label optionLabel = new Label(this.pokemonGame.getTextMap().get(boxMapNodeBoxOption.getValueTextNumber()), this.getSkin(), Settings.SYSTEM_FONT_LABEL);
+        Label optionLabel = new Label(this.pokemonGame.getGameContext().getTextMap().get(boxMapNodeBoxOption.getValueTextNumber()), this.getSkin(), Settings.SYSTEM_FONT_LABEL);
         //组装至列表
         this.optionList.add(optionLabel);
         //将文字组装至窗口
@@ -154,7 +154,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
+        this.pokemonGame.getGameContext().getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
     }
 
     /**
@@ -176,7 +176,7 @@ public class OptionBox extends Table {
         //重置当前箭头可见
         restArrowVisible();
         //移动音效
-        this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
+        this.pokemonGame.getGameContext().getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
     }
 
     /**
@@ -220,7 +220,7 @@ public class OptionBox extends Table {
             //设置为可见
             this.setVisible(true);
             //菜单打开音效
-            this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_OPEN);
+            this.pokemonGame.getGameContext().getMySoundManager().play(Settings.SOUND_ID_MENU_OPEN);
         } else {
             //如果已经关闭了
             if (this.isVisible() == false) {
@@ -230,7 +230,7 @@ public class OptionBox extends Table {
             //设置为不可见
             this.setVisible(false);
             //菜单关闭音效
-            this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
+            this.pokemonGame.getGameContext().getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
         }
     }
 

@@ -45,9 +45,9 @@ public class MainMenuScreen implements Screen {
         ScreenUtils.clear(Color.BLACK);
 
         //超级简单的主菜单
-        this.pokemonGame.getBatch().begin();
-        this.pokemonGame.getFont().draw(this.pokemonGame.getBatch(), "New Game \nSetting", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        this.pokemonGame.getBatch().end();
+        this.pokemonGame.getGameContext().getBatch().begin();
+        this.pokemonGame.getGameContext().getFont().draw(this.pokemonGame.getGameContext().getBatch(), "New Game \nSetting", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        this.pokemonGame.getGameContext().getBatch().end();
 
         /**
          * 控制逻辑

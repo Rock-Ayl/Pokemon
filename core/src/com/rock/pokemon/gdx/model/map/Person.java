@@ -154,7 +154,7 @@ public class Person implements YSortable {
         this.facingState = DirectionEnum.SOUTH;
 
         //初始化人物动画集合
-        this.animationSet = new PersonAnimationSet(this.pokemonGame.getMyAssetManager(), npcMapNode);
+        this.animationSet = new PersonAnimationSet(this.pokemonGame.getGameContext().getMyAssetManager(), npcMapNode);
 
         //记录事件列表
         this.eventList = npcMapNode.getEventList();
@@ -310,7 +310,7 @@ public class Person implements YSortable {
             //强制变为走路
             walkEnum = WalkEnum.WALK;
             //尝试发出撞墙的音效
-            this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_NO_WALK);
+            this.pokemonGame.getGameContext().getMySoundManager().play(Settings.SOUND_ID_NO_WALK);
         }
 
         /**

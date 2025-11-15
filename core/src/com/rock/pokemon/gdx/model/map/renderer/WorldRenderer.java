@@ -111,7 +111,7 @@ public class WorldRenderer {
             return;
         }
         //根据世界起点,渲染
-        pokemonGame.getBatch().draw(
+        pokemonGame.getGameContext().getBatch().draw(
                 //当前类的当前帧的图片
                 ySortable.getSprite(),
                 //当前坐标 * 当前网格倍率

@@ -65,7 +65,7 @@ public class DialogueBox extends Table {
     public DialogueBox(PokemonGame pokemonGame, DialogueAndOptionBox dialogueAndOptionBox) {
 
         //初始化父级
-        super(pokemonGame.getSkin());
+        super(pokemonGame.getGameContext().getSkin());
 
         //记录
         this.dialogueAndOptionBox = dialogueAndOptionBox;
@@ -73,7 +73,7 @@ public class DialogueBox extends Table {
         //设置整体背景贴图
         this.setBackground(Settings.UI_IMAGE_DIALOGUE_BOX);
         //初始化字体,载入字体
-        this.textLabel = new Label("\n", pokemonGame.getSkin(), Settings.SYSTEM_FONT_LABEL);
+        this.textLabel = new Label("\n", pokemonGame.getGameContext().getSkin(), Settings.SYSTEM_FONT_LABEL);
         //将文本组装至文本框中
         this.add(this.textLabel)
                 //均匀分布该label

@@ -122,7 +122,7 @@ public class WorldScreen implements Screen {
          */
 
         //读取世界配置
-        WorldMapConfig worldMapConfig = this.pokemonGame.getMyAssetManager().getWorldMapConfig(worldMapConfigPath);
+        WorldMapConfig worldMapConfig = this.pokemonGame.getGameContext().getMyAssetManager().getWorldMapConfig(worldMapConfigPath);
         //初始化世界
         this.world = new World(this.pokemonGame, this, worldMapConfig);
         //初始化世界渲染器
@@ -133,11 +133,11 @@ public class WorldScreen implements Screen {
          */
 
         //获取npc配置文件
-        NpcMapConfig adventurerNpcMapConfig = this.pokemonGame.getMyAssetManager().getNpcMapConfig();
+        NpcMapConfig adventurerNpcMapConfig = this.pokemonGame.getGameContext().getMyAssetManager().getNpcMapConfig();
         //初始化主角
         this.adventurer = new Person(
-                this.pokemonGame.getSaveManager().getAdventurerNpcId(),
-                adventurerNpcMapConfig.getNpcMap().get(this.pokemonGame.getSaveManager().getAdventurerNpcMapConfigName()),
+                this.pokemonGame.getGameContext().getSaveManager().getAdventurerNpcId(),
+                adventurerNpcMapConfig.getNpcMap().get(this.pokemonGame.getGameContext().getSaveManager().getAdventurerNpcMapConfigName()),
                 this.world,
                 adventurerX,
                 adventurerY,
@@ -273,7 +273,7 @@ public class WorldScreen implements Screen {
         //更新当前屏幕的宽高,如果不这么做,当拖拽窗口时,将会拉伸屏幕,破坏屏幕比例,顺道更新相机了
         this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //渲染时使用相机
-        this.pokemonGame.getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
+        this.pokemonGame.getGameContext().getBatch().setProjectionMatrix(this.viewport.getCamera().combined);
 
         /**
          * 渲染世界及更新
@@ -287,11 +287,11 @@ public class WorldScreen implements Screen {
         //每帧更新世界
         this.world.update(delta);
         //开始渲染 地图、人物
-        this.pokemonGame.getBatch().begin();
+        this.pokemonGame.getGameContext().getBatch().begin();
         //渲染整个世界
         this.worldRenderer.render(this.pokemonGame);
         //结束渲染
-        this.pokemonGame.getBatch().end();
+        this.pokemonGame.getGameContext().getBatch().end();
 
         /**
          * 渲染UI

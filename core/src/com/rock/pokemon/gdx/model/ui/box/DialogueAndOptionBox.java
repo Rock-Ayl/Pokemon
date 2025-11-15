@@ -151,7 +151,7 @@ public class DialogueAndOptionBox {
             this.boxMapNode.getBoxList().addAll(this.nodeIndex, boxList);
 
             //播放音效
-            this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
+            this.pokemonGame.getGameContext().getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
 
             /**
              * 继续执行
@@ -194,11 +194,11 @@ public class DialogueAndOptionBox {
             //对话框
             case "DialogueBox":
                 //新的文本
-                this.dialogueBox.animateText(this.pokemonGame.getTextMap().get(boxMapNodeBox.getTextNumber()));
+                this.dialogueBox.animateText(this.pokemonGame.getGameContext().getTextMap().get(boxMapNodeBox.getTextNumber()));
                 //盒子可见
                 this.dialogueBox.setVisible(true);
                 //播放音效
-                this.pokemonGame.getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
+                this.pokemonGame.getGameContext().getMySoundManager().play(Settings.SOUND_ID_MENU_CLOSE_AND_MOVE);
                 break;
         }
 

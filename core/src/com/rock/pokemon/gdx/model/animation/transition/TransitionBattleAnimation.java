@@ -120,11 +120,11 @@ public class TransitionBattleAnimation {
         this.shader.setUniformf("u_time", this.animTime % 1F);
 
         //使用shader
-        this.pokemonGame.getBatch().setShader(this.shader);
+        this.pokemonGame.getGameContext().getBatch().setShader(this.shader);
 
         //渲染渐变
-        this.pokemonGame.getBatch().begin();
-        this.pokemonGame.getBatch().draw(
+        this.pokemonGame.getGameContext().getBatch().begin();
+        this.pokemonGame.getGameContext().getBatch().draw(
                 this.img,
                 //计算动画位置
                 camera.position.x - camera.viewportWidth / 2,
@@ -132,10 +132,10 @@ public class TransitionBattleAnimation {
                 Settings.WIDTH,
                 Settings.HEIGHT
         );
-        this.pokemonGame.getBatch().end();
+        this.pokemonGame.getGameContext().getBatch().end();
 
         //删除shader
-        this.pokemonGame.getBatch().setShader(null);
+        this.pokemonGame.getGameContext().getBatch().setShader(null);
 
         /**
          * 更新状态

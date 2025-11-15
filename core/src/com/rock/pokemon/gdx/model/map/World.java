@@ -58,10 +58,10 @@ public class World {
          */
 
         //读取事物配置
-        WorldObjectMapConfig worldObjectMapConfig = pokemonGame.getMyAssetManager().getWorldObjectMapConfig();
+        WorldObjectMapConfig worldObjectMapConfig = pokemonGame.getGameContext().getMyAssetManager().getWorldObjectMapConfig();
 
         //读取npc配置
-        NpcMapConfig npcMapConfig = pokemonGame.getMyAssetManager().getNpcMapConfig();
+        NpcMapConfig npcMapConfig = pokemonGame.getGameContext().getMyAssetManager().getNpcMapConfig();
 
         /**
          * 初始化 地图网格、地图块本身
@@ -91,7 +91,7 @@ public class World {
 
             //获取图片对象
             TextureRegion image = pokemonGame
-                    .getMyAssetManager()
+                    .getGameContext().getMyAssetManager()
                     .getTextureAtlas(tileNode.getFilePath())
                     .findRegion(tileNode.getRegionName());
             //如果没有图片
@@ -156,7 +156,7 @@ public class World {
              */
 
             //获取事件map
-            Map<String, EventMapConfig.Event> eventMap = pokemonGame.getMyAssetManager().getEventMapConfig().getEventMap();
+            Map<String, EventMapConfig.Event> eventMap = pokemonGame.getGameContext().getMyAssetManager().getEventMapConfig().getEventMap();
             //门事件,默认为0
             EventMapConfig.Event doorEvent = null;
             //获取门事件id
@@ -178,7 +178,7 @@ public class World {
             //循环坐标列表
             for (WorldMapConfig.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
-                WorldObject worldObject = new WorldObject(pokemonGame.getMyAssetManager(), worldObjectNodeConfig, location.getX(), location.getY(), doorEvent);
+                WorldObject worldObject = new WorldObject(pokemonGame.getGameContext().getMyAssetManager(), worldObjectNodeConfig, location.getX(), location.getY(), doorEvent);
                 //加入到世界
                 this.addWorldObject(worldObject);
             }

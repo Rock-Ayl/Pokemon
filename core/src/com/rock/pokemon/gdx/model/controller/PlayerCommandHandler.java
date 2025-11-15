@@ -54,7 +54,7 @@ public class PlayerCommandHandler {
     /**
      * 初始化
      *
-     * @param person
+     * @param person 角色
      */
     public PlayerCommandHandler(Person person) {
         this.person = person;

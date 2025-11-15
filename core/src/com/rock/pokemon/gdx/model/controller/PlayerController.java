@@ -24,8 +24,8 @@ public class PlayerController extends InputAdapter {
     /**
      * 初始化
      *
-     * @param pokemonGame
-     * @param person
+     * @param pokemonGame 游戏实体
+     * @param person      角色
      */
     public PlayerController(PokemonGame pokemonGame, Person person) {
         this.pokemonGame = pokemonGame;

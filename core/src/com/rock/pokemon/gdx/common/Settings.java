@@ -109,4 +109,10 @@ public class Settings {
     //确认/检查/聊天
     public final static int INPUT_KEY_CONFIRM = Input.Keys.Z;
 
+    //上下左右
+    public final static int INPUT_KEY_UP = Input.Keys.UP;
+    public final static int INPUT_KEY_DOWN = Input.Keys.DOWN;
+    public final static int INPUT_KEY_LEFT = Input.Keys.LEFT;
+    public final static int INPUT_KEY_RIGHT = Input.Keys.RIGHT;
+
 }

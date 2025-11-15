@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.model.controller;
 
 
 import com.badlogic.gdx.Input;
+import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.map.Person;
@@ -27,10 +28,10 @@ public class PlayerCommandHandler {
 
     //方向相关集合
     private static final LinkedHashSet<Integer> DIR_INPUT_KEY_LINKED_SET = new LinkedHashSet<>(Arrays.asList(
-            Input.Keys.UP,
-            Input.Keys.DOWN,
-            Input.Keys.LEFT,
-            Input.Keys.RIGHT
+            Settings.INPUT_KEY_UP,
+            Settings.INPUT_KEY_DOWN,
+            Settings.INPUT_KEY_LEFT,
+            Settings.INPUT_KEY_RIGHT
     ));
 
     // 跑步键

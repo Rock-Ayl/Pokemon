@@ -1,6 +1,6 @@
 package com.rock.pokemon.gdx.enums;
 
-import com.badlogic.gdx.Input;
+import com.rock.pokemon.gdx.common.Settings;
 import lombok.Getter;
 
 /**
@@ -9,10 +9,10 @@ import lombok.Getter;
 @Getter
 public enum DirectionEnum {
 
-    NORTH(0, 1, Input.Keys.UP, "north", "北"),
-    EAST(1, 0, Input.Keys.RIGHT, "east", "东"),
-    SOUTH(0, -1, Input.Keys.DOWN, "south", "南"),
-    WEST(-1, 0, Input.Keys.LEFT, "west", "西"),
+    NORTH(0, 1, Settings.INPUT_KEY_UP, "north", "北"),
+    EAST(1, 0, Settings.INPUT_KEY_RIGHT, "east", "东"),
+    SOUTH(0, -1, Settings.INPUT_KEY_DOWN, "south", "南"),
+    WEST(-1, 0, Settings.INPUT_KEY_LEFT, "west", "西"),
 
     ;
 

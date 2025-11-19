@@ -51,7 +51,6 @@ public class PersonMovement {
     private int destX;
     private int destY;
 
-
     //动画持续时间
     private float animTime;
     //持续一个方向走路的时间
@@ -285,6 +284,7 @@ public class PersonMovement {
         this.facingState = directionEnum;
         //覆盖是否原地踏步的状态
         this.steppingState = steppingState;
+
     }
 
     /**
@@ -373,6 +373,7 @@ public class PersonMovement {
         tileMap.removePerson(this.tileX - 1, this.tileY, this.person);
         tileMap.removePerson(this.tileX, this.tileY + 1, this.person);
         tileMap.removePerson(this.tileX, this.tileY - 1, this.person);
+
     }
 
 }

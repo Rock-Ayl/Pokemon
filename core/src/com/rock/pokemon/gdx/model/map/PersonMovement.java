@@ -56,7 +56,7 @@ public class PersonMovement {
     //持续一个方向走路的时间
     private float continueWalkTime;
     //持续走路时,如果方向和之前相同,则为true,用于判定连续相同方向走路
-    private boolean moveRequestThisFrame;
+    private boolean sameDirection;
 
     /**
      * 初始化控制器
@@ -113,7 +113,7 @@ public class PersonMovement {
                     this.walkEnd();
 
                     //如果此时要换方向走了
-                    if (!this.moveRequestThisFrame) {
+                    if (this.sameDirection == false) {
                         //不再按照该方向走路了, 那么持续走路时间归 0, 从头算起动画帧
                         this.continueWalkTime = 0F;
                     }
@@ -125,9 +125,8 @@ public class PersonMovement {
                 break;
         }
 
-        //每次该方法判定, 都要固定重置为 false,
-        //否则该人物会一直按照这个方向前进, 操控也会失灵
-        this.moveRequestThisFrame = false;
+        //每次该方法判定, 都要固定重置为 false, 否则该人物会一直按照这个方向前进, 操控也会失灵
+        this.sameDirection = false;
     }
 
     /**
@@ -142,8 +141,7 @@ public class PersonMovement {
             //走路中
             case WALK:
                 //判断是否还是按照这个方向走路
-                boolean sameDirection = this.facingState == directionEnum;
-                this.moveRequestThisFrame = sameDirection;
+                this.sameDirection = (this.facingState == directionEnum);
                 //只是继续走，不算“重新发起一次移动”
                 return false;
             //默认、站立(或者说是刚走完上一步)

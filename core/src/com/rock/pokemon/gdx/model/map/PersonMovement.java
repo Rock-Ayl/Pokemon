@@ -88,7 +88,9 @@ public class PersonMovement {
         switch (this.actionState) {
             //如果此时还在走
             case WALK:
-                float onceAnimTime = this.getOnceAnimTime();
+
+                //根据走路状态,返回一次动画时间
+                float onceAnimTime = PersonAnimationSet.getOnceAnimTime(this.walkState);
 
                 //叠加本次走路、动画的持续时间
                 this.animTime += delta;
@@ -213,22 +215,6 @@ public class PersonMovement {
     }
 
     //================= 内部私有逻辑 =================
-
-    /**
-     * 一次动画时间(走路/跑步)
-     */
-    private float getOnceAnimTime() {
-        //根据状态判定
-        switch (this.walkState) {
-            //跑步
-            case RUN:
-                return PersonAnimationSet.RUN_ONCE_ANIM_TIME;
-            //走路
-            case WALK:
-            default:
-                return PersonAnimationSet.WALK_ONCE_ANIM_TIME;
-        }
-    }
 
     /**
      * 尝试开始本次走路

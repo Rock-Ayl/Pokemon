@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
+import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 
@@ -25,10 +26,10 @@ public class PersonAnimationSet {
      */
 
     //完成一次走步动画的总时间,单位秒
-    public static final float WALK_ONCE_ANIM_TIME = 0.3F;
+    private static final float WALK_ONCE_ANIM_TIME = 0.3F;
 
     //完成一次跑步动画的总时间,单位秒
-    public static final float RUN_ONCE_ANIM_TIME = 0.15F;
+    private static final float RUN_ONCE_ANIM_TIME = 0.15F;
 
     /**
      * 每种动作的动画、图片缓存
@@ -148,6 +149,24 @@ public class PersonAnimationSet {
     public Animation<TextureRegion> getRunning(DirectionEnum directionEnum) {
         //返回
         return this.runningMap.get(directionEnum);
+    }
+
+    /**
+     * 根据走路状态,返回一次动画时间(走路/跑步)
+     *
+     * @param walkState 走路枚举
+     */
+    public static float getOnceAnimTime(WalkEnum walkState) {
+        //根据状态判定
+        switch (walkState) {
+            //跑步
+            case RUN:
+                return PersonAnimationSet.RUN_ONCE_ANIM_TIME;
+            //走路
+            case WALK:
+            default:
+                return PersonAnimationSet.WALK_ONCE_ANIM_TIME;
+        }
     }
 
 }

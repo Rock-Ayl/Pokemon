@@ -67,8 +67,6 @@ public class PersonMovement {
      */
     public PersonMovement(Person person, int x, int y) {
         this.person = person;
-
-        // 初始坐标
         this.tileX = x;
         this.tileY = y;
         this.worldX = x;

@@ -14,10 +14,15 @@ public enum WalkEnum {
     STAND("stand", "站立"),
     WALK("walk", "走路"),
     RUN("run", "跑步"),
+
+    /*
+
+    未实现
+
     CYCLING("cycling", "骑自行车"),
     SURFING("surfing", "冲浪"),
 
-    ;
+    */;
 
     //路径
     private String path;

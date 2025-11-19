@@ -1,33 +1,85 @@
 package com.rock.pokemon.gdx.model.map;
 
-
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
+import lombok.Getter;
 
 import java.util.Optional;
 
 /**
  * 人物移动 / 动画控制器
  * -
- * 把 Person 里和移动、碰撞、动画时间线相关的逻辑都集中到这里，
+ * 把 Person 里和移动、坐标、碰撞、动画时间线相关的逻辑都集中到这里，
  * Person 只负责“数据 + 对外接口 + 委托”
  */
+@Getter
 public class PersonMovement {
 
     //人物
-    private Person person;
+    private final Person person;
+
+    // ================= 坐标相关 =================
+
+    //当前人物在地图网格的坐标(整型, 用于与 Tile 交互)
+    private int tileX;
+    private int tileY;
+
+    //当前人物在世界的真实坐标(考虑到移动、骑车、跑步等动作不是时刻在网格中)
+    private float worldX;
+    private float worldY;
+
+    // ================= 移动 / 动画状态相关 =================
+
+    //当前人物-脸的方向(可以是走也可以是站立,只是方向)
+    private DirectionEnum facingState = DirectionEnum.SOUTH;
+    //当前人物-动作状态
+    private Person.ActionEnum actionState = Person.ActionEnum.STAND;
+    //当前人物-走路状态(走、跑、骑车)
+    private WalkEnum walkState = WalkEnum.STAND;
+    //当前人物-是否为原地踏步
+    private boolean steppingState;
+
+    //移动起始坐标(基于 tile)
+    private int srcX;
+    private int srcY;
+    //移动目标坐标(基于 tile)
+    private int destX;
+    private int destY;
+
+    //完成一次走步动画的总时间,单位秒
+    public static final float WALK_ONCE_ANIM_TIME = 0.3F;
+    //完成一次跑步动画的总时间,单位秒
+    public static final float RUN_ONCE_ANIM_TIME = 0.15F;
+
+    //动画持续时间
+    private float animTime;
+    //持续一个方向走路的时间
+    private float continueWalkTime;
+    //持续走路时,如果方向和之前相同,则为true,用于判定连续相同方向走路
+    private boolean moveRequestThisFrame;
 
     /**
      * 初始化控制器
      *
      * @param person 人物
+     * @param x      初始 tile X
+     * @param y      初始 tile Y
      */
-    public PersonMovement(Person person) {
+    public PersonMovement(Person person, int x, int y) {
         this.person = person;
+
+        // 初始坐标
+        this.tileX = x;
+        this.tileY = y;
+        this.worldX = x;
+        this.worldY = y;
+        this.steppingState = false;
     }
+
+    // ================== 核心逻辑 ==================
 
     /**
      * 处理移动中时的动画(可以理解为补帧)
@@ -36,37 +88,37 @@ public class PersonMovement {
      */
     public void update(float delta) {
         //根据状态处理
-        switch (this.person.getActionState()) {
+        switch (this.actionState) {
             //如果此时还在走
             case WALK:
                 float onceAnimTime = this.getOnceAnimTime();
 
                 //叠加本次走路、动画的持续时间
-                this.person.setAnimTime(this.person.getAnimTime() + delta);
-                this.person.setContinueWalkTime(this.person.getContinueWalkTime() + delta);
+                this.animTime += delta;
+                this.continueWalkTime += delta;
 
                 //计算出其真实的世界坐标
-                float progress = this.person.getAnimTime() / onceAnimTime;
-                float worldX = Interpolation.linear.apply(this.person.getSrcX(), this.person.getDestX(), progress);
-                float worldY = Interpolation.linear.apply(this.person.getSrcY(), this.person.getDestY(), progress);
-                this.person.setWorldX(worldX);
-                this.person.setWorldY(worldY);
+                float progress = this.animTime / onceAnimTime;
+                float worldX = Interpolation.linear.apply(this.srcX, this.destX, progress);
+                float worldY = Interpolation.linear.apply(this.srcY, this.destY, progress);
+                this.worldX = worldX;
+                this.worldY = worldY;
 
                 //每次持续动画时间结束时(如果继续走,代表要进行下一次动画了)
-                if (this.person.getAnimTime() >= onceAnimTime) {
+                if (this.animTime >= onceAnimTime) {
 
                     //计算出本次动画多出的那极少一部分时间(因为每次都会有极少的误差),
                     //给持续一个方向走路的时间, 让动画稳定
-                    float overflow = this.person.getAnimTime() - onceAnimTime;
-                    this.person.setContinueWalkTime(this.person.getContinueWalkTime() - overflow);
+                    float overflow = this.animTime - onceAnimTime;
+                    this.continueWalkTime -= overflow;
 
                     //结束本次走路, 并重新定位人物位置(确保精度)
                     this.walkEnd();
 
                     //如果此时要换方向走了
-                    if (!this.person.isMoveRequestThisFrame()) {
+                    if (!this.moveRequestThisFrame) {
                         //不再按照该方向走路了, 那么持续走路时间归 0, 从头算起动画帧
-                        this.person.setContinueWalkTime(0F);
+                        this.continueWalkTime = 0F;
                     }
                 }
                 break;
@@ -78,7 +130,7 @@ public class PersonMovement {
 
         //每次该方法判定, 都要固定重置为 false,
         //否则该人物会一直按照这个方向前进, 操控也会失灵
-        this.person.setMoveRequestThisFrame(false);
+        this.moveRequestThisFrame = false;
     }
 
     /**
@@ -89,12 +141,12 @@ public class PersonMovement {
      */
     public boolean move(DirectionEnum directionEnum, WalkEnum walkEnum) {
         //根据状态判定
-        switch (this.person.getActionState()) {
+        switch (this.actionState) {
             //走路中
             case WALK:
                 //判断是否还是按照这个方向走路
-                boolean sameDirection = this.person.getFacingState() == directionEnum;
-                this.person.setMoveRequestThisFrame(sameDirection);
+                boolean sameDirection = this.facingState == directionEnum;
+                this.moveRequestThisFrame = sameDirection;
                 //只是继续走，不算“重新发起一次移动”
                 return false;
             //默认、站立(或者说是刚走完上一步)
@@ -112,9 +164,9 @@ public class PersonMovement {
      */
     public void walkStop() {
         //如果移动状态是站立
-        if (this.person.getActionState() == Person.ActionEnum.STAND) {
+        if (this.actionState == Person.ActionEnum.STAND) {
             //改变动作状态为站立
-            this.person.setWalkState(WalkEnum.STAND);
+            this.walkState = WalkEnum.STAND;
         }
     }
 
@@ -125,11 +177,11 @@ public class PersonMovement {
      */
     public void changeFacingDir(DirectionEnum facing) {
         //如果不是站着, 无需换脸
-        if (this.person.getActionState() != Person.ActionEnum.STAND) {
+        if (this.actionState != Person.ActionEnum.STAND) {
             return;
         }
         //变换当前脸的方向
-        this.person.setFacingState(facing);
+        this.facingState = facing;
     }
 
     /**
@@ -137,29 +189,29 @@ public class PersonMovement {
      */
     public TextureRegion getSprite() {
         //根据状态判定
-        switch (this.person.getWalkState()) {
+        switch (this.walkState) {
             //跑步
             case RUN:
                 return this.person.getAnimationSet()
-                        .getRunning(this.person.getFacingState())
-                        .getKeyFrame(this.person.getContinueWalkTime());
+                        .getRunning(this.facingState)
+                        .getKeyFrame(this.continueWalkTime);
             //走路/踏步
             case WALK:
-                if (this.person.isSteppingState()) {
+                if (this.steppingState) {
                     //踏步动画
                     return this.person.getAnimationSet()
-                            .getStepping(this.person.getFacingState())
-                            .getKeyFrame(this.person.getContinueWalkTime());
+                            .getStepping(this.facingState)
+                            .getKeyFrame(this.continueWalkTime);
                 } else {
                     //走路动画
                     return this.person.getAnimationSet()
-                            .getWalking(this.person.getFacingState())
-                            .getKeyFrame(this.person.getContinueWalkTime());
+                            .getWalking(this.facingState)
+                            .getKeyFrame(this.continueWalkTime);
                 }
                 //默认站立
             case STAND:
             default:
-                return this.person.getAnimationSet().getStanding(this.person.getFacingState());
+                return this.person.getAnimationSet().getStanding(this.facingState);
         }
     }
 
@@ -170,14 +222,14 @@ public class PersonMovement {
      */
     private float getOnceAnimTime() {
         //根据状态判定
-        switch (this.person.getWalkState()) {
+        switch (this.walkState) {
             //跑步
             case RUN:
-                return Person.RUN_ONCE_ANIM_TIME;
+                return RUN_ONCE_ANIM_TIME;
             //走路
             case WALK:
             default:
-                return Person.WALK_ONCE_ANIM_TIME;
+                return WALK_ONCE_ANIM_TIME;
         }
     }
 
@@ -194,8 +246,8 @@ public class PersonMovement {
          */
 
         //计算出移动完的目标坐标
-        int destX = this.person.getX() + directionEnum.getDx();
-        int destY = this.person.getY() + directionEnum.getDy();
+        int destX = this.tileX + directionEnum.getDx();
+        int destY = this.tileY + directionEnum.getDy();
 
         /**
          * 计算本次移动是否为原地踏步
@@ -220,17 +272,17 @@ public class PersonMovement {
          */
 
         //校准当前坐标
-        this.person.setSrcX(this.person.getX());
-        this.person.setSrcY(this.person.getY());
+        this.srcX = this.tileX;
+        this.srcY = this.tileY;
 
         //如果是原地踏步
         if (steppingState) {
-            this.person.setDestX(this.person.getX());
-            this.person.setDestY(this.person.getY());
+            this.destX = this.tileX;
+            this.destY = this.tileY;
         } else {
             //覆盖为目的地坐标
-            this.person.setDestX(destX);
-            this.person.setDestY(destY);
+            this.destX = destX;
+            this.destY = destY;
         }
 
         /**
@@ -238,15 +290,15 @@ public class PersonMovement {
          */
 
         //初始化活动时间
-        this.person.setAnimTime(0F);
+        this.animTime = 0F;
         //人物动作变为走路
-        this.person.setActionState(Person.ActionEnum.WALK);
+        this.actionState = Person.ActionEnum.WALK;
         //走路的状态
-        this.person.setWalkState(walkEnum);
+        this.walkState = walkEnum;
         //改变脸的方向
-        this.person.setFacingState(directionEnum);
+        this.facingState = directionEnum;
         //覆盖是否原地踏步的状态
-        this.person.setSteppingState(steppingState);
+        this.steppingState = steppingState;
     }
 
     /**
@@ -300,27 +352,27 @@ public class PersonMovement {
          */
 
         //将当前坐标改为移动结束的坐标(这么做还有个好处, 该坐标可以转化为 int)
-        this.person.setWorldX(this.person.getDestX());
-        this.person.setWorldY(this.person.getDestY());
-        this.person.setX(this.person.getDestX());
-        this.person.setY(this.person.getDestY());
+        this.worldX = this.destX;
+        this.worldY = this.destY;
+        this.tileX = this.destX;
+        this.tileY = this.destY;
 
         //其他走路参数置 0
-        this.person.setSrcX(0);
-        this.person.setSrcY(0);
-        this.person.setDestX(0);
-        this.person.setDestY(0);
+        this.srcX = 0;
+        this.srcY = 0;
+        this.destX = 0;
+        this.destY = 0;
 
         /**
          * 移动判定 人物动画状态
          */
 
         //动画持续时间重置
-        this.person.setAnimTime(0F);
+        this.animTime = 0F;
         //改变人物状态为站立
-        this.person.setActionState(Person.ActionEnum.STAND);
+        this.actionState = Person.ActionEnum.STAND;
         //重置人物是否原地踏步状态
-        this.person.setSteppingState(false);
+        this.steppingState = false;
 
         /**
          * 移动 地图块内 对应的人物实体
@@ -329,12 +381,12 @@ public class PersonMovement {
         //获取当前世界的地图块
         TileMap tileMap = this.person.getWorld().getTileMap();
         //人物加入最新的地图块
-        tileMap.setPerson(this.person.getX(), this.person.getY(), this.person);
+        tileMap.setPerson(this.tileX, this.tileY, this.person);
         //以下尝试删除旧位置的人物
-        tileMap.removePerson(this.person.getX() + 1, this.person.getY(), this.person);
-        tileMap.removePerson(this.person.getX() - 1, this.person.getY(), this.person);
-        tileMap.removePerson(this.person.getX(), this.person.getY() + 1, this.person);
-        tileMap.removePerson(this.person.getX(), this.person.getY() - 1, this.person);
+        tileMap.removePerson(this.tileX + 1, this.tileY, this.person);
+        tileMap.removePerson(this.tileX - 1, this.tileY, this.person);
+        tileMap.removePerson(this.tileX, this.tileY + 1, this.person);
+        tileMap.removePerson(this.tileX, this.tileY - 1, this.person);
     }
 
 }

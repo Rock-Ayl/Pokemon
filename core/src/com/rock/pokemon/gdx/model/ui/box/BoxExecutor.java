@@ -45,7 +45,7 @@ public class BoxExecutor {
         Person adventurer = this.pokemonGame.getWorldScreen().getAdventurer();
 
         /**
-         * 判断是否满足 盒子事件 条件
+         * 判断玩家状态
          */
 
         //如果行动不是站立
@@ -53,6 +53,11 @@ public class BoxExecutor {
             //不执行
             return;
         }
+
+        /**
+         * 判断是否满足 盒子事件 条件
+         */
+
         //根据人脸的方向,记录人脸前方的坐标
         int x = adventurer.getX() + adventurer.getFacingState().getDx();
         int y = adventurer.getY() + adventurer.getFacingState().getDy();

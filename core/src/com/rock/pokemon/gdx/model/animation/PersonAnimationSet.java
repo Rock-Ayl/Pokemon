@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
-import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 
 import java.util.HashMap;
@@ -20,6 +19,16 @@ import java.util.Optional;
  * @Date 2022-10-17
  */
 public class PersonAnimationSet {
+
+    /**
+     * 动画总时长
+     */
+
+    //完成一次走步动画的总时间,单位秒
+    public static final float WALK_ONCE_ANIM_TIME = 0.3F;
+
+    //完成一次跑步动画的总时间,单位秒
+    public static final float RUN_ONCE_ANIM_TIME = 0.15F;
 
     /**
      * 每种动作的动画、图片缓存
@@ -76,15 +85,15 @@ public class PersonAnimationSet {
             //如果有跑步资源
             if (runTextureAtlas != null) {
                 //载入跑步动画 秒/帧(N图-1=帧),名字,模式,并组装
-                this.runningMap.put(directionEnum, new Animation<>(Person.RUN_ONCE_ANIM_TIME / 2.2F, runTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+                this.runningMap.put(directionEnum, new Animation<>(RUN_ONCE_ANIM_TIME / 2.2F, runTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
             }
 
             //如果有走路资源
             if (walkTextureAtlas != null) {
                 //载入走路动画 秒/帧(N图-1=帧),名字,模式,并组装
-                this.walkingMap.put(directionEnum, new Animation<>(Person.WALK_ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+                this.walkingMap.put(directionEnum, new Animation<>(WALK_ONCE_ANIM_TIME / 2F, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
                 //载入原地踏步动画 秒/帧(N图-1=帧),名字,模式,并组装
-                this.steppingMap.put(directionEnum, new Animation<>(Person.WALK_ONCE_ANIM_TIME, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
+                this.steppingMap.put(directionEnum, new Animation<>(WALK_ONCE_ANIM_TIME, walkTextureAtlas.findRegions(directionEnum.getName()), Animation.PlayMode.LOOP_PINGPONG));
             }
 
             //如果有站立资源

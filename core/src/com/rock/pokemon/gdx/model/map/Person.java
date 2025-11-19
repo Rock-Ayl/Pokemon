@@ -39,21 +39,20 @@ public class Person implements YSortable {
     private float height = 1.5F;
 
     /**
-     * 世界 / 动画 / 事件
+     * 世界、事件、动画相关
      */
 
     //该人物所处的世界
     private World world;
 
-    //人物动画集合
-    private PersonAnimationSet animationSet;
-
-    /**
-     * 事件
-     */
-
     //事件列表
     private List<NpcMapNodeEvent> eventList;
+
+    //移动处理器
+    private PersonMovement movement;
+
+    //人物动画集合
+    private PersonAnimationSet animationSet;
 
     /**
      * 人物动作枚举
@@ -77,18 +76,6 @@ public class Person implements YSortable {
         }
 
     }
-
-    /**
-     * 把移动/动画逻辑交给这个组件处理
-     */
-    private final PersonMovement movement;
-
-    /**
-     * 为了兼容旧代码，仍在 Person 上暴露一次动作时间常量，
-     * 实际定义在 PersonMovement 中。
-     */
-    public static final float WALK_ONCE_ANIM_TIME = PersonMovement.WALK_ONCE_ANIM_TIME;
-    public static final float RUN_ONCE_ANIM_TIME = PersonMovement.RUN_ONCE_ANIM_TIME;
 
     /**
      * 使用人物枚举初始化

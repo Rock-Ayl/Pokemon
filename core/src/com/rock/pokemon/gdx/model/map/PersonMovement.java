@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
+import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
 import lombok.Getter;
 
 import java.util.Optional;
@@ -49,10 +50,6 @@ public class PersonMovement {
     private int destX;
     private int destY;
 
-    //完成一次走步动画的总时间,单位秒
-    public static final float WALK_ONCE_ANIM_TIME = 0.3F;
-    //完成一次跑步动画的总时间,单位秒
-    public static final float RUN_ONCE_ANIM_TIME = 0.15F;
 
     //动画持续时间
     private float animTime;
@@ -225,11 +222,11 @@ public class PersonMovement {
         switch (this.walkState) {
             //跑步
             case RUN:
-                return RUN_ONCE_ANIM_TIME;
+                return PersonAnimationSet.RUN_ONCE_ANIM_TIME;
             //走路
             case WALK:
             default:
-                return WALK_ONCE_ANIM_TIME;
+                return PersonAnimationSet.WALK_ONCE_ANIM_TIME;
         }
     }
 

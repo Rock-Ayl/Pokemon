@@ -1,9 +1,8 @@
 package com.rock.pokemon.gdx.model.map;
 
+
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.PokemonGame;
-import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
@@ -14,7 +13,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * 人物实体(可以是精灵、人物、甚至道具精灵球)
@@ -120,6 +118,11 @@ public class Person implements YSortable {
     }
 
     /**
+     * 把移动/动画逻辑交给这个组件处理
+     */
+    private final PersonMovement movement;
+
+    /**
      * 使用人物枚举初始化
      *
      * @param npcId       指定npcId
@@ -168,7 +171,11 @@ public class Person implements YSortable {
         //人物加入世界
         this.world.addPerson(this);
 
+        // 初始化移动组件
+        this.movement = new PersonMovement(this);
     }
+
+    // ================= 对外行为接口：全部委托给 PersonMovement =================
 
     /**
      * 处理移动中时的动画(可以理解为补帧)
@@ -176,64 +183,7 @@ public class Person implements YSortable {
      * @param delta 每帧的时间
      */
     public void update(float delta) {
-        //根据当前状态判定
-        switch (this.actionState) {
-            //如果此时还在走
-            case WALK:
-                //一次动画时间
-                float onceAnimTime = getOnceAnimTime();
-                //叠加本次走路、动画的持续时间
-                this.animTime += delta;
-                this.continueWalkTime += delta;
-                //计算出其真实的世界坐标,据说绿宝石是线性的,这里不太懂,但大体的意思是按照线性的逻辑不断计算出对应x,y坐标
-                this.worldX = Interpolation.linear.apply(this.srcX, this.destX, this.animTime / onceAnimTime);
-                this.worldY = Interpolation.linear.apply(this.srcY, this.destY, this.animTime / onceAnimTime);
-                //每次持续动画时间结束时(如果继续走,代表要进行下一次动画了)
-                if (this.animTime >= onceAnimTime) {
-                    //计算出本次动画多出的那极少一部分时间(因为每次都会有极少的误差),给持续一个方向走路的时间,让动画稳定
-                    this.continueWalkTime = this.continueWalkTime - (this.animTime - onceAnimTime);
-                    //结束本次走路,并重新定位人物位置(确保精度)
-                    walkEnd();
-                    //如果此时要换方向走了
-                    if (this.moveRequestThisFrame == false) {
-                        //不再按照该方向走路了,那么持续走路时间归0,从头算起动画帧
-                        this.continueWalkTime = 0F;
-                    }
-                }
-                break;
-            //站立或其他
-            case STAND:
-            default:
-                //直接结束
-                break;
-        }
-        //每次该方法判定,都要固定重置为false,否则该人物会一直按照这个方向前进,操控也会失灵
-        this.moveRequestThisFrame = false;
-    }
-
-    /**
-     * 根据当前走路状态获取本次动画时间
-     *
-     * @return
-     */
-    private float getOnceAnimTime() {
-        //一次动画时间
-        float onceAnimTime;
-        //根据当前走路状态判定
-        switch (this.walkState) {
-            //跑步
-            case RUN:
-                //使用跑步的
-                onceAnimTime = RUN_ONCE_ANIM_TIME;
-                break;
-            //走路
-            case WALK:
-            default:
-                //使用走路的
-                onceAnimTime = WALK_ONCE_ANIM_TIME;
-                break;
-        }
-        return onceAnimTime;
+        this.movement.update(delta);
     }
 
     /**
@@ -241,257 +191,44 @@ public class Person implements YSortable {
      *
      * @param directionEnum 接下来移动的方向
      * @param walkEnum      走路状态
+     * @return 是否成功发起一次移动(站立 - > 开始走)
      */
     public boolean move(DirectionEnum directionEnum, WalkEnum walkEnum) {
-        //根据人物此时的行动状态判定
-        switch (this.actionState) {
-            //走路
-            case WALK:
-                //判断是否还是按照这个方向走路
-                this.moveRequestThisFrame = this.facingState == directionEnum;
-                //让他继续走下去吧
-                return false;
-            //默认、站立(或者说是刚走完上一步)
-            case STAND:
-            default:
-                //开始走路判定
-                walkStart(directionEnum, walkEnum);
-                //移动成功
-                return true;
-        }
-    }
-
-    /**
-     * 尝试开始本次走路
-     *
-     * @param directionEnum 走的方向
-     * @param walkEnum      走路的状态(走步,跑步)
-     */
-    private void walkStart(DirectionEnum directionEnum, WalkEnum walkEnum) {
-
-        /**
-         * 计算出本次移动的目的地
-         */
-
-        //计算出移动完的目标坐标
-        int destX = this.x + directionEnum.getDx();
-        int destY = this.y + directionEnum.getDy();
-
-        /**
-         * 计算本次移动是否为原地踏步
-         */
-
-        boolean steppingState = calculateSteppingState(destX, destY);
-
-        /**
-         * 根据是否原地踏步,开始处理逻辑
-         */
-
-        //如果是原地踏步
-        if (steppingState) {
-            //强制变为走路
-            walkEnum = WalkEnum.WALK;
-            //尝试发出撞墙的音效
-            this.pokemonGame.getGameContext().getMySoundManager().play(Settings.SOUND_ID_NO_WALK);
-        }
-
-        /**
-         * 移动判定 人物坐标
-         */
-
-        //校准当前坐标
-        this.srcX = this.x;
-        this.srcY = this.y;
-        //如果是原地踏步
-        if (steppingState) {
-            //原地踏步
-            this.destX = this.x;
-            this.destY = this.y;
-        } else {
-            //覆盖为目的地坐标
-            this.destX = destX;
-            this.destY = destY;
-        }
-
-        /**
-         * 移动判定 人物动画状态
-         */
-
-        //初始化活动时间
-        this.animTime = 0F;
-        //人物动作变为走路
-        this.actionState = ActionEnum.WALK;
-        //走路的状态
-        this.walkState = walkEnum;
-        //改变脸的方向
-        this.facingState = directionEnum;
-        //覆盖是否原地踏步的状态
-        this.steppingState = steppingState;
-
-    }
-
-    /**
-     * 计算是否需要原地踏步
-     *
-     * @param destX
-     * @param destY
-     * @return
-     */
-    private boolean calculateSteppingState(int destX, int destY) {
-
-        //step 1 根据地图边界,判断原地踏步
-        boolean steppingState = destX < 0 || destY < 0 || destX >= this.world.getTileMap().getWidth() || destY >= this.world.getTileMap().getHeight();
-
-        //step 2 根据地图块事物,判断原地踏步
-        steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
-                //获取地图块矩阵
-                .map(World::getTileMap)
-                //获取对应目的地
-                .map(p -> p.getTile(destX, destY))
-                //获取事物
-                .map(Tile::getWorldObject)
-                //获取这个是否是否可以取走
-                .map(WorldObject::isWalkable)
-                //翻转
-                .map(p -> !p)
-                //默认
-                .orElse(false);
-
-        //step 3 根据地图块人物,判断原地踏步
-        steppingState = steppingState == true ? true : Optional.ofNullable(this.world)
-                //获取地图块矩阵
-                .map(World::getTileMap)
-                //获取对应目的地
-                .map(p -> p.getTile(destX, destY))
-                //获取人
-                .map(Tile::getPerson)
-                //如果人是否存在
-                .map(obj -> true)
-                //默认
-                .orElse(false);
-
-        return steppingState;
-    }
-
-    /**
-     * 结束走路
-     */
-    private void walkEnd() {
-
-        /**
-         * 移动判定,人物坐标
-         */
-
-        //将当前坐标改为移动结束的坐标(这么做还有个好处,该坐标可以转化为int)
-        this.worldX = this.destX;
-        this.worldY = this.destY;
-        this.x = this.destX;
-        this.y = this.destY;
-
-        //其他走路参数置0
-        this.srcX = 0;
-        this.srcY = 0;
-        this.destX = 0;
-        this.destY = 0;
-
-        /**
-         * 移动判定 人物动画状态
-         */
-
-        //动画持续时间重置
-        this.animTime = 0;
-        //改变人物状态为站立
-        this.actionState = ActionEnum.STAND;
-        //重置人物是否原地踏步状态
-        this.steppingState = false;
-
-        /**
-         * 移动 地图块内 对应的人物实体
-         */
-
-        //获取当前世界的地图块
-        TileMap tileMap = this.world.getTileMap();
-        //人物加入最新的地图块
-        tileMap.setPerson(this.x, this.y, this);
-        //以下尝试删除旧位置的人物
-        tileMap.removePerson(this.x + 1, this.y, this);
-        tileMap.removePerson(this.x - 1, this.y, this);
-        tileMap.removePerson(this.x, this.y + 1, this);
-        tileMap.removePerson(this.x, this.y - 1, this);
-
+        return this.movement.move(directionEnum, walkEnum);
     }
 
     /**
      * 尝试停止走路
      */
     public void walkStop() {
-        //如果移动状态是站立
-        if (this.actionState == ActionEnum.STAND) {
-            //改变动作状态为站立
-            this.walkState = WalkEnum.STAND;
-        }
+        this.movement.walkStop();
     }
 
     /**
-     * 单纯的脸换个方向,当然,得站着的时候
+     * 单纯的脸换个方向, 当然, 得站着的时候
      *
      * @param facing 方向枚举
-     * @return
      */
     public void changeFacingDir(DirectionEnum facing) {
-        //如果不是站着,无需换脸
-        if (this.actionState != ActionEnum.STAND) {
-            //过
-            return;
-        }
-        //变换当前脸的方向
-        this.facingState = facing;
+        this.movement.changeFacingDir(facing);
     }
 
     /**
      * 获取当前人物动画图片或帧图片
-     *
-     * @return
      */
     public TextureRegion getSprite() {
-        //根据当前状态判定
-        switch (this.walkState) {
-            //跑步
-            case RUN:
-                //返回跑步动画帧图片
-                return this.animationSet.getRunning(this.facingState).getKeyFrame(this.continueWalkTime);
-            //走路/踏步
-            case WALK:
-                //如果是踏步
-                if (this.steppingState) {
-                    //返回踏步动画帧图片
-                    return this.animationSet.getStepping(this.facingState).getKeyFrame(this.continueWalkTime);
-                } else {
-                    //返回走路动画帧图片
-                    return this.animationSet.getWalking(this.facingState).getKeyFrame(this.continueWalkTime);
-                }
-                //默认站立
-            case STAND:
-            default:
-                //返回站立图片
-                return this.animationSet.getStanding(this.facingState);
-        }
+        return this.movement.getSprite();
     }
 
+    /**
+     * 世界坐标 getter 保留, 方便其它地方取用
+     */
     public float getWorldX() {
         return this.worldX;
     }
 
     public float getWorldY() {
         return this.worldY;
-    }
-
-    public float getWidth() {
-        return this.width;
-    }
-
-    public float getHeight() {
-        return this.height;
     }
 
     /**

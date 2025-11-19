@@ -186,31 +186,35 @@ public class PersonMovement {
      * 获取当前人物动画图片或帧图片
      */
     public TextureRegion getSprite() {
+        //本次返回帧图片
+        TextureRegion textureRegion;
         //根据状态判定
         switch (this.walkState) {
             //跑步
             case RUN:
-                return this.person.getAnimationSet()
-                        .getRunning(this.facingState)
-                        .getKeyFrame(this.continueWalkTime);
+                //跑步动画
+                textureRegion = this.person.getAnimationSet().getRunning(this.facingState).getKeyFrame(this.continueWalkTime);
+                break;
             //走路/踏步
             case WALK:
-                if (this.steppingState) {
+                //判断是 走路 or 踏步
+                if (this.steppingState == true) {
                     //踏步动画
-                    return this.person.getAnimationSet()
-                            .getStepping(this.facingState)
-                            .getKeyFrame(this.continueWalkTime);
+                    textureRegion = this.person.getAnimationSet().getStepping(this.facingState).getKeyFrame(this.continueWalkTime);
                 } else {
                     //走路动画
-                    return this.person.getAnimationSet()
-                            .getWalking(this.facingState)
-                            .getKeyFrame(this.continueWalkTime);
+                    textureRegion = this.person.getAnimationSet().getWalking(this.facingState).getKeyFrame(this.continueWalkTime);
                 }
-                //默认站立
+                break;
+            //默认站立
             case STAND:
             default:
-                return this.person.getAnimationSet().getStanding(this.facingState);
+                //站立动画
+                textureRegion = this.person.getAnimationSet().getStanding(this.facingState);
+                break;
         }
+        //返回结果
+        return textureRegion;
     }
 
     //================= 内部私有逻辑 =================

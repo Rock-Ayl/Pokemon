@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
@@ -37,7 +38,7 @@ public class PersonMovement {
     //当前人物-脸的方向(可以是走也可以是站立,只是方向)
     private DirectionEnum facingState = DirectionEnum.SOUTH;
     //当前人物-动作状态
-    private Person.ActionEnum actionState = Person.ActionEnum.STAND;
+    private ActionEnum actionState = ActionEnum.STAND;
     //当前人物-走路状态(走、跑、骑车)
     private WalkEnum walkState = WalkEnum.STAND;
     //当前人物-是否为原地踏步
@@ -161,7 +162,7 @@ public class PersonMovement {
      */
     public void walkStop() {
         //如果移动状态是站立
-        if (this.actionState == Person.ActionEnum.STAND) {
+        if (this.actionState == ActionEnum.STAND) {
             //改变动作状态为站立
             this.walkState = WalkEnum.STAND;
         }
@@ -174,7 +175,7 @@ public class PersonMovement {
      */
     public void changeFacingDir(DirectionEnum facing) {
         //如果不是站着, 无需换脸
-        if (this.actionState != Person.ActionEnum.STAND) {
+        if (this.actionState != ActionEnum.STAND) {
             return;
         }
         //变换当前脸的方向
@@ -273,7 +274,7 @@ public class PersonMovement {
         //初始化活动时间
         this.animTime = 0F;
         //人物动作变为走路
-        this.actionState = Person.ActionEnum.WALK;
+        this.actionState = ActionEnum.WALK;
         //走路的状态
         this.walkState = walkEnum;
         //改变脸的方向
@@ -351,7 +352,7 @@ public class PersonMovement {
         //动画持续时间重置
         this.animTime = 0F;
         //改变人物状态为站立
-        this.actionState = Person.ActionEnum.STAND;
+        this.actionState = ActionEnum.STAND;
         //重置人物是否原地踏步状态
         this.steppingState = false;
 

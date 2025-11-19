@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.PokemonGame;
+import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
@@ -53,29 +54,6 @@ public class Person implements YSortable {
 
     //人物动画集合
     private PersonAnimationSet animationSet;
-
-    /**
-     * 人物动作枚举
-     */
-    @Getter
-    public enum ActionEnum {
-
-        STAND("stand", "站立"),
-        WALK("walk", "走路"),
-
-        ;
-
-        //路径
-        private String path;
-        //中文名
-        private String zhName;
-
-        ActionEnum(String path, String zhName) {
-            this.path = path;
-            this.zhName = zhName;
-        }
-
-    }
 
     /**
      * 使用人物枚举初始化
@@ -199,7 +177,7 @@ public class Person implements YSortable {
      *
      * @return
      */
-    public Person.ActionEnum getActionState() {
+    public ActionEnum getActionState() {
         return this.movement.getActionState();
     }
 

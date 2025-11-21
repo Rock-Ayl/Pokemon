@@ -111,8 +111,8 @@ public class Person implements YSortable {
      * @param walkEnum      走路状态
      * @return 是否成功发起一次移动(站立 - > 开始走)
      */
-    public boolean move(DirectionEnum directionEnum, WalkEnum walkEnum) {
-        return this.movement.move(directionEnum, walkEnum);
+    public void move(DirectionEnum directionEnum, WalkEnum walkEnum) {
+        this.movement.move(directionEnum, walkEnum);
     }
 
     /**

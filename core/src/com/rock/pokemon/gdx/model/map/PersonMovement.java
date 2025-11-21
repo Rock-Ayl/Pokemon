@@ -43,6 +43,8 @@ public class PersonMovement {
     private boolean stopped = true;
     //当前人物-是否为原地踏步
     private boolean steppingState;
+    //当前人物-持续走路
+    private boolean sameDirection;
 
     //移动辅助-起始坐标
     private int srcX;
@@ -56,8 +58,6 @@ public class PersonMovement {
     private float animTime;
     //持续一个方向走路的时间
     private float continueWalkTime;
-    //持续走路时,如果方向和之前相同,则为true,用于判定连续相同方向走路
-    private boolean sameDirection;
 
     /**
      * 初始化控制器
@@ -129,18 +129,14 @@ public class PersonMovement {
      * @param directionEnum 接下来移动的方向
      * @param walkEnum      走路状态
      */
-    public boolean move(DirectionEnum directionEnum, WalkEnum walkEnum) {
+    public void move(DirectionEnum directionEnum, WalkEnum walkEnum) {
         //如果人物不是停止的
         if (this.stopped == false) {
             //判断是否还是按照这个方向走路
             this.sameDirection = (this.facingState == directionEnum);
-            //持续走
-            return false;
         } else {
             //开始走路判定
             this.walkStart(directionEnum, walkEnum);
-            //移动成功
-            return true;
         }
     }
 

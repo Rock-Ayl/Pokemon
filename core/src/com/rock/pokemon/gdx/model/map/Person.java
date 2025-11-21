@@ -2,7 +2,6 @@ package com.rock.pokemon.gdx.model.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.PokemonGame;
-import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
@@ -173,12 +172,12 @@ public class Person implements YSortable {
     }
 
     /**
-     * 人物-动作状态
+     * 判断人物是否允许 检查 or 谈话
      *
      * @return
      */
-    public ActionEnum getActionState() {
-        return this.movement.getActionState();
+    public boolean canCheckAndTalk() {
+        return this.movement.canCheckAndTalk();
     }
 
     /**

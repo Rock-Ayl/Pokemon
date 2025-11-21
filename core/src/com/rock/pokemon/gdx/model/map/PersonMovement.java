@@ -374,4 +374,14 @@ public class PersonMovement {
 
     }
 
+    /**
+     * 判断人物是否允许 检查 or 谈话
+     *
+     * @return
+     */
+    public boolean canCheckAndTalk() {
+        //只有静止的人被允许
+        return this.actionState != ActionEnum.STAND;
+    }
+
 }

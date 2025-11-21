@@ -1,7 +1,6 @@
 package com.rock.pokemon.gdx.model.ui.box;
 
 import com.rock.pokemon.gdx.PokemonGame;
-import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.Tile;
@@ -48,8 +47,8 @@ public class BoxExecutor {
          * 判断玩家状态
          */
 
-        //如果行动不是站立
-        if (adventurer.getActionState() != ActionEnum.STAND) {
+        //判断人物是否允许该操作
+        if (adventurer.canCheckAndTalk() == false) {
             //不执行
             return;
         }

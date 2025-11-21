@@ -90,8 +90,9 @@ public class PlayerCommandHandler {
             //本帧只允许一个方向，结束判定
             break;
         }
-        //没有任何方向键按着，则尝试停止走路
+        //没有任何方向键按着
         if (anyDirPressed == false) {
+            //尝试停止走路
             this.person.walkStop();
         }
     }

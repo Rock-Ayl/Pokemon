@@ -144,11 +144,13 @@ public class PersonMovement {
      * 尝试停止走路
      */
     public void walkStop() {
-        //如果人物停止
-        if (this.stopped == true) {
-            //改变动作
-            this.walkState = WalkEnum.STAND;
+        //如果不是停止
+        if (this.stopped == false) {
+            //过
+            return;
         }
+        //改变动作
+        this.walkState = WalkEnum.STAND;
     }
 
     /**

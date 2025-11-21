@@ -329,7 +329,7 @@ public class PersonMovement {
     }
 
     /**
-     * 结束走路
+     * 单格走路结束
      */
     private void walkEnd() {
 
@@ -355,9 +355,9 @@ public class PersonMovement {
 
         //动画持续时间重置
         this.animTime = 0F;
-        //改变人物状态为站立
+        //人物停止
         this.stopped = true;
-        //重置人物是否原地踏步状态
+        //不再原地踏步
         this.steppingState = false;
 
         /**
@@ -383,7 +383,7 @@ public class PersonMovement {
      */
     public boolean canCheckAndTalk() {
         //只有静止的人被允许
-        return this.stopped == true;
+        return this.stopped != false;
     }
 
 }

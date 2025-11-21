@@ -301,8 +301,13 @@ public class PersonMovement {
         boolean steppingState = destX < 0 || destY < 0
                 || destX >= this.person.getWorld().getTileMap().getWidth()
                 || destY >= this.person.getWorld().getTileMap().getHeight();
+        //如果是
+        if (steppingState == true) {
+            //返回
+            return true;
+        }
         //step 2 根据地图块“事物”，判断原地踏步
-        steppingState = steppingState || Optional.ofNullable(this.person.getWorld())
+        steppingState = Optional.ofNullable(this.person.getWorld())
                 //获取地图块矩阵
                 .map(World::getTileMap)
                 //获取对应目的地
@@ -315,8 +320,13 @@ public class PersonMovement {
                 .map(p -> !p)
                 //默认
                 .orElse(false);
+        //如果是
+        if (steppingState == true) {
+            //返回
+            return true;
+        }
         //step 3 根据地图块“人物”，判断原地踏步
-        steppingState = steppingState || Optional.ofNullable(this.person.getWorld())
+        steppingState = Optional.ofNullable(this.person.getWorld())
                 //获取地图块矩阵
                 .map(World::getTileMap)
                 //获取对应目的地
@@ -327,7 +337,7 @@ public class PersonMovement {
                 .map(obj -> true)
                 //默认
                 .orElse(false);
-        //返回
+        //最后返回
         return steppingState;
     }
 

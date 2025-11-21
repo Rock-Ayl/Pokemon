@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.enums.TransitionEnum;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionBattleAnimation;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionSwitchAnimation;
 import com.rock.pokemon.gdx.model.controller.DialogueAndOptionBoxController;
@@ -260,7 +259,7 @@ public class WorldScreen implements Screen {
         //渐变动画
         if (Gdx.input.isKeyPressed(Settings.INPUT_KEY_TEST_BATTLE_ANIMATION)) {
             //随机一个测试战斗渐变动画
-            this.transitionBattleAnimation.start(TransitionEnum.randomOne());
+            this.transitionBattleAnimation.startRandomOne();
         }
 
         /**

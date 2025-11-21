@@ -73,6 +73,14 @@ public class TransitionBattleAnimation {
     }
 
     /**
+     * 开始动画-随机一个渐变
+     */
+    public void startRandomOne() {
+        //实现
+        start(TransitionEnum.randomOne());
+    }
+
+    /**
      * 开始动画
      *
      * @param transitionEnum 渐变枚举(指定动画)

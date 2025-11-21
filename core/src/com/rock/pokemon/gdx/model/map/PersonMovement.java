@@ -42,9 +42,9 @@ public class PersonMovement {
     //当前人物-是否停止不动
     private boolean stopped = true;
     //当前人物-是否为原地踏步
-    private boolean steppingState;
+    private boolean steppingState = false;
     //当前人物-持续走路
-    private boolean sameDirection;
+    private boolean sameDirection = false;
 
     //移动辅助-起始坐标
     private int srcX;
@@ -72,7 +72,6 @@ public class PersonMovement {
         this.tileY = y;
         this.worldX = x;
         this.worldY = y;
-        this.steppingState = false;
     }
 
     // ================== 核心逻辑 ==================

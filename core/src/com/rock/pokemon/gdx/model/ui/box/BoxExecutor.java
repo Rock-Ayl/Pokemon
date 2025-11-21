@@ -133,7 +133,12 @@ public class BoxExecutor {
         }
 
         //读取事件配置
-        BoxMapConfig.BoxMapNode talkTestNode = this.pokemonGame.getGameContext().getMyAssetManager().getBoxMapConfig().getBoxMap().get(event.getBoxName());
+        BoxMapConfig.BoxMapNode talkTestNode = this.pokemonGame
+                .getGameContext()
+                .getMyAssetManager()
+                .getBoxMapConfig()
+                .getBoxMap()
+                .get(event.getBoxName());
         //这里直接用事件
         dialogueAndOptionBox.reset(talkTestNode);
         //开启

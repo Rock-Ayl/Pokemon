@@ -3,7 +3,6 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.rock.pokemon.gdx.common.Settings;
-import com.rock.pokemon.gdx.enums.ActionEnum;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.animation.PersonAnimationSet;
@@ -37,10 +36,11 @@ public class PersonMovement {
 
     //当前人物-脸的方向(可以是走也可以是站立,只是方向)
     private DirectionEnum facingState = DirectionEnum.SOUTH;
-    //当前人物-动作状态
-    private ActionEnum actionState = ActionEnum.STAND;
     //当前人物-走路状态(走、跑、骑车)
     private WalkEnum walkState = WalkEnum.STAND;
+
+    //当前人物-是否停止不动
+    private boolean stopped = true;
     //当前人物-是否为原地踏步
     private boolean steppingState;
 
@@ -83,49 +83,42 @@ public class PersonMovement {
      * @param delta 每帧的时间
      */
     public void update(float delta) {
-        //根据状态处理
-        switch (this.actionState) {
-            //如果此时还在走
-            case WALK:
+        //如果不是停止的
+        if (this.stopped == false) {
 
-                //根据走路状态,返回一次动画时间
-                float onceAnimTime = PersonAnimationSet.getOnceAnimTime(this.walkState);
+            //根据走路状态,返回一次动画时间
+            float onceAnimTime = PersonAnimationSet.getOnceAnimTime(this.walkState);
 
-                //叠加本次走路、动画的持续时间
-                this.animTime += delta;
-                this.continueWalkTime += delta;
+            //叠加本次走路、动画的持续时间
+            this.animTime += delta;
+            this.continueWalkTime += delta;
 
-                //计算出其真实的世界坐标
-                float progress = this.animTime / onceAnimTime;
-                float worldX = Interpolation.linear.apply(this.srcX, this.destX, progress);
-                float worldY = Interpolation.linear.apply(this.srcY, this.destY, progress);
-                this.worldX = worldX;
-                this.worldY = worldY;
+            //计算出其真实的世界坐标
+            float progress = this.animTime / onceAnimTime;
+            float worldX = Interpolation.linear.apply(this.srcX, this.destX, progress);
+            float worldY = Interpolation.linear.apply(this.srcY, this.destY, progress);
+            this.worldX = worldX;
+            this.worldY = worldY;
 
-                //每次持续动画时间结束时(如果继续走,代表要进行下一次动画了)
-                if (this.animTime >= onceAnimTime) {
+            //每次持续动画时间结束时(如果继续走,代表要进行下一次动画了)
+            if (this.animTime >= onceAnimTime) {
 
-                    //计算出本次动画多出的那极少一部分时间(因为每次都会有极少的误差),
-                    //给持续一个方向走路的时间, 让动画稳定
-                    float overflow = this.animTime - onceAnimTime;
-                    this.continueWalkTime -= overflow;
+                //计算出本次动画多出的那极少一部分时间(因为每次都会有极少的误差),
+                //给持续一个方向走路的时间, 让动画稳定
+                float overflow = this.animTime - onceAnimTime;
+                this.continueWalkTime -= overflow;
 
-                    //结束本次走路, 并重新定位人物位置(确保精度)
-                    this.walkEnd();
+                //结束本次走路, 并重新定位人物位置(确保精度)
+                this.walkEnd();
 
-                    //如果此时要换方向走了
-                    if (this.sameDirection == false) {
-                        //不再按照该方向走路了, 那么持续走路时间归 0, 从头算起动画帧
-                        this.continueWalkTime = 0F;
-                    }
+                //如果此时要换方向走了
+                if (this.sameDirection == false) {
+                    //不再按照该方向走路了, 那么持续走路时间归 0, 从头算起动画帧
+                    this.continueWalkTime = 0F;
                 }
-                break;
-            case STAND:
-            default:
-                //站立或其他：直接结束
-                break;
-        }
+            }
 
+        }
         //每次该方法判定, 都要固定重置为 false, 否则该人物会一直按照这个方向前进, 操控也会失灵
         this.sameDirection = false;
     }
@@ -137,21 +130,17 @@ public class PersonMovement {
      * @param walkEnum      走路状态
      */
     public boolean move(DirectionEnum directionEnum, WalkEnum walkEnum) {
-        //根据状态判定
-        switch (this.actionState) {
-            //走路中
-            case WALK:
-                //判断是否还是按照这个方向走路
-                this.sameDirection = (this.facingState == directionEnum);
-                //只是继续走，不算“重新发起一次移动”
-                return false;
-            //默认、站立(或者说是刚走完上一步)
-            case STAND:
-            default:
-                //开始走路判定
-                this.walkStart(directionEnum, walkEnum);
-                //移动成功
-                return true;
+        //如果人物不是停止的
+        if (this.stopped == false) {
+            //判断是否还是按照这个方向走路
+            this.sameDirection = (this.facingState == directionEnum);
+            //持续走
+            return false;
+        } else {
+            //开始走路判定
+            this.walkStart(directionEnum, walkEnum);
+            //移动成功
+            return true;
         }
     }
 
@@ -159,9 +148,9 @@ public class PersonMovement {
      * 尝试停止走路
      */
     public void walkStop() {
-        //如果移动状态是站立
-        if (this.actionState == ActionEnum.STAND) {
-            //改变动作状态为站立
+        //如果人物停止
+        if (this.stopped == true) {
+            //改变动作
             this.walkState = WalkEnum.STAND;
         }
     }
@@ -172,8 +161,9 @@ public class PersonMovement {
      * @param facing 方向枚举
      */
     public void changeFacingDir(DirectionEnum facing) {
-        //如果不是站着, 无需换脸
-        if (this.actionState != ActionEnum.STAND) {
+        //如果不是停止的
+        if (this.stopped == false) {
+            //过
             return;
         }
         //变换当前脸的方向
@@ -280,7 +270,7 @@ public class PersonMovement {
         //初始化活动时间
         this.animTime = 0F;
         //人物动作变为走路
-        this.actionState = ActionEnum.WALK;
+        this.stopped = false;
         //走路的状态
         this.walkState = walkEnum;
         //改变脸的方向
@@ -369,7 +359,7 @@ public class PersonMovement {
         //动画持续时间重置
         this.animTime = 0F;
         //改变人物状态为站立
-        this.actionState = ActionEnum.STAND;
+        this.stopped = true;
         //重置人物是否原地踏步状态
         this.steppingState = false;
 
@@ -396,7 +386,7 @@ public class PersonMovement {
      */
     public boolean canCheckAndTalk() {
         //只有静止的人被允许
-        return this.actionState != ActionEnum.STAND;
+        return this.stopped == true;
     }
 
 }

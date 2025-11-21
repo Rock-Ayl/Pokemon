@@ -44,10 +44,11 @@ public class PersonMovement {
     //当前人物-是否为原地踏步
     private boolean steppingState;
 
-    //移动起始坐标(基于 tile)
+    //移动辅助-起始坐标
     private int srcX;
     private int srcY;
-    //移动目标坐标(基于 tile)
+
+    //移动辅助-目标坐标
     private int destX;
     private int destY;
 
@@ -225,22 +226,26 @@ public class PersonMovement {
     private void walkStart(DirectionEnum directionEnum, WalkEnum walkEnum) {
 
         /**
-         * 计算出本次移动的目的地
+         * 预计移动的坐标
          */
 
-        //计算出移动完的目标坐标
+        //预计移动的坐标
         int destX = this.tileX + directionEnum.getDx();
         int destY = this.tileY + directionEnum.getDy();
 
         /**
-         * 计算本次移动是否为原地踏步
+         * 判断是否允许移动到对应位置(原地踏步)
          */
+
+        //是否为原地踏步
         boolean steppingState = this.calculateSteppingState(destX, destY);
 
         /**
          * 根据是否原地踏步, 开始处理逻辑
          */
-        if (steppingState) {
+
+        //如果是原地踏步
+        if (steppingState == true) {
             //强制变为走路
             walkEnum = WalkEnum.WALK;
             //尝试发出撞墙的音效
@@ -257,9 +262,9 @@ public class PersonMovement {
         //校准当前坐标
         this.srcX = this.tileX;
         this.srcY = this.tileY;
-
         //如果是原地踏步
-        if (steppingState) {
+        if (steppingState == true) {
+            //恢复到原本的坐标
             this.destX = this.tileX;
             this.destY = this.tileY;
         } else {
@@ -341,7 +346,7 @@ public class PersonMovement {
         this.tileX = this.destX;
         this.tileY = this.destY;
 
-        //其他走路参数置 0
+        //取消移动辅助参数
         this.srcX = 0;
         this.srcY = 0;
         this.destX = 0;

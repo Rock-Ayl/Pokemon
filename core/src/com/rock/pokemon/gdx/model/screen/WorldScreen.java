@@ -281,10 +281,18 @@ public class WorldScreen implements Screen {
         //黑幕
         ScreenUtils.clear(Color.BLACK);
 
-        //每帧更新输入控制器
-        this.playerController.update(delta);
+        //每帧更新事件管理器
+        this.pokemonGame.getGameContext().getEventManager().update(delta);
+
+        //如果处于事件阻塞状态(如剧情中),禁止玩家输入
+        if (this.pokemonGame.getGameContext().getEventManager().isBusy() == false) {
+            //每帧更新输入控制器 (只有空闲时才允许玩家动)
+            this.playerController.update(delta);
+        }
+
         //每帧更新世界
         this.world.update(delta);
+
         //开始渲染 地图、人物
         this.pokemonGame.getGameContext().getBatch().begin();
         //渲染整个世界

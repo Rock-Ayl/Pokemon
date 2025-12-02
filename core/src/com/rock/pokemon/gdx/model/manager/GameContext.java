@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.manager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.model.ui.loading.SkinLoading;
 import com.rock.pokemon.gdx.model.ui.loading.TextLoading;
@@ -35,6 +36,9 @@ public class GameContext {
     //存档管理器
     private SaveManager saveManager;
 
+    //事件管理器 (新增)
+    private EventManager eventManager;
+
     //皮肤
     private Skin skin;
 
@@ -45,9 +49,11 @@ public class GameContext {
     private Map<Integer, String> textMap;
 
     /**
-     * 初始化 游戏上下文：通用资源
+     * 注册 游戏上下文：通用资源
+     * -
+     * 注意：这里需要传入 game 对象以便 EventManager 使用，或者 EventManager setGame
      */
-    public GameContext() {
+    public void init(PokemonGame pokemonGame) {
 
         /**
          * 基础
@@ -64,6 +70,9 @@ public class GameContext {
 
         //todo 初始化存档,目前写死,之后要读取存档
         this.saveManager = new SaveManager();
+
+        //初始化事件管理器 (新增)
+        this.eventManager = new EventManager(pokemonGame);
 
         //初始化皮肤,并载入资源
         this.skin = SkinLoading.initSkin(this.getMyAssetManager());

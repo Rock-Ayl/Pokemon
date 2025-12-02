@@ -32,8 +32,10 @@ public class PokemonGame extends Game {
          * 初始化 游戏上下文：通用资源
          */
 
-        //初始化
+        //初始化实体
         this.gameContext = new GameContext();
+        //注册所有资源
+        this.gameContext.init(this);
 
         /**
          * 场景

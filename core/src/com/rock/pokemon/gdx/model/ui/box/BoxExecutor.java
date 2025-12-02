@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 /**
- * 盒子事件 执行者,用来处理谈话
+ * 交互执行者
+ * 负责检测玩家面前的物体，并触发对应的事件链
  *
  * @Author ayl
  * @Date 2024-04-26
@@ -37,16 +38,21 @@ public class BoxExecutor {
     public void checkAndTalk() {
 
         /**
+         * 状态检查
+         */
+
+        //如果事件管理器正在忙(例如上一个剧情还没跑完)
+        if (this.pokemonGame.getGameContext().getEventManager().isBusy() == true) {
+            //不执行新的交互
+            return;
+        }
+
+        /**
          * 获取玩家
          */
 
         //获取世界里,该人物
         Person adventurer = this.pokemonGame.getWorldScreen().getAdventurer();
-
-        /**
-         * 判断玩家状态
-         */
-
         //判断人物是否允许该操作
         if (adventurer.canCheckAndTalk() == false) {
             //不执行
@@ -54,7 +60,7 @@ public class BoxExecutor {
         }
 
         /**
-         * 判断是否满足 盒子事件 条件
+         * 寻找交互目标
          */
 
         //根据人脸的方向,记录人脸前方的坐标
@@ -65,17 +71,32 @@ public class BoxExecutor {
             //过
             return;
         }
-        //获取世界上层的城镇中,事件的盒子
-        DialogueAndOptionBox dialogueAndOptionBox = this.pokemonGame.getWorldScreen().getDialogueAndOptionBox();
-        //如果没有结束
-        if (dialogueAndOptionBox.isFinished() == false) {
+
+        /**
+         * 1. 尝试触发 NPC 事件
+         */
+
+        //尝试触发
+        boolean triggered = triggerNpcEvent(x, y, adventurer);
+        //如果触发了
+        if (triggered == true) {
             //过
             return;
         }
 
-        /**
-         * 获取各种事件,但只触发一个,目前只有人物身上的事件
-         */
+        //todo 2. 尝试触发 告示牌/物体 事件 (后续扩展)
+
+    }
+
+    /**
+     * 触发NPC事件
+     * * @param x 目标X
+     *
+     * @param y          目标Y
+     * @param adventurer 玩家
+     * @return 是否触发成功
+     */
+    private boolean triggerNpcEvent(int x, int y, Person adventurer) {
 
         //获取前面的人物
         Person person = Optional.ofNullable(this.pokemonGame.getWorldScreen().getWorld())
@@ -86,63 +107,65 @@ public class BoxExecutor {
                 //获取人物
                 .map(Tile::getPerson)
                 .orElse(null);
+
         //如果没有人物
         if (person == null) {
             //过
-            return;
-        }
-        //获取人物对应事件
-        NpcMapConfig.NpcMapNodeEvent event = Optional.ofNullable(person)
-                //获取人物上的事件列表
-                .map(Person::getEventList)
-                //默认
-                .orElse(new ArrayList<>())
-                .stream()
-                //todo 以后可以做事件的开关、以及优先级
-                .findFirst()
-                .orElse(null);
-        //如果没有任何事件
-        if (event == null) {
-            //过
-            return;
+            return false;
         }
 
         /**
-         * 实现
+         * 简单的交互逻辑：让NPC转身看玩家
          */
 
-        //根据人物,让对应事件人物转头
+        //让对应事件人物转头
         switch (adventurer.getFacingState()) {
             case SOUTH:
-                //怼脸
                 person.changeFacingDir(DirectionEnum.NORTH);
                 break;
             case NORTH:
-                //怼脸
                 person.changeFacingDir(DirectionEnum.SOUTH);
                 break;
             case WEST:
-                //怼脸
                 person.changeFacingDir(DirectionEnum.EAST);
                 break;
             case EAST:
-                //怼脸
                 person.changeFacingDir(DirectionEnum.WEST);
                 break;
         }
 
-        //读取事件配置
-        BoxMapConfig.BoxMapNode talkTestNode = this.pokemonGame
+        /**
+         * 读取事件列表并执行
+         */
+
+        //获取配置时间
+        NpcMapConfig.NpcMapNodeEvent event = Optional.ofNullable(person)
+                .map(Person::getEventList)
+                .orElse(new ArrayList<>())
+                .stream()
+                .findFirst()
+                .orElse(null);
+        //如果没有配置事件
+        if (event == null) {
+            //过
+            return false;
+        }
+
+        //读取盒子配置
+        BoxMapConfig.BoxMapNode talkNode = this.pokemonGame
                 .getGameContext()
                 .getMyAssetManager()
                 .getBoxMapConfig()
                 .getBoxMap()
                 .get(event.getBoxName());
-        //这里直接用事件
-        dialogueAndOptionBox.reset(talkTestNode);
-        //开启
-        dialogueAndOptionBox.nextNode();
 
+        //重置并开启对话框
+        DialogueAndOptionBox dialogueBox = this.pokemonGame.getWorldScreen().getDialogueAndOptionBox();
+        dialogueBox.reset(talkNode);
+        dialogueBox.nextNode();
+
+        //返回
+        return true;
     }
 
 }

@@ -266,6 +266,16 @@ public class DialogueAndOptionBox {
     }
 
     /**
+     * 判断是否可见
+     *
+     * @return 是否可见
+     */
+    public boolean isVisible() {
+        //只要有一个可见,就是可见
+        return (this.optionBox != null && this.optionBox.isVisible()) || (this.dialogueBox != null && this.dialogueBox.isVisible());
+    }
+
+    /**
      * 箭头向上移动
      */
     public void moveUp() {

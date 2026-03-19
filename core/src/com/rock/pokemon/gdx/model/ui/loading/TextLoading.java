@@ -1,14 +1,12 @@
 package com.rock.pokemon.gdx.model.ui.loading;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,12 +24,16 @@ public class TextLoading {
         //初始化结果
         Map<Integer, String> result = new HashMap<>();
         try {
-            //根据当前语言,获取对应语言文本
-            File file = new File(String.format(FilePaths.SYSTEM_CONFIG_TEXT_FILE_PATH, languageEnum.getPath()));
-            //读取行列表
-            List<String> stringList = FileUtils.readLines(file, "UTF-8");
+            //根据当前语言,获取对应语言文本路径
+            String filePath = String.format(FilePaths.SYSTEM_CONFIG_TEXT_FILE_PATH, languageEnum.getPath());
+            //使用 LibGDX 的文件句柄读取内部资源 (兼容 Desktop 和 Android)
+            FileHandle fileHandle = Gdx.files.internal(filePath);
+            //读取文件内容为字符串并按行分割
+            String content = fileHandle.readString("UTF-8");
+            String[] lines = content.split("\\r?\\n");
+            
             //循环
-            for (String sentence : stringList) {
+            for (String sentence : lines) {
                 //判空
                 if (StringUtils.isBlank(sentence)) {
                     //本轮过

@@ -70,8 +70,8 @@ public class FileExtraUtils {
             }
             //如果 不指定文件名 or 是目标文件
             if (fileName == null || fileName.equals(file.getName())) {
-                //加入结果
-                fileList.add(file.getPath());
+                //加入结果，并将反斜杠替换为正斜杠，确保跨平台一致性及LibGDX兼容性
+                fileList.add(file.getPath().replace("\\", "/"));
             }
         }
         //返回

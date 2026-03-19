@@ -29,10 +29,6 @@ public class DialogueAndOptionBoxController extends InputAdapter {
      */
     @Override
     public boolean keyDown(int keycode) {
-
-        //记录当前是否可见(这是判断是否消耗该事件的关键,必须在处理逻辑之前获取状态)
-        boolean visible = this.dialogueAndOptionBox.isVisible();
-
         //根据按键判断
         switch (keycode) {
             //上
@@ -57,9 +53,8 @@ public class DialogueAndOptionBoxController extends InputAdapter {
             default:
                 break;
         }
-        
-        //如果原本对话框可见,则后续按键不会被触发(消耗掉本次事件)
-        return visible;
+        //如果动画没有结束,则后续按键不会被触发
+        return this.dialogueAndOptionBox.isFinished() == false;
     }
 
     /**

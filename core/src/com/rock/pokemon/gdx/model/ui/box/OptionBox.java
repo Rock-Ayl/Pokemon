@@ -58,7 +58,7 @@ public class OptionBox extends Table {
         this.setBackground(Settings.UI_IMAGE_OPTION_BOX);
         this.uiContainer = new Table();
         this.add(this.uiContainer)
-                .pad(5F * Settings.SCALE);
+                .pad(15f);
 
     }
 
@@ -107,7 +107,7 @@ public class OptionBox extends Table {
                 //左对齐
                 .align(Align.left)
                 //周围组件间距
-                .space(2.5F * Settings.SCALE);
+                .space(Settings.TILE_SIZE / 2F);
 
         /**
          * 对应文字
@@ -124,7 +124,7 @@ public class OptionBox extends Table {
                 //右对齐
                 .align(Align.right)
                 //周围组件间距
-                .space(2.5F * Settings.SCALE);
+                .space(Settings.TILE_SIZE / 2F);
 
         /**
          * 换行

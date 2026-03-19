@@ -73,8 +73,6 @@ public class SkinLoading {
                 Gdx.files.internal(FilePaths.SYSTEM_TEXT_FONT_IMAGE),
                 false
         );
-        //根据比例缩放字体
-        normalFontLabel.font.getData().setScale(Settings.SCALE / 3F);
         //组装至皮肤
         skin.add(Settings.SYSTEM_FONT_LABEL, normalFontLabel);
 

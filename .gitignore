@@ -117,3 +117,5 @@ Thumbs.db
 notUse
 desktop/out/
 gradle
+.gradle-local
+.vscode

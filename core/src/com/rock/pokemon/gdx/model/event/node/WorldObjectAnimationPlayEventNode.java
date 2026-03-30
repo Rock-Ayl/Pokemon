@@ -15,11 +15,18 @@ import lombok.Setter;
 @Setter
 public class WorldObjectAnimationPlayEventNode implements EventNodeTemplate {
 
-    //对应事物Id
+    //对应事务-Id
     private String worldObjectId;
 
-    //强制播放动画次数
+    //对应事务-强制播放动画次数
     private Integer forceAnimationTimes;
+
+    /**
+     * 枚举 {@link com.badlogic.gdx.graphics.g2d.Animation.PlayMode}
+     * -
+     * 对应事务-动画播放模式
+     */
+    private String worldObjectPlayMode;
 
     @Override
     public EventNodeTypeEnum getType() {

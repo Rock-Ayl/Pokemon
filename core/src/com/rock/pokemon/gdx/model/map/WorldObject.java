@@ -57,6 +57,7 @@ public class WorldObject implements YSortable {
 
     //该事物的动画
     private Animation<TextureRegion> animation;
+
     //该事物的动画帧
     private float animationTimer;
 
@@ -78,11 +79,12 @@ public class WorldObject implements YSortable {
      *
      * @param myAssetManager 资源管理器
      * @param mapNode        事物配置类
+     * @param worldObjectId  事物id(选填)
      * @param x              坐标x
      * @param y              坐标y
      * @param doorEvent      门事件(选填)
      */
-    public WorldObject(MyAssetManager myAssetManager, WorldObjectMapConfig.WorldObjectMapNode mapNode, int x, int y, EventMapConfig.Event doorEvent) {
+    public WorldObject(MyAssetManager myAssetManager, WorldObjectMapConfig.WorldObjectMapNode mapNode, String worldObjectId, int x, int y, EventMapConfig.Event doorEvent) {
 
         /**
          * 基础
@@ -90,13 +92,15 @@ public class WorldObject implements YSortable {
 
         //备注
         this.remark = mapNode.getRemark();
+        //记录id
+        this.worldObjectId = worldObjectId;
 
         /**
          * 事件
          */
 
-        //克隆,记录门事件
-        this.doorEvent = FastJsonExtraUtils.deepClone(doorEvent, EventMapConfig.Event.class);
+        //直接记录门事件(节点对象已在加载阶段解析为具体类型)
+        this.doorEvent = doorEvent;
 
         /**
          * 网格计算
@@ -174,16 +178,43 @@ public class WorldObject implements YSortable {
         }
         //叠加动画帧时间
         this.animationTimer += delta;
-        //如果当前动画刚好走过了一轮
-        if (this.animationTimer >= this.animation.getAnimationDuration()) {
+        //动画总时长
+        float duration = this.animation.getAnimationDuration();
+        //异常保护
+        if (duration <= 0F) {
+            //过
+            return;
+        }
+        //如果当前动画走过了一轮
+        if (this.animationTimer < duration) {
+            //过
+            return;
+        }
+        //如果有强制播放次数
+        if (this.forceAnimationTimes > 0) {
+            //删除一次
+            this.forceAnimationTimes--;
+        }
+        //当前播放模式
+        Animation.PlayMode playMode = this.animation.getPlayMode();
+        //单向播放结束后可停在终帧(开门保持/关门保持)
+        boolean holdEndFrame = playMode == Animation.PlayMode.NORMAL || playMode == Animation.PlayMode.REVERSED;
+        //仍需强制播放下一次
+        if (this.forceAnimationTimes > 0) {
             //重置动画时间
             this.animationTimer = 0F;
-            //如果有强制播放次数
-            if (this.forceAnimationTimes > 0) {
-                //删除一次
-                this.forceAnimationTimes--;
-            }
+            //过
+            return;
         }
+        //连续播放对象
+        if (this.layContinuously == true) {
+            //循环模式下保持流畅衔接
+            this.animationTimer = this.animationTimer % duration;
+            //过
+            return;
+        }
+        //非连续播放：根据模式决定停在起帧还是终帧
+        this.animationTimer = holdEndFrame ? duration : 0F;
     }
 
     /**

@@ -27,9 +27,9 @@ public class SceneChangeEventNode implements EventNodeTemplate {
     /**
      * 枚举 {@link com.rock.pokemon.gdx.enums.DirectionEnum}
      * -
-     * 进入目标场景后的面朝方向枚举(可选)
+     * 目标-场景后的面朝方向枚举(可选)
      */
-    private String targetFacingDirectionEnumOrdinal;
+    private String targetDirection;
 
     @Override
     public EventNodeTypeEnum getType() {

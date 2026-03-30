@@ -353,7 +353,11 @@ public class WorldScreen implements Screen {
 
     @Override
     public void hide() {
-
+        //离开当前世界时,停止本世界BGM，避免切图后还在持续播放
+        if (this.music != null) {
+            //停止
+            this.music.stop();
+        }
     }
 
 }

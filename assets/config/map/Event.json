@@ -13,7 +13,8 @@
           "remark": "开门动画",
           "type": "world_object_animation_play",
           "worldObjectId": "map-little-root-main-door-1",
-          "forceAnimationTimes": 1
+          "forceAnimationTimes": 1,
+          "worldObjectPlayMode": "NORMAL"
         },
         {
           "remark": "npc移动",
@@ -29,15 +30,23 @@
           "npcId": -1
         },
         {
-          "remark": "淡入",
+          "remark": "关门动画",
+          "type": "world_object_animation_play",
+          "worldObjectId": "map-little-root-main-door-1",
+          "forceAnimationTimes": 1,
+          "worldObjectPlayMode": "REVERSED"
+        },
+        {
+          "remark": "黑暗渐变",
           "type": "transition_switch_animation_start_in"
         },
         {
           "remark": "主角场景切换",
           "type": "scene_change",
           "targetWorldMapConfigPath": "assets/config/map/little_root/Ruby-First.json",
-          "targetX": 19,
-          "targetY": 18
+          "targetX": 8,
+          "targetY": 0,
+          "targetDirection": "north"
         },
         {
           "remark": "主角显示",
@@ -47,6 +56,64 @@
         {
           "remark": "淡出",
           "type": "transition_switch_animation_start_out"
+        }
+      ]
+    },
+    "little_root_ruby_first_move_out": {
+      "remark": "未白镇-路比家1F-离开到未白镇",
+      "eventNodeJsonList": [
+        {
+          "remark": "进门音效",
+          "type": "sound_play",
+          "soundId": "sound_emerald_0008_open_door"
+        },
+        {
+          "remark": "黑暗渐变",
+          "type": "transition_switch_animation_start_in"
+        },
+        {
+          "remark": "主角场景切换",
+          "type": "scene_change",
+          "targetWorldMapConfigPath": "assets/config/map/little_root/Main.json",
+          "targetX": 13,
+          "targetY": 19,
+          "targetDirection": "south"
+        },
+        {
+          "remark": "主角隐藏",
+          "type": "npc_hide",
+          "npcId": -1
+        },
+        {
+          "remark": "开门动画",
+          "type": "world_object_animation_play",
+          "worldObjectId": "map-little-root-main-door-1",
+          "forceAnimationTimes": 1,
+          "worldObjectPlayMode": "NORMAL"
+        },
+        {
+          "remark": "黑暗淡出渐变",
+          "type": "transition_switch_animation_start_out"
+        },
+        {
+          "remark": "主角显示",
+          "type": "npc_show",
+          "npcId": -1
+        },
+        {
+          "remark": "主角走出门",
+          "type": "npc_move",
+          "npcId": -1,
+          "moveDirectionEnumOrdinalList": [
+            2
+          ]
+        },
+        {
+          "remark": "关门动画",
+          "type": "world_object_animation_play",
+          "worldObjectId": "map-little-root-main-door-1",
+          "forceAnimationTimes": 1,
+          "worldObjectPlayMode": "REVERSED"
         }
       ]
     }

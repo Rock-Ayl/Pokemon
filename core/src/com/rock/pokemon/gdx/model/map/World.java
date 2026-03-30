@@ -12,6 +12,7 @@ import com.rock.pokemon.gdx.model.screen.WorldScreen;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -178,7 +179,14 @@ public class World {
             //循环坐标列表
             for (WorldMapConfig.Location location : worldObjectNode.getLocationList()) {
                 //初始化事物
-                WorldObject worldObject = new WorldObject(pokemonGame.getGameContext().getMyAssetManager(), worldObjectNodeConfig, location.getX(), location.getY(), doorEvent);
+                WorldObject worldObject = new WorldObject(
+                        pokemonGame.getGameContext().getMyAssetManager(),
+                        worldObjectNodeConfig,
+                        worldObjectNode.getWorldObjectId(),
+                        location.getX(),
+                        location.getY(),
+                        doorEvent
+                );
                 //加入到世界
                 this.addWorldObject(worldObject);
             }
@@ -247,6 +255,30 @@ public class World {
             //更新事物
             worldObject.update(delta);
         }
+    }
+
+    /**
+     * 根据事物id,查找事物
+     *
+     * @param worldObjectId 事物id
+     * @return 事物实体
+     */
+    public WorldObject findWorldObjectById(String worldObjectId) {
+        //判空
+        if (StringUtils.isBlank(worldObjectId)) {
+            //过
+            return null;
+        }
+        //循环
+        for (WorldObject worldObject : this.worldObjectList) {
+            //如果是
+            if (worldObjectId.equals(worldObject.getWorldObjectId())) {
+                //返回
+                return worldObject;
+            }
+        }
+        //默认
+        return null;
     }
 
 }

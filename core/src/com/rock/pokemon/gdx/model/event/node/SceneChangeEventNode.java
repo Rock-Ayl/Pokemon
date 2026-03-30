@@ -29,7 +29,7 @@ public class SceneChangeEventNode implements EventNodeTemplate {
      * -
      * 进入目标场景后的面朝方向枚举(可选)
      */
-    private Integer targetFacingDirectionEnumOrdinal;
+    private String targetFacingDirectionEnumOrdinal;
 
     @Override
     public EventNodeTypeEnum getType() {

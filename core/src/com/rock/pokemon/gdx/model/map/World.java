@@ -265,16 +265,14 @@ public class World {
      */
     public WorldObject findWorldObjectById(String worldObjectId) {
         //判空
-        if (StringUtils.isBlank(worldObjectId)) {
-            //过
-            return null;
-        }
-        //循环
-        for (WorldObject worldObject : this.worldObjectList) {
-            //如果是
-            if (worldObjectId.equals(worldObject.getWorldObjectId())) {
-                //返回
-                return worldObject;
+        if (StringUtils.isNotBlank(worldObjectId)) {
+            //循环
+            for (WorldObject worldObject : this.worldObjectList) {
+                //如果是
+                if (worldObjectId.equals(worldObject.getWorldObjectId())) {
+                    //返回
+                    return worldObject;
+                }
             }
         }
         //默认

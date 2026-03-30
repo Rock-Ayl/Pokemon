@@ -7,7 +7,6 @@ import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
-import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +30,9 @@ public class WorldObject implements YSortable {
 
     //备注
     private String remark;
+
+    //事物ID(用于事件精确定位)
+    private String worldObjectId;
 
     //当前事物的坐标
     private int x;

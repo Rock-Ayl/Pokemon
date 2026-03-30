@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.model.map.renderer;
 
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.model.map.Person;
 import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
@@ -73,8 +74,16 @@ public class WorldRenderer {
                 this.sortList.add(worldObject);
             }
         }
-        //sort列表加入所有的人物
-        this.sortList.addAll(this.world.getPersonMap().values());
+        //循环所有地图的人物
+        for (Person person : this.world.getPersonMap().values()) {
+            //如果不可见
+            if (person.isVisible() == false) {
+                //本轮过
+                continue;
+            }
+            //加入渲染列表
+            this.sortList.add(person);
+        }
 
         /**
          * step 3.按照Y轴排序

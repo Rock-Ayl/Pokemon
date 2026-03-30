@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionBattleAnimation;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionSwitchAnimation;
 import com.rock.pokemon.gdx.model.controller.DialogueAndOptionBoxController;
@@ -99,14 +100,15 @@ public class WorldScreen implements Screen {
     private BoxExecutor boxExecutor;
 
     /**
-     * 初始化世界、主角进入世界指定位置
+     * 初始化世界、主角进入世界指定位置与朝向
      *
-     * @param pokemonGame        游戏对象
-     * @param worldMapConfigPath 世界配置路径
-     * @param adventurerX        主角要进入本世界的初始坐标 x
-     * @param adventurerY        主角要进入本世界的初始坐标 y
+     * @param pokemonGame           游戏对象
+     * @param worldMapConfigPath    世界配置路径
+     * @param adventurerX           主角要进入本世界的初始坐标 x
+     * @param adventurerY           主角要进入本世界的初始坐标 y
+     * @param adventurerFacingState 主角进入后的朝向
      */
-    public WorldScreen(final PokemonGame pokemonGame, String worldMapConfigPath, int adventurerX, int adventurerY) {
+    public WorldScreen(final PokemonGame pokemonGame, String worldMapConfigPath, int adventurerX, int adventurerY, DirectionEnum adventurerFacingState) {
 
         /**
          * 基本
@@ -140,6 +142,8 @@ public class WorldScreen implements Screen {
                 adventurerX,
                 adventurerY,
                 this.pokemonGame);
+        //进入场景后，设置主角朝向
+        this.adventurer.changeFacingDir(adventurerFacingState);
 
         /**
          * 世界音乐

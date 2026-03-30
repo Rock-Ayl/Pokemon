@@ -15,7 +15,7 @@ public class TransitionSwitchAnimation {
     private ShapeRenderer shapeRenderer;
 
     //单个淡入、淡出过程的动画持续时间(秒)
-    private static final float ANIMATION_DURATION = 0.5F;
+    private static final float ANIMATION_DURATION = 0.2F;
 
     //动画当前持续时间
     private float animTime;
@@ -139,6 +139,29 @@ public class TransitionSwitchAnimation {
             //修改状态
             this.status = StatusEnum.DOING_LIGHT;
         }
+    }
+
+    /**
+     * 是否处于纯黑状态
+     */
+    public boolean isInDark() {
+        return this.status == StatusEnum.IN_DARK;
+    }
+
+    /**
+     * 是否处于等待状态(即淡出完成)
+     */
+    public boolean isWaiting() {
+        return this.status == StatusEnum.WAITING;
+    }
+
+    /**
+     * 立即进入黑屏状态(用于跨场景继承黑幕)
+     */
+    public void setInDarkImmediately() {
+        this.status = StatusEnum.IN_DARK;
+        this.animTime = ANIMATION_DURATION;
+        this.alpha = 1F;
     }
 
     /**

@@ -1,13 +1,19 @@
 package com.rock.pokemon.gdx.model.controller;
 
 
+import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.map.Person;
+import com.rock.pokemon.gdx.model.map.Tile;
+import com.rock.pokemon.gdx.model.map.WorldObject;
+import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.Optional;
 
 /**
  * 玩家命令处理器
@@ -19,6 +25,9 @@ public class PlayerCommandHandler {
 
     //人物
     private final Person person;
+
+    //游戏对象
+    private final PokemonGame pokemonGame;
 
     /**
      * 输入 - 按键状态
@@ -53,7 +62,8 @@ public class PlayerCommandHandler {
      *
      * @param person 角色
      */
-    public PlayerCommandHandler(Person person) {
+    public PlayerCommandHandler(PokemonGame pokemonGame, Person person) {
+        this.pokemonGame = pokemonGame;
         this.person = person;
     }
 
@@ -82,6 +92,11 @@ public class PlayerCommandHandler {
             if (getPressTime(key) <= NOT_MOVE_TIME) {
                 //本轮过
                 continue;
+            }
+            //先尝试触发门事件、固定坐标场景联通事件
+            if (tryTriggerDoorEvent(directionEnum) || tryTriggerFixedMapConnectEvent(directionEnum)) {
+                //触发后本帧不再继续处理移动
+                break;
             }
             //计算走路 / 跑步
             WalkEnum walkEnum = this.buttonPressedArray[Settings.INPUT_KEY_CANCEL] ? WalkEnum.RUN : WalkEnum.WALK;
@@ -144,6 +159,89 @@ public class PlayerCommandHandler {
     private float getPressTime(int keycode) {
         //返回
         return this.buttonTimeArr[keycode];
+    }
+
+    /**
+     * 尝试触发门事件(前方地图块的事物上挂载 doorEvent)
+     *
+     * @param directionEnum 当前输入方向
+     * @return 是否触发
+     */
+    private boolean tryTriggerDoorEvent(DirectionEnum directionEnum) {
+        //获取目标坐标
+        int targetX = this.person.getX() + directionEnum.getDx();
+        int targetY = this.person.getY() + directionEnum.getDy();
+        //获取目标地图块
+        Tile tile = Optional.ofNullable(this.person.getWorld())
+                .map(p -> p.getTileMap().getTile(targetX, targetY))
+                .orElse(null);
+        //判空
+        if (tile == null) {
+            //过
+            return false;
+        }
+        //读取门事物与事件
+        EventMapConfig.Event doorEvent = Optional.ofNullable(tile)
+                .map(Tile::getWorldObject)
+                .map(WorldObject::getDoorEvent)
+                .orElse(null);
+        //无事件直接结束
+        if (doorEvent == null || CollectionUtils.isEmpty(doorEvent.getEventNodeList())) {
+            //过
+            return false;
+        }
+        //启动事件链
+        this.pokemonGame.getGameContext().getEventManager().startEvents(doorEvent.getEventNodeList());
+        //触发成功
+        return true;
+    }
+
+    /**
+     * todo 早晚得改
+     * 固定坐标联通：
+     * 路比家(1F) 8,0 / 9,0 站立后按下可离开到未白镇
+     */
+    private boolean tryTriggerFixedMapConnectEvent(DirectionEnum directionEnum) {
+        //仅处理按下离开
+        if (directionEnum != DirectionEnum.SOUTH) {
+            //过
+            return false;
+        }
+        //只在固定点生效
+        int x = this.person.getX();
+        int y = this.person.getY();
+        //判断是否在固定点
+        if ((x == 8 || x == 9) == false || y != 0) {
+            //过
+            return false;
+        }
+        //触发离开事件链
+        return startEventById("little_root_ruby_first_move_out");
+    }
+
+    /**
+     * 根据事件ID触发事件链
+     *
+     * @param eventId 事件ID
+     * @return 是否成功触发
+     */
+    private boolean startEventById(String eventId) {
+        //读取事件配置
+        EventMapConfig.Event event = Optional.ofNullable(this.pokemonGame)
+                .map(PokemonGame::getGameContext)
+                .map(p -> p.getMyAssetManager().getEventMapConfig())
+                .map(EventMapConfig::getEventMap)
+                .map(p -> p.get(eventId))
+                .orElse(null);
+        //无效事件
+        if (event == null || CollectionUtils.isEmpty(event.getEventNodeList())) {
+            //过
+            return false;
+        }
+        //启动
+        this.pokemonGame.getGameContext().getEventManager().startEvents(event.getEventNodeList());
+        //触发成功
+        return true;
     }
 
 }

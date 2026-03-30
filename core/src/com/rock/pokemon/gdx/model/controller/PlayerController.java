@@ -29,7 +29,7 @@ public class PlayerController extends InputAdapter {
      */
     public PlayerController(PokemonGame pokemonGame, Person person) {
         this.pokemonGame = pokemonGame;
-        this.commandHandler = new PlayerCommandHandler(person);
+        this.commandHandler = new PlayerCommandHandler(pokemonGame, person);
     }
 
     @Override

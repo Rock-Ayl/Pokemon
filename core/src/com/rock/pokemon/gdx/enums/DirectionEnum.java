@@ -2,6 +2,7 @@ package com.rock.pokemon.gdx.enums;
 
 import com.rock.pokemon.gdx.common.Settings;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 人物方向 {@link com.rock.pokemon.gdx.model.map.Person} 枚举
@@ -34,6 +35,28 @@ public enum DirectionEnum {
         this.keycode = keycode;
         this.name = name;
         this.zhName = zhName;
+    }
+
+    /**
+     * 根据方向名字,解析方向枚举
+     *
+     * @param name 名字
+     * @return
+     */
+    public static DirectionEnum parseByName(String name) {
+        //判空
+        if (StringUtils.isNotBlank(name)) {
+            //循环
+            for (DirectionEnum value : DirectionEnum.values()) {
+                //如果对应上
+                if (value.name.equals(name)) {
+                    //返回
+                    return value;
+                }
+            }
+        }
+        //默认,南
+        return SOUTH;
     }
 
     /**

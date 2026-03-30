@@ -20,7 +20,7 @@
       "regionName": "wooden_door1_open",
       "width": 1,
       "height": 1.5,
-      "frameDuration": 0.9,
+      "frameDuration": 0.08,
       "walkable": true,
       "layContinuously": false,
       "tileList": [

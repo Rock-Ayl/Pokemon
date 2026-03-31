@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.common;
 /**
  * 文件地址类,所有文件路径都存放在这里
  * 文件包括: 图片、音效、音乐、文本
+ * 文件路径统一用枚举 {@link   com.rock.pokemon.gdx.enums.FileEnum} 来承载
  *
  * @Author ayl
  * @Date 2022-10-12

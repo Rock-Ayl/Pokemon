@@ -25,7 +25,6 @@ import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.model.ui.box.BoxExecutor;
 import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 屏幕 通用世界
@@ -152,11 +151,11 @@ public class WorldScreen implements Screen {
          */
 
         //获取背景音乐
-        String musicPath = FileEnum.parseByCode(worldMapConfig.getBgmFileCode()).getPath();
+        FileEnum fileEnum = FileEnum.parseByCode(worldMapConfig.getBgmFileCode());
         //如果有背景音乐
-        if (StringUtils.isNotBlank(musicPath)) {
+        if (fileEnum != FileEnum.NONE) {
             //初始化背景音乐
-            this.music = Gdx.audio.newMusic(Gdx.files.internal(musicPath));
+            this.music = Gdx.audio.newMusic(Gdx.files.internal(fileEnum.getPath()));
             //循环播放
             this.music.setLooping(true);
         }

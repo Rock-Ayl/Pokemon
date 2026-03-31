@@ -145,17 +145,17 @@ public class WorldObject implements YSortable {
         this.texture = null;
 
         //获取资源路径
-        String filePath = FileEnum.parseByCode(mapNode.getFileCode()).getPath();
+        FileEnum fileEnum = FileEnum.parseByCode(mapNode.getFileCode());
         //如果有资源
-        if (StringUtils.isNotBlank(filePath)) {
+        if (fileEnum != FileEnum.NONE) {
             //判断是动画还是静态
             if (mapNode.getFrameDuration() == null) {
                 //读取图片资源
-                this.texture = myAssetManager.getTextureAtlas(filePath).findRegion(mapNode.getRegionName());
+                this.texture = myAssetManager.getTextureAtlas(fileEnum.getPath()).findRegion(mapNode.getRegionName());
             } else {
                 //读取动画资源,暂时默认动画模式
                 this.animation = new Animation<>(mapNode.getFrameDuration(),
-                        myAssetManager.getTextureAtlas(filePath).findRegions(mapNode.getRegionName()),
+                        myAssetManager.getTextureAtlas(fileEnum.getPath()).findRegions(mapNode.getRegionName()),
                         Animation.PlayMode.LOOP_PINGPONG);
             }
         }

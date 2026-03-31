@@ -92,16 +92,16 @@ public class World {
              */
 
             //获取图片路径
-            String path = FileEnum.parseByCode(tileNode.getFileCode()).getPath();
+            FileEnum fileEnum = FileEnum.parseByCode(tileNode.getFileCode());
             //判空
-            if (StringUtils.isBlank(path)) {
+            if (fileEnum == FileEnum.NONE) {
                 //本轮过
                 continue;
             }
             //获取图片对象
             TextureRegion image = pokemonGame
                     .getGameContext().getMyAssetManager()
-                    .getTextureAtlas(path)
+                    .getTextureAtlas(fileEnum.getPath())
                     .findRegion(tileNode.getRegionName());
             //如果没有图片
             if (image == null) {

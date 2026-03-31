@@ -152,7 +152,7 @@ public class WorldScreen implements Screen {
          */
 
         //获取背景音乐
-        String musicPath = FileEnum.parsePath(worldMapConfig.getBgmFileCode());
+        String musicPath = FileEnum.parseByCode(worldMapConfig.getBgmFileCode()).getPath();
         //如果有背景音乐
         if (StringUtils.isNotBlank(musicPath)) {
             //初始化背景音乐

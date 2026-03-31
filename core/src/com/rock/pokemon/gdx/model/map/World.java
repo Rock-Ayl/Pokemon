@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.PokemonGame;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
@@ -90,10 +91,17 @@ public class World {
              * 获取当前地图块图片
              */
 
+            //获取图片路径
+            String path = FileEnum.parseByCode(tileNode.getFileCode()).getPath();
+            //判空
+            if (StringUtils.isBlank(path)) {
+                //本轮过
+                continue;
+            }
             //获取图片对象
             TextureRegion image = pokemonGame
                     .getGameContext().getMyAssetManager()
-                    .getTextureAtlas(tileNode.getFilePath())
+                    .getTextureAtlas(path)
                     .findRegion(tileNode.getRegionName());
             //如果没有图片
             if (image == null) {

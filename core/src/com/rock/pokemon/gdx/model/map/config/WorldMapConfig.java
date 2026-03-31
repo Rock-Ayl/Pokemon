@@ -1,6 +1,5 @@
 package com.rock.pokemon.gdx.model.map.config;
 
-import com.rock.pokemon.gdx.enums.FileEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -67,10 +66,6 @@ public class WorldMapConfig {
 
         //坐标列表
         private List<Location> locationList;
-
-        public String getFilePath() {
-            return FileEnum.parsePath(this.fileCode);
-        }
 
     }
 

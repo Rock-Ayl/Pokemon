@@ -454,12 +454,12 @@ public class EventManager {
     }
 
     /**
-     * 读取世界中的人物
+     * todo 读取世界中的人物
      * npcId = -1 表示主角
      */
-    private Person getNpcById(Integer npcId) {
-        //盘开工
-        if (npcId == null) {
+    private Person getNpcById(String npcId) {
+        //判空
+        if (StringUtils.isBlank(npcId)) {
             //过
             return null;
         }
@@ -469,7 +469,7 @@ public class EventManager {
                 .map(WorldScreen::getWorld)
                 .map(World::getPersonMap)
                 .orElse(new LinkedHashMap<>())
-                .get(String.valueOf(npcId));
+                .get(npcId);
     }
 
     /**

@@ -18,7 +18,7 @@ import java.util.List;
 public class NpcMoveEventNode implements EventNodeTemplate {
 
     //对应npcId
-    private Integer npcId;
+    private String npcId;
 
     /**
      * 对应移动枚举 {@link com.rock.pokemon.gdx.enums.DirectionEnum} 的 ordinal

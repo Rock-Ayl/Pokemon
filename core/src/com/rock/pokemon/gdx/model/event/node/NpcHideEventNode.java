@@ -16,7 +16,7 @@ import lombok.Setter;
 public class NpcHideEventNode implements EventNodeTemplate {
 
     //对应npcId
-    private Integer npcId;
+    private String npcId;
 
     @Override
     public EventNodeTypeEnum getType() {

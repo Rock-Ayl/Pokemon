@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
@@ -144,7 +145,7 @@ public class WorldObject implements YSortable {
         this.texture = null;
 
         //获取资源路径
-        String filePath = mapNode.getFilePath();
+        String filePath = FileEnum.parseByCode(mapNode.getFileCode()).getPath();
         //如果有资源
         if (StringUtils.isNotBlank(filePath)) {
             //判断是动画还是静态

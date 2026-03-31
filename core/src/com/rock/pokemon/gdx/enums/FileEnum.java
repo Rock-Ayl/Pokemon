@@ -159,15 +159,4 @@ public enum FileEnum {
         return CODE_CAACHE_MAP.getOrDefault(code, NONE);
     }
 
-    /**
-     * 根据 code 获取文件路径
-     *
-     * @param code 唯一编码
-     * @return
-     */
-    public static String parsePath(String code) {
-        //返回
-        return parseByCode(code).getPath();
-    }
-
 }

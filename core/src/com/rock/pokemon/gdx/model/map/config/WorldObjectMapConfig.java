@@ -55,10 +55,6 @@ public class WorldObjectMapConfig {
         //指定 可以 行走的坐标列表
         private List<Location> tileList;
 
-        public String getFilePath() {
-            return FileEnum.parsePath(this.fileCode);
-        }
-
     }
 
     /**

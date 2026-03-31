@@ -1,5 +1,6 @@
 package com.rock.pokemon.gdx.model.map.config;
 
+import com.rock.pokemon.gdx.enums.FileEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,7 +37,7 @@ public class WorldObjectMapConfig {
         private Float frameDuration;
 
         //资源路径
-        private String filePath;
+        private String fileCode;
 
         //资源区域名
         private String regionName;
@@ -53,6 +54,10 @@ public class WorldObjectMapConfig {
 
         //指定 可以 行走的坐标列表
         private List<Location> tileList;
+
+        public String getFilePath() {
+            return FileEnum.parsePath(this.fileCode);
+        }
 
     }
 

@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx.model.map.config;
 
 import com.badlogic.gdx.audio.Sound;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +38,7 @@ public class SoundMapConfig {
         private String remark;
 
         //音效地址
-        private String soundPath;
+        private String fileCode;
 
         //音效间隔时间
         private Long soundTimeInterval;
@@ -54,6 +55,10 @@ public class SoundMapConfig {
 
         //音效id,初始化时候会根据map的覆盖
         private String soundId;
+
+        public String getSoundPath() {
+            return FileEnum.parsePath(this.fileCode);
+        }
 
     }
 

@@ -1,5 +1,6 @@
 package com.rock.pokemon.gdx.model.map.config;
 
+import com.rock.pokemon.gdx.enums.FileEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +29,7 @@ public class WorldMapConfig {
     private Integer height;
 
     //bgm地址
-    private String bgmPath;
+    private String bgmFileCode;
 
     //地图块节点列表
     private List<TileNode> tileNodeList;
@@ -38,6 +39,10 @@ public class WorldMapConfig {
 
     //npc节点列表
     private List<NpcNode> npcNodeList;
+
+    public String getBgmPath() {
+        return FileEnum.parsePath(this.bgmFileCode);
+    }
 
     /**
      * 地图块节点实体
@@ -50,7 +55,7 @@ public class WorldMapConfig {
         private String remark;
 
         //资源路径
-        private String filePath;
+        private String fileCode;
 
         //资源区域名
         private String regionName;
@@ -66,6 +71,10 @@ public class WorldMapConfig {
 
         //坐标列表
         private List<Location> locationList;
+
+        public String getFilePath() {
+            return FileEnum.parsePath(this.fileCode);
+        }
 
     }
 

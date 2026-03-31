@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class SaveManager {
 
-    //todo 主角 npcId ,目前固定写死
+    //主角 npcId ,目前固定写死
     private String adventurerNpcId = "npc_id_1";
 
     //todo 主角 npc 配置名称,目前固定写死

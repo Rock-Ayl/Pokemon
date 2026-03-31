@@ -9,6 +9,7 @@ import com.rock.pokemon.gdx.model.map.config.WorldObjectMapConfig;
 import com.rock.pokemon.gdx.model.map.renderer.YSortable;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -145,7 +146,7 @@ public class WorldObject implements YSortable {
         //获取资源路径
         String filePath = mapNode.getFilePath();
         //如果有资源
-        if (filePath != null) {
+        if (StringUtils.isNotBlank(filePath)) {
             //判断是动画还是静态
             if (mapNode.getFrameDuration() == null) {
                 //读取图片资源

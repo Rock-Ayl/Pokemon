@@ -422,10 +422,10 @@ public class EventManager {
      * 处理：场景切换
      */
     private boolean processSceneChange(SceneChangeEventNode node) {
-        //解析路径
-        String filePath = FileEnum.parseByCode(node.getTargetWorldMapConfigFileCode()).getPath();
+        //解析文件
+        FileEnum fileEnum = FileEnum.parseByCode(node.getTargetWorldMapConfigFileCode());
         //目标参数缺失,直接跳过
-        if (StringUtils.isBlank(filePath) || node.getTargetX() == null || node.getTargetY() == null) {
+        if (fileEnum == FileEnum.NONE || node.getTargetX() == null || node.getTargetY() == null) {
             //过
             return true;
         }
@@ -440,7 +440,7 @@ public class EventManager {
         //切换场景
         WorldScreen nextWorldScreen = new WorldScreen(
                 this.pokemonGame,
-                filePath,
+                fileEnum.getPath(),
                 node.getTargetX(),
                 node.getTargetY(),
                 targetFacingDirectionEnum

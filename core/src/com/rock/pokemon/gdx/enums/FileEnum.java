@@ -120,15 +120,19 @@ public enum FileEnum {
     //路径
     private final String path;
 
-    //code索引
-    private static final Map<String, FileEnum> CODE_MAP;
+    //全局缓存
+    private static final Map<String, FileEnum> CODE_CAACHE_MAP;
 
     static {
+        //初始化
         Map<String, FileEnum> codeMap = new HashMap<>();
+        //循环
         for (FileEnum fileEnum : FileEnum.values()) {
+            //组装
             codeMap.put(fileEnum.code, fileEnum);
         }
-        CODE_MAP = Collections.unmodifiableMap(codeMap);
+        //记录缓存
+        CODE_CAACHE_MAP = Collections.unmodifiableMap(codeMap);
     }
 
     FileEnum(String code, String path) {
@@ -143,27 +147,31 @@ public enum FileEnum {
      * @return 枚举对象,不存在则返回null
      */
     public static FileEnum parseByCode(String code) {
+        //判空
         if (code == null) {
+            //过
             return null;
         }
-        return CODE_MAP.get(code);
+        //获取
+        return CODE_CAACHE_MAP.get(code);
     }
 
     /**
-     * 统一解析路径
-     * 兼容:
-     * 1) 直接传路径
-     * 2) 传 fileEnum 的 code
+     * 根据 code 获取文件路径
      *
-     * @param codeOrPath code或者原始路径
-     * @return 真实路径
+     * @param code 唯一编码
+     * @return
      */
-    public static String parsePath(String codeOrPath) {
-        if (codeOrPath == null) {
+    public static String parsePath(String code) {
+        //判空
+        if (code == null) {
+            //过
             return null;
         }
-        FileEnum fileEnum = parseByCode(codeOrPath);
-        return fileEnum == null ? codeOrPath : fileEnum.getPath();
+        //获取枚举
+        FileEnum fileEnum = parseByCode(code);
+        //返回
+        return fileEnum == null ? code : fileEnum.getPath();
     }
 
 }

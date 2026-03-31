@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 
 /**
@@ -32,7 +32,7 @@ public class SkinLoading {
          */
 
         //获取ui资源
-        TextureAtlas uiAtlas = myAssetManager.getTextureAtlas(FilePaths.TEXTURES_ALTA_UI + FilePaths.TEXTURES_ATLAS_FILE_NAME);
+        TextureAtlas uiAtlas = myAssetManager.getTextureAtlas(FileEnum.TEXTURES_ALTA_UI.getPath() + FileEnum.TEXTURES_ATLAS_FILE_NAME.getPath());
 
         /**
          * ui 对话框
@@ -69,8 +69,8 @@ public class SkinLoading {
         Label.LabelStyle normalFontLabel = new Label.LabelStyle();
         //载入字体
         normalFontLabel.font = new BitmapFont(
-                Gdx.files.internal(FilePaths.SYSTEM_TEXT_FONT_FNT),
-                Gdx.files.internal(FilePaths.SYSTEM_TEXT_FONT_IMAGE),
+                Gdx.files.internal(FileEnum.SYSTEM_TEXT_FONT_FNT.getPath()),
+                Gdx.files.internal(FileEnum.SYSTEM_TEXT_FONT_IMAGE.getPath()),
                 false
         );
         //根据比例缩放字体

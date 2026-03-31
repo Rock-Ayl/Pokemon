@@ -5,9 +5,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.rock.pokemon.gdx.PokemonGame;
-import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
+import com.rock.pokemon.gdx.enums.FileEnum;
 
 /**
  * 屏幕 主菜单界面
@@ -57,7 +57,7 @@ public class MainMenuScreen implements Screen {
         //如果点击屏幕 或 确认
         if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Settings.INPUT_KEY_CONFIRM)) {
             //进入 未白镇 指定位置
-            this.pokemonGame.setScreen(new WorldScreen(this.pokemonGame, FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, 19, 18, DirectionEnum.SOUTH));
+            this.pokemonGame.setScreen(new WorldScreen(this.pokemonGame, FileEnum.MAP_CONFIG_PATH_OF_LITTLE_ROOT.getPath(), 19, 18, DirectionEnum.SOUTH));
             //销毁当前资源
             this.dispose();
         }

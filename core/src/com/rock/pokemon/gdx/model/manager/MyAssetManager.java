@@ -3,7 +3,7 @@ package com.rock.pokemon.gdx.model.manager;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.rock.pokemon.gdx.common.FilePaths;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.model.loader.*;
 import com.rock.pokemon.gdx.model.map.config.*;
 import com.rock.pokemon.gdx.util.FileExtraUtils;
@@ -49,14 +49,14 @@ public class MyAssetManager {
 
         //所有资源路径,包含 地图块、事物、人物、UI
         List<String> textureAtlasPathList = Arrays.asList(
-                FilePaths.TEXTURES_ALTA_MAP,
-                FilePaths.TEXTURES_ALTA_PEOPLE,
-                FilePaths.TEXTURES_ALTA_UI
+                FileEnum.TEXTURES_ALTA_MAP.getPath(),
+                FileEnum.TEXTURES_ALTA_PEOPLE.getPath(),
+                FileEnum.TEXTURES_ALTA_UI.getPath()
         );
         //循环
         for (String dirPath : textureAtlasPathList) {
             //收集里面的资源列表
-            List<String> textureAtlasList = FileExtraUtils.collectFile(dirPath, FilePaths.TEXTURES_ATLAS_FILE_NAME);
+            List<String> textureAtlasList = FileExtraUtils.collectFile(dirPath, FileEnum.TEXTURES_ATLAS_FILE_NAME.getPath());
             //循环
             for (String filePath : textureAtlasList) {
                 //载入对应资源
@@ -86,20 +86,20 @@ public class MyAssetManager {
          */
 
         //载入事物配置
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
+        assetManager.load(FileEnum.MAP_CONFIG_PATH_OF_WORLD_OBJECT.getPath(), WorldObjectMapConfig.class);
         //载入npc
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
+        assetManager.load(FileEnum.MAP_CONFIG_PATH_OF_NPC.getPath(), NpcMapConfig.class);
         //载入盒子
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
+        assetManager.load(FileEnum.MAP_CONFIG_PATH_OF_BOX.getPath(), BoxMapConfig.class);
         //载入事件
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_EVENT, EventMapConfig.class);
+        assetManager.load(FileEnum.MAP_CONFIG_PATH_OF_EVENT.getPath(), EventMapConfig.class);
         //载入音效
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_SOUND, SoundMapConfig.class);
+        assetManager.load(FileEnum.MAP_CONFIG_PATH_OF_SOUND.getPath(), SoundMapConfig.class);
 
         //载入未白镇地图配置
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT, WorldMapConfig.class);
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_FIRST, WorldMapConfig.class);
-        assetManager.load(FilePaths.MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_SECOND, WorldMapConfig.class);
+        assetManager.load(FileEnum.MAP_CONFIG_PATH_OF_LITTLE_ROOT.getPath(), WorldMapConfig.class);
+        assetManager.load(FileEnum.MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_FIRST.getPath(), WorldMapConfig.class);
+        assetManager.load(FileEnum.MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_SECOND.getPath(), WorldMapConfig.class);
 
         /**
          * 结束加载
@@ -138,7 +138,7 @@ public class MyAssetManager {
      * @return
      */
     public WorldObjectMapConfig getWorldObjectMapConfig() {
-        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_WORLD_OBJECT, WorldObjectMapConfig.class);
+        return this.assetManager.get(FileEnum.MAP_CONFIG_PATH_OF_WORLD_OBJECT.getPath(), WorldObjectMapConfig.class);
     }
 
     /**
@@ -147,7 +147,7 @@ public class MyAssetManager {
      * @return
      */
     public NpcMapConfig getNpcMapConfig() {
-        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_NPC, NpcMapConfig.class);
+        return this.assetManager.get(FileEnum.MAP_CONFIG_PATH_OF_NPC.getPath(), NpcMapConfig.class);
     }
 
     /**
@@ -156,7 +156,7 @@ public class MyAssetManager {
      * @return
      */
     public BoxMapConfig getBoxMapConfig() {
-        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_BOX, BoxMapConfig.class);
+        return this.assetManager.get(FileEnum.MAP_CONFIG_PATH_OF_BOX.getPath(), BoxMapConfig.class);
     }
 
     /**
@@ -175,7 +175,7 @@ public class MyAssetManager {
      * @return
      */
     public EventMapConfig getEventMapConfig() {
-        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_EVENT, EventMapConfig.class);
+        return this.assetManager.get(FileEnum.MAP_CONFIG_PATH_OF_EVENT.getPath(), EventMapConfig.class);
     }
 
     /**
@@ -184,7 +184,7 @@ public class MyAssetManager {
      * @return
      */
     public SoundMapConfig getSoundMapConfig() {
-        return this.assetManager.get(FilePaths.MAP_CONFIG_PATH_OF_SOUND, SoundMapConfig.class);
+        return this.assetManager.get(FileEnum.MAP_CONFIG_PATH_OF_SOUND.getPath(), SoundMapConfig.class);
     }
 
     /**

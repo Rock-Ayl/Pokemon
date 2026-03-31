@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.rock.pokemon.gdx.PokemonGame;
-import com.rock.pokemon.gdx.common.FilePaths;
 import com.rock.pokemon.gdx.common.Settings;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.enums.TransitionEnum;
 import lombok.Getter;
 
@@ -64,8 +64,8 @@ public class TransitionBattleAnimation {
         this.pokemonGame = pokemonGame;
         //初始化着色器
         this.shader = new ShaderProgram(
-                Gdx.files.internal(FilePaths.TRANSITION_GLSL_VERTEX),
-                Gdx.files.internal(FilePaths.TRANSITION_GLSL_FRAGMENT)
+                Gdx.files.internal(FileEnum.TRANSITION_GLSL_VERTEX.getPath()),
+                Gdx.files.internal(FileEnum.TRANSITION_GLSL_FRAGMENT.getPath())
         );
         //默认状态,等待
         this.status = StatusEnum.WAITING;
@@ -95,7 +95,7 @@ public class TransitionBattleAnimation {
         this.status = StatusEnum.DOING;
         this.animTime = 0F;
         //指定渐变基底图片
-        this.img = new Texture(String.format(FilePaths.TRANSITION_ANIMATION_IMAGE_PATH, transitionEnum.getNumber()));
+        this.img = new Texture(String.format(FileEnum.TRANSITION_ANIMATION_IMAGE_PATH.getPath(), transitionEnum.getNumber()));
     }
 
     /**

@@ -19,7 +19,7 @@ public enum FileEnum {
     NONE("none", ""),
 
     /**
-     * 系统配置
+     * 系统相关
      */
 
     //文本-文件地址
@@ -28,15 +28,11 @@ public enum FileEnum {
     SYSTEM_TEXT_FONT_FNT("file_0010002", "assets/font/black/黑体.fnt"),
     SYSTEM_TEXT_FONT_IMAGE("file_0010003", "assets/font/black/黑体.png"),
 
-    /**
-     * 文件名
-     */
-
-    //资源文件名
-    TEXTURES_ATLAS_FILE_NAME("file_0020010", "textures.atlas"),
+    //资源统一文件名
+    TEXTURES_ATLAS_FILE_NAME("file_0010010", "textures.atlas"),
 
     /**
-     * 图片资源
+     * 资源路径
      */
 
     //人物资源-通用路径
@@ -47,7 +43,7 @@ public enum FileEnum {
     TEXTURES_ALTA_UI("file_00300103", "assets/packed/image/ui/"),
 
     /**
-     * 通用图集路径
+     * 图片
      */
 
     //地图物件图集
@@ -69,10 +65,11 @@ public enum FileEnum {
      * 非通用 世界配置
      */
 
-    //配置文件路径-未白镇地图
+    //配置文件路径-未白镇-主地图
     MAP_CONFIG_PATH_OF_LITTLE_ROOT("file_0040001", "assets/config/map/little_root/Main.json"),
-    //配置文件路径-未白镇-路比家
+    //配置文件路径-未白镇-路比家-第一层
     MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_FIRST("file_0040002", "assets/config/map/little_root/Ruby-First.json"),
+    //配置文件路径-未白镇-路比家-第二层
     MAP_CONFIG_PATH_OF_LITTLE_ROOT_HOUSE_RUBY_SECOND("file_0040003", "assets/config/map/little_root/Ruby-Second.json"),
 
     /**

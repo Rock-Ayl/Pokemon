@@ -462,7 +462,7 @@ public class EventManager {
             //过
             return null;
         }
-        //返回普通npc
+        //返回npc实体
         return Optional.ofNullable(this.pokemonGame)
                 .map(PokemonGame::getWorldScreen)
                 .map(WorldScreen::getWorld)

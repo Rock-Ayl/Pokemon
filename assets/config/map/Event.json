@@ -43,7 +43,7 @@
         {
           "remark": "主角场景切换",
           "type": "scene_change",
-          "targetWorldMapConfigPath": "assets/config/map/little_root/Ruby-First.json",
+          "targetWorldMapConfigFileCode": "file_0040002",
           "targetX": 8,
           "targetY": 0,
           "targetDirection": "north"
@@ -74,7 +74,7 @@
         {
           "remark": "主角场景切换",
           "type": "scene_change",
-          "targetWorldMapConfigPath": "assets/config/map/little_root/Main.json",
+          "targetWorldMapConfigFileCode": "file_0040001",
           "targetX": 13,
           "targetY": 19,
           "targetDirection": "south"

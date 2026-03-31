@@ -4,23 +4,23 @@
     "ruby_1": {
       "remark": "路比(男主)-1",
       "regionName": "ruby",
-      "standFilePath": "assets/packed/image/people/ruby/stand/textures.atlas",
-      "walkFilePath": "assets/packed/image/people/ruby/walk/textures.atlas",
-      "runFilePath": "assets/packed/image/people/ruby/run/textures.atlas"
+      "standFileCode": "file_00300203",
+      "walkFileCode": "file_00300204",
+      "runFileCode": "file_00300205"
     },
     "sapphire_1": {
       "remark": "沙菲亚(女主)-1",
       "regionName": "sapphire",
-      "standFilePath": null,
-      "walkFilePath": null,
-      "runFilePath": null
+      "standFileCode": null,
+      "walkFileCode": null,
+      "runFileCode": null
     },
     "prof_birch_1": {
       "remark": "小田卷博士-1",
       "regionName": "prof_birch",
-      "standFilePath": "assets/packed/image/people/prof_birch/stand/textures.atlas",
-      "walkFilePath": "assets/packed/image/people/prof_birch/walk/textures.atlas",
-      "runFilePath": null,
+      "standFileCode": "file_00300206",
+      "walkFileCode": "file_00300207",
+      "runFileCode": null,
       "eventList": [
         {
           "remark": "测试谈话-1",

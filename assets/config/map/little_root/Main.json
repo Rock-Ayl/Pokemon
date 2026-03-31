@@ -3,11 +3,11 @@
   "remark": "未白镇地图配置",
   "width": 50,
   "height": 50,
-  "bgmPath": "audio/music/LittleRoot.mp3",
+  "bgmFileCode": "file_0051001",
   "tileNodeList": [
     {
       "remark": "填充所有地图为草",
-      "filePath": "assets/packed/image/map/object/textures.atlas",
+      "fileCode": "file_00300201",
       "regionName": "grass3",
       "fillAllMap": true,
       "locationList": []

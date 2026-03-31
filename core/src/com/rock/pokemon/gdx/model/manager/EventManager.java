@@ -8,6 +8,7 @@ import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.event.EventNodeTemplate;
 import com.rock.pokemon.gdx.model.event.node.*;
 import com.rock.pokemon.gdx.model.map.Person;
+import com.rock.pokemon.gdx.model.map.World;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.screen.WorldScreen;
 import lombok.Getter;
@@ -453,30 +454,22 @@ public class EventManager {
     }
 
     /**
-     * todo 肯定要整理
-     * 读取人物
+     * 读取世界中的人物
      * npcId = -1 表示主角
      */
     private Person getNpcById(Integer npcId) {
-        //读取当前场景
-        WorldScreen worldScreen = this.pokemonGame.getWorldScreen();
-        //判空
-        if (worldScreen == null) {
-            //过
-            return null;
-        }
-        //主角
-        if (npcId != null && npcId == -1) {
-            //返回主角
-            return worldScreen.getAdventurer();
-        }
-        //普通npc
-        if (npcId == null || worldScreen.getWorld() == null) {
+        //盘开工
+        if (npcId == null) {
             //过
             return null;
         }
         //返回普通npc
-        return worldScreen.getWorld().getPersonMap().get(String.valueOf(npcId));
+        return Optional.ofNullable(this.pokemonGame)
+                .map(PokemonGame::getWorldScreen)
+                .map(WorldScreen::getWorld)
+                .map(World::getPersonMap)
+                .orElse(new LinkedHashMap<>())
+                .get(String.valueOf(npcId));
     }
 
     /**

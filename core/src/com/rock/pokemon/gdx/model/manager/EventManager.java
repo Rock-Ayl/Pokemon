@@ -454,8 +454,7 @@ public class EventManager {
     }
 
     /**
-     * todo 读取世界中的人物
-     * npcId = -1 表示主角
+     * 读取世界中的人物
      */
     private Person getNpcById(String npcId) {
         //判空

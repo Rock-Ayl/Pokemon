@@ -1,6 +1,5 @@
 package com.rock.pokemon.gdx.model.map.config;
 
-import com.rock.pokemon.gdx.enums.FileEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,18 +46,6 @@ public class NpcMapConfig {
 
         //事件列表
         private List<NpcMapNodeEvent> eventList;
-
-        public String getStandFilePath() {
-            return FileEnum.parsePath(this.standFileCode);
-        }
-
-        public String getWalkFilePath() {
-            return FileEnum.parsePath(this.walkFileCode);
-        }
-
-        public String getRunFilePath() {
-            return FileEnum.parsePath(this.runFileCode);
-        }
 
     }
 

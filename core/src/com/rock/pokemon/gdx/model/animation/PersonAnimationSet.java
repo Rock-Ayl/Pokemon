@@ -4,13 +4,13 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.manager.MyAssetManager;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig.NpcMapNode;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * 一个人物动画集合
@@ -56,15 +56,9 @@ public class PersonAnimationSet {
     public PersonAnimationSet(MyAssetManager myAssetManager, NpcMapNode npcMapNode) {
 
         //获取动画资源文件
-        String walkFilePath = Optional.ofNullable(npcMapNode)
-                .map(NpcMapNode::getWalkFilePath)
-                .orElse("");
-        String standFilePath = Optional.ofNullable(npcMapNode)
-                .map(NpcMapNode::getStandFilePath)
-                .orElse("");
-        String runFilePath = Optional.ofNullable(npcMapNode)
-                .map(NpcMapNode::getRunFilePath)
-                .orElse("");
+        String walkFilePath = FileEnum.parseByCode(npcMapNode.getWalkFileCode()).getPath();
+        String standFilePath = FileEnum.parseByCode(npcMapNode.getStandFileCode()).getPath();
+        String runFilePath = FileEnum.parseByCode(npcMapNode.getRunFileCode()).getPath();
 
         //获取动画资源,没有也无所谓,毕竟不是所有人都有主角那么多的动作
         TextureAtlas walkTextureAtlas = myAssetManager.getTextureAtlas(walkFilePath, false);

@@ -32,10 +32,6 @@ public class SceneChangeEventNode implements EventNodeTemplate {
      */
     private String targetDirection;
 
-    public String getTargetWorldMapConfigPath() {
-        return FileEnum.parsePath(this.targetWorldMapConfigFileCode);
-    }
-
     @Override
     public EventNodeTypeEnum getType() {
         //对应枚举类型

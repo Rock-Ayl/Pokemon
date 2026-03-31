@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.EventNodeTypeEnum;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.enums.WalkEnum;
 import com.rock.pokemon.gdx.model.event.EventNodeTemplate;
 import com.rock.pokemon.gdx.model.event.node.*;
@@ -421,8 +422,10 @@ public class EventManager {
      * 处理：场景切换
      */
     private boolean processSceneChange(SceneChangeEventNode node) {
+        //解析路径
+        String filePath = FileEnum.parseByCode(node.getTargetWorldMapConfigFileCode()).getPath();
         //目标参数缺失,直接跳过
-        if (node.getTargetWorldMapConfigPath() == null || node.getTargetX() == null || node.getTargetY() == null) {
+        if (StringUtils.isBlank(filePath) || node.getTargetX() == null || node.getTargetY() == null) {
             //过
             return true;
         }
@@ -437,7 +440,7 @@ public class EventManager {
         //切换场景
         WorldScreen nextWorldScreen = new WorldScreen(
                 this.pokemonGame,
-                node.getTargetWorldMapConfigPath(),
+                filePath,
                 node.getTargetX(),
                 node.getTargetY(),
                 targetFacingDirectionEnum

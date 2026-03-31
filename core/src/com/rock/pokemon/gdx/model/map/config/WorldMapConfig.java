@@ -40,10 +40,6 @@ public class WorldMapConfig {
     //npc节点列表
     private List<NpcNode> npcNodeList;
 
-    public String getBgmPath() {
-        return FileEnum.parsePath(this.bgmFileCode);
-    }
-
     /**
      * 地图块节点实体
      */

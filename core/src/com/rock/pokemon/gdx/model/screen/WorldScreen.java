@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.rock.pokemon.gdx.PokemonGame;
 import com.rock.pokemon.gdx.common.Settings;
 import com.rock.pokemon.gdx.enums.DirectionEnum;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionBattleAnimation;
 import com.rock.pokemon.gdx.model.animation.transition.TransitionSwitchAnimation;
 import com.rock.pokemon.gdx.model.controller.DialogueAndOptionBoxController;
@@ -24,6 +25,7 @@ import com.rock.pokemon.gdx.model.map.renderer.WorldRenderer;
 import com.rock.pokemon.gdx.model.ui.box.BoxExecutor;
 import com.rock.pokemon.gdx.model.ui.box.DialogueAndOptionBox;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 屏幕 通用世界
@@ -149,10 +151,12 @@ public class WorldScreen implements Screen {
          * 世界音乐
          */
 
+        //获取背景音乐
+        String musicPath = FileEnum.parsePath(worldMapConfig.getBgmFileCode());
         //如果有背景音乐
-        if (worldMapConfig.getBgmPath() != null) {
+        if (StringUtils.isNotBlank(musicPath)) {
             //初始化背景音乐
-            this.music = Gdx.audio.newMusic(Gdx.files.internal(worldMapConfig.getBgmPath()));
+            this.music = Gdx.audio.newMusic(Gdx.files.internal(musicPath));
             //循环播放
             this.music.setLooping(true);
         }

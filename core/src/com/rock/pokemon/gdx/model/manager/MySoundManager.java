@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx.model.manager;
 
 import com.badlogic.gdx.Gdx;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.model.map.config.SoundMapConfig;
 import com.rock.pokemon.gdx.util.FastJsonExtraUtils;
 
@@ -32,7 +33,7 @@ public class MySoundManager {
             //获取配置
             SoundMapConfig.MySound mySound = entry.getValue();
             //初始化音效
-            mySound.setSound(Gdx.audio.newSound(Gdx.files.internal(mySound.getSoundPath())));
+            mySound.setSound(Gdx.audio.newSound(Gdx.files.internal(FileEnum.parseByCode(mySound.getFileCode()).getPath())));
             //覆盖id
             mySound.setSoundId(soundId);
         }

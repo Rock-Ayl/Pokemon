@@ -56,10 +56,6 @@ public class SoundMapConfig {
         //音效id,初始化时候会根据map的覆盖
         private String soundId;
 
-        public String getSoundPath() {
-            return FileEnum.parsePath(this.fileCode);
-        }
-
     }
 
 }

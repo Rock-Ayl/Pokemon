@@ -1,6 +1,7 @@
 package com.rock.pokemon.gdx.model.event.node;
 
 import com.rock.pokemon.gdx.enums.EventNodeTypeEnum;
+import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.model.event.EventNodeTemplate;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import lombok.Setter;
 public class SceneChangeEventNode implements EventNodeTemplate {
 
     //对应场景地图配置地址
-    private String targetWorldMapConfigPath;
+    private String targetWorldMapConfigFileCode;
 
     //目标坐标
     private Integer targetX;
@@ -30,6 +31,10 @@ public class SceneChangeEventNode implements EventNodeTemplate {
      * 目标-场景后的面朝方向枚举(可选)
      */
     private String targetDirection;
+
+    public String getTargetWorldMapConfigPath() {
+        return FileEnum.parsePath(this.targetWorldMapConfigFileCode);
+    }
 
     @Override
     public EventNodeTypeEnum getType() {

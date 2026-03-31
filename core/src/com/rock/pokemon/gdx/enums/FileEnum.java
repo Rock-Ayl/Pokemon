@@ -153,7 +153,7 @@ public enum FileEnum {
         //判空
         if (code == null) {
             //过
-            return null;
+            return NONE;
         }
         //获取
         return CODE_CAACHE_MAP.getOrDefault(code, NONE);

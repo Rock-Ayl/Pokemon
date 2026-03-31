@@ -2,7 +2,7 @@
   "name": "所有事件-谈话、菜单、剧情、道具、等等都算",
   "eventMap": {
     "little_root_move_one": {
-      "remark": "未白镇-移动-todo",
+      "remark": "未白镇-移动",
       "eventNodeJsonList": [
         {
           "remark": "进门音效",

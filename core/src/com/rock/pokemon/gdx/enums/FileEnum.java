@@ -15,6 +15,9 @@ import java.util.Map;
 @Getter
 public enum FileEnum {
 
+    //未知的
+    NONE("none", ""),
+
     /**
      * 系统配置
      */
@@ -153,7 +156,7 @@ public enum FileEnum {
             return null;
         }
         //获取
-        return CODE_CAACHE_MAP.get(code);
+        return CODE_CAACHE_MAP.getOrDefault(code, NONE);
     }
 
     /**
@@ -163,15 +166,8 @@ public enum FileEnum {
      * @return
      */
     public static String parsePath(String code) {
-        //判空
-        if (code == null) {
-            //过
-            return null;
-        }
-        //获取枚举
-        FileEnum fileEnum = parseByCode(code);
         //返回
-        return fileEnum == null ? code : fileEnum.getPath();
+        return parseByCode(code).getPath();
     }
 
 }

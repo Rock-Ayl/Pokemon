@@ -176,5 +176,22 @@
       ]
     }
   ],
+  "mapConnectEventNodeList": [
+    {
+      "remark": "路比家1F-离开到未白镇",
+      "triggerDirection": "south",
+      "eventId": "little_root_ruby_first_move_out",
+      "locationList": [
+        {
+          "x": 8,
+          "y": 0
+        },
+        {
+          "x": 9,
+          "y": 0
+        }
+      ]
+    }
+  ],
   "npcNodeList": []
 }

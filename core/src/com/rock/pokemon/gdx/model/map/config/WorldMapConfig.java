@@ -39,6 +39,9 @@ public class WorldMapConfig {
     //npc节点列表
     private List<NpcNode> npcNodeList;
 
+    //地图联通触发节点列表（当前位置 + 输入方向 => 事件）
+    private List<MapConnectEventNode> mapConnectEventNodeList;
+
     /**
      * 地图块节点实体
      */
@@ -111,6 +114,27 @@ public class WorldMapConfig {
 
         //npc坐标
         private Location location;
+
+    }
+
+    /**
+     * 地图联通事件节点实体
+     */
+    @Getter
+    @Setter
+    public static class MapConnectEventNode {
+
+        //节点备注
+        private String remark;
+
+        //方向枚举
+        private String triggerDirection;
+
+        //触发事件id
+        private String eventId;
+
+        //触发坐标列表
+        private List<Location> locationList;
 
     }
 

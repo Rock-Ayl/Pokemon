@@ -3,6 +3,7 @@ package com.rock.pokemon.gdx.model.map;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.GridPoint2;
 import com.rock.pokemon.gdx.PokemonGame;
+import com.rock.pokemon.gdx.enums.DirectionEnum;
 import com.rock.pokemon.gdx.enums.FileEnum;
 import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import com.rock.pokemon.gdx.model.map.config.NpcMapConfig;
@@ -39,6 +40,9 @@ public class World {
     //该世界的事物的列表(树木、草、牌子等等)
     private List<WorldObject> worldObjectList = new ArrayList<>();
 
+    //地图联通触发索引（当前位置 + 输入方向 => 事件id）
+    private Map<String, String> mapConnectEventIdMap = new HashMap<>();
+
     /**
      * 初始化世界
      *
@@ -65,6 +69,9 @@ public class World {
         //读取npc配置
         NpcMapConfig npcMapConfig = pokemonGame.getGameContext().getMyAssetManager().getNpcMapConfig();
 
+        //读取事件配置
+        Map<String, EventMapConfig.Event> eventMap = pokemonGame.getGameContext().getMyAssetManager().getEventMapConfig().getEventMap();
+
         /**
          * 初始化 地图网格、地图块本身
          */
@@ -79,6 +86,9 @@ public class World {
                 this.tileMap.getMap()[x][y] = new Tile(x, y);
             }
         }
+
+        //初始化地图联通事件索引
+        this.initMapConnectEventMap(worldMapConfig, eventMap);
 
         /**
          * 载入地图资源
@@ -164,8 +174,6 @@ public class World {
              * 获取事务对应事件
              */
 
-            //获取事件map
-            Map<String, EventMapConfig.Event> eventMap = pokemonGame.getGameContext().getMyAssetManager().getEventMapConfig().getEventMap();
             //门事件,默认为0
             EventMapConfig.Event doorEvent = null;
             //获取门事件id
@@ -218,6 +226,95 @@ public class World {
             new Person(npcId, npcMapNode, this, location.getX(), location.getY(), pokemonGame);
         }
 
+    }
+
+    /**
+     * 初始化地图联通事件索引（当前位置 + 输入方向 => 事件id）
+     */
+    private void initMapConnectEventMap(WorldMapConfig worldMapConfig, Map<String, EventMapConfig.Event> eventMap) {
+        //重置
+        this.mapConnectEventIdMap = new HashMap<>();
+        //读取配置节点
+        List<WorldMapConfig.MapConnectEventNode> nodeList = Optional.ofNullable(worldMapConfig)
+                .map(WorldMapConfig::getMapConnectEventNodeList)
+                .orElse(null);
+        //没有配置直接结束
+        if (CollectionUtils.isEmpty(nodeList)) {
+            //过
+            return;
+        }
+        //循环节点
+        for (WorldMapConfig.MapConnectEventNode node : nodeList) {
+            //判空
+            if (node == null) {
+                //本轮过
+                continue;
+            }
+            //读取触发方向
+            DirectionEnum triggerDirectionEnum = DirectionEnum.parseByName(node.getTriggerDirection());
+            //读取事件id
+            String eventId = node.getEventId();
+            //无效配置直接跳过
+            if (triggerDirectionEnum == null || StringUtils.isBlank(eventId)) {
+                //本轮过
+                continue;
+            }
+            //如果事件配置存在,且该事件不存在
+            if (eventMap != null && eventMap.containsKey(eventId) == false) {
+                //本轮过
+                continue;
+            }
+            //读取坐标列表
+            List<WorldMapConfig.Location> locationList = node.getLocationList();
+            //没有触发点直接跳过
+            if (CollectionUtils.isEmpty(locationList)) {
+                //本轮过
+                continue;
+            }
+            //循环坐标
+            for (WorldMapConfig.Location location : locationList) {
+                //坐标异常保护
+                if (location == null || location.getX() == null || location.getY() == null) {
+                    //本轮过
+                    continue;
+                }
+                //覆盖登记
+                this.mapConnectEventIdMap.put(
+                        buildMapConnectEventKey(location.getX(), location.getY(), triggerDirectionEnum),
+                        eventId
+                );
+            }
+        }
+    }
+
+    /**
+     * 根据当前位置和输入方向，查找地图联通事件id
+     *
+     * @param x             地图坐标x
+     * @param y             地图坐标y
+     * @param directionEnum 输入方向
+     * @return 事件id
+     */
+    public String findMapConnectEventId(int x, int y, DirectionEnum directionEnum) {
+        //判空
+        if (directionEnum == null) {
+            //过
+            return null;
+        }
+        //返回
+        return this.mapConnectEventIdMap.get(buildMapConnectEventKey(x, y, directionEnum));
+    }
+
+    /**
+     * 构建地图联通事件索引键
+     *
+     * @param x             坐标x
+     * @param y             坐标y
+     * @param directionEnum 方向
+     * @return 索引key
+     */
+    private static String buildMapConnectEventKey(int x, int y, DirectionEnum directionEnum) {
+        return x + "_" + y + "_" + directionEnum.getName();
     }
 
     /**

@@ -10,6 +10,7 @@ import com.rock.pokemon.gdx.model.map.Tile;
 import com.rock.pokemon.gdx.model.map.WorldObject;
 import com.rock.pokemon.gdx.model.map.config.EventMapConfig;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -94,7 +95,7 @@ public class PlayerCommandHandler {
                 continue;
             }
             //先尝试触发门事件、固定坐标场景联通事件
-            if (tryTriggerDoorEvent(directionEnum) || tryTriggerFixedMapConnectEvent(directionEnum)) {
+            if (tryTriggerDoorEvent(directionEnum) || tryTriggerMapConnectEvent(directionEnum)) {
                 //触发后本帧不再继续处理移动
                 break;
             }
@@ -197,26 +198,23 @@ public class PlayerCommandHandler {
     }
 
     /**
-     * todo 早晚得改
-     * 固定坐标联通：
-     * 路比家(1F) 8,0 / 9,0 站立后按下可离开到未白镇
+     * 尝试触发地图联通事件（由当前世界配置驱动）
      */
-    private boolean tryTriggerFixedMapConnectEvent(DirectionEnum directionEnum) {
-        //仅处理按下离开
-        if (directionEnum != DirectionEnum.SOUTH) {
-            //过
-            return false;
-        }
-        //只在固定点生效
+    private boolean tryTriggerMapConnectEvent(DirectionEnum directionEnum) {
+        //当前坐标
         int x = this.person.getX();
         int y = this.person.getY();
-        //判断是否在固定点
-        if ((x == 8 || x == 9) == false || y != 0) {
+        //读取事件id
+        String eventId = Optional.ofNullable(this.person.getWorld())
+                .map(p -> p.findMapConnectEventId(x, y, directionEnum))
+                .orElse(null);
+        //未匹配联通事件
+        if (StringUtils.isBlank(eventId)) {
             //过
             return false;
         }
-        //触发离开事件链
-        return startEventById("little_root_ruby_first_move_out");
+        //触发事件链
+        return startEventById(eventId);
     }
 
     /**

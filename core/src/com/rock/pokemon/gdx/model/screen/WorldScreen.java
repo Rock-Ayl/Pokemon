@@ -164,11 +164,11 @@ public class WorldScreen implements Screen {
          * UI
          */
 
-        //初始化[FitViewport]屏幕,保证游戏横纵比,并使用相机(Fit效果拖动时会有问题)
-        this.viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        //初始化[FitViewport]屏幕,使用固定逻辑尺寸,保证窗口缩放后切换场景时比例一致
+        this.viewport = new FitViewport(Settings.WIDTH, Settings.HEIGHT);
 
-        //初始化舞台
-        this.uiStage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+        //初始化舞台,与世界使用相同的固定逻辑尺寸
+        this.uiStage = new Stage(new FitViewport(Settings.WIDTH, Settings.HEIGHT));
 
         //初始化谈话table
         this.talkTable = new Table();
